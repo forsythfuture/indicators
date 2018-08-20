@@ -1,6 +1,6 @@
-# Forsyth Futures coomunity indicators
+# Forsyth Futures community indicators
 
-This repo includes all indicators. Folders separate indicators by sector. Within each sector sector folder lies a data folder, where all the data for that sector is housed. R scripts tp generate the data lie in each sector's folder.
+This repo includes all indicators. Folders separate indicators by sector. Within each sector folder lies a data folder, where all the data for that sector is housed. R scripts to generate the data lie in each sector's folder.
 
 The 'acs_functions' file in the main directory stores common functions used to import and manipulate ACS data with the tidycensus and acs packages.
 
