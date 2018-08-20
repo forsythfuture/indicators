@@ -1,11 +1,6 @@
 library(tidycensus)
 library(tidyverse)
 
-# census key must be installed on local computer
-# to install census key go to 
-
-census_api_key("1c53569703082594a9d8c422e7bb2d19c9bfba4f", install = TRUE)
-
 # load and save variables
 var_names16 <- load_variables(2016, "acs1")
 
