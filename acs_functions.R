@@ -1,5 +1,5 @@
 ########################################################################################################
-# This file contains commonly used functions to access ACS data with the tidycensus and acs packges.
+# This file contains commonly used functions to access ACS data with the tidycensus and acs packages.
 # The functions import and manipulate ACS data.
 #
 # All function names should start with 'ff' so that when code is reviewed it is clear that the 
