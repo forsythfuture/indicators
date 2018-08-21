@@ -5,10 +5,13 @@ output: html_document
 
 ```{r setup, include=FALSE}
 # prevent printing or R code in the output
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
 ```
 
 ```{r import}
+library(plotly)
 # import function; must mvoe back one folder
 source('../acs_functions.R')
 
@@ -51,6 +54,43 @@ gender_inequality_female <-  gender_inequality %>%
 # join male and female datasets
 gender_inequality_sex <- left_join(gender_inequality_male, gender_inequality_female,
                                    by = c('NAME', 'year', 'ethnicity'))
-  
 
+# calculate income ratios and MOE
+gender_inequality_sex <- ff_ratios(gender_inequality_sex, 'f_estimate', 'f_moe', 'm_estimate', 'm_moe')
+```
+
+[Enter text describing trends through time and comparisons between geographic units.]
+
+```{r}
+# create line chart of ratios by year and geographic unit
+
+gender_inequality_sex %>%
+  filter(ethnicity == 'ALL') %>%
+  plot_ly(x=~year, y=~ratio, split=~NAME,
+          type="scatter",color=~NAME, mode="lines+markers",
+          hoverinfo='text', 
+          text = ~paste('</br> County: ', NAME,
+                        '</br> Year: ', year,
+                        '</br> Ratio: ', round(ratio,2),
+                        '</br> 95% Margin of error: ', round(ratio_moe,2))) %>%
+    layout(yaxis = list(title = 'Female to male income ratio'))
+
+# add_ribbons(
+#               ymin = ~ratio - ratio_moe,
+#               ymax = ~ratio + ratio_moe,
+#               name = "95% Confidence Interval")
+```
+
+[Enter text describing demographic issues here]
+
+```{r}
+gender_inequality_sex %>%
+  # filter for most recent year and remove 'ALL' rethnicities category
+  filter((year == max(.$year)) & (ethnicity != 'ALL')) %>%
+  plot_ly(x = ~ethnicity, y = ~ratio, color = ~NAME,
+          type = 'bar',
+          hoverinfo='text', 
+          text = ~paste('</br> County: ', NAME,
+                        '</br> Ratio: ', round(ratio,2),
+                        '</br> 95% Margin of error: ', round(ratio_moe,2)))
 ```
