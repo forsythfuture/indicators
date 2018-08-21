@@ -270,3 +270,30 @@ ff_update_county <- function(master_df_path, table_num, state, county, current_y
   
   return(master_df)
 }
+
+
+ff_keep_vars <- function(df, variables) {
+  
+  # this program filters for specific variables
+  # the variables are three digit numbers that are shown as
+  # the last three digits in the 'variables' column
+  
+  # Input includes the dataframe of ACS data and the variables that are needed
+  # variables are entered as a three digit string (ex: '001')
+  # important: variables must be netered as strings
+  
+  # check vector of variables and ensure it is a character vector
+  # if not, through error message
+  if (!is.character(variables))
+    stop("The vector of variable names must be characters.To create characters, surround numbers in ''.")
+  
+  df_vars <- df %>%
+    # extract last three digits, which are the variables, and place in new column
+    mutate(variable_code = str_extract(.$variable, "[0-9]{3}$")) %>%
+    # filter this column for the specific variables
+    filter(variable_code %in% variables) %>%
+    # remove column that is only the variable cod
+    select(-variable_code)
+  
+  return(df_vars)
+}

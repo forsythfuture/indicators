@@ -1,0 +1,56 @@
+---
+title: "Gender Income Inequality"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r import}
+# import function; must mvoe back one folder
+source('../acs_functions.R')
+
+# import data 
+gender_inequality <- read_csv('data/gender_pay.csv') %>%
+  # only keep needed ethnicities
+  ff_ethnicity() %>%
+  # add lower and upper confidence intervals
+  mutate(lower_ci = estimate - moe,
+         upper_ci = estimate + moe)
+```
+
+```{r}
+# calculate gender income ratio for each comparison city, using all races and separating by year
+
+# create separate columns for male and female rates, so ratios can be calculated
+# also add confidence intervals
+
+# create male dataset
+gender_inequality_male <-  gender_inequality %>%
+  # only keep rows for males that worked 12 months (003)
+  ff_keep_vars('003') %>%
+  # remane variabels to signify it is from males
+  rename(m_estimate = estimate, m_moe = moe,
+         m_lower_ci = lower_ci, m_upper_ci = upper_ci) %>%
+  # only keep needed variables
+  select(NAME, m_estimate, m_moe, m_lower_ci, m_upper_ci, year, ethnicity)
+  
+
+# create female dataset
+gender_inequality_female <-  gender_inequality %>%
+  # only keep rows for females that worked 12 months (006)
+  ff_keep_vars('006') %>%
+  # remane variabels to signify it is from females
+  rename(f_estimate = estimate, f_moe = moe,
+         f_lower_ci = lower_ci, f_upper_ci = upper_ci) %>%
+  # only keep needed variables
+  select(NAME, f_estimate, f_moe, f_lower_ci, f_upper_ci, year, ethnicity)
+
+# join male and female datasets
+gender_inequality_sex <- left_join(gender_inequality_male, gender_inequality_female,
+                                   by = c('NAME', 'year', 'ethnicity'))
+  
+
+```
