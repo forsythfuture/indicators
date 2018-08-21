@@ -6,6 +6,9 @@
 # functon was custom built.
 ########################################################################################################
 
+library(tidyverse)
+library(tidycensus)
+
 # This function loads all acs variable names. It supplies parameters and values to other functions,
 # and will not be called within R scripts
 var_names16 <- load_variables(2016, "acs1")
@@ -52,6 +55,8 @@ ff_table_names <- function(table_number) {
 # This function returns a dataframe of multiple table numbers at one time
 
 ff_import_tables <- function(table_number, state, county, year_end) {
+  
+  # This function returns a dataframe of multiple table numbers at one time
   
   # pull table descriptions and numbers of all tables
   table_decription_df <- ff_table_names(table_number)
@@ -100,13 +105,12 @@ ff_import_tables <- function(table_number, state, county, year_end) {
 }
 
 
-a <- ff_import_years('B20017', 'NC', 'Forsyth', '2015', '2016')
 
-
-# This function returns tables for a series of years; for a single geographic area
-# 1 year ACS only goes back to 2011
 
 ff_import_years <- function(table_number, state, county, year_start, year_end) {
+  
+  # This function returns tables for a series of years; for a single geographic area
+  # 1 year ACS only goes back to 2011
   
   # vector of the years that are needed
   years <- seq(year_start, year_end, 1)
@@ -143,16 +147,13 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
   
 }
 
-states <- c('NC', 'AR')
-counties <- c('Forsyth', 'Pulaski')
-
-b <- ff_import_acs('a', c('NC', 'NC'), c('A', 'S', 'D'))
-
-a <- ff_import_acs('B20017', states, counties, '2015', '2016')
 
 # This function returns a table for multiple geographic units (county and state combinations)
 
 ff_import_acs <- function(table_number, state, county, year_start, year_end) {
+  
+  # This function returns a table for multiple geographic units (county and state combinations)
+  # Weh nimporting data, this is the only function needed
   
   # The state and county parameters are separate vectors of all the states and counties
   # the length of each vector must be the same, and they must overlap.
@@ -189,4 +190,46 @@ ff_import_acs <- function(table_number, state, county, year_start, year_end) {
   
   return(geo_first)
 
+}
+
+
+######################################################
+
+########### Data calculations  ###########
+
+# The following functions perform calculations on ACS data,
+# such as adding proportions and conducting tests
+
+######################################################
+
+########### Misc  ###########
+
+# The following functions are miscellaneous
+
+
+ff_ethnicity <- function(df) {
+  
+  # This function filters for the following ethnicities:
+  #    White Alone, Not Hispanic or Latino; Black or African American Alone; Hispanic or Latino
+  # It takes as input a dataframe of ACS data create by 'ff_import_acs'
+  
+  # keep these ethnicities
+  keep_ethnicities <- c('ALL', 'WHITE ALONE, NOT HISPANIC OR LATINO', 
+                        'BLACK OR AFRICAN AMERICAN ALONE', 'HISPANIC OR LATINO')
+  
+  # Ethnicity is located in 'concept' column, so wrangle this column to extract ethnicity
+  # and place in its own column
+  df$ethnicity <- df$concept %>%
+    # Identify the ethnicity part of the 'concept' variable.
+    # This part is at the end of the line, and surrounded by brackets.
+    str_match("[(][A-Z| |,]*?[)]$") %>%
+    # remove brackets - first and last character - from ethnicity
+    str_sub(2, -2) %>%
+    # NA values for ethnicity represent totals, change NA values to 'all'
+    replace_na('ALL')
+  
+  # filter for column in the listed ethnicities
+  df <- filter(df, ethnicity %in% keep_ethnicities)
+  
+  return(df)
 }
