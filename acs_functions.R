@@ -9,6 +9,18 @@
 library(tidyverse)
 library(tidycensus)
 
+# This dataframe serves as a master list for comparison counties
+# If comparison counties change only this list needs to be updated
+compare <- tribble(~county, ~state,
+                   #---/---#
+                   'Forsyth', 'NC',
+                   'Guilford', 'NC',
+                   'Pulaski', 'AR')
+
+# save the current year as an object
+# this allows us to update all datasets without entering the current year in every script
+current_year <- 2017
+
 # This function loads all acs variable names. It supplies parameters and values to other functions,
 # and will not be called within R scripts
 var_names16 <- load_variables(2016, "acs1")
@@ -16,22 +28,22 @@ var_names16 <- load_variables(2016, "acs1")
 ########### Import data  ###########
 
 # The following functions import data into ACS
-# The only function that needs to be run in R scripts is 'ff_import_acs'
+# The only function that needs to be run in R scripts is 'ff_import_acs_county'
 # The general framework is as follows:
 #     tidycensus essentially only allows users to import one geographic unit, one year, and one table
 #     at a time. These three tasks are broken down into three different functions. Then, the function
-#     'ff_import_acs' combines these three functions, so that multiple tables, geographic units, and
+#     'ff_import_acs_county' combines these three functions, so that multiple tables, geographic units, and
 #     years can be imported with one function call.
 #
 # Important Note: All data imports with a 95% confidence level of the MOE
 # This differs from ACS fact finder, which shows the 90% confidence level
 
 
-# The following function creates a vector of table names for all tables within a group.
-# For example, entering the parameter 'B20017' returns B20017, B20017A, B20017B, etc.
-# This function add table and variable descriptions to the data, for ease of understanding
-
 ff_table_names <- function(table_number) {
+  
+  # The following function creates a vector of table names for all tables within a group.
+  # For example, entering the parameter 'B20017' returns B20017, B20017A, B20017B, etc.
+  # This function add table and variable descriptions to the data, for ease of understanding
   
   table_names <- var_names16 %>%
     # filter data set of table names for tables that start with the entered table number
@@ -52,9 +64,8 @@ ff_table_names <- function(table_number) {
 }
 
 
-# This function returns a dataframe of multiple table numbers at one time
 
-ff_import_tables <- function(table_number, state, county, year_end) {
+ff_import_tables_county <- function(table_number, state, county, year_end) {
   
   # This function returns a dataframe of multiple table numbers at one time
   
@@ -84,6 +95,8 @@ ff_import_tables <- function(table_number, state, county, year_end) {
         # add variable descriptions to table
         left_join(table_decription_df, by = c('variable' = 'name'))
       
+      print(table_nums[[i]])
+      
     } else {
       
       # create dataframes for other tables, and merge them into the main dataframe
@@ -97,6 +110,8 @@ ff_import_tables <- function(table_number, state, county, year_end) {
       first_table <- first_table %>%
         bind_rows(other_tables)
       
+      print(table_nums[[i]])
+      
     }
   }
   
@@ -107,7 +122,7 @@ ff_import_tables <- function(table_number, state, county, year_end) {
 
 
 
-ff_import_years <- function(table_number, state, county, year_start, year_end) {
+ff_import_years_county <- function(table_number, state, county, year_start, year_end) {
   
   # This function returns tables for a series of years; for a single geographic area
   # 1 year ACS only goes back to 2011
@@ -124,15 +139,17 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
     
     if ((length(years) == 1) | (which(years == year) == 1)) {
       
-      year_first <- ff_import_tables(table_number, state, county, year)
+      year_first <- ff_import_tables_county(table_number, state, county, year)
       
       # add column indicating year
       year_first$year <- year
       
+      print(year)
+      
     } else {
       
       # import table for subesuent year
-      year_next <- ff_import_tables(table_number, state, county, year)
+      year_next <- ff_import_tables_county(table_number, state, county, year)
       
       # add column indicating year
       year_next$year <- year
@@ -140,6 +157,8 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
       # bind this table to the first year's data frame
       year_first <- year_first %>%
         bind_rows(year_next)
+      
+      print(year)
     }
   }
   
@@ -148,12 +167,11 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
 }
 
 
-# This function returns a table for multiple geographic units (county and state combinations)
 
-ff_import_acs <- function(table_number, state, county, year_start, year_end) {
+ff_import_acs_county <- function(table_number, state, county, year_start, year_end) {
   
   # This function returns a table for multiple geographic units (county and state combinations)
-  # Weh nimporting data, this is the only function needed
+  # When importing data, this is the only function needed
   
   # The state and county parameters are separate vectors of all the states and counties
   # the length of each vector must be the same, and they must overlap.
@@ -173,16 +191,20 @@ ff_import_acs <- function(table_number, state, county, year_start, year_end) {
     
     if (i == 1) {
     
-      geo_first <- ff_import_years(table_number, state[[i]], county[[i]], year_start, year_end)
+      geo_first <- ff_import_years_county(table_number, state[[i]], county[[i]], year_start, year_end)
+      
+      print(paste(state[[i]], county[[i]], sep=', '))
     
     # create dataframes for subsequent geographic areas and merge to first data frame
       
     } else {
       
-      geo_next <- ff_import_years(table_number, state[[i]], county[[i]], year_start, year_end)
+      geo_next <- ff_import_years_county(table_number, state[[i]], county[[i]], year_start, year_end)
       
       geo_first <- geo_first %>%
         bind_rows(geo_next)
+      
+      print(paste(state[[i]], county[[i]], sep=', '))
       
     }
     
@@ -211,7 +233,7 @@ ff_ethnicity <- function(df) {
   
   # This function filters for the following ethnicities:
   #    White Alone, Not Hispanic or Latino; Black or African American Alone; Hispanic or Latino
-  # It takes as input a dataframe of ACS data create by 'ff_import_acs'
+  # It takes as input a dataframe of ACS data create by 'ff_import_acs_county'
   
   # keep these ethnicities
   keep_ethnicities <- c('ALL', 'WHITE ALONE, NOT HISPANIC OR LATINO', 
@@ -232,4 +254,19 @@ ff_ethnicity <- function(df) {
   df <- filter(df, ethnicity %in% keep_ethnicities)
   
   return(df)
+}
+
+
+ff_update_county <- function(master_df_path, table_num, state, county, current_year) {
+  
+  # This function updates the csv files by adding the current year's data
+  
+  # import current year ACS data
+  update_df <- ff_import_acs_county(table_number, state, county, current_year, current_year)
+  
+  # import local copy of master csv dataset and bind updated data to it
+  master_df <- read_csv(master_df_path) %>%
+    bind_rows(update_df)
+  
+  return(master_df)
 }
