@@ -203,6 +203,11 @@ ff_import_acs <- function(table_number, state, county, year_start, year_end) {
     
   }
   
+  # calcuate standard error
+  # note: since 95% confidence intervals are used, the moe is divided
+  # by 1.96, not 1.645 when using the 90% moe's from AFF
+  geo_first$se <- geo_first$moe / 1.96
+  
   return(geo_first)
   
 }
