@@ -23,10 +23,6 @@ source('../functions/acs_load_funcs.R')
 ```
 
 ```{r}
-source('../functions/acs_load_funcs.R')
-```
-
-```{r}
 # import data 
 gender_inequality <- read_csv('data/gender_pay.csv') %>%
   # only keep needed ethnicities

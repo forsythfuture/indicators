@@ -6,14 +6,14 @@
 # import custom ACS functions
 # This loads the tidyverse and tidycensus packages,
 # so they do not need to be loaded in this file
-source('functions/acs_functions_load.R')
+source('functions/acs_load_funcs.R')
 
 table_number <- 'B20017'
 
-gender_pay_data <- 'social_justice/data/gender_pay.csv'
+gender_pay_data <- 'i_social_justice/data/gender_pay.csv'
 
 # import B20017 table
-gender_pay <- ff_import_acs_county(table_number, compare$state, compare$county, 2012, 2016)
+gender_pay <- ff_import_acs(table_number, compare$state, compare$county, 2012, 2016)
 
 # save acs data in a csv file
 #write_csv(gender_pay, gender_pay_data)
