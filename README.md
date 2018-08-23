@@ -7,5 +7,5 @@ The [ACS functions](functions/acs) folder stores common functions used to import
 Accessing ACS data through an API requires installing a census key. To install the key, first go to https://api.census.gov/data/key_signup.html and sign up for a key. Then, install and load the *tidycensus* package within R. Finally, install the census key by running the following R command: 
 
 ```r
-census_api_key("[entre census key]", install = TRUE)
+census_api_key("[enter census key]", install = TRUE)
 ```
