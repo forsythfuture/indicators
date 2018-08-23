@@ -102,7 +102,7 @@ _____
 ff_acs_keep_vars(df, variables)
 ```
   
-This program filters for specific variables. The variables are the three digit numbers that are shown as the last three digits in the 'variables' column. Input includes the dataframe of ACS data and the variables that are needed variables are entered as a three digit string (ex: '001').
+This function filters for specific variables. The variables are the three digit numbers that are shown as the last three digits in the 'variables' column. Input includes the dataframe of ACS data and the variables that are needed variables are entered as a three digit string (ex: '001').
 
 Important: variables must be entered as strings.
 
