@@ -15,7 +15,7 @@
 acs_load_func <- function() {
   
   # locate all files within the ACS functions folder
-  files <- list.files('../functions/acs')
+  files <- list.files('../functions/acs', pattern='*.R')
   
   # run all the files containing ACS functions
   for (f in files) {
@@ -37,7 +37,7 @@ acs_load_func()
 acs_load_func <- function() {
   
   # locate all files within the ACS functions folder
-  files <- list.files('functions/acs')
+  files <- list.files('functions/acs', pattern='*.R')
   
   # run all the files containing ACS functions
   for (f in files) {
@@ -53,3 +53,6 @@ acs_load_func <- function() {
 
 # run function
 acs_load_func()
+
+# remove function
+rm(acs_load_func)
