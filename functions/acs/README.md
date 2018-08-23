@@ -1,8 +1,9 @@
 ## Explanation of ACS functions
 
 ### Import ACS data
+_____
 
-```r
+```{r}
 ff_import_acs(table_number, state, county, year_start, year_end)
 ```
 
@@ -16,7 +17,7 @@ Parameters:
 - year_end: an integer specifying the final year of data that is needed.
 
 *Example*
-```r
+```{r}
 df <- ff_import_acs(table_number = 'B20017', 
                     state = c('NC', 'NC', 'AR'),
                     county = c('Forsyth', 'Guilford', 'Pulaski'),
@@ -26,11 +27,12 @@ df <- ff_import_acs(table_number = 'B20017',
 
 *Notes*
 
-The function returns 95% confidence intervals for the margin of error. This is different that the default value of data retried from American Fact Finder.
-
+The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder.
+_____
 ### Conduct calculations and significance tests on data
+_____
 
-```r
+```{r}
 ff_acs_zscore(data_frame, estimate, se, var_names = NULL)
 ```
 
@@ -45,7 +47,7 @@ Parameters:
 - var_names: (optional) a character vector of variables that can be combined to created distinct names for each row and column
 
 *Example*
-```r
+```{r}
 zscore <- ff_acs_zscore(data_frame = df,
                         estimate = 'estimate', 
                         se = 'se', 
@@ -55,9 +57,9 @@ zscore <- ff_acs_zscore(data_frame = df,
 *Notes*
 
 var_names is optional. It aids in interpreting the matrix by assigning names to the rows and columns. This way, users can more easily trace a specific z-score to which two values created the score.
+_____
 
-
-```r
+```{r}
 ff_acs_zplot(zscore_matrix)
 ```
 
@@ -66,10 +68,29 @@ This function returns a plot similar to a correlation plot, showing whether z va
 The function's input is a z sore matrix generated from `r ff_acs_zscore`.
 
 *Example*
-```r
+```{r}
 ff_acs_zplot(zscore)
 ```
 Here is an example of the output:
 
 ![alt text](https://github.com/forsythfuture/indicators/blob/master/functions/acs/zscore_plot.png)
+
+_____
+### Filter and clean ACS data
+_____
+
+```{r}
+ff_acs_ethnicity(df)
+```
+
+This function removes ethnicities from an ACS dataset that are not regularly used due to a lack of data. It retains the following ACS ethnicities:
+- ALL
+- BLACK OR AFRICAN AMERICAN ALONE
+- WHITE ALONE, NOT HISPANIC OR LATINO
+- HISPANIC OR LATINO
+
+*Example*
+```{r}
+df_ethnicities <- ff_acs_ethnicity(df)
+```
     
