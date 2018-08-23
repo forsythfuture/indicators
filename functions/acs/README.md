@@ -13,7 +13,7 @@ Parameters:
 - table_number: The ACS table number for the data that is needed. This imports all tables in a series. For example, 'B20017' imports 'B20017A', 'B20017B', 'etc.
 - state: A vector of strings for the states, which should match with counties.
 - county: A vector of strings for the counties, which should match with the states.
-- year_start: an integer specifying the first year of data that is needed. Must be greater than 2012.
+- year_start: an integer specifying the first year of data that is needed. Must be at least 2012.
 - year_end: an integer specifying the final year of data that is needed.
 
 *Example*
