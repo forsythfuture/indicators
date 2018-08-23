@@ -79,7 +79,7 @@ ff_acs_zplot(zscore_matrix)
 
 This function returns a plot similar to a correlation plot, showing whether z values are significant. Z scores over 1.96 are significant, which corresponds to a p-value of 0.05 or less. Red values are statistically significant, blue values are not.
 
-The function's input is a z sore matrix generated from `r ff_acs_zscore`.
+The function's input is a z sore matrix generated from `ff_acs_zscore`.
 
 *Example*
 ```{r}
@@ -99,7 +99,7 @@ ff_acs_ratios(df, num_estimate, num_moe, den_estimate, den_moe)
 This function calculates the ratio, standard error, and 95% margins of error for user derived ratios. The formula comes from: U.S. Census Bureau, A Compass for Understanding and Using ACS Survey Data, A-15 (October 2008).
 
 Parameters:
-- df: an ACS data frame created by `r ff_import_acs`
+- df: an ACS data frame created by `ff_import_acs`
 - num_estimate: the column names for the numerator for the ratio as a string
 - num_moe: the column names for the 95% margin of error for the numerator as a string
 - den_estimate: the column names for the denominator for the ratio as a string
@@ -133,7 +133,7 @@ _____
 ff_acs_ethnicity(df)
 ```
 
-This function removes ethnicities from an ACS data set that are not regularly used due to a lack of data. Its input is an ACS data frame created by `r ff_import_acs`.
+This function removes ethnicities from an ACS data set that are not regularly used due to a lack of data. Its input is an ACS data frame created by `ff_import_acs`.
 
 The following ACS ethnicities are retained:
 - ALL
@@ -148,7 +148,7 @@ df_ethnicities <- ff_acs_ethnicity(df = acs_df)
 
 _____
 
-```r
+```{r}
 ff_acs_keep_vars(df, variables)
 ```
   
@@ -157,7 +157,7 @@ This function filters for specific variables. The variables are the three digit 
 Important: variables must be entered as strings.
 
 Parameters:
-- df: an ACS data frame created by `r ff_import_acs`
+- df: an ACS data frame created by `ff_import_acs`
 - variables: a string vector of variables to retain
 
 *Example*
