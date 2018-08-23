@@ -34,7 +34,7 @@ ff_acs_ratios <- function(df, num_estimate, num_moe, den_estimate, den_moe) {
   # add ratio and MOE to dataframe
   df$ratio <- ratio
   df$ratio_moe <- moe
-  df$ratio_se <- moe / 1.96
+  df$ratio_se <- se
   
   return(df)
   

@@ -26,7 +26,7 @@ df <- ff_import_acs(table_number = 'B20017',
 
 *Notes*
 
-The function returns 95% confidence intervals for the margin of error. This is different that the default value of data retrived from American Fact Finder.
+The function returns 95% confidence intervals for the margin of error. This is different that the default value of data retried from American Fact Finder.
 
 ### Conduct calculations and significance tests on data
 
@@ -39,7 +39,7 @@ This function returns a square symmetrical matrix of z scores for all combinatio
 The formula comes from: U.S. Census Bureau, A Compass for Understanding and Using ACS Survey Data, A-18 (October 2008)
 
 Parameters:
-- data_frame: the dataframe where the estimates and standar errors are housed
+- data_frame: the data frame where the estimates and standard errors are housed
 - estimate: a string that is the column name of the column containing the estimate
 - se: a string that is the column name of the column containing the standard error
 - var_names: (optional) a character vector of variables that can be combined to created distinct names for each row and column
@@ -49,9 +49,27 @@ Parameters:
 zscore <- ff_acs_zscore(data_frame = df,
                         estimate = 'estimate', 
                         se = 'se', 
-                        var_names = c('GEOID', 'varable', 'year')
+                        var_names = c('GEOID', 'varable', 'year'))
 ```
 
 *Notes*
 
 var_names is optional. It aids in interpreting the matrix by assigning names to the rows and columns. This way, users can more easily trace a specific z-score to which two values created the score.
+
+
+```r
+ff_acs_zplot(zscore_matrix)
+```
+
+This function returns a plot similar to a correlation plot, showing whether z values are significant. Z scores over 1.96 are significant, which corresponds to a p-value of 0.05 or less. Red values are statistically significant, blue values are not.
+
+The function's input is a z sore matrix generated from `r ff_acs_zscore`.
+
+*Example*
+```r
+ff_acs_zplot(zscore)
+```
+Here is an example of the output:
+
+![alt text](https://github.com/forsythfuture/indicators/blob/master/functions/acs/zscore_plot.png)
+    
