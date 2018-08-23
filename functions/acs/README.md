@@ -18,11 +18,11 @@ Parameters:
 
 *Example*
 ```{r}
-df <- ff_import_acs(table_number = 'B20017', 
-                    state = c('NC', 'NC', 'AR'),
-                    county = c('Forsyth', 'Guilford', 'Pulaski'),
-                    year_start = 2012,
-                    year_end = 2016)
+acs_df <- ff_import_acs(table_number = 'B20017', 
+                        state = c('NC', 'NC', 'AR'),
+                        county = c('Forsyth', 'Guilford', 'Pulaski'),
+                        year_start = 2012,
+                        year_end = 2016)
 ```
 
 *Notes*
@@ -48,7 +48,7 @@ Parameters:
 
 *Example*
 ```{r}
-zscore <- ff_acs_zscore(data_frame = df,
+zscore <- ff_acs_zscore(data_frame = acs_df,
                         estimate = 'estimate', 
                         se = 'se', 
                         var_names = c('GEOID', 'varable', 'year'))
@@ -69,7 +69,7 @@ The function's input is a z sore matrix generated from `r ff_acs_zscore`.
 
 *Example*
 ```{r}
-ff_acs_zplot(zscore)
+ff_acs_zplot(zscore_matrix = zscore)
 ```
 Here is an example of the output:
 
@@ -83,7 +83,9 @@ _____
 ff_acs_ethnicity(df)
 ```
 
-This function removes ethnicities from an ACS dataset that are not regularly used due to a lack of data. It retains the following ACS ethnicities:
+This function removes ethnicities from an ACS dataset that are not regularly used due to a lack of data. Its input is an ACS data frame created by `r ff_import_acs`.
+
+The following ACS ethnicities are retained:
 - ALL
 - BLACK OR AFRICAN AMERICAN ALONE
 - WHITE ALONE, NOT HISPANIC OR LATINO
@@ -91,6 +93,29 @@ This function removes ethnicities from an ACS dataset that are not regularly use
 
 *Example*
 ```{r}
-df_ethnicities <- ff_acs_ethnicity(df)
+df_ethnicities <- ff_acs_ethnicity(df = acs_df)
 ```
+
+_____
+
+```r
+ff_acs_keep_vars(df, variables)
+```
+  
+This program filters for specific variables. The variables are the three digit numbers that are shown as the last three digits in the 'variables' column. Input includes the dataframe of ACS data and the variables that are needed variables are entered as a three digit string (ex: '001').
+
+Important: variables must be entered as strings.
+
+Parameters:
+- df: an ACS data frame created by `r ff_import_acs`
+- variables: a string vector of variables to retain
+
+*Example*
+```{r}
+df_vars <- ff_acs_keep_vars(df = df_ethnicities,
+                            variables = c('001', '003', '007'))
+```
+_____
+
+
     
