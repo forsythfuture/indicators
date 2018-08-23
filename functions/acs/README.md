@@ -1,6 +1,15 @@
 ## Explanation of ACS functions
 
-### Import ACS data
+*Topics*
+
+- [Importing data](#importing-data)
+- [Calculations and significance testing](#calculations-and-significance-tests)
+- [Filtering, cleaning, and wrangling](#filtering-cleaning-and-wrangling)
+
+### Importing data
+
+[Code file for import functions](acs_functions_import.R)
+
 _____
 
 ```{r}
@@ -28,8 +37,15 @@ acs_df <- ff_import_acs(table_number = 'B20017',
 *Notes*
 
 The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder.
+
 _____
-### Conduct calculations and significance tests on data
+
+[back to top](#explanation-of-acs-functions)
+
+### Calculations and significance tests
+
+[Code file for calculations and significance testing functions](acs_functions_test.R)
+
 _____
 
 ```{r}
@@ -57,6 +73,7 @@ zscore <- ff_acs_zscore(data_frame = acs_df,
 *Notes*
 
 var_names is optional. It aids in interpreting the matrix by assigning names to the rows and columns. This way, users can more easily trace a specific z-score to which two values created the score.
+
 _____
 
 ```{r}
@@ -73,10 +90,16 @@ ff_acs_zplot(zscore_matrix = zscore)
 ```
 Here is an example of the output:
 
-![alt text](https://github.com/forsythfuture/indicators/blob/master/functions/acs/zscore_plot.png)
+![alt text](zscore_plot.png)
 
 _____
-### Filter and clean ACS data
+
+[back to top](#explanation-of-acs-functions)
+
+### Filtering, cleaning, and wrangling
+
+[Code file for filtering, cleaning, and wrangling functions](acs_functions_wrangle.R)
+
 _____
 
 ```{r}
@@ -115,6 +138,7 @@ Parameters:
 df_vars <- ff_acs_keep_vars(df = df_ethnicities,
                             variables = c('001', '003', '007'))
 ```
+
 _____
 
 
