@@ -31,7 +31,7 @@ ff_acs_ratios <- function(df, num_estimate, num_moe, den_estimate, den_moe) {
   # by 1.96, not 1.645 when using the 90% moe's from AFF
   se <- moe / 1.96
   
-  # add ratio and MOE to dataframe
+  # add ratio, MOE, and se to dataframe
   df$ratio <- ratio
   df$ratio_moe <- moe
   df$ratio_se <- se
@@ -40,14 +40,6 @@ ff_acs_ratios <- function(df, num_estimate, num_moe, den_estimate, den_moe) {
   
 }
 
-
-ff_acs_ratio_test <- function(df, estimate_one, estimate_two, se_one, se_two) {
-  
-  # this function performs significance tests between every estimate
-  # it outputs a matrix of z scores
-  # the estimate and standard error paraemters are strings of column names
-  
-}
 
 
 ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {

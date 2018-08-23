@@ -25,6 +25,8 @@ Parameters:
 - year_start: an integer specifying the first year of data that is needed. Must be at least 2012.
 - year_end: an integer specifying the final year of data that is needed.
 
+The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder. The function also calculates and returns the standard error in the column `se`.
+
 *Example*
 ```{r}
 acs_df <- ff_import_acs(table_number = 'B20017', 
@@ -34,9 +36,6 @@ acs_df <- ff_import_acs(table_number = 'B20017',
                         year_end = 2016)
 ```
 
-*Notes*
-
-The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder.
 
 _____
 
@@ -62,6 +61,8 @@ Parameters:
 - se: a string that is the column name of the column containing the standard error
 - var_names: (optional) a character vector of variables that can be combined to created distinct names for each row and column
 
+`var_names` is optional. It aids in interpreting the matrix by assigning names to the rows and columns. This way, users can more easily trace a specific z-score to which two values created the score.
+
 *Example*
 ```{r}
 zscore <- ff_acs_zscore(data_frame = acs_df,
@@ -69,10 +70,6 @@ zscore <- ff_acs_zscore(data_frame = acs_df,
                         se = 'se', 
                         var_names = c('GEOID', 'varable', 'year'))
 ```
-
-*Notes*
-
-var_names is optional. It aids in interpreting the matrix by assigning names to the rows and columns. This way, users can more easily trace a specific z-score to which two values created the score.
 
 _____
 
@@ -94,6 +91,36 @@ Here is an example of the output:
 
 _____
 
+
+```{r}
+ff_acs_ratios(df, num_estimate, num_moe, den_estimate, den_moe)
+```
+
+This function calculates the ratio, standard error, and 95% margins of error for user derived ratios. The formula comes from: U.S. Census Bureau, A Compass for Understanding and Using ACS Survey Data, A-15 (October 2008).
+
+Parameters:
+- df: an ACS data frame created by `r ff_import_acs`
+- num_estimate: the column names for the numerator for the ratio as a string
+- num_moe: the column names for the 95% margin of error for the numerator as a string
+- den_estimate: the column names for the denominator for the ratio as a string
+- den_moe: the column names for the 95% margin of error for the denominator as a string
+
+The function's output is the same data frame with three columns added:
+- ratio: The point estimate for the ratio
+- ratio_moe: The 95% margin of error for the ratio
+- ratio_se: The standard error for the ratio
+
+*Example*
+```{r}
+gender_inequality_income <- ff_acs_ratios(df = gender_inequality_sex, 
+                                          num_estimate = 'f_estimate', 
+                                          num_moe = 'f_moe', 
+                                          den_estimate = 'm_estimate',
+                                          den_moe = 'm_moe')
+```
+
+_____
+
 [back to top](#explanation-of-acs-functions)
 
 ### Filtering, cleaning, and wrangling
@@ -106,7 +133,7 @@ _____
 ff_acs_ethnicity(df)
 ```
 
-This function removes ethnicities from an ACS dataset that are not regularly used due to a lack of data. Its input is an ACS data frame created by `r ff_import_acs`.
+This function removes ethnicities from an ACS data set that are not regularly used due to a lack of data. Its input is an ACS data frame created by `r ff_import_acs`.
 
 The following ACS ethnicities are retained:
 - ALL
@@ -125,7 +152,7 @@ _____
 ff_acs_keep_vars(df, variables)
 ```
   
-This function filters for specific variables. The variables are the three digit numbers that are shown as the last three digits in the 'variables' column. Input includes the dataframe of ACS data and the variables that are needed variables are entered as a three digit string (ex: '001').
+This function filters for specific variables. The variables are the three digit numbers that are shown as the last three digits in the 'variables' column. Input includes the data frame of ACS data and the variables that are needed variables are entered as a three digit string (ex: '001').
 
 Important: variables must be entered as strings.
 
