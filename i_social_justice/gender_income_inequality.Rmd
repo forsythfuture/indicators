@@ -8,8 +8,7 @@ output:
 
 ```{r setup, include=FALSE}
 # prevent printing or R code in the output
-knitr::opts_chunk$set(echo = FALSE,
-                      warning = FALSE,
+knitr::opts_chunk$set(warning = FALSE,
                       message = FALSE)
 ```
 
@@ -75,31 +74,41 @@ gender_inequality_sex <- ff_acs_ratios(gender_inequality_sex, 'f_estimate', 'f_m
 
 gender_inequality_sex %>%
   filter(ethnicity == 'ALL') %>%
-  plot_ly(x=~year, y=~ratio, split=~NAME,
-          type="scatter",color=~NAME, mode="lines+markers",
-          hoverinfo='text', 
-          text = ~paste('</br> County: ', NAME,
-                        '</br> Year: ', year,
-                        '</br> Ratio: ', round(ratio,2),
-                        '</br> 95% Margin of error: ', round(ratio_moe,2))) %>%
-    layout(yaxis = list(title = 'Female to male income ratio'))
-
-# add_ribbons(
-#               ymin = ~ratio - ratio_moe,
-#               ymax = ~ratio + ratio_moe,
-#               name = "95% Confidence Interval")
+  ggplot(aes(year, ratio, color = NAME)) +
+    geom_line() +
+    labs(title = 'Female to male income ratio',
+         color = 'Comparison Unit') +
+    theme_minimal()
 ```
+
+[Enter text describing gender income differences in Forsyth through time.]
+
+```{r}
+gender_inequality_sex %>%
+  # only keep all category of ethnicity
+  filter(ethnicity == 'ALL',
+         # only keep forsyth county
+         str_detect(NAME, 'Forsyth')) %>%
+  ggplot(aes(year)) +
+    geom_line(aes(y =  f_estimate, color='coral1')) +
+    geom_line(aes(y = m_estimate, color='skyblue1')) +
+    labs(title = 'Female and male median incomes in Forsyth County',
+         y = 'Median income',
+         color='Gender') +
+   scale_color_manual(labels = c("Female", "Male"), values = c("skyblue1", "coral1")) +
+  theme_minimal()
+```
+
+
 
 [Enter text describing demographic issues here]
 
 ```{r}
 gender_inequality_sex %>%
-  # filter for most recent year and remove 'ALL' rethnicities category
+  # filter for most recent year and remove 'ALL' ethnicities category
   filter((year == max(.$year)) & (ethnicity != 'ALL')) %>%
-  plot_ly(x = ~ethnicity, y = ~ratio, color = ~NAME,
-          type = 'bar',
-          hoverinfo='text', 
-          text = ~paste('</br> County: ', NAME,
-                        '</br> Ratio: ', round(ratio,2),
-                        '</br> 95% Margin of error: ', round(ratio_moe,2)))
+  ggplot(aes(ethnicity, ratio, fill=NAME)) +
+    geom_bar(stat='identity', position='dodge') +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
