@@ -25,7 +25,11 @@ Parameters:
 - year_start: an integer specifying the first year of data that is needed. Must be at least 2012.
 - year_end: an integer specifying the final year of data that is needed.
 
-The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder. The function also calculates and returns the standard error in the column `se`.
+The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder. 
+
+The function also calculates and returns the standard error in the column `se`. The standard error is derived by dividing the marging of error by 1.96. 1.96 is used because the margin of error is at the 95% level.
+
+The coefficient of variartion (cv) is also calculated and returned under the `cv` column. It is derived by dividing the standard error by the estimate. Within the function, this number **is not** converted to a percentile by multiplying by 100.
 
 *Example*
 ```{r}

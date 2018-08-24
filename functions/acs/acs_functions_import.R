@@ -169,6 +169,8 @@ ff_import_acs <- function(table_number, state, county, year_start, year_end) {
   # For example, the third state must match the third county.
   # When running this script, state and counties can be identified by running
   # the file comparison_counties.R. This will return a data frame of comparison counties.
+  #
+  # The output also calculates and returns the standard error.
 
   # Ensure state and county vectors are the same length.
   # Throw an error if they are different lengths
@@ -207,6 +209,9 @@ ff_import_acs <- function(table_number, state, county, year_start, year_end) {
   # note: since 95% confidence intervals are used, the moe is divided
   # by 1.96, not 1.645 when using the 90% moe's from AFF
   geo_first$se <- geo_first$moe / 1.96
+  
+  # calculate the cv
+  geo_first$cv <- geo_first$se / geo_first$estimate
   
   return(geo_first)
   
