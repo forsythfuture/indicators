@@ -16,7 +16,6 @@ knitr::opts_chunk$set(warning = FALSE,
  # import functions and packages
 library(tidyverse)
 library(tidycensus)
-library(plotly)
 # load custom ACS functions
 source('../functions/acs_load_funcs.R')
 

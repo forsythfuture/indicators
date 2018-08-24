@@ -80,15 +80,15 @@ ff_import_tables <- function(table_number, state, county=NULL, year_end, acs_dat
       # create first dataframe
       # others will be merged into this one
       first_table <- get_acs(# use county for geography if there is a county listed in the parameters,
-        # use state for geography if county is null
-        geography = if_else(!is.null(county), 'county', 'state'), 
-        table = table_nums[[i]], 
-        year = year_end,
-        # use 'acs1' if no survey was entered as a parameter
-        survey = if_else(is.null(acs_data), 'acs1', acs_data),
-        state = state, 
-        county = county,
-        moe_level = 95) %>%
+                             # use state for geography if county is null
+                             geography = if_else(!is.null(county), 'county', 'state'), 
+                             table = table_nums[[i]], 
+                             year = year_end,
+                             # use 'acs1' if no survey was entered as a parameter
+                             survey = if_else(is.null(acs_data), 'acs1', acs_data),
+                             state = state, 
+                             county = county,
+                             moe_level = 95) %>%
         # add variable descriptions to table
         left_join(table_decription_df, by = c('variable' = 'name'))
       
@@ -98,15 +98,15 @@ ff_import_tables <- function(table_number, state, county=NULL, year_end, acs_dat
       
       # create dataframes for other tables, and merge them into the main dataframe
       other_tables <- get_acs(# use county for geography if there is a county listed in the parameters,
-        # use state for geography if county is null
-        geography = if_else(!is.null(county), 'county', 'state'), 
-        table = table_nums[[i]], 
-        year = year_end, 
-        # use 'acs1' if no survey was entered as a parameter
-        survey = if_else(is.null(acs_data), 'acs1', acs_data),
-        state = state, 
-        county = county,
-        moe_level = 95)  %>%
+                              # use state for geography if county is null
+                              geography = if_else(!is.null(county), 'county', 'state'), 
+                              table = table_nums[[i]], 
+                              year = year_end, 
+                              # use 'acs1' if no survey was entered as a parameter
+                              survey = if_else(is.null(acs_data), 'acs1', acs_data),
+                              state = state, 
+                              county = county,
+                              moe_level = 95)  %>%
         # add variable descriptions to table
         left_join(table_decription_df, by = c('variable' = 'name'))
       
@@ -188,8 +188,8 @@ ff_import_acs <- function(table_number, state, county=NULL, year_start, year_end
   # Throw an error if they are different lengths
   # This is only needed if the geography is count
   if (!is.null(county)) {
-    if (length(state) != (length(county)))
-      stop("State and county vectors must be the same length")
+  if (length(state) != (length(county)))
+    stop("State and county vectors must be the same length")
   }
   
   # create sequence to itereate through

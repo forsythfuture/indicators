@@ -13,7 +13,7 @@
 _____
 
 ```{r}
-ff_import_acs(table_number, state, county, year_start, year_end)
+ff_import_acs(table_number, state, county=NULL, year_start, year_end, acs_data=NULL)
 ```
 
 This function returns a table for multiple geographic units (county and state combinations) and years.
@@ -22,8 +22,11 @@ Parameters:
 - table_number: The ACS table number for the data that is needed. This imports all tables in a series. For example, 'B20017' imports 'B20017A', 'B20017B', 'etc.
 - state: A vector of strings for the states, which should match with counties.
 - county: A vector of strings for the counties, which should match with the states.
+          If only state level data is needed enter `NULL`.
 - year_start: an integer specifying the first year of data that is needed. Must be at least 2012.
 - year_end: an integer specifying the final year of data that is needed.
+- acs_data: ACS survey (example: 'acs1', 'acs5')
+            Default value is 'acs1'
 
 The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder. 
 
@@ -33,11 +36,23 @@ The coefficient of variartion (cv) is also calculated and returned under the `cv
 
 *Example*
 ```{r}
+
+# for county data
 acs_df <- ff_import_acs(table_number = 'B20017', 
                         state = c('NC', 'NC', 'AR'),
                         county = c('Forsyth', 'Guilford', 'Pulaski'),
                         year_start = 2012,
-                        year_end = 2016)
+                        year_end = 2016.
+                        acs_data = 'acs1')
+                        
+# for state data
+acs_df <- ff_import_acs(table_number = 'B20017', 
+                        state = 'NC',
+                        county = NULL,
+                        year_start = 2012,
+                        year_end = 2016,
+                        acs_data = 'acs1')
+
 ```
 
 
