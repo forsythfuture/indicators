@@ -26,7 +26,7 @@ Parameters:
 - year_start: an integer specifying the first year of data that is needed. Must be at least 2012.
 - year_end: an integer specifying the final year of data that is needed.
 - acs_data: ACS survey (example: 'acs1', 'acs5')
-            Default value is 'acs1'
+            Default value is 'acs1', meaning that 'acs1' will be used if no value is entered
 
 The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder. 
 
