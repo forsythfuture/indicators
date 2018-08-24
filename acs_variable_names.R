@@ -4,8 +4,9 @@
 # to repeatedly call the census api everytime a list of variable names is needed.
 #
 # This file should be updated to the current year when new ACS data drops.
-#
+# TEST
 ########################################################################################################
+
 
 library(tidyverse)
 library(tidycensus)
