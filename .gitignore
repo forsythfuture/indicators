@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-indicators.Rproj
+*.Rproj
 *.html
 *.png
 acs_functions.R
