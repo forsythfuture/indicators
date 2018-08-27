@@ -1,6 +1,5 @@
 ########################################################################################################
-# TEST
-# Import ACS data.
+# # Import ACS data.
 #
 # The following functions import data into ACS using teh census API and tidycensus package.
 # The only function that needs to be run in R scripts is 'ff_import_acs' (the final function)
