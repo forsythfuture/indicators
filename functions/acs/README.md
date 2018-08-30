@@ -19,6 +19,7 @@ ff_import_acs(table_number, state, county=NULL, year_start, year_end, acs_data=N
 This function returns a table for multiple geographic units (county and state combinations) and years.
 
 Parameters:
+- geography: Geographic unit to extract.  `"us"` for US-level; `"state"` for state-level; `"county"` for county-level.
 - table_number: The ACS table number for the data that is needed. This imports all tables in a series. For example, 'B20017' imports 'B20017A', 'B20017B', 'etc.
 - state: A vector of strings for the states, which should match with counties.
 - county: A vector of strings for the counties, which should match with the states.
@@ -97,6 +98,7 @@ get_acs(geography = 'county',
         survey = 'acs/acs1')
 ```
 
+Census tracts and blocks are not supported through `ff_import_acs`.
 _____
 
 [back to top](#explanation-of-acs-functions)
