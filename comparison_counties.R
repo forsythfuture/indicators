@@ -14,5 +14,6 @@
 ############################################################################
 
 # These are only test comparison counties
-compare <- data.frame(county = c('Forsyth', 'Guilford', 'Pulaski'),
-                      state = c('NC', 'NC', 'AR'))
+compare <- data.frame(county = c('Forsyth', 'Guilford', 'Durham', 'Mecklenburg', 'Wake', 'Cumberland',
+                                 'Buncombe', 'Union', 'New Hanover', 'Gaston'),
+                      state = rep('NC', 10))
