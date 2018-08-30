@@ -83,6 +83,20 @@ acs_df_us <- ff_import_acs(geography = 'us',
                            acs_data = 'acs/acs1')
 ```
 
+*Example for census tracts*
+
+Only five-year estimates are available for tracts, and all tracts within a county are imported.
+
+```
+acs_df_tract <- ff_import_acs(geography = 'tract',
+                              table_number = 'B20017', 
+                              state = 'NC',
+                              county = 'Forsyth',
+                              year_start = 2010,
+                              year_end = 2016,
+                              acs_data = 'acs/acs5')
+```
+
 Only B tables are available through the custom function `ff_import_acs`. For S tables, use the `get_acs` function from the `tidycensus` package.
 
 Example for importing an S table with `tidycensus`:
@@ -98,7 +112,6 @@ get_acs(geography = 'county',
         survey = 'acs/acs1')
 ```
 
-Census tracts and blocks are not supported through `ff_import_acs`.
 _____
 
 [back to top](#explanation-of-acs-functions)
