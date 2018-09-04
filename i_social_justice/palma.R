@@ -82,7 +82,7 @@ housing <- data.table(housing)
 object_size(housing)
 
 # extend dataframe based on weights
-housing <- housing[ ,list(freq=rep(1,WGTP)),by=c("SERIALNO", 'income')][
+housing <- housing[income >= 0, list(freq=rep(1,WGTP)),by=c("SERIALNO", 'income')][
   , c('freq', 'SERIALNO') := NULL][ # delete columns
     order(-income)] # order descending
 
@@ -93,5 +93,4 @@ n_houses <- housing[, .N]
 bottom <- housing[1:floor(n_houses*.40), sum(income)]
 top <- housing[floor(n_houses*.90):n_houses, sum(income)]
 
-housing <- housing[order(income)] # order by income
-housing[income <= 1, .N] / housing[, .N]  
+palma <- top / bottom
