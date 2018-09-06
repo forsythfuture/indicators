@@ -13,11 +13,16 @@ counties <- load_comparisons()
 # find PUMA code of counties
 puma_names <- puma_area_code(counties$county, 'puma_counties.csv')
 
+# filter for forsyth
+forsyth_codes <- filter(puma_names, cntyname == 'Forsyth NC')
+
 state = 37
 
 year <- '14'
 data_directory <- 'pums'
 
-filter_g <- 'ST %in% state & PUMA %in% puma_names$PUMA'
 
-a <- palma_single(filter_g, year, data_directory)
+forsyth <- palma_single(state = 37, area_code = forsyth_codes$PUMA, year, data_directory)
+
+
+

@@ -13,10 +13,8 @@
 library(tidyverse)
 library(data.table)
 
-year <- '14'
-data_directory <- 'pums'
 
-palma_single <- function(filter_geo, year, data_directory) {
+palma_single <- function(state = NA, area_code = NA, year, data_directory) {
   
     ### This function returns a list, where each item in the list is a vector if household
     ### incomes based on replicate weights
@@ -25,10 +23,8 @@ palma_single <- function(filter_geo, year, data_directory) {
     #   state: state FIPS code
     #   puma: vector of PUMA area codes
     #         area codes can be created from counties with the function puma_area_code()
-    #   filter_geo: data.table query for states and counties as a string
-    #         example: 'ST %in% state & PUMA %in% puma_names$PUMA'
-    #         To import entire US make filter_rows = NA
-  
+    
+    filter_geo <- paste0('ST %in% state & PUMA %in% area_code')
 
     # Create housing variables
     house_vars <- c('RT', 'TYPE', 'SERIALNO', 'PUMA', 'ST', 'ADJINC', 'HINCP')
@@ -59,15 +55,15 @@ palma_single <- function(filter_geo, year, data_directory) {
     pop_file <- paste0(data_directory, '/ss', year, 'pus')
     
     for (letter in c('a', 'b')) {
-      print('starting letter')
+      print(paste0('starting letter: ', letter))
       ### import data ###
       
       # if filter_geo = NA, import entire US
-      if (is.na(filter_geo)) {
+      if (is.na(state)) {
       housing <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
           RT == 'H' & TYPE == 1 & # filter for only housing units
-          !is.na(HINCP) & HINCP >= 0 # filter for positive household incomes
-          ][, c("RT","TYPE"):=NULL][ # remove these columns
+          !is.na(HINCP) & HINCP >= 0][, # filter for positive household incomes
+          c("RT","TYPE"):=NULL][ # remove these columns
           # merge with population dataset
           fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
                 nomatch=0L, on = 'SERIALNO'][, 
@@ -85,47 +81,34 @@ palma_single <- function(filter_geo, year, data_directory) {
                   nomatch=0L, on = 'SERIALNO'][, 
             AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
       }
+      
+      # if no households were returned based on the geographic filter,
+      # move on to next lettered dataset
+      if(nrow(housing) == 0) next
+      
       print('data loaded')
       
-      # create data set that shows number of adults in household in one column
-      # and number of children in household in other column
-      house_num <- housing %>%
-        # delete weights
-        select(-WGTP:-wgtp80) %>%
-        # group by serial number (household)
-        group_by(SERIALNO) %>%
-        # count number of adults and children in household
-        count(status) %>%
-        # spread this information so that one column is num. adults and other is num. children
-        spread(status, n) %>%
-        # replace NA values (which represent 0 adults or children) with 0
-        mutate(adult = replace_na(adult, 0),
-               child = replace_na(child, 0)) %>%
-        # replace NA values (which represent 0 adults or children) with 0
-        mutate(adult = replace_na(adult, 0),
-               child = replace_na(child, 0)) %>%
-        # ungroup to save RAM
-        ungroup()
+      # find number of adults and children for each family
+      # will be merge with the primary dataset
+      adults <- housing[AGEP == 'adult', .N, by = 'SERIALNO'][,
+                        .(SERIALNO = SERIALNO, adults = N)] # rename variables
+      child <- housing[AGEP == 'child', .N, by = 'SERIALNO'][,
+                       .(SERIALNO = SERIALNO, child = N)] # rename variables
       
+      # merge main housing, adults, child
+      housing <- merge(
+        # outer join housing and adults
+        merge(housing, adults, by = 'SERIALNO', all = TRUE),
+        # outer join merged housing / adults with child
+        child, by = 'SERIALNO', all = TRUE)[, 
+        # replace missing values with 0 for number of children and adults
+        child := ifelse(is.na(child), 0, child)][,
+        adults := ifelse(is.na(adults), 0, adults)][,
+        # divide income by equivalency scale
+        income := HINCP / equivalence_scale(adults, child)][,
+        # remove unneeded columns
+        !c('adults', 'child', 'HINCP', 'ADJINC')]
       
-      # add number of adults and children to primary housing data frame
-      housing <- housing %>%
-        # drop columns in original data frame that are not needed since the other
-        # data frame contains number of adults and children
-        select(-AGEP, -status) %>%
-        # drop duplicate entries, which gets rid of individuals
-        distinct() %>%
-        # add data frame that shows number of adults and children
-        inner_join(house_num, by = 'SERIALNO') %>%
-        # create equivalence scale
-        mutate(eq_scale = equivalence_scale(.$adult, .$child)) %>%
-        # multiply income by exquivalency scale
-        mutate(income = HINCP / eq_scale) %>%
-        # drop children and adult columns
-        select(-adult, -child, -HINCP, -eq_scale)
-      
-      # house_num no longer needed since it was joined to house
-      rm(house_num)
       gc()
       
       print('starting replicate weights')
@@ -142,7 +125,6 @@ palma_single <- function(filter_geo, year, data_directory) {
         rep_weights <- rep.int(rep_weights$income, rep_weights$wgt) %>%
           sort()
         
-        print('calculate Palma')
         print(weight)
         
         # calculate Palma for vector of household incomes
@@ -160,15 +142,14 @@ palma_single <- function(filter_geo, year, data_directory) {
       gc()
     }
     
-    print('calculate standard error')
+    print('create dataframe of results')
+    
     # calculate standard error based on replicate weights
     st_error <- replicate_weights(palma_vec)
-    print('create data frame of results')
+
     # enter data into single data frame with one row
     # this data frame can be appended to data frames from other years and geographies
-    df <- data.frame(geo = geography,
-                     year = year,
-                     Palma = palma_vec[1],
+    df <- data.frame(Palma = palma_vec[1],
                      se = st_error)
     
     return(df)
@@ -208,7 +189,7 @@ replicate_weights <- function(palma_vec) {
   return(sq_diff)
 }
 
-palma_years <- function(state = NA, puma = NA, years, data_directory) {
+palma_years <- function(filter_geo, years, data_directory) {
   
   # This function creates the Palma for multiple years by using the function
   # that creates the Palma for a single year
@@ -216,8 +197,7 @@ palma_years <- function(state = NA, puma = NA, years, data_directory) {
   #       example: c('09', '10', '11')
   
   # initialize dataframe to store each year's results
-  df <- data.frame(geo = character(),
-                   year = character(),
+  df <- data.frame(year = character(),
                    Palma = double(),
                    se = double())
   
