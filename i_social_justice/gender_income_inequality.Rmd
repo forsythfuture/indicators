@@ -111,3 +111,12 @@ gender_inequality_sex %>%
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+
+Z score plot
+
+```{r}
+z_mat <- ff_acs_zscore(gender_inequality_sex[1:20,], 'ratio', 'ratio_se')
+
+ff_acs_zplot(z_mat)
+```
