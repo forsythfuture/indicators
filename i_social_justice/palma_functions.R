@@ -16,10 +16,18 @@ library(data.table)
 year <- '14'
 data_directory <- 'pums'
 
-palma_single <- function(geography, year, data_directory) {
+palma_single <- function(filter_geo, year, data_directory) {
   
     ### This function returns a list, where each item in the list is a vector if household
     ### incomes based on replicate weights
+  
+    # inputs:
+    #   state: state FIPS code
+    #   puma: vector of PUMA area codes
+    #         area codes can be created from counties with the function puma_area_code()
+    #   filter_geo: data.table query for states and counties as a string
+    #         example: 'ST %in% state & PUMA %in% puma_names$PUMA'
+    #         To import entire US make filter_rows = NA
   
 
     # Create housing variables
@@ -53,20 +61,30 @@ palma_single <- function(geography, year, data_directory) {
     for (letter in c('a', 'b')) {
       print('starting letter')
       ### import data ###
-      housing <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights)) %>%
-        # filter for housing units and for units with reported household income
-        filter(RT == 'H', 
-               TYPE == 1, # 1 is housing unit
-               !is.na(HINCP), # income is not a missing value
-               HINCP >= 0 # income is at least 0
-               ) %>%
-        # no longer need to check housing unit type
-        select(-RT, -TYPE) %>%
-        # merge housing with population data
-        inner_join(fread(paste0(pop_file, letter, '.csv'), select = pop_vars),
-                   by = 'SERIALNO') %>%
-        # create categorical variable on whether person is adult or child
-        mutate(status = ifelse(.$AGEP >= 18, 'adult', 'child'))
+      
+      # if filter_geo = NA, import entire US
+      if (is.na(filter_geo)) {
+      housing <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
+          RT == 'H' & TYPE == 1 & # filter for only housing units
+          !is.na(HINCP) & HINCP >= 0 # filter for positive household incomes
+          ][, c("RT","TYPE"):=NULL][ # remove these columns
+          # merge with population dataset
+          fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
+                nomatch=0L, on = 'SERIALNO'][, 
+          AGE := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
+      
+      } else {
+        
+        housing <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
+          eval(parse(text = filter_geo)) & # filter for PUMA within state
+          RT == 'H' & TYPE == 1 & # filter for only housing units
+            !is.na(HINCP) & HINCP >= 0 # filter for positive household incomes
+          ][, c("RT","TYPE"):=NULL][ # remove these columns
+            # merge with population dataset
+            fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
+                  nomatch=0L, on = 'SERIALNO'][, 
+            AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
+      }
       print('data loaded')
       
       # create data set that shows number of adults in household in one column
@@ -190,7 +208,7 @@ replicate_weights <- function(palma_vec) {
   return(sq_diff)
 }
 
-palma_years <- function(geography, years, data_directory) {
+palma_years <- function(state = NA, puma = NA, years, data_directory) {
   
   # This function creates the Palma for multiple years by using the function
   # that creates the Palma for a single year
@@ -205,7 +223,7 @@ palma_years <- function(geography, years, data_directory) {
   
   # loop through each year and calculate Palma
   for (year in years) {
-    palma_df <- palma_single(geography, year, data_directory)
+    palma_df <- palma_single(filter_geo, year, data_directory)
     
     # bind individual year's results to data frame storing all years
     df <- df %>%

@@ -3,29 +3,21 @@ library(data.table)
 library(pryr)
 
 
-
-# total number of households; used to find percentiles
-n_income <- length(yearly_income)
-
-# total earnings of bottom 40% and top 10%
-bottom <- yearly_income[1:floor(n_income*.40)] %>% sum()
-top <- yearly_income[floor(n_income*.90):n_income] %>% sum()
-
-palma <- top / bottom
-
 source('i_social_justice/palma_functions.R')
+source('functions/puma_functions.R')
+source('functions/comparison_counties.R')
 
-a <- income_vec_year('14', 'pums')
+# create dataframe of NC's ten largest counties
+counties <- load_comparisons()
 
-# calculate palma for each replicate weight of household incomes
+# find PUMA code of counties
+puma_names <- puma_area_code(counties$county, 'puma_counties.csv')
 
-lapply(a, palma_cal) %>% unlist(use.names = FALSE)
+state = 37
 
+year <- '14'
+data_directory <- 'pums'
 
-palma_cal(a[[2]])
+filter_g <- 'ST %in% state & PUMA %in% puma_names$PUMA'
 
-a <- fread('pums/ss14husa.csv', select = c(house_vars, house_weights)) %>%
-             filter(wgtp2 <= 0,
-                    TYPE == 1,
-                    RT == 'H')
-
+a <- palma_single(filter_g, year, data_directory)
