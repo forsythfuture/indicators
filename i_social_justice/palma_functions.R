@@ -234,7 +234,7 @@ palma_years <- function(state = NA, area_code = NA, years, data_directory) {
     rm(palma_df)
     
     # write out results to csv file for each yearly iteration
-    to_csv(df, paste0('palma_', year, '.csv'))
+    write_csv(df, paste0('palma_', year, '.csv'))
     
     gc()
   }
