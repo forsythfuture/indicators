@@ -10,11 +10,11 @@ source('i_social_justice/palma_functions.R')
 #counties <- load_comparisons()
 state = NA #37
 area_code = NA #c(1301, 1302, 1303)
-years = c('12', '13', '14', '15', '16')
+years = c('13', '14', '15', '16')
 data_directory = 'pums'
 
 
-us_palma <- palma_years(state = NA, area_code = NA, years, data_directory)
+us_palma <- palma_years(state = NA, area_code = NA, years = years, data_directory)
 
 
 
