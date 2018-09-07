@@ -1,4 +1,4 @@
-########################################################
+#######################################################
 #
 # This file ontains functions to calculate the Palma
 #
@@ -6,12 +6,8 @@
 #   - calculate palma for one year
 #   - calcualte Palma for weights
 #   _ calculate the palma for mutliple years
-#   - calculate Palma for geographies
 #
 ########################################################
-
-library(tidyverse)
-library(data.table)
 
 
 palma_single <- function(state = NA, area_code = NA, year, data_directory) {
@@ -48,7 +44,7 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
     }
     
     # initialize list where each element in list will store one weighted vector of incomes
-    palma_vec <- c()
+    income_vec <- list()
     
     # create first part of file name and directory
     house_file <- paste0(data_directory, '/ss', year, 'hus')
@@ -58,7 +54,7 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
       print(paste0('starting letter: ', letter))
       ### import data ###
       
-      # if filter_geo = NA, import entire US
+      # if state == NA, import entire US
       if (is.na(state)) {
       housing <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
           RT == 'H' & TYPE == 1 & # filter for only housing units
@@ -67,14 +63,14 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
           # merge with population dataset
           fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
                 nomatch=0L, on = 'SERIALNO'][, 
-          AGE := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
+          AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
       
       } else {
         
         housing <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
           eval(parse(text = filter_geo)) & # filter for PUMA within state
           RT == 'H' & TYPE == 1 & # filter for only housing units
-            !is.na(HINCP) & HINCP >= 0 # filter for positive household incomes
+          !is.na(HINCP) & HINCP >= 0 # filter for positive household incomes
           ][, c("RT","TYPE"):=NULL][ # remove these columns
             # merge with population dataset
             fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
@@ -94,7 +90,7 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
                         .(SERIALNO = SERIALNO, adults = N)] # rename variables
       child <- housing[AGEP == 'child', .N, by = 'SERIALNO'][,
                        .(SERIALNO = SERIALNO, child = N)] # rename variables
-      
+            
       # merge main housing, adults, child
       housing <- merge(
         # outer join housing and adults
@@ -107,44 +103,62 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
         # divide income by equivalency scale
         income := HINCP / equivalence_scale(adults, child)][,
         # remove unneeded columns
-        !c('adults', 'child', 'HINCP', 'ADJINC')]
+        !c('adults', 'child', 'AGEP', 'HINCP', 'ADJINC')] %>%
+        # filter out duplicate values
+        unique()
       
       gc()
-      
+
       print('starting replicate weights')
       # iterate through each replicate weight, creating vector of household incomes
-      for (weight in house_weights) {
-        
-        # create data frame of incomes and weights
-        # data frame is needed because for each replicate weight, values 0 or less are removed
-        rep_weights <- data.frame(income = housing$income,
-                                  wgt = housing[[weight]]) %>%
-          filter(wgt >= 0)
-        
-        # convert data frame to vector of household incomes
-        rep_weights <- rep.int(rep_weights$income, rep_weights$wgt) %>%
-          sort()
+      for (weight in house_weights[1:3]) {
         
         print(weight)
         
-        # calculate Palma for vector of household incomes
-        palma_vec <- append(palma_vec, palma_cal(rep_weights))
+        # create data frame of incomes and weights
+        # data frame is needed because for each replicate weight, values 0 or less are removed
+        rep_weights <- data.table(income = housing[, income],
+                                  wgt = housing[, ..weight])
+        
+        # change name of second column
+        setnames(rep_weights, 2, 'wgt')
+
+        rep_weights <- rep_weights[
+                                  # filter out replicate weight values less than 1
+                                  wgt > 0]
+
+        # convert data frame to vector of household incomes
+        rep_weights <- rep.int(rep_weights[, income], rep_weights[, wgt])
+
+        # append vector of incomes to appropriate list
+        # sort when appending to avoid excess copying
+        income_vec[[weight]] <- append(income_vec[[weight]], rep_weights)
         
         # delete weight variable in primary data frame to save RAM
-        housing <- housing %>% select(-weight)
+        housing <- housing[, -..weight]
         
-        rm(rep_weights)
+        #rm(rep_weights)
         gc()
 
       }
-      print('finished dataset')
+      
       rm(housing)
       gc()
     }
     
-    print('create dataframe of results')
+    # sort list of incomes
+    print('sorting; this takes a while')
+    income_vec <- lapply(income_vec, sort, method = 'radix')
     
-    # calculate standard error based on replicate weights
+    # calculate palma for each weight
+    print('calculate Palmas for each rep weight')
+    palma_vec <- sapply(income_vec, palma_cal) %>%
+                  # return as vector of Palma values, one for each weights
+                  as.vector()
+    
+    print(str(palma_vec))
+    
+    # calculate standard error based on a vector of replicate weights
     st_error <- replicate_weights(palma_vec)
 
     # enter data into single data frame with one row
@@ -166,7 +180,7 @@ palma_cal <- function (income_vec) {
   # total earnings of bottom 40% and top 10%
   bottom <- income_vec[1:floor(n_income*.40)] %>% sum()
   top <- income_vec[floor(n_income*.90):n_income] %>% sum()
-  
+
   return(top / bottom)
   
 }
@@ -189,7 +203,7 @@ replicate_weights <- function(palma_vec) {
   return(sq_diff)
 }
 
-palma_years <- function(filter_geo, years, data_directory) {
+palma_years <- function(state = NA, area_code = NA, years, data_directory) {
   
   # This function creates the Palma for multiple years by using the function
   # that creates the Palma for a single year
@@ -203,11 +217,26 @@ palma_years <- function(filter_geo, years, data_directory) {
   
   # loop through each year and calculate Palma
   for (year in years) {
-    palma_df <- palma_single(filter_geo, year, data_directory)
+    
+    # print update on year
+    print(year)
+    
+    # extract single year's results and place in dataframe
+    palma_df <- palma_single(state = NA, area_code = NA, year, data_directory)
+    
+    # add year number to single year dataframe
+    palma_df$year <- year
     
     # bind individual year's results to data frame storing all years
     df <- df %>%
       bind_rows(palma_df)
+    
+    rm(palma_df)
+    
+    # write out results to csv file for each yearly iteration
+    to_csv(df, paste0('palma_', year, '.csv'))
+    
+    gc()
   }
   return(df)
 }
