@@ -13,6 +13,8 @@ library(tidycensus)
 
 current_year <- 2016
 
+### loads variables for tidycensus ###
+
 # import b tables
 vars_b <- load_variables(current_year, "acs1")
 
@@ -23,3 +25,11 @@ vars_s <- load_variables(2016, "acs1/subject")
 vars <- bind_rows(vars_b, vars_s)
 
 # write_csv(vars, 'acs_variable_names.csv')
+
+### loads variabels for censusapi package ###
+
+s_vars <- listCensusMetadata(name = "acs/acs1/subject",
+                             vintage = 2016,
+                             type = "variables")
+
+#write_csv(s_vars, 'censusapi_s_vars.csv')

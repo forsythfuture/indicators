@@ -75,7 +75,7 @@ ff_import_tables <- function(geography, table_number, state=NULL, county=NULL, y
     # and then the other dataframes will bs merged into the first one
     
     if (i == 1) {
-
+      
       # create first dataframe
       # others will be merged into this one
       first_table <- get_acs(# use county for geography if there is a county listed in the parameters,
@@ -204,7 +204,7 @@ ff_import_acs <- function(geography, table_number, state=NULL, county=NULL,
     # if the state is a duplicate, extract county start and end points for state
     county_start <- append(county_start, which(state == single_state)[1])
     county_end <- append(county_end, last(which(state == single_state)))
-
+    
   }
   
   # remove duplicate states
