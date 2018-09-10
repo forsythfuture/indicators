@@ -57,19 +57,19 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
       print(paste0('starting letter: ', letter))
       ### import data ###
       
-      # if state == NA, import entire US
-      if (is.na(state)) {
-      house[[letter]] <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
-          RT == 'H' & TYPE == 1 & # filter for only housing units
-          !is.na(HINCP) & HINCP >= 0][, # filter for positive household incomes
-          c("RT","TYPE"):=NULL][ # remove these columns
-          # merge with population dataset
-          fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
-                nomatch=0L, on = 'SERIALNO'][, 
-          AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
-      
+        if (is.na(state)) {
+          print('full data')
+          house[[letter]] <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
+              RT == 'H' & TYPE == 1 & # filter for only housing units
+              !is.na(HINCP) & HINCP >= 0][, # filter for positive household incomes
+              c("RT","TYPE"):=NULL][ # remove these columns
+              # merge with population dataset
+              fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
+                    nomatch=0L, on = 'SERIALNO'][, 
+              AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
+          
       } else {
-        
+        print('filtered data')
         house[[letter]] <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
           eval(parse(text = filter_geo)) & # filter for PUMA within state
           RT == 'H' & TYPE == 1 & # filter for only housing units
@@ -83,7 +83,13 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
       
       # if no households were returned based on the geographic filter,
       # move on to next lettered dataset
-      #if(nrow(house[letter]) == 0) next
+      if (nrow(house[[letter]]) == 0) {
+        house <- house[-length(house)]
+        print('deleted empyt list')
+        next
+      } else {
+        print(nrow(house[[letter]]))
+      }
       
       print('data loaded')
       
@@ -118,9 +124,12 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
     # bind a and b data.tables
     house <- rbindlist(house)
     
+    print('Data table number of rows')
+    print(nrow(house))
+    
       print('starting replicate weights')
       # iterate through each replicate weight, creating vector of household incomes
-      for (weight in house_weights[1:3]) {
+      for (weight in house_weights) {
         
         print(weight)
         
@@ -158,18 +167,6 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
       
       rm(house)
       gc()
-    
-    # sort list of incomes
-    #print('sorting; this takes a while')
-    #income_vec <- lapply(income_vec, sort, method = 'radix')
-    
-    # calculate palma for each weight
-    #print('calculate Palmas for each rep weight')
-    #palma_vec <- sapply(income_vec, palma_cal) %>%
-                  # return as vector of Palma values, one for each weights
-    #              as.vector()
-    
-    #print(str(palma_vec))
     
     # calculate standard error based on a vector of replicate weights
     st_error <- replicate_weights(palma_vec)
@@ -235,7 +232,7 @@ palma_years <- function(state = NA, area_code = NA, years, data_directory) {
     print(year)
     
     # extract single year's results and place in dataframe
-    palma_df <- palma_single(state = NA, area_code = NA, year, data_directory)
+    palma_df <- palma_single(state = state, area_code = area_code, year, data_directory)
     
     # add year number to single year dataframe
     palma_df$year <- year
@@ -253,5 +250,3 @@ palma_years <- function(state = NA, area_code = NA, years, data_directory) {
   }
   return(df)
 }
-  
-  
