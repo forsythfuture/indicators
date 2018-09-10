@@ -188,15 +188,13 @@ replicate_count <- function(df,var,value,type='p',filter_var="Allrecords",filter
 
 #############   PUMS Income by Quintiles #####################
 
-#replace this with wherever the pums data is
+# store name of subdirectory as an object
+# now, we can refer to files in the income_quintiles folder by simply refering to subdirectory and file
+sub_directory <- 'i_economic/income_quintiles/'
 
-data_directory <- "C:/Users/staff/Documents/Income by quintiles"
-pums <- readRDS(file=paste(data_directory,"./all_pums_data.rds",sep="")) 
-
-#added ./ since I threw this error, "Error in gzfile(file, "rb") : cannot open the connection In addition: 
-#Warning message: In gzfile(file, "rb") : cannot open compressed file 'C:/Users/staff/Documents/Income by 
-#quintilesall_pums_data.rds', probable reason 'No such file or directory'
-
+# read in pums data
+# Note!! This file was not uploaded to GitHub due to its size
+pums <- readRDS(file=paste0(sub_directory,"all_pums_data.rds")) 
 
 #each analysis should only deal to one sampleframe, one county, and one year.
 
@@ -222,8 +220,8 @@ pums <- pums[(pums$sample == 1 & pums$TYPE == 1 & pums$county != "Roanoke city V
 #thresholds need to be found in B19080: HOUSEHOLD INCOME QUINTILE UPPER LIMITS.  Be sure to use the 1 year file
 #actually I have downloaded the files for you and created a template for creating the table to import
 
-
-thresholds <- read.table(paste0(data_directory,"./Quintile thresholds.csv"), 
+# Note!! File has no data in it
+thresholds <- read.table(paste0(sub_directory,"Quintile thresholds.csv"), 
                          header = TRUE,
                          sep = ",")
 summary <- pums %>%
