@@ -1,6 +1,6 @@
 #######################################################
 #
-# This file ontains functions to calculate the Palma
+# This file contains functions to calculate the Palma
 #
 # The functions are divided into various processes:
 #   - calculate palma for one year
@@ -123,9 +123,6 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
     
     # bind a and b data.tables
     house <- rbindlist(house)
-    
-    print('Data table number of rows')
-    print(nrow(house))
     
       print('starting replicate weights')
       # iterate through each replicate weight, creating vector of household incomes
