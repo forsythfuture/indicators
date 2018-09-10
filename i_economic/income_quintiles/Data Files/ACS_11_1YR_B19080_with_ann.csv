@@ -1,0 +1,8 @@
+GEO.id,GEO.id2,GEO.display-label,HD01_VD02,HD02_VD02,HD01_VD03,HD02_VD03,HD01_VD04,HD02_VD04,HD01_VD05,HD02_VD05,HD01_VD06,HD02_VD06
+Id,Id2,Geography,Estimate; Quintile Upper Limits: - Lowest Quintile,Margin of Error; Quintile Upper Limits: - Lowest Quintile,Estimate; Quintile Upper Limits: - Second Quintile,Margin of Error; Quintile Upper Limits: - Second Quintile,Estimate; Quintile Upper Limits: - Third Quintile,Margin of Error; Quintile Upper Limits: - Third Quintile,Estimate; Quintile Upper Limits: - Fourth Quintile,Margin of Error; Quintile Upper Limits: - Fourth Quintile,Estimate; Lower Limit of Top 5 Percent,Margin of Error; Lower Limit of Top 5 Percent
+0500000US05119,05119,"Pulaski County, Arkansas",16988,1460,33230,2503,54514,2167,93972,3550,164206,12822
+0500000US22055,22055,"Lafayette Parish, Louisiana",15988,1952,33085,3223,60071,4383,102341,5170,207153,31690
+0500000US29095,29095,"Jackson County, Missouri",17717,976,35068,946,55248,1462,88788,2449,157569,8944
+0500000US37067,37067,"Forsyth County, North Carolina",18851,890,33969,1537,54378,2665,91179,3901,174360,6403
+0500000US37081,37081,"Guilford County, North Carolina",17190,1141,33393,1424,55795,1902,90847,3571,164128,8104
+0500000US51770,51770,"Roanoke city, Virginia",17707,2035,30220,2332,48080,3594,71188,6484,129895,18661
