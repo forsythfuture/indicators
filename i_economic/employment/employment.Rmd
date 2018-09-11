@@ -1,22 +1,65 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
 # prevent printing or R code in the output
 knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE)
+                      message = FALSE,
+                      echo = FALSE)
 ```
 
 ```{r import}
  # import functions and packages
 library(tidyverse)
-library(tidycensus)
+library(knitr)
 # load custom ACS functions
-source('../functions/acs_load_funcs.R')
+#source('../functions/acs_load_funcs.R')
 
 ```
 
-# US, State, and County comparisions
+The employment rate is the percentage of people age 16 and over who are working. The data comes American Fact Finder, table S2301. 
 
+# Data cleaning
+
+Only keep rows representing the employment rate in the entire US, NC, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+# create list of geographic areas to keep
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+emp <- read_csv('data/employment_all_years_counties.csv') %>%
+  # from counties, remove 'county, North Carolina';
+  # this will make it easier to filter based on counties
+  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
+  # we only need rows representing the employment rate
+  # these rows have the phrase 'Employed;' in the description
+  filter(str_detect(description, 'Employed;')) %>%
+  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
+  filter(geo_description %in% geo_areas)
+```
+
+# US, NC, and county comparisions
+
+## Total employment rate
+
+The plot below shows the overall employment rate of the US, NC, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+emp %>%
+  # only keep total employment rate
+  filter(description == 'Employed; Estimate; Population 16 years and over') %>%
+  ggplot(aes(year, estimate, color = geo_description)) +
+    geom_line(size = 1) +
+    labs(title = 'Employment rate',
+         color = 'Comparison Unit') +
+    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
+    scale_x_continuous(limits=c(min(emp$year), max(emp$year))) +
+    theme_minimal()
+  
+
+```
