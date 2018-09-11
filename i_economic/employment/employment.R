@@ -7,7 +7,9 @@ source('functions/misc_functions.R')
 
 ### import each year's data and bind to previous year
 
-file_folder = 'i_economic/employment/data'
+## import US, NC state and NC county data
+
+file_folder = 'i_economic/employment/data/'
 
 # list of files (each file represents a year of data)
 data_files <- paste0(file_folder, '/', list.files(file_folder))
@@ -31,4 +33,15 @@ for (i in seq_along(data_files)) {
 }
 
 # write out data frame
-#write_csv(emp, 'employment_all_years_counties.csv')
+#write_csv(emp, paste0(file_folder, 'employment_all_years_counties.csv'))
+
+## import Forsyth census tract data for 2016
+
+# unzip census tract files
+unzip_files('aff_download.zip', file_folder)
+
+# clean census tract files
+tracts <- clean_acs(paste0(file_folder, 'ACS_16_5YR_S2301_with_ann.csv'), 2016)
+
+# write out data frame
+#write_csv(tracts, paste0(file_folder, 'employment_tracts.csv'))

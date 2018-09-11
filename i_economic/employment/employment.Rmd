@@ -1,0 +1,22 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(tidycensus)
+# load custom ACS functions
+source('../functions/acs_load_funcs.R')
+
+```
+
+# US, State, and County comparisions
+
