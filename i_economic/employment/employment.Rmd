@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "Employment Rate"
 output:
   html_document:
     df_print: paged
@@ -8,24 +8,25 @@ output:
 ```{r setup, include=FALSE}
 # prevent printing or R code in the output
 knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE,
-                      echo = FALSE)
+                      message = FALSE)
 ```
 
 ```{r import}
  # import functions and packages
 library(tidyverse)
 library(knitr)
+library(kableExtra)
+library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs/acs_functions_test.R')
 
 ```
 
-The employment rate is the percentage of people age 16 and over who are working. The data comes American Fact Finder, table S2301. 
+The employment rate is the percentage of people age 16 and over who are working. The data comes American Fact Finder table S2301. 
 
-# Data cleaning
+## Data cleaning
 
-Only keep rows representing the employment rate in the entire US, NC, and Forsyth, Guilford, and Durham counties.
+This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions
 
 ```{r}
 # create list of geographic areas to keep
@@ -37,22 +38,48 @@ emp <- read_csv('data/employment_all_years_counties.csv') %>%
   # this will make it easier to filter based on counties
   mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
   # we only need rows representing the employment rate
-  # these rows have the phrase 'Employed;' in the description
-  filter(str_detect(description, 'Employed;')) %>%
+  # these rows have the phrase 'Employed;' or 'Employment/Population Ratio' in the description
+  # change the description so all rows have phrase 'Employment/Population Ratio'; which is the most recent phrase
+  mutate(description = str_replace(.$description, 'Employed; ', 'Employment/Population Ratio; ')) %>%
   # only keep rows for the US, NC, Forsyth, Guilford, and Durham
-  filter(geo_description %in% geo_areas)
+  filter(geo_description %in% geo_areas,
+         # only keep employment rate rows and total population counts
+         # totals are needed to derive percentages from artificially created groups (age bins)
+         str_detect(description, 'Employment[/]Population Ratio;|Total')) %>%
+  # the last section of the variable name (label) column is the same for estiamtes and totals
+  # this section needs to be extracted so that estimate and total data sets can be merged on it
+  mutate(var_name = str_extract(label, 'VC[0-9][0-9]$'))
+
+# make the total counts an additional column
+
+# create new dataset with just totals
+emp_total <- emp %>%
+  # filter for only totals
+  filter(str_detect(description, 'Total'),
+         # remove 'PERCENT IMPUTED' rows because these do not reflect counts
+         !str_detect(description, 'PERCENT IMPUTED')) %>%
+  # only keep the variables that are needed to merge this dataset with the primary dataset
+  select(var_name, geo_description, estimate, moe, year)
+
+# remove totals from primary data set and merge in newly created totals data set
+emp <- emp %>%
+  filter(!str_detect(description, 'Total')) %>%
+  left_join(emp_total, by = c('var_name', 'geo_description', 'year')) %>%
+  rename(estimate = estimate.x, moe = moe.x,
+         population = estimate.y, population_moe = moe.y)
+         
 ```
 
-# US, NC, and county comparisions
+## US, NC, and county comparisions
 
-## Total employment rate
+### Total employment rate
 
-The plot below shows the overall employment rate of the US, NC, and Forsyth, Guilford, and Durham counties.
+The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
 
 ```{r}
 emp %>%
   # only keep total employment rate
-  filter(description == 'Employed; Estimate; Population 16 years and over') %>%
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over') %>%
   ggplot(aes(year, estimate, color = geo_description)) +
     geom_line(size = 1) +
     labs(title = 'Employment rate',
@@ -62,58 +89,159 @@ emp %>%
     theme_minimal()
 ```
 
-The table below shows z-scores of all comparison communities for the most recent year. To change the comparison year, replace the `max(emp$year)` segment of `year_comparison <- max(emp$year)` with the desired comparison year.
+The table below shows z-scores of all comparison communities for `r max(emp$year)`. To change the comparison year, replace the `max(emp$year)` segment of `year_comparison <- max(emp$year)` with the desired comparison year.
 
 ```{r}
 year_comparison <- max(emp$year)
 
 emp %>%
   # only keep total employment rate
-  filter(description == 'Employed; Estimate; Population 16 years and over',
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
          # only keep data for the most recent year
          year == year_comparison) %>%
   ff_acs_zscore('estimate', 'se', 'geo_description') %>%
-  kable()
-
+  kable(caption = paste0("Comparison community z-scores", ' in ', as.character(year_comparison) ))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
 ```
 
-## Forsyth County year-to-year trends
+### Forsyth County year-to-year trends
 
 The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
 
 ```{r}
 emp %>%
   # only keep total employment rate
-  filter(description == 'Employed; Estimate; Population 16 years and over',
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
   ff_acs_zscore('estimate', 'se', 'year') %>%
-  kable()
+  kable(caption = 'Forsyth County yearly trend z-scores') %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
 ```
 
-## Forsyth County employment rate by ethnicity
+### Forsyth County employment rate by ethnicity
 
-The plot below shows Forsyth County's `max(emp$year)` employment employment rate by ethnicity.
+The plot below shows Forsyth County's employment rate by ethnicity ad year. Many hispanic values are missing due to insufficient data.
 
 ```{r}
 ethnicity_column <- 'description'
 
 keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American',
-                      'Hispanic or Latino origin (of any race)')
+                      'Hispanic or Latino origin')
 
 ethnicity <- emp %>%
-  # filter for race columns
+  # filter for race
   filter(str_detect(description, paste(keep_ethnicities, collapse = '|')),
-         geo_description == 'Forsyth')
-  
-    # Identify the ethnicity part of the 'concept' variable.
-    # This part is at the end of the line, and surrounded by brackets.
-    str_match("[(][A-Z| |,]*?[)]$") %>%
-    # remove brackets - first and last character - from ethnicity
-    str_sub(2, -2) %>%
-    # NA values for ethnicity represent totals, change NA values to 'all'
-    replace_na('ALL')
-  
-  # filter for column in the listed ethnicities
-  df <- filter(df, ethnicity %in% keep_ethnicities)
+         geo_description == 'Forsyth') %>%
+  # create new column that is only the name of the ethnicity
+  mutate(ethnicity = str_extract(description, paste(keep_ethnicities, collapse = '|'))) %>%
+  # shorten ethnicity names
+  mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American', 'African American',
+                            ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic',
+                                   ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White', 'Not sure'))))
+
+ethnicity %>%
+  ggplot(aes(year, estimate, color = ethnicity)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth county employment rate by ethnicity',
+         color = 'Ethnicity') +
+    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
+    scale_x_continuous(limits=c(min(emp$year), max(emp$year))) +
+    theme_minimal()
+```
+
+Below is a table of z-scores for Forsyth County ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
+
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+
+ethnicity %>%
+  filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
+  kable(caption = 'Forsyth County z-scores by year and ethnicity') %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
+```
+
+## Forsyth County employment rate by age
+
+In examining age, custom age bins were constructed and their employment rates were derived. Bins span the following age groups:
+
+* 16-29
+* 30-44
+* 45+
+
+The following plot examines Forsyth County's employment rate by age group.
+
+```{r}
+# some age bins are artificially created; we will need to derive percentages for these bins
+
+# creat bins for age
+age <- emp %>%
+  # filter by Forsyth County
+  filter(geo_description == 'Forsyth',
+         # only keep age
+         str_detect(description, ' AGE - '),
+         # only keep most recent year
+         year == max(year)) %>%
+  # create new variable that is only the age
+  mutate(age = str_extract(description, 'AGE - .* years'),
+         age = str_extract(age, '[0-9].*'),
+         # create variable that is the number of people employed in each age bin
+         # this is needed to calculate the percentage of people employed in the artificially created age bins
+         # must divide estimate by 100 because it is a percentage, but listed as integers
+         pop_employed = population * (estimate/100),
+         # create function for calculating the moe of two products; will be used below
+         # reference: A compass for understaing and using american community survey data, October 2008, A-16
+         pop_employed_moe = sqrt((estimate/100)^2 * population_moe^2 + population^2 * (moe/100)^2)) %>%
+  # reclassify ages based on new categories
+  mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" | .$age == "25 to 29 years", '16-29',
+                       ifelse(.$age == "30 to 34 years" | .$age == "35 to 44 years", '30-44', '45+')))
+
+# The following section creates the employment rate and MOE of each artificially derived age bin
+
+age <- age %>%
+  # group by year and the newly created age bins
+  group_by(year, age) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(sum_pop = sum(population),
+            sum_pop_emp = sum(pop_employed),
+            # deriving MOE from aggregagate count data using tidycensus package
+            sum_pop_moe = moe_sum(population_moe, population),
+            sum_pop_emp_moe = moe_sum(pop_employed_moe, pop_employed)) %>% 
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_employed = round( 100 * (sum_pop_emp / sum_pop), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_employed_moe = moe_prop(sum_pop_emp, sum_pop, sum_pop_emp_moe, sum_pop_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_employed_moe = round( perc_employed_moe *100, 2)) %>% 
+  ungroup()
+
+age %>%
+  ggplot(aes(age, perc_employed, fill = age)) +
+    geom_bar(stat = 'identity') +
+    labs(title = 'Forsyth county employment rate by age group',
+         y = 'Percent employed') +
+    theme_minimal() +
+    theme(legend.position="none")
+
+```
+
+The table below highlights z-scores for each age group comparison in `r max(emp$year)`.
+
+```{r}
+ff_acs_zscore(age, 'perc_employed', 'perc_employed_moe', 'age')  %>%
+  kable(caption = paste0('Forsyth County z-scores by age group', ' in ', as.character(max(age$year)))) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
 ```

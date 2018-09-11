@@ -78,7 +78,9 @@ clean_acs <- function(file_name, year) {
            moe = as.numeric(moe),
            # add standard errors
            # reference: A compass for understanding and using American Community Survey Data, Oct. 2008, A-12
-           se = moe / 1.645)
+           se = moe / 1.645,
+           # add cv
+           cv = round((se / estimate)*100, 2))
  
   # set year
   df$year <- year
