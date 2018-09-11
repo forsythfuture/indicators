@@ -71,8 +71,8 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
     estimate_diff <- data_frame[[i, estimate]] - data_frame[[estimate]]
     se_diff <- sqrt( data_frame[[i, se]]^2 + data_frame[[se]]^2 )
     
-    # calculate the z score for all row values
-    z_score <- abs( estimate_diff / se_diff)
+    # calculate the z score for all row values, rounds to two decimals
+    z_score <- abs( estimate_diff / se_diff) %>% round(2)
 
     # add the row of z scores to the z score matrix
     z_score_mat[, i] <- z_score

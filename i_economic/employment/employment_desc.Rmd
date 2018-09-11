@@ -1,0 +1,33 @@
+---
+title: "Description of employment variables"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      echo = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(knitr)
+# load custom ACS functions
+source('../../functions/acs/acs_functions_test.R')
+
+```
+
+This script simply outputs the variable descriptions.
+
+```{r}
+read_csv('data/employment_all_years_counties.csv') %>%
+  select(label, description) %>%
+  # filter for employment rate
+  filter(str_detect(description, 'Employed;')) %>%
+  distinct() %>%
+  kable
+```

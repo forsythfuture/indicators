@@ -17,7 +17,7 @@ knitr::opts_chunk$set(warning = FALSE,
 library(tidyverse)
 library(knitr)
 # load custom ACS functions
-#source('../functions/acs_load_funcs.R')
+source('../../functions/acs/acs_functions_test.R')
 
 ```
 
@@ -60,6 +60,60 @@ emp %>%
     # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
     scale_x_continuous(limits=c(min(emp$year), max(emp$year))) +
     theme_minimal()
-  
+```
 
+The table below shows z-scores of all comparison communities for the most recent year. To change the comparison year, replace the `max(emp$year)` segment of `year_comparison <- max(emp$year)` with the desired comparison year.
+
+```{r}
+year_comparison <- max(emp$year)
+
+emp %>%
+  # only keep total employment rate
+  filter(description == 'Employed; Estimate; Population 16 years and over',
+         # only keep data for the most recent year
+         year == year_comparison) %>%
+  ff_acs_zscore('estimate', 'se', 'geo_description') %>%
+  kable()
+
+```
+
+## Forsyth County year-to-year trends
+
+The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+
+```{r}
+emp %>%
+  # only keep total employment rate
+  filter(description == 'Employed; Estimate; Population 16 years and over',
+         # only keep data for the most recent year
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore('estimate', 'se', 'year') %>%
+  kable()
+```
+
+## Forsyth County employment rate by ethnicity
+
+The plot below shows Forsyth County's `max(emp$year)` employment employment rate by ethnicity.
+
+```{r}
+ethnicity_column <- 'description'
+
+keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American',
+                      'Hispanic or Latino origin (of any race)')
+
+ethnicity <- emp %>%
+  # filter for race columns
+  filter(str_detect(description, paste(keep_ethnicities, collapse = '|')),
+         geo_description == 'Forsyth')
+  
+    # Identify the ethnicity part of the 'concept' variable.
+    # This part is at the end of the line, and surrounded by brackets.
+    str_match("[(][A-Z| |,]*?[)]$") %>%
+    # remove brackets - first and last character - from ethnicity
+    str_sub(2, -2) %>%
+    # NA values for ethnicity represent totals, change NA values to 'all'
+    replace_na('ALL')
+  
+  # filter for column in the listed ethnicities
+  df <- filter(df, ethnicity %in% keep_ethnicities)
 ```

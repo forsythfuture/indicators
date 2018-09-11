@@ -8,19 +8,24 @@
 #######################################################################################
 
 
-ff_acs_ethnicity <- function(df) {
+ff_acs_ethnicity <- function(df, ethnicity_column) {
   
   # This function filters for the following ethnicities:
   #    White Alone, Not Hispanic or Latino; Black or African American Alone; Hispanic or Latino
-  # It takes as input a dataframe of ACS data create by 'ff_import_acs_county'
+  # It takes as input a dataframe of ACS data and a string signifying the column name
   
   # keep these ethnicities
-  keep_ethnicities <- c('ALL', 'WHITE ALONE, NOT HISPANIC OR LATINO', 
-                        'BLACK OR AFRICAN AMERICAN ALONE', 'HISPANIC OR LATINO')
   
-  # Ethnicity is located in 'concept' column, so wrangle this column to extract ethnicity
+  # for tidycensus imports
+  # keep_ethnicities <- c('ALL', 'WHITE ALONE, NOT HISPANIC OR LATINO', 
+                        # 'BLACK OR AFRICAN AMERICAN ALONE', 'HISPANIC OR LATINO')
+  
+  keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American alone',
+                        'Hispanic or Latino origin (of any race)')
+  
+  # Wrangle ethnicity column extract ethnicity
   # and place in its own column
-  df$ethnicity <- df$concept %>%
+  df$ethnicity <- df[[ethnicity_column]] %>%
     # Identify the ethnicity part of the 'concept' variable.
     # This part is at the end of the line, and surrounded by brackets.
     str_match("[(][A-Z| |,]*?[)]$") %>%
