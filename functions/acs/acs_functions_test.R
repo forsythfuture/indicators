@@ -82,7 +82,7 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
   if (!is.null(var_names)) {
     
     # create vector of label names by pasting columns together
-    names_vec <- apply( data_frame[ , var_names], 1, paste, collapse = "-" )
+    names_vec <- apply( data_frame[ , var_names], 1, paste, collapse = ": " )
     
     # add labels as column and row names
     colnames(z_score_mat) <- names_vec

@@ -1,0 +1,48 @@
+---
+title: "Description of median income variables"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      echo = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(knitr)
+# load custom ACS functions
+source('../../functions/acs/acs_functions_test.R')
+
+```
+
+This script simply outputs the variable descriptions.
+
+```{r}
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+read_csv('data/median_income_all_years_counties.csv') %>%
+  # from counties, remove 'county, North Carolina';
+  # this will make it easier to filter based on counties
+  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
+  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
+  filter(geo_description %in% geo_areas,
+         # remove 'PERCENT IMPUTED' rows
+         !str_detect(description, 'PERCENT IMPUTED'),
+         # remove 'PERCENT ALLOCATED' rows
+         !str_detect(description, 'PERCENT ALLOCATED'),
+         # we are only looking at households, so remove families and non-family household
+         !str_detect(description, 'FAMILIES -'),
+         !str_detect(description, 'NONFAMILY HOUSEHOLDS -'),
+         # filter out total columns because we only need median incomes, not counts
+         !str_detect(description, 'Total')) %>%
+  select(label, description) %>%
+  distinct() %>%
+  kable()
+```

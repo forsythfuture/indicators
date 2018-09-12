@@ -4,7 +4,7 @@
 
 library(tidyverse)
 
-unzip_files <- function(file_path, output_dir) {
+ff_unzip_files <- function(file_path, output_dir) {
   
   # This function takes a zipped file of ACS data, unzips it,
   # and only keeps the data files
@@ -19,14 +19,14 @@ unzip_files <- function(file_path, output_dir) {
   # we do not want text files and metadata files; metadata is in data file
   # delete these files
   # need to paste directory to file names
-  files_remove <- paste0(file_folder, '/', list.files(path = file_folder, pattern = 'metadata|txt'))
+  files_remove <- paste0(output_dir, '/', list.files(path = output_dir, pattern = 'metadata|txt'))
   file.remove(files_remove)
   
 }
 
-clean_acs <- function(file_name, year) {
+ff_clean_acs <- function(file_name, year) {
   
-  # This function takes as input an ACS file as downlaoded from AFF,
+  # This function takes as input an ACS file as downloaded from AFF,
   # adds descriptions, and converts to long form
   
   # Input:
@@ -78,9 +78,12 @@ clean_acs <- function(file_name, year) {
            moe = as.numeric(moe),
            # add standard errors
            # reference: A compass for understanding and using American Community Survey Data, Oct. 2008, A-12
-           se = moe / 1.645,
+           se = round( moe / 1.645, 2),
            # add cv
-           cv = round((se / estimate)*100, 2))
+           cv = round((se / estimate)*100, 2)) %>%
+    # convert MOE from 90% confidence to 95% confidence
+    # reference: A compass for understanding and using ACS data, October 2008, A-12   
+    mutate(moe = round((1.96/1.645) * moe, 2))
  
   # set year
   df$year <- year
@@ -90,5 +93,45 @@ clean_acs <- function(file_name, year) {
   df <- left_join(df, metadata, by = 'label')
   
   return(df)
+  
+}
+
+ff_import_acs <- function(zip_file, zip_path, years) {
+  
+  # This file takes as input a .zip file of AFF downloaded data
+  # and outputs a sinlge cleaned data set of all the files in the .zip file
+  
+  # input:
+  #  zip_file: the file name and full path to the zip file
+  #  zip_path: the directory to the folder storing the zip file
+  #  years: vector of years represented in the data
+  
+  # unzip files
+  # they will be temporarily stored in the same folder as the zip files
+  ff_unzip_files(zip_file, zip_path)
+  
+  # list of files in zip file (each file represents a year of data)
+  data_files <- paste0(zip_path, '/', dir(path=zip_path, pattern=".csv"))
+  
+  ### iterate through each file and year, extract data, and bind to previous year
+  
+  # initialize dataframe
+  df_full <- data.frame()
+  
+  for (i in seq_along(data_files)) {
+    
+    # import one year of data
+    df <- ff_clean_acs(data_files[i], years[i])
+    
+    # bind to previous year
+    df_full <- df_full %>%
+      bind_rows(df)
+  }
+  
+  # remove individual yearly files
+  # only remove csv files, not zip file
+  file.remove(data_files)
+  
+  return(df_full)
   
 }
