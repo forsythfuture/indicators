@@ -76,7 +76,7 @@ ff_clean_acs <- function(file_name, year) {
     mutate(geo_id = as.numeric(geo_id),
            estimate = as.numeric(estimate),
            moe = as.numeric(moe)) %>%
-    # the ACS defualt is a 90% MOE, convert to 95% margin of error
+    # the ACS default is a 90% MOE, convert to 95% margin of error
     # reference: A compass for understanding and using ACS data, October 2008, A-12 
     mutate(moe = round((1.96/1.645) * moe, 2)) %>%
     # calcualte standard error and cv
