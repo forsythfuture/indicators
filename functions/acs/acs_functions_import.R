@@ -1,6 +1,5 @@
 ########################################################################################################
-#
-# Import ACS data.
+# # Import ACS data.
 #
 # The following functions import data into ACS using teh census API and tidycensus package.
 # The only function that needs to be run in R scripts is 'ff_import_acs' (the final function)
@@ -55,7 +54,7 @@ ff_table_names <- function(table_number) {
 
 
 
-ff_import_tables <- function(table_number, state, county, year_end) {
+ff_import_tables <- function(geography, table_number, state=NULL, county=NULL, year_end, acs_data) {
   
   # This function returns a dataframe of multiple table numbers at one time
   
@@ -78,29 +77,36 @@ ff_import_tables <- function(table_number, state, county, year_end) {
       
       # create first dataframe
       # others will be merged into this one
-      first_table <- get_acs(geography = "county", 
-                             table = table_nums[[i]], year = year_end, survey = 'acs1',
-                             state = state, county = county,
-                             moe_level = 95) %>%
+      first_table <- get_acs(# use county for geography if there is a county listed in the parameters,
+        # use state for geography if county is null
+        geography = geography, 
+        table = table_nums[[i]], 
+        year = year_end,
+        # use 'acs1' for data from 2015 and later; and use 'acs/acs1' for data prior to 2015
+        survey = ifelse(year_end >= 2015, str_match(acs_data, '[/](.*)')[[2]], acs_data),
+        state = state, 
+        county = county,
+        moe_level = 95) %>%
         # add variable descriptions to table
         left_join(table_decription_df, by = c('variable' = 'name'))
-      
-      print(table_nums[[i]])
       
     } else {
       
       # create dataframes for other tables, and merge them into the main dataframe
-      other_tables <- get_acs(geography = "county", 
-                              table = table_nums[[i]], year = year_end, survey = 'acs1',
-                              state = state, county = county,
-                              moe_level = 95)  %>%
+      other_tables <- get_acs(# use county for geography if there is a county listed in the parameters,
+        # use state for geography if county is null
+        geography = geography, 
+        table = table_nums[[i]], 
+        year = year_end, 
+        survey = ifelse(year_end >= 2015, str_match(acs_data, '[/](.*)')[[2]], acs_data),
+        state = state, 
+        county = county,
+        moe_level = 95)  %>%
         # add variable descriptions to table
         left_join(table_decription_df, by = c('variable' = 'name'))
       
       first_table <- first_table %>%
         bind_rows(other_tables)
-      
-      print(table_nums[[i]])
       
     }
   }
@@ -112,7 +118,8 @@ ff_import_tables <- function(table_number, state, county, year_end) {
 
 
 
-ff_import_years <- function(table_number, state, county, year_start, year_end) {
+ff_import_years <- function(geography, table_number, state=NULL, county=NULL, 
+                            year_start, year_end, acs_data) {
   
   # This function returns tables for a series of years; for a single geographic area
   # 1 year ACS only goes back to 2011
@@ -129,7 +136,7 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
     
     if ((length(years) == 1) | (which(years == year) == 1)) {
       
-      year_first <- ff_import_tables(table_number, state, county, year)
+      year_first <- ff_import_tables(geography, table_number, state, county, year, acs_data)
       
       # add column indicating year
       year_first$year <- year
@@ -139,7 +146,7 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
     } else {
       
       # import table for subesequent year
-      year_next <- ff_import_tables(table_number, state, county, year)
+      year_next <- ff_import_tables(geography, table_number, state, county, year, acs_data)
       
       # add column indicating year
       year_next$year <- year
@@ -158,45 +165,80 @@ ff_import_years <- function(table_number, state, county, year_start, year_end) {
 
 
 
-ff_import_acs <- function(table_number, state, county, year_start, year_end) {
+ff_import_acs <- function(geography, table_number, state=NULL, county=NULL, 
+                          year_start, year_end, acs_data = 'acs_acs1') {
   
   # This function returns a table for multiple geographic units (county and state combinations)
   # When importing data, this is the only function needed
+  #
+  # The geography parameter reflects the geographic level of interest and can be 'us', 'state', or 'county
   #
   # The state and county parameters are separate vectors of all the states and counties
   # the length of each vector must be the same, and they must overlap.
   # For example, the third state must match the third county.
   # When running this script, state and counties can be identified by running
   # the file comparison_counties.R. This will return a data frame of comparison counties.
-
+  #
+  # The output also calculates and returns the standard error.
+  
   # Ensure state and county vectors are the same length.
   # Throw an error if they are different lengths
-  if (length(state) != (length(county)))
-    stop("State and county vectors must be the same length")
+  # This is only needed if the geography is count
+  if (!is.null(county)) {
+    if (length(state) != (length(county)))
+      stop("State and county vectors must be the same length")
+  }
+  
+  # Multiple counties from the same state can be imported in a single call to the API.
+  # This is faster than importing each county individually.
+  # The next section ensures multiple copunties are improted at once
+  
+  # initialize start and end values of counties within the same state
+  county_start <- c()
+  county_end <- c()
+  
+  # iterate through each state in the vector of states
+  for (single_state in state) {
+    
+    # if the state is a duplicate, extract county start and end points for state
+    county_start <- append(county_start, which(state == single_state)[1])
+    county_end <- append(county_end, last(which(state == single_state)))
+    
+  }
+  
+  # remove duplicate states
+  state <- state[duplicated(state) == FALSE]
+  # remove duplicate county start and end points
+  county_start <- county_start[duplicated(county_start) == FALSE]
+  county_end <- county_end[duplicated(county_end) == FALSE]
+  
+  
+  # create sequence to itereate through
+  # if county is null, only iterate once; otherwise number of itereations equals number of states
+  #iterates <- if_else(is.null(county), as.integer(1), length(state))
+  iterates <- ifelse(is.null(state), 1, length(state))
   
   # iterate through each state and county vector, pulling all tables and years
   
-  for (i in seq_along(1:length(county))) {
+  for (i in seq_len(iterates)) {
     
     # if the geo is the first in a vector, or if only one geo is needed,
     # create the initial dataframe, which subsequent years will be added to
     
     if (i == 1) {
       
-      geo_first <- ff_import_years(table_number, state[[i]], county[[i]], year_start, year_end)
-      
-      print(paste(state[[i]], county[[i]], sep=', '))
+      geo_first <- ff_import_years(geography, table_number, state[[i]], county[county_start[i]:county_end[i]],
+                                   year_start, year_end, acs_data)
       
       # create dataframes for subsequent geographic areas and merge to first data frame
       
     } else {
       
-      geo_next <- ff_import_years(table_number, state[[i]], county[[i]], year_start, year_end)
+      geo_next <- ff_import_years(geography, table_number, state[[i]], county[county_start[i]:county_end[i]], 
+                                  year_start, year_end, acs_data)
       
       geo_first <- geo_first %>%
         bind_rows(geo_next)
-      
-      print(paste(state[[i]], county[[i]], sep=', '))
       
     }
     
@@ -206,6 +248,9 @@ ff_import_acs <- function(table_number, state, county, year_start, year_end) {
   # note: since 95% confidence intervals are used, the moe is divided
   # by 1.96, not 1.645 when using the 90% moe's from AFF
   geo_first$se <- geo_first$moe / 1.96
+  
+  # calculate the cv
+  geo_first$cv <- geo_first$se / geo_first$estimate
   
   return(geo_first)
   

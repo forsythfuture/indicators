@@ -1,0 +1,26 @@
+---
+title: "Palma"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+# load custom ACS functions
+source('../functions/acs_load_funcs.R')
+
+# load data and create 95% convifence intervals
+palma <- read_csv('data/palma.csv') %>%
+  # add lower and upper confidence intervals
+  mutate(lower_ci = Palma - (se * 1.96),
+         upper_ci = Palma + (se * 1.96))
+
+```

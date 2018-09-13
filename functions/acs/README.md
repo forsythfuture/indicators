@@ -13,29 +13,104 @@
 _____
 
 ```{r}
-ff_import_acs(table_number, state, county, year_start, year_end)
+ff_import_acs(table_number, state, county=NULL, year_start, year_end, acs_data=NULL)
 ```
 
 This function returns a table for multiple geographic units (county and state combinations) and years.
 
 Parameters:
+- geography: Geographic unit to extract.  `"us"` for US-level; `"state"` for state-level; `"county"` for county-level.
 - table_number: The ACS table number for the data that is needed. This imports all tables in a series. For example, 'B20017' imports 'B20017A', 'B20017B', 'etc.
 - state: A vector of strings for the states, which should match with counties.
 - county: A vector of strings for the counties, which should match with the states.
+          If only state level data is needed enter `NULL`.
 - year_start: an integer specifying the first year of data that is needed. Must be at least 2012.
 - year_end: an integer specifying the final year of data that is needed.
+- acs_data: ACS survey (example: 'acs/acs1', 'acs/acs5')
+            Default value is 'acs/acs1', meaning that 'acs1' will be used if no value is entered
 
-The function returns 95% confidence intervals for the margin of error. This is different than the default value of data retried from American Fact Finder. The function also calculates and returns the standard error in the column `se`.
+The function returns 95% confidence intervals for the margin of error. 
 
-*Example*
+The function also calculates and returns the standard error in the column `se`. The standard error is derived by dividing the margin of error by 1.96. 1.96 is used because the margin of error is at the 95% level.
+
+The coefficient of variartion (cv) is also calculated and returned under the `cv` column. It is derived by dividing the standard error by the estimate. Within the function, this number **is not** converted to a percentile by multiplying by 100.
+
+As of September 2018, data captured through the census API only goes back to 2010.
+
+*Example for county data*
 ```{r}
-acs_df <- ff_import_acs(table_number = 'B20017', 
+acs_df <- ff_import_acs(geography = 'county',
+                        table_number = 'B20017', 
                         state = c('NC', 'NC', 'AR'),
                         county = c('Forsyth', 'Guilford', 'Pulaski'),
-                        year_start = 2012,
-                        year_end = 2016)
+                        year_start = 2010,
+                        year_end = 2016.
+                        acs_data = 'acs/acs1')
 ```
 
+*Example for state data*
+```
+acs_df <- ff_import_acs(geography = 'state',
+                        table_number = 'B20017', 
+                        state = 'NC',
+                        county = NULL,
+                        year_start = 2010,
+                        year_end = 2016,
+                        acs_data = 'acs/acs1')
+
+```
+
+State-level data for every state can be imported by setting the state parameter to `state.abb`:
+```
+acs_df_all_states <- ff_import_acs(geography = 'state',
+                                   table_number = 'B20017', 
+                                   state = state.abb,
+                                   county = NULL,
+                                   year_start = 2010,
+                                   year_end = 2016,
+                                   acs_data = 'acs/acs1')
+```
+
+*Example for US-level data*
+
+```
+acs_df_us <- ff_import_acs(geography = 'us',
+                           table_number = 'B20017', 
+                           state = NULL,
+                           county = NULL,
+                           year_start = 2010,
+                           year_end = 2016,
+                           acs_data = 'acs/acs1')
+```
+
+*Example for census tracts*
+
+Only five-year estimates are available for tracts, and all tracts within a county are imported.
+
+```
+acs_df_tract <- ff_import_acs(geography = 'tract',
+                              table_number = 'B20017', 
+                              state = 'NC',
+                              county = 'Forsyth',
+                              year_start = 2010,
+                              year_end = 2016,
+                              acs_data = 'acs/acs5')
+```
+
+Only B tables are available through the custom function `ff_import_acs`. For S tables, use the `get_acs` function from the `tidycensus` package.
+
+Example for importing an S table with `tidycensus`:
+
+```
+library(tidycensus)
+
+get_acs(geography = 'county', 
+        variable = "S1903_C01_001E",
+        year = 2016,
+        state = 'NC',
+        county = 'Forsyth',
+        survey = 'acs/acs1')
+```
 
 _____
 

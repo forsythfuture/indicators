@@ -12,8 +12,23 @@ table_number <- 'B20017'
 
 gender_pay_data <- 'i_social_justice/data/gender_pay.csv'
 
-# import B20017 table
-gender_pay <- ff_import_acs(table_number, compare$state, compare$county, 2012, 2016)
+# import B20017 table for counties
+gender_pay_county <- ff_import_acs(geography = 'county', table_number, compare$state, compare$county, 
+                                   2010, 2016, acs_data = 'acs/acs1')
+
+# import B20017 table for NC
+gender_pay_state <- ff_import_acs(geography = 'state', table_number, 'NC', county = NULL, 
+                                  2010, 2016, acs_data = 'acs/acs1')
+
+# import state-level data for every state
+# this data can be used to create US-level data
+gender_pay_us <- ff_import_acs('us', table_number, state=NULL, county = NULL, 
+                                     2010, 2016, acs_data = 'acs/acs1')
+
+# bind county, NC, and US datasets
+gender_pay <- gender_pay_county %>%
+  bind_rows(gender_pay_state) %>%
+  bind_rows(gender_pay_us)
 
 # save acs data in a csv file
 #write_csv(gender_pay, gender_pay_data)

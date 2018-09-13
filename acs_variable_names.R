@@ -4,7 +4,7 @@
 # to repeatedly call the census api everytime a list of variable names is needed.
 #
 # This file should be updated to the current year when new ACS data drops.
-# TEST
+# 
 ########################################################################################################
 
 
@@ -13,6 +13,23 @@ library(tidycensus)
 
 current_year <- 2016
 
-var_names <- load_variables(current_year, "acs1")
+### loads variables for tidycensus ###
 
-write_csv(var_names, 'acs_variable_names.csv')
+# import b tables
+vars_b <- load_variables(current_year, "acs1")
+
+# import s tables
+vars_s <- load_variables(2016, "acs1/subject")
+
+# bind b and s table names into one tables
+vars <- bind_rows(vars_b, vars_s)
+
+# write_csv(vars, 'acs_variable_names.csv')
+
+### loads variabels for censusapi package ###
+
+s_vars <- listCensusMetadata(name = "acs/acs1/subject",
+                             vintage = 2016,
+                             type = "variables")
+
+#write_csv(s_vars, 'censusapi_s_vars.csv')
