@@ -23,7 +23,7 @@ source('../../functions/acs/acs_functions_test.R')
 
 ```
 
-Median income data comes American Fact Finder table S2301. 
+Median income data comes American Fact Finder table S1903 
 
 ### Data cleaning
 
@@ -35,6 +35,8 @@ geo_areas <- c('United States', 'North Carolina',
                 'Forsyth', 'Guilford', 'Durham')
 
 df <- read_csv('data/median_income_all_years_counties.csv') %>%
+  # convert year to integer for better plotting
+  mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
   # this will make it easier to filter based on counties
   mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%

@@ -35,6 +35,8 @@ geo_areas <- c('United States', 'North Carolina',
                 'Forsyth', 'Guilford', 'Durham')
 
 df <- read_csv('data/employment_all_years_counties.csv') %>%
+  # convert year to integer for better plotting
+  mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
   # this will make it easier to filter based on counties
   mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
