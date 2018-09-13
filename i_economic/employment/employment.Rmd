@@ -23,7 +23,7 @@ source('../../functions/acs/acs_functions_test.R')
 
 ```
 
-The employment rate is the percentage of people age 16 and over who are working. The data comes American Fact Finder table S2301. 
+The employment rate is the percentage of people age 16 and over who are working. The data comes from U.S. Census Bureau, American Fact Finder table S2301. 
 
 ### Data cleaning
 
@@ -34,7 +34,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 geo_areas <- c('United States', 'North Carolina', 
                 'Forsyth', 'Guilford', 'Durham')
 
-df <- read_csv('data/employment_all_years_counties.csv') %>%
+df <- read_csv('data/employment_all_years_counties.csv') %>% #WHY READ IT IN AGAIN, SHOULDN'T IT BE SAME AS CSV IF JUST RAN "EMPLOYMENT" SCRIPT?
   # convert year to integer for better plotting
   mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
@@ -62,7 +62,7 @@ emp_total <- df %>%
          # remove 'PERCENT IMPUTED' rows because these do not reflect counts
          !str_detect(description, 'PERCENT IMPUTED')) %>%
   # only keep the variables that are needed to merge this dataset with the primary dataset
-  select(var_name, geo_description, estimate, moe, year)
+  select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
 
 # remove totals from primary data set and merge in newly created totals data set
 df <- df %>%
@@ -111,7 +111,9 @@ df %>%
 
 #### Z-scores
 
-The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`.
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
+**HOW TO DO ALL YEARS? CAN ESPECIALLY BE USEFUL WHEN COMPARING CURRENT TO PRE-RECESSION, I.E., 2006/07 VS 2017
+**CAN YOU HIGHLIGHT SCORES OVER 1.96?
 
 ```{r}
 year_comparison <- c(max(df$year), max(df$year)-1)
