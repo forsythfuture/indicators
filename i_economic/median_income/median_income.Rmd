@@ -77,8 +77,7 @@ df %>%
     labs(title = 'Median income',
          color = 'Comparison Unit',
          y = 'Median income') +
-    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
-    scale_x_continuous(limits=c(min(df$year), max(df$year))) +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
     theme_minimal()
 ```
 
@@ -167,8 +166,7 @@ ethnicity %>%
     geom_line(size = 1) +
     labs(title = 'Forsyth county median income by ethnicity',
          color = 'Ethnicity') +
-    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
-    scale_x_continuous(limits=c(min(df$year), max(df$year))) +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1)) +
     theme_minimal()
 ```
 
@@ -223,8 +221,7 @@ age %>%
     geom_line(size = 1) +
     labs(title = 'Forsyth county median income by age group',
          color = 'Age group') +
-    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
-    scale_x_continuous(limits=c(min(df$year), max(df$year))) +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1)) +
     theme_minimal()
 ```
 

@@ -88,9 +88,9 @@ df %>%
   ggplot(aes(year, estimate, color = geo_description)) +
     geom_line(size = 1) +
     labs(title = 'Employment rate',
-         color = 'Comparison Unit') +
-    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
-    scale_x_continuous(limits=c(min(df$year), max(df$year))) +
+         color = 'Comparison Unit',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
     theme_minimal()
 ```
 
@@ -178,9 +178,9 @@ ethnicity %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
     labs(title = 'Forsyth county employment rate by ethnicity',
-         color = 'Ethnicity') +
-    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
-    scale_x_continuous(limits=c(min(df$year), max(df$year))) +
+         color = 'Ethnicity',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1)) +
     theme_minimal()
 ```
 
@@ -279,11 +279,10 @@ age$geo_description <- 'Forsyth'
 age %>%
     ggplot(aes(year, perc_employed, color = age)) +
     geom_line(size = 1) +
-    labs(title = 'Forsyth county median income by age group',
+    labs(title = 'Forsyth county employment rate by age group',
          color = 'Age group',
          y = 'Percent employed') +
-    # geom_errorbar(aes(ymin = estimate - (se * 1.96), ymax = estimate + (se * 1.96)), width = 0.2) +
-    scale_x_continuous(limits=c(min(df$year), max(df$year))) +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1)) +
     theme_minimal()
 
 ```
@@ -312,6 +311,72 @@ age %>%
   filter(year %in% age_years) %>%
   ff_acs_zscore('perc_employed', 'perc_employed_moe', c('year', 'age'))  %>%
   kable(caption = paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and '))) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
+```
+
+------
+
+### Forsyth County employment rate by gender
+
+#### Plot
+
+The plot for employment rate by gender is below.
+
+```{r}
+# only keep rows related to Forsyth Count and gender
+
+# gender rows have the following descriptions
+gender_descriptions <- c("Employment/Population Ratio; Estimate; Population 20 to 64 years - SEX - Male",
+                         "Employment/Population Ratio; Estimate; Population 20 to 64 years - SEX - Female",
+                         "Employment/Population Ratio; Estimate; SEX - Male",
+                         "Employment/Population Ratio; Estimate; SEX - Female")
+
+gender <- df %>%
+  # filter by Forsyth County
+  filter(geo_description == 'Forsyth',
+         # only keep gender
+         description %in% gender_descriptions) %>%
+  # create new variable that is only the gender
+  # extract either the word Male or Female from the description
+  mutate(gender = str_extract(description, 'Male|Female'))
+
+gender %>%
+    ggplot(aes(year, estimate, color = gender)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth county employment rate by gender',
+         color = 'Gender group',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1)) +
+    theme_minimal()
+
+```
+
+#### Data
+
+And here is the underlying data.
+
+```{r}
+gender %>%
+  select(geo_description, year, gender, estimate, moe, se, cv) %>%
+  kable(caption = 'Employment rate by gender',
+        col.names = c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r}
+# enter comparison years here
+gender_years <- c(max(gender$year), max(gender$year)-1)
+
+gender %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore('estimate', 'moe', c('year', 'gender'))  %>%
+  kable(caption = paste0('Forsyth County z-scores by gender', ' in ', paste(gender_years, collapse = ' and '))) %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
   # bold row names
   column_spec(1, bold = T)

@@ -1,5 +1,5 @@
 ################################################################
-# This file creates the data set for employment rates.
+# This file contains functions that unzip and clean ACS files.
 ################################################################
 
 library(tidyverse)
@@ -72,18 +72,17 @@ ff_clean_acs <- function(file_name, year) {
   
 
   df <- df %>%
-    # convert geo_id, estimate, and moe to integers
+    # convert geo_id, estimate, and moe to numbers
     mutate(geo_id = as.numeric(geo_id),
            estimate = as.numeric(estimate),
-           moe = as.numeric(moe),
-           # add standard errors
-           # reference: A compass for understanding and using American Community Survey Data, Oct. 2008, A-12
-           se = round( moe / 1.645, 2),
-           # add cv
-           cv = round((se / estimate)*100, 2)) %>%
-    # convert MOE from 90% confidence to 95% confidence
-    # reference: A compass for understanding and using ACS data, October 2008, A-12   
-    mutate(moe = round((1.96/1.645) * moe, 2))
+           moe = as.numeric(moe)) %>%
+    # the ACS defualt is a 90% MOE, convert to 95% margin of error
+    # reference: A compass for understanding and using ACS data, October 2008, A-12 
+    mutate(moe = round((1.96/1.645) * moe, 2)) %>%
+    # calcualte standard error and cv
+    # reference: A compass for understanding and using American Community Survey Data, Oct. 2008, A-12
+    mutate(se = round(moe / 1.96, 2),
+           cv = round((se / estimate)*100, 2))
  
   # set year
   df$year <- year
@@ -96,22 +95,22 @@ ff_clean_acs <- function(file_name, year) {
   
 }
 
-ff_import_acs <- function(zip_file, zip_path, years) {
+ff_import_acs <- function(zip_file, raw_data_path, years) {
   
   # This file takes as input a .zip file of AFF downloaded data
   # and outputs a sinlge cleaned data set of all the files in the .zip file
   
   # input:
   #  zip_file: the file name and full path to the zip file
-  #  zip_path: the directory to the folder storing the zip file
+  #  raw_data_path: The folder that the raw data should be copied to
   #  years: vector of years represented in the data
   
   # unzip files
   # they will be temporarily stored in the same folder as the zip files
-  ff_unzip_files(zip_file, zip_path)
+  ff_unzip_files(zip_file, raw_data_path)
   
   # list of files in zip file (each file represents a year of data)
-  data_files <- paste0(zip_path, '/', dir(path=zip_path, pattern=".csv"))
+  data_files <- paste0(raw_data_path, '/', dir(path=raw_data_path, pattern=".csv"))
   
   ### iterate through each file and year, extract data, and bind to previous year
   
@@ -128,9 +127,16 @@ ff_import_acs <- function(zip_file, zip_path, years) {
       bind_rows(df)
   }
   
-  # remove individual yearly files
-  # only remove csv files, not zip file
-  file.remove(data_files)
+  # copy raw csv files to folder of users choice
+  
+  # create list of files names for raw csv files
+  # file_names <- str_extract(data_files, '[/].*csv$')
+  # append list of file names to the folder path
+  # this creates the full file path for each csv file
+  # end_location <- paste0(rep(raw_data_path, length(data_files)), file_names)
+  
+  # copy csv files from current location in the zip folder to final location
+  # file.copy(data_files, end_location, overwrite = TRUE)
   
   return(df_full)
   
