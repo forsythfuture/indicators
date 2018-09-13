@@ -25,7 +25,6 @@
 library(tidyverse)
 library(tidycensus)
 
-
 ff_table_names <- function(table_number) {
   
   # Load all acs variable names.
