@@ -1,0 +1,261 @@
+---
+title: "Poverty Rates"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs/acs_functions_test.R')
+
+```
+
+The poverty rate reflects the percentage of the population with incomeThe data for poverty rates comes American Fact Finder table S1701. 
+
+### Data cleaning
+
+This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
+
+```{r}
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+df <- read_csv('data/poverty_all_years_counties.csv') %>%
+  # from counties, remove 'county, North Carolina';
+  # this will make it easier to filter based on counties
+  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
+  # only keep selected NC counties, the state of NC, and US data
+  filter(geo_description %in% geo_areas,
+         # only need rows showing the percent below poverty level, don't need count data
+         str_detect(description, '^Percent'))
+```
+
+------
+
+### US, NC, and county comparisions
+
+#### Plot
+
+The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+# "Percent  below poverty level; Estimate; Population for whom poverty status is determined"
+
+df %>%
+  # only keep total poverty rate
+  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
+  ggplot(aes(year, estimate, color = geo_description)) +
+    geom_line(size = 1) +
+    labs(title = 'Poverty rate by geographic area',
+         color = 'Comparison Unit',
+         y = 'Poverty rate (%)') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
+    theme_minimal()
+```
+
+#### Data
+
+Below is the raw data for poverty rates by geographies.
+
+```{r}
+df %>%
+  # only keep total poverty rate
+  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
+  select(geo_description, year, estimate, moe, se, cv) %>%
+  kable(caption = 'Employment rate by geographic area and year',
+        col.names = c('Geographic area', 'Year', 'Poverty Rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  
+```
+
+#### Z-scores
+
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`.
+
+```{r}
+year_comparison <- c(max(df$year), max(df$year)-1)
+
+df %>%
+  # only keep total employment rate
+  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
+         # only keep data for the most recent year
+         year %in% year_comparison) %>%
+  ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
+  kable(caption = paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ') ))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
+```
+
+------
+
+### Forsyth County year-to-year trends
+
+#### Z-scores
+
+The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+
+```{r}
+df %>%
+  # only keep total employment rate
+  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
+         # only keep Forsyth
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore('estimate', 'se', 'year') %>%
+  kable(caption = 'Forsyth County yearly trend z-scores') %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
+```
+
+------
+
+### Forsyth County poverty rate by ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's poverty rate by ethnicity and year.
+
+```{r}
+ethnicity_column <- 'description'
+
+keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American',
+                      'Hispanic or Latino origin')
+
+ethnicity <- df %>%
+  # filter for race
+  filter(str_detect(description, paste(keep_ethnicities, collapse = '|')),
+         geo_description == 'Forsyth') %>%
+  # create new column that is only the name of the ethnicity
+  mutate(ethnicity = str_extract(description, paste(keep_ethnicities, collapse = '|'))) %>%
+  # shorten ethnicity names
+  mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American', 'African American',
+                            ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic',
+                                   ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White', 'Not sure'))))
+
+ethnicity %>%
+  ggplot(aes(year, estimate, color = ethnicity)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth county poverty rate by ethnicity',
+         color = 'Ethnicity',
+         y = 'Poverty rate (%)') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Data
+
+The data for ethnicities is as follows.
+
+```{r}
+ethnicity %>%
+  select(geo_description, year, ethnicity, estimate, moe, se, cv) %>%
+  kable(caption = 'Povety rate by ethnicity',
+        col.names = c('Geographic area', 'Year', 'Ethnicity', 'Poverty rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+Below is a table of z-scores for Forsyth County ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
+
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+
+ethnicity %>%
+  filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
+  kable(caption = 'Forsyth County z-scores by year and ethnicity') %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
+```
+
+------
+
+### Forsyth County poverty by age
+
+#### Plot
+
+In 2015, the Census created additional age groups, such as under 5 and 5 to 17. Prior to 2015, however, the youngest age group was 18 and under. Therefore, yearly age comparisons only trace back to 2015.
+
+```{r}
+# list of the end of age rows, to filter on
+age_descriptions <- c('Under 5 years',
+                      '5 to 17 years',
+                      '18 to 34 years',
+                      '35 to 64 years',
+                      '65 years and over')
+
+# create regular expression to filter data set and only keep rows that have one of the 
+# age descriptions at the end of the row description
+age_re <- paste0(age_descriptions, collapse = '$|')
+
+age <- df %>%
+  # only keep variables for 2015 and later
+  filter(year >= 2015,
+         geo_description == 'Forsyth',
+         str_detect(description, age_re)) %>%
+  # create new column that extracts the age from the description column
+  mutate(age = str_extract(description, age_re))
+  
+age %>%
+    ggplot(aes(year, estimate, color = age)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth county poverty rate by age group',
+         color = 'Age group',
+         y = 'Poverty rate (%)') +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
+    # change the order of age groups in legend so they appear youngest to oldest
+    scale_color_discrete(breaks=age_descriptions) +
+    theme_minimal()
+```
+
+#### Data
+
+Age data is below.
+
+```{r}
+age %>%
+  select(geo_description, year, age, estimate, moe, se, cv) %>%
+  kable(caption = 'Poverty rate by age',
+        col.names = c('Geographic area', 'Year', 'Age group', 'Poverty rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r}
+# enter comparison years here
+age_years <- c(max(age$year), max(age$year)-1)
+
+age %>%
+  filter(year %in% age_years,
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
+  kable(caption = paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and '))) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  # bold row names
+  column_spec(1, bold = T)
+```
+
+
+

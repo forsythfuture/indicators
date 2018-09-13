@@ -77,7 +77,8 @@ df %>%
     labs(title = 'Median income',
          color = 'Comparison Unit',
          y = 'Median income') +
-    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 ```
 
@@ -153,6 +154,8 @@ keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African A
 ethnicity <- df %>%
   # filter for race
   filter(str_detect(description, paste(keep_ethnicities, collapse = '|')),
+         # remove rows that start with 'Percent Distribution' or 'Number' which is new in 2017
+         !str_detect(description, 'Percent Distribution|Number'),
          geo_description == 'Forsyth') %>%
   # create new column that is only the name of the ethnicity
   mutate(ethnicity = str_extract(description, paste(keep_ethnicities, collapse = '|'))) %>%
@@ -166,7 +169,8 @@ ethnicity %>%
     geom_line(size = 1) +
     labs(title = 'Forsyth county median income by ethnicity',
          color = 'Ethnicity') +
-    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1)) +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 ```
 
@@ -211,7 +215,9 @@ The following plot examines Forsyth County's median income by age group.
 age <- df %>%
   # only keep age related rows
   filter(str_detect(description, 'HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER'),
-         geo_description == 'Forsyth') %>%
+         geo_description == 'Forsyth',
+         # remove rows that start with 'Percent Distribution' or 'Number' which is new in 2017
+         !str_detect(description, 'Percent Distribution|Number')) %>%
   # extract age from description and place in its own column
   mutate(age = str_extract(description, '[0-9][0-9].*'))
   
@@ -221,7 +227,8 @@ age %>%
     geom_line(size = 1) +
     labs(title = 'Forsyth county median income by age group',
          color = 'Age group') +
-    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1)) +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 ```
 
