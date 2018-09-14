@@ -151,3 +151,22 @@ ff_import_acs <- function(zip_file, raw_data_path, years) {
   return(df_full)
   
 }
+
+ff_cv_color <- function(df) {
+  
+  # this function takes as input the cv column name as a string
+  # it mutates it by adding color to cv numbers for a kable table
+  
+  # No color is added if the cv is less than 12
+  # Blue is added for CVs between 12 and 30
+  # Red is added for CVs over 30
+  
+  df %>%
+    # must convert missing values to numbers because cell_spec cannot take missing values
+    # since missing values signify high cv, convert to 1000
+    # this number will be converted back to NA after creating colors
+    mutate(cv = ifelse(is.na(.$cv), 100, .$cv)) %>%
+    # change color  
+    mutate(cv = cell_spec(cv, color = ifelse(cv > 12 & cv <= 30, "blue",
+                                             ifelse(cv > 30, 'red', 'black'))))
+}

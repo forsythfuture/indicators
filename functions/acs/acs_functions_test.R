@@ -109,10 +109,13 @@ ff_acs_zscore_kable <- function(zscore_matrix, table_name) {
     mutate_all(funs(cell_spec(., bold = ifelse(. > 1.96, T,F)))) %>%
     # add column names as the first row because row names do not print
     mutate(Compare = colnames(.),
+           # bold column of column / row names
            Compare = cell_spec(Compare, bold = T)) %>%
-    # make the geography the first column
+    # make the comparison column (column and row names) the first column
     select(Compare, everything()) %>%
+    # create kable table
     kable(caption = table_name, escape = F)  %>%
+    # add formating (every other row in gray)
     kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
     # bold row names
     column_spec(1, bold = T)

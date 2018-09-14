@@ -20,6 +20,7 @@ library(kableExtra)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs/acs_functions_test.R')
+source('../../functions/misc_functions.R')
 
 ```
 
@@ -35,11 +36,6 @@ geo_areas <- c('United States', 'North Carolina',
                 'Forsyth', 'Guilford', 'Durham')
 
 df <- read_csv('data/employment_all_years_counties.csv') %>% #WHY READ IT IN AGAIN, SHOULDN'T IT BE SAME AS CSV IF JUST RAN "EMPLOYMENT" SCRIPT?
-  # convert year to integer for better plotting
-  mutate(year = as.integer(year)) %>%
-  # from counties, remove 'county, North Carolina';
-  # this will make it easier to filter based on counties
-  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
   # we only need rows representing the employment rate
   # these rows have the phrase 'Employed;' or 'Employment/Population Ratio' in the description
   # change the description so all rows have phrase 'Employment/Population Ratio'; which is the most recent phrase
@@ -104,7 +100,9 @@ df %>%
   # only keep total employment rate
   filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over') %>%
   select(geo_description, year, estimate, moe, se, cv) %>%
-  kable(caption = 'Employment rate by geographic area and year',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by geographic area and year', escape=FALSE,
         col.names = c('Geographic area', 'Year', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
   
@@ -191,7 +189,9 @@ The data for ethnicities is as follows.
 ```{r}
 ethnicity %>%
   select(geo_description, year, ethnicity, estimate, moe, se, cv) %>%
-  kable(caption = 'Employment rate by ethnicity',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by ethnicity', escape=FALSE,
         col.names = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
@@ -301,7 +301,11 @@ Age data is below.
 ```{r}
 age %>%
   select(geo_description, year, age, perc_employed, perc_employed_moe, perc_employed_se, perc_employed_cv) %>%
-  kable(caption = 'Employment rate by age',
+  # rename cv column so that the cv color function will work
+  rename(cv = perc_employed_cv) %>%
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by age', escape=FALSE,
         col.names = c('Geographic area', 'Year', 'Age group', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
@@ -365,7 +369,9 @@ And here is the underlying data.
 ```{r}
 gender %>%
   select(geo_description, year, gender, estimate, moe, se, cv) %>%
-  kable(caption = 'Employment rate by gender',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by gender', escape=FALSE,
         col.names = c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```

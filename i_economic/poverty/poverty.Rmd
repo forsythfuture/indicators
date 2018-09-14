@@ -20,7 +20,7 @@ library(kableExtra)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs/acs_functions_test.R')
-
+source('../../functions/misc_functions.R')
 ```
 
 The poverty rate reflects the percentage of the population with incomeThe data for poverty rates comes American Fact Finder table S1701. 
@@ -34,9 +34,6 @@ geo_areas <- c('United States', 'North Carolina',
                 'Forsyth', 'Guilford', 'Durham')
 
 df <- read_csv('data/poverty_all_years_counties.csv') %>%
-  # from counties, remove 'county, North Carolina';
-  # this will make it easier to filter based on counties
-  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
   # only keep selected NC counties, the state of NC, and US data
   filter(geo_description %in% geo_areas,
          # only need rows showing the percent below poverty level, don't need count data
@@ -52,8 +49,6 @@ df <- read_csv('data/poverty_all_years_counties.csv') %>%
 The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
 
 ```{r}
-# "Percent  below poverty level; Estimate; Population for whom poverty status is determined"
-
 df %>%
   # only keep total poverty rate
   filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
@@ -75,7 +70,9 @@ df %>%
   # only keep total poverty rate
   filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
   select(geo_description, year, estimate, moe, se, cv) %>%
-  kable(caption = 'Employment rate by geographic area and year',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by geographic area and year', escape = F,
         col.names = c('Geographic area', 'Year', 'Poverty Rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
   
@@ -94,12 +91,7 @@ df %>%
          # only keep data for the most recent year
          year %in% year_comparison) %>%
   ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
-  ff_acs_zscore
-  
-  kable(caption = paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ') ))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable(paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ')))
 ```
 
 ------
@@ -117,10 +109,7 @@ df %>%
          # only keep Forsyth
          geo_description == 'Forsyth') %>%
   ff_acs_zscore('estimate', 'se', 'year') %>%
-  kable(caption = 'Forsyth County yearly trend z-scores') %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable('Forsyth County yearly trend z-scores')
 ```
 
 ------
@@ -166,7 +155,9 @@ The data for ethnicities is as follows.
 ```{r}
 ethnicity %>%
   select(geo_description, year, ethnicity, estimate, moe, se, cv) %>%
-  kable(caption = 'Povety rate by ethnicity',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Povety rate by ethnicity', escape = F,
         col.names = c('Geographic area', 'Year', 'Ethnicity', 'Poverty rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
@@ -182,10 +173,7 @@ ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
   ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
-  kable(caption = 'Forsyth County z-scores by year and ethnicity') %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable('Forsyth County z-scores by year and ethnicity')
 ```
 
 ------
@@ -236,7 +224,9 @@ Age data is below.
 ```{r}
 age %>%
   select(geo_description, year, age, estimate, moe, se, cv) %>%
-  kable(caption = 'Poverty rate by age',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Poverty rate by age', escape = FALSE,
         col.names = c('Geographic area', 'Year', 'Age group', 'Poverty rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
@@ -253,10 +243,7 @@ age %>%
   filter(year %in% age_years,
          geo_description == 'Forsyth') %>%
   ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
-  kable(caption = paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and '))) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
 ```
 
 
