@@ -90,7 +90,8 @@ df %>%
     labs(title = 'Employment rate',
          color = 'Comparison Unit',
          y = 'Percent employed') +
-    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 ```
 
@@ -184,7 +185,8 @@ ethnicity %>%
     labs(title = 'Forsyth county employment rate by ethnicity',
          color = 'Ethnicity',
          y = 'Percent employed') +
-    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1)) +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 ```
 
@@ -295,7 +297,8 @@ age %>%
     labs(title = 'Forsyth county employment rate by age group',
          color = 'Age group',
          y = 'Percent employed') +
-    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1)) +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 
 ```
@@ -361,7 +364,8 @@ gender %>%
     labs(title = 'Forsyth county employment rate by gender',
          color = 'Gender group',
          y = 'Percent employed') +
-    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1)) +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                       minor_breaks = NULL) +
     theme_minimal()
 
 ```

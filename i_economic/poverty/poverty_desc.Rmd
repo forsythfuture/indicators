@@ -1,0 +1,44 @@
+---
+title: "Description of employment variables"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      echo = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(knitr)
+# load custom ACS functions
+source('../../functions/acs/acs_functions_test.R')
+
+```
+
+This script simply outputs the variable descriptions.
+
+```{r}
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+read_csv('data/poverty_all_years_counties.csv') %>%
+  # from counties, remove 'county, North Carolina';
+  # this will make it easier to filter based on counties
+  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
+  # only keep selected NC counties, the state of NC, and US data
+  filter(geo_description %in% geo_areas,
+         str_detect(description, '^Percent')) %>%
+         # only need rows showing the percent below poverty level, don't need count data
+         #str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
+         # find age variables
+         filter(str_detect(description, 'AGE')) %>%
+  select(year, description) %>%
+  distinct() %>%
+  kable()
+```
