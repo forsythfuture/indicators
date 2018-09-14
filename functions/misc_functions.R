@@ -106,8 +106,11 @@ ff_clean_acs <- function(file_name, year) {
     # reference: A compass for understanding and using American Community Survey Data, Oct. 2008, A-12
     mutate(se = round(moe / 1.96, 2),
            cv = round((se / estimate)*100, 2)) %>%
+    # counties have the county name and then 'County, North Carolina'
+    # only keep the copunty name in the geographic description
+    separate(geo_description, into = c('geo_description', 'waste'), sep = 'County, ', fill='right') %>%
     # change order of columns
-    select(geo_description, label, description, estimate, moe, se, cv)
+    select(geo_description, label, year, description, estimate, moe, se, cv)
     
   return(df)
   
