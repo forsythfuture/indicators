@@ -4,6 +4,7 @@
 
 library(tidyverse)
 
+
 ff_unzip_files <- function(file_path, output_dir) {
   
   # This function takes a zipped file of ACS data, unzips it,
@@ -34,63 +35,80 @@ ff_clean_acs <- function(file_name, year) {
   
   df <- read_csv(file_name)
   
-  # first row (under column header) contains metadata, so extract and place into dataframe
+  # The data is in wide-form where each item is a different column
+  # we want to convert to long form where there are columns for estimate and and moe
+  # and each row is a different item
+  # The first row contains the column description
+  # It includes the word 'Estimate;' for estimates and 'Margin of Error;' for moe
+  # To convert to long form create two datasets, one for estimates and one for MOE
+  # the datasets will then be merged
+  
+  df <- df %>%
+    # delete unneeded columns
+    select(-`GEO.id`, -`GEO.id2`) %>%
+    # change column name
+    rename(geo_description = `GEO.display-label`)
+  
+  # first row (under column header) contains metadata (description), so extract and place into dataframe
   # also include column headers because the headers will be used to merge metadata with data
-  metadata <- t(df[1,])
+  metadata <- t(df[1,]) %>%
+    as.data.frame() %>%
+    # column headers are the row names, convert to a column so that descriptions can be merged with data set
+    mutate(label = row.names(.)) %>%
+    # rename column
+    rename(description = V1) %>%
+    # filter out first row, which is the column description
+    .[2: nrow(.),]
   
-  # delete first row
-  df <- df[2: nrow(df), ]
-  
-  # create two datasets, one for estimates and one for MOE
-  # datasets will be merged
-  estimates <- df %>%
-    select(contains('GEO'), contains('EST'))
-  
-  moe <- df %>%
-    select(contains('GEO'), contains('MOE'))
-  
+  # since the descriptions are extracted, we can delete the row containing them
+  df <- df[2:nrow(df),]
+
   # convert from wide to long, where each estimate and moe is on a different row
   df <- df %>% 
-    select(-GEO.id) %>%
-    gather(label, estimate, -GEO.id2, -`GEO.display-label`) %>%
-    rename(geo_id = GEO.id2, geo_description = `GEO.display-label`)
-  
-  # filter out moe; so that it can be added as an additional column to the year dataset
+    gather(label, estimate, -geo_description) %>%
+    # combine descriptions, which are in the metadata object, with the data set containing data
+    left_join(metadata, by = 'label')
+      
+  # create two different datasets, one for MOE and one for estimates
+  # these two data sets will be merged so that there is one data set with the estimate and moe as seperate columns
   moe <- df %>%
-    filter(str_detect(label, 'MOE'))
-  
-  # remove MOE rows
+    filter(str_detect(description, 'Margin of Error; ')) %>%
+    # rename moe estimate column so it has a different name than the column with estimate values
+    rename(moe = estimate)
   df <- df %>%
-    filter(!str_detect(label, 'MOE'))
+    filter(str_detect(description, 'Estimate; ')) 
   
-  # add MOE as a new column to main dataset
-  df$moe <- moe$estimate
+  # estimate and moe data sets should have the same number of rows,
+  # and the rows should match by row number
+  # for example the fourth row for moe data set should contain the moe
+  # for the fourth row of the estimate data set
   
-  # add description to dataframe
-  metadata <- as.data.frame(metadata)
-  metadata$label <- rownames(metadata)
+  # first ensure each data set has the same number of rows, if not stop and throw error message
+  if (nrow(df) != nrow(moe)) {
+    stop('The estimate and moe data sets do not contain the same number of rows.')
+  }
+  
+  # add moe values to data frame
+  df$moe <- moe$moe
+  # add year as a column
+  df$year <- year
   
 
   df <- df %>%
-    # convert geo_id, estimate, and moe to numbers
-    mutate(geo_id = as.numeric(geo_id),
-           estimate = as.numeric(estimate),
-           moe = as.numeric(moe)) %>%
+    # convert estimate, and moe to numbers, description from factor to character
+    mutate(estimate = as.numeric(estimate),
+           moe = as.numeric(moe),
+           description = as.character(description)) %>%
     # the ACS default is a 90% MOE, convert to 95% margin of error
     # reference: A compass for understanding and using ACS data, October 2008, A-12 
     mutate(moe = round((1.96/1.645) * moe, 2)) %>%
     # calcualte standard error and cv
     # reference: A compass for understanding and using American Community Survey Data, Oct. 2008, A-12
     mutate(se = round(moe / 1.96, 2),
-           cv = round((se / estimate)*100, 2))
- 
-  # set year
-  df$year <- year
-  
-  colnames(metadata) <- c('description', 'label')
-  
-  df <- left_join(df, metadata, by = 'label')
-  
+           cv = round((se / estimate)*100, 2)) %>%
+    # change order of columns
+    select(geo_description, label, description, estimate, moe, se, cv)
+    
   return(df)
   
 }
@@ -126,17 +144,6 @@ ff_import_acs <- function(zip_file, raw_data_path, years) {
     df_full <- df_full %>%
       bind_rows(df)
   }
-  
-  # copy raw csv files to folder of users choice
-  
-  # create list of files names for raw csv files
-  # file_names <- str_extract(data_files, '[/].*csv$')
-  # append list of file names to the folder path
-  # this creates the full file path for each csv file
-  # end_location <- paste0(rep(raw_data_path, length(data_files)), file_names)
-  
-  # copy csv files from current location in the zip folder to final location
-  # file.copy(data_files, end_location, overwrite = TRUE)
   
   return(df_full)
   
