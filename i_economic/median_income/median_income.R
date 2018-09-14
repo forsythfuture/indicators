@@ -20,4 +20,4 @@ df <- ff_import_acs(zip_file,
                     years = seq(2006, 2017, 1))
 
 # write out data frame
-write_csv(df, 'i_economic/median_income/data/median_income.csv')
+write_csv(df, 'i_economic/median_income/data/median_income_all_years_counties.csv')

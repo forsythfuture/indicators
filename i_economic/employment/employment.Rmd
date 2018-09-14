@@ -126,10 +126,7 @@ df %>%
          # only keep data for the most recent year
          year %in% year_comparison) %>%
   ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
-  kable(caption = paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ') ))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable(paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ')))
 ```
 
 ------
@@ -148,10 +145,7 @@ df %>%
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
   ff_acs_zscore('estimate', 'se', 'year') %>%
-  kable(caption = 'Forsyth County yearly trend z-scores') %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable('Forsyth County yearly trend z-scores')
 ```
 
 ------
@@ -213,10 +207,7 @@ ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
   ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
-  kable(caption = 'Forsyth County z-scores by year and ethnicity') %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable('Forsyth County z-scores by year and ethnicity')
 ```
 
 ------
@@ -326,10 +317,7 @@ age_years <- c(max(age$year), max(age$year)-1)
 age %>%
   filter(year %in% age_years) %>%
   ff_acs_zscore('perc_employed', 'perc_employed_moe', c('year', 'age'))  %>%
-  kable(caption = paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and '))) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
 ```
 
 ------
@@ -393,8 +381,5 @@ gender_years <- c(max(gender$year), max(gender$year)-1)
 gender %>%
   filter(year %in% gender_years) %>%
   ff_acs_zscore('estimate', 'moe', c('year', 'gender'))  %>%
-  kable(caption = paste0('Forsyth County z-scores by gender', ' in ', paste(gender_years, collapse = ' and '))) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
-  # bold row names
-  column_spec(1, bold = T)
+  ff_acs_zscore_kable(paste0('Forsyth County z-scores by gender', ' in ', paste(gender_years, collapse = ' and ')))
 ```

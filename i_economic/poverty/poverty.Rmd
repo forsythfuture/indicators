@@ -94,6 +94,8 @@ df %>%
          # only keep data for the most recent year
          year %in% year_comparison) %>%
   ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
+  ff_acs_zscore
+  
   kable(caption = paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ') ))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
   # bold row names
