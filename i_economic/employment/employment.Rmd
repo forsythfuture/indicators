@@ -23,7 +23,7 @@ source('../../functions/acs/acs_functions_test.R')
 
 ```
 
-The employment rate is the percentage of people age 16 and over who are working. The data comes American Fact Finder table S2301. 
+The employment rate is the percentage of people age 16 and over who are working. The data comes from U.S. Census Bureau, American Fact Finder table S2301. 
 
 ### Data cleaning
 
@@ -34,7 +34,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 geo_areas <- c('United States', 'North Carolina', 
                 'Forsyth', 'Guilford', 'Durham')
 
-df <- read_csv('data/employment_all_years_counties.csv') %>%
+df <- read_csv('data/employment_all_years_counties.csv') %>% #WHY READ IT IN AGAIN, SHOULDN'T IT BE SAME AS CSV IF JUST RAN "EMPLOYMENT" SCRIPT?
   # convert year to integer for better plotting
   mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
@@ -62,7 +62,7 @@ emp_total <- df %>%
          # remove 'PERCENT IMPUTED' rows because these do not reflect counts
          !str_detect(description, 'PERCENT IMPUTED')) %>%
   # only keep the variables that are needed to merge this dataset with the primary dataset
-  select(var_name, geo_description, estimate, moe, year)
+  select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
 
 # remove totals from primary data set and merge in newly created totals data set
 df <- df %>%
@@ -112,7 +112,10 @@ df %>%
 
 #### Z-scores
 
-The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`.
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
+**HOW TO DO ALL YEARS? CAN ESPECIALLY BE USEFUL WHEN COMPARING CURRENT TO PRE-RECESSION, I.E., 2006/07 VS 2017
+**OUTPUT XLXS OF ALL YEARS PERHAPS, JUST TRYING TO THINK OF HOW TO MAKE IT EASY TO SEE WHERE "ss" THINGS ARE HAPPENING
+**CAN YOU HIGHLIGHT SCORES OVER 1.96?
 
 ```{r}
 year_comparison <- c(max(df$year), max(df$year)-1)
@@ -136,6 +139,7 @@ df %>%
 #### Z-scores
 
 The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+**AGAIN, HIGHLIGHT THOSE #S ABOVE 1.96
 
 ```{r}
 df %>%
@@ -235,7 +239,7 @@ age <- df %>%
          # only keep most recent year
          #year == max(year)) %>%
   # create new variable that is only the age
-  mutate(age = str_extract(description, 'AGE - .* years'),
+        mutate(age = str_extract(description, 'AGE - .* years'),
          age = str_extract(age, '[0-9].*'),
          # create variable that is the number of people employed in each age bin
          # this is needed to calculate the percentage of people employed in the artificially created age bins
@@ -245,9 +249,18 @@ age <- df %>%
          # reference: A compass for understaing and using american community survey data, October 2008, A-16
          pop_employed_moe = sqrt((estimate/100)^2 * population_moe^2 + population^2 * (moe/100)^2)) %>%
   # reclassify ages based on new categories
-  mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" | .$age == "25 to 29 years", '16 to 29 years',
-                       ifelse(.$age == "30 to 34 years" | .$age == "35 to 44 years" |
-                                .$age == "25 to 44 years", '30 to 44 years', '45 years and over')))
+        
+  ## HOW TO DEAL WITH DIFFERENT AGE BREAKDOWNS THAT STARTED IN 2015? SHOULD WE JUST DO 16 TO 24, 25 TO 44, 45 TO 64, 6599 (PER BELOW)?
+  ## I ADDED 6599 BECAUSE I THOUGHT THERE MIGHT BE SOMETHING INTERESTING GOING ON WITH THE OLDER FOLKS AND IT APPEARS THERE MAY BE
+        
+  # mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" | .$age == "25 to 29 years", '16 to 29 years',
+                       #ifelse(.$age == "30 to 34 years" | .$age == "35 to 44 years" |
+                                #.$age == "25 to 44 years", '30 to 44 years', '45 years and over')))
+    mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" , '1624',
+                       ifelse(.$age == "25 to 29 years" | .$age == "30 to 34 years" | .$age == "35 to 44 years" |
+                                .$age == "25 to 44 years", '2544', 
+                       ifelse(.$age == "45 to 54 years" | .$age == "55 to 64 years" , '4564','6599'))))
+
 
 # The following section creates the employment rate and MOE of each artificially derived age bin
 
@@ -273,7 +286,7 @@ age <- age %>%
          perc_employed_se = round(perc_employed_moe / 1.96, 2),
          # derived cv from se
          perc_employed_cv = round((perc_employed_se / perc_employed) * 100, 2)) %>% 
-  ungroup()
+  ungroup() #WHAT DOES THIS ACTUALLY DO?
 
 # add Forsyth back as the geographic unit
 age$geo_description <- 'Forsyth'
