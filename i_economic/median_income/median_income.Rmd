@@ -20,6 +20,7 @@ library(kableExtra)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs/acs_functions_test.R')
+source('../../functions/misc_functions.R')
 
 ```
 
@@ -86,7 +87,9 @@ df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions) %>%
   select(geo_description, year, estimate, moe, se, cv) %>%
-  kable(caption = 'Median income by geographic area and year',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Median income by geographic area and year', escape=F,
         col.names = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
   
@@ -171,7 +174,9 @@ The data for ethnicities is as follows.
 ```{r}
 ethnicity %>%
   select(geo_description, year, ethnicity, estimate, moe, se, cv) %>%
-  kable(caption = 'Employment rate by ethnicity',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by ethnicity', escape=F,
         col.names = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
@@ -226,7 +231,9 @@ Age data is below.
 ```{r}
 age %>%
   select(geo_description, year, age, estimate, moe, se, cv) %>%
-  kable(caption = 'Median income by age',
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Median income by age', escape=F,
         col.names = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
 ```
