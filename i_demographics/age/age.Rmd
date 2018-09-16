@@ -1,5 +1,5 @@
 ---
-title: "Employment Rate"
+title: "Demographics: Population by Age"
 output:
   html_document:
     toc: true
@@ -31,10 +31,10 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 
 ```{r}
 # create list of geographic areas to keep
-geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
+#geo_areas <- c('United States', 'North Carolina', 
+               # 'Forsyth', 'Guilford', 'Durham')
 
-df <- read_csv('data/employment_all_years_counties.csv') %>% #WHY READ IT IN AGAIN, SHOULDN'T IT BE SAME AS CSV IF JUST RAN "EMPLOYMENT" SCRIPT?
+df <- read_csv('data/age_all_years.csv') %>% 
   # convert year to integer for better plotting
   mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
