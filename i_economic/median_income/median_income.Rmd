@@ -151,8 +151,8 @@ ethnicity <- df %>%
   mutate(ethnicity = str_extract(description, paste(keep_ethnicities, collapse = '|'))) %>%
   # shorten ethnicity names
   mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American', 'African American',
-                            ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic',
-                                   ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White', 'Not sure'))))
+                            ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic/Latino',
+                                   ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White, non-Hispanic', 'Not sure'))))
 
 ethnicity %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
