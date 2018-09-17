@@ -23,6 +23,25 @@ source('../../functions/acs_load_funcs.R')
 
 ```
 
+This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
+
+```{r}
+# change to 'TRUE' to write out datasets to excel
+write_to_excel <- TRUE
+
+
+if (write_to_excel == TRUE) {
+  # install package to write to excel only if it is needed
+  library(openxlsx)
+  
+  # name of the excel file to save to (can be changed)
+  excel_file <- 'median_income.xlsx'
+  
+  # create workbook to save sheets to
+  wb <- createWorkbook()
+}
+```
+
 Median income data comes American Fact Finder table S1903 
 
 ### Data cleaning
@@ -88,7 +107,12 @@ Below is the raw data for median income by geographies.
 df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions) %>%
-  select(geo_description, year, estimate, moe, se, cv) %>%
+  select(geo_description, year, estimate, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "comparisons") # create workbook
+    writeData(wb, "comparisons", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
   # add color to CVs
   ff_cv_color() %>%
   kable(caption = 'Median income by geographic area and year', escape=F,
@@ -163,7 +187,12 @@ The data for ethnicities is as follows.
 
 ```{r}
 ethnicity %>%
-  select(geo_description, year, ethnicity, estimate, moe, se, cv) %>%
+  select(geo_description, year, ethnicity, estimate, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "ethnicity") # create workbook
+    writeData(wb, "ethnicity", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
   # add color to CVs
   ff_cv_color() %>%
   kable(caption = 'Employment rate by ethnicity', escape=F,
@@ -220,7 +249,12 @@ Age data is below.
 
 ```{r}
 age %>%
-  select(geo_description, year, age, estimate, moe, se, cv) %>%
+  select(geo_description, year, age, estimate, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "age") # create workbook
+    writeData(wb, "age", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
   # add color to CVs
   ff_cv_color() %>%
   kable(caption = 'Median income by age', escape=F,
@@ -241,4 +275,12 @@ age %>%
          geo_description == 'Forsyth') %>%
   ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
   ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
+```
+
+Write out excel workbook if needed.
+
+```{r}
+if (write_to_excel == TRUE) {
+  saveWorkbook(wb, excel_file, overwrite=T)
+} 
 ```
