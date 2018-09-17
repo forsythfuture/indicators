@@ -18,6 +18,10 @@ df <- ff_import_acs_tmp(zip_file,
 # write out data frame
 write_csv(df, 'i_demographics/age/data/age_all_years.csv')
 
+for (file in list.files('i_demographics/age/data/raw_data')) {
+  print(file)
+}
+
 ##******************************************************************************************************
 ff_import_acs_tmp <- function(zip_file, raw_data_path, years) {
         
