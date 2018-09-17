@@ -14,10 +14,11 @@ ff_acs_ethnicity <- function(df, ethnicity_column) {
   # This function filters for the following ethnicities:
   #    White Alone, Not Hispanic or Latino; Black or African American Alone; Hispanic or Latino
   # It takes as input a dataframe of ACS data and an object signifying the column name that contains ethnicity information
+  # The output is the original dataframe with an additional column called 'ethnicity' added
   
   # keep these ethnicities; these are how the ethnicities are worded in downloaded ACS files
-  keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American alone',
-                        'Hispanic or Latino origin (of any race)')
+  keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American',
+                        'Hispanic or Latino origin')
   
   # using ACS ethnicites, create regular expression that will search for any of the ethnicities
   # the '|' signifies or
@@ -34,8 +35,8 @@ ff_acs_ethnicity <- function(df, ethnicity_column) {
     # create new column that is only the name of the ethnicity
     mutate(ethnicity = str_extract(!! ethnicity_column, re_ethnicities)) %>%
     # convert ethnicity names to Forsyth Futures conventions
-    mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American alone', 'African American',
-                              ifelse(.$ethnicity == 'Hispanic or Latino origin (of any race)', 'Hispanic/Latino',
+    mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American', 'African American',
+                              ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic/Latino',
                                      ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White, non-Hispanic', 'Not sure'))))
   
   return(df)

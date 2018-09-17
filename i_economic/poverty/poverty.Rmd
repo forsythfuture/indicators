@@ -19,8 +19,7 @@ library(knitr)
 library(kableExtra)
 library(tidycensus)
 # load custom ACS functions
-source('../../functions/acs/acs_functions_test.R')
-source('../../functions/misc_functions.R')
+source('../../functions/acs_load_funcs.R')
 ```
 
 The poverty rate reflects the percentage of the population with incomeThe data for poverty rates comes American Fact Finder table S1701. 
@@ -121,21 +120,11 @@ df %>%
 The plot below shows Forsyth County's poverty rate by ethnicity and year.
 
 ```{r}
-ethnicity_column <- 'description'
-
-keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American',
-                      'Hispanic or Latino origin')
-
 ethnicity <- df %>%
+  # filter for forsyth county
+  filter(geo_description == 'Forsyth') %>%
   # filter for race
-  filter(str_detect(description, paste(keep_ethnicities, collapse = '|')),
-         geo_description == 'Forsyth') %>%
-  # create new column that is only the name of the ethnicity
-  mutate(ethnicity = str_extract(description, paste(keep_ethnicities, collapse = '|'))) %>%
-  # shorten ethnicity names
-  mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American', 'African American',
-                            ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic',
-                                   ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White', 'Not sure'))))
+  ff_acs_ethnicity(description)
 
 ethnicity %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
