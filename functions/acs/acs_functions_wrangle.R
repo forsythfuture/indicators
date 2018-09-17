@@ -8,39 +8,38 @@
 #######################################################################################
 
 
+
 ff_acs_ethnicity <- function(df, ethnicity_column) {
   
   # This function filters for the following ethnicities:
   #    White Alone, Not Hispanic or Latino; Black or African American Alone; Hispanic or Latino
-  # It takes as input a dataframe of ACS data and a string signifying the column name
+  # It takes as input a dataframe of ACS data and an object signifying the column name that contains ethnicity information
   
-  # keep these ethnicities
-  
-  # for tidycensus imports
-  # keep_ethnicities <- c('ALL', 'WHITE ALONE, NOT HISPANIC OR LATINO', 
-                        # 'BLACK OR AFRICAN AMERICAN ALONE', 'HISPANIC OR LATINO')
-  
+  # keep these ethnicities; these are how the ethnicities are worded in downloaded ACS files
   keep_ethnicities <- c('White alone, not Hispanic or Latino', 'Black or African American alone',
                         'Hispanic or Latino origin (of any race)')
   
-  # Wrangle ethnicity column extract ethnicity
-  # and place in its own column
-  df$ethnicity <- df[[ethnicity_column]] %>%
-    # Identify the ethnicity part of the 'concept' variable.
-    # This part is at the end of the line, and surrounded by brackets.
-    str_match("[(][A-Z| |,]*?[)]$") %>%
-    # remove brackets - first and last character - from ethnicity
-    str_sub(2, -2) %>%
-    # NA values for ethnicity represent totals, change NA values to 'all'
-    replace_na('ALL')
+  # using ACS ethnicites, create regular expression that will search for any of the ethnicities
+  # the '|' signifies or
+  re_ethnicities <- paste(keep_ethnicities, collapse = '|')
   
-  # filter for column in the listed ethnicities
-  df <- filter(df, ethnicity %in% keep_ethnicities)
+  # convert ethnicity column object to eunquo object
+  # this allows us to use the object as a column name within dplyr
+  ethnicity_column <- enquo(ethnicity_column)
+  
+  df <- df %>%
+    # filter for rows that contain ethnicity information; 
+    # !! signifies that the column name is stored in an object, and is not a column in the dataframe 
+    filter(str_detect(!! ethnicity_column, re_ethnicities)) %>%
+    # create new column that is only the name of the ethnicity
+    mutate(ethnicity = str_extract(!! ethnicity_column, re_ethnicities)) %>%
+    # convert ethnicity names to Forsyth Futures conventions
+    mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American alone', 'African American',
+                              ifelse(.$ethnicity == 'Hispanic or Latino origin (of any race)', 'Hispanic/Latino',
+                                     ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White, non-Hispanic', 'Not sure'))))
   
   return(df)
 }
-
-
 
 ff_acs_keep_vars <- function(df, variables) {
   
