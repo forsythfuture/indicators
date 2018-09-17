@@ -15,13 +15,13 @@
 acs_load_func <- function() {
   
   # locate all files within the ACS functions folder
-  files <- list.files('../functions/acs', pattern='*.R')
+  files <- list.files('../../functions/acs', pattern='*.R')
   
   # run all the files containing ACS functions
   for (f in files) {
     
     # create path to file
-    file_path <- paste0('../functions/acs/', f)
+    file_path <- paste0('../../functions/acs/', f)
     
     # run file
     source(file_path)
