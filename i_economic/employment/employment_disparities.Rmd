@@ -93,7 +93,7 @@ years <- seq(2006, 2017, 1)
 
 ### Employment rate disparities by race and ethnicity
 
-Disparities by ethnicity reflect ratios between white income and african american or hispanic income.
+Disparities by ethnicity reflect ratios between white employment rates and african american or hispanic rates.
 
 #### Create disparities by race and ethnicity dataset
 
