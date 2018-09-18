@@ -1,0 +1,357 @@
+---
+title: "Employment Rate Disparities"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+
+```
+
+This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel workbook where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`. To change the filename of the saved workbook, edit `excel_file <- 'employment_disparities.xlsx'`.
+
+```{r}
+# change to 'TRUE' to write out datasets to excel
+write_to_excel <- FALSE
+
+
+if (write_to_excel == TRUE) {
+  # install package to write to excel only if it is needed
+  library(openxlsx)
+  
+  # name of the excel file to save to (can be changed)
+  excel_file <- 'employment_disparities.xlsx'
+  
+  # create workbook to save sheets to
+  wb <- createWorkbook()
+}
+```
+
+The employment rate is the percentage of people age 16 and over who are working. The data comes from U.S. Census Bureau, American Fact Finder table S2301. 
+
+### Data cleaning
+
+This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
+
+```{r}
+# create list of geographic areas to keep
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+df <- read_csv('data/employment_all_years_counties.csv') %>%
+  # we only need rows representing the employment rate
+  # these rows have the phrase 'Employed;' or 'Employment/Population Ratio' in the description
+  # change the description so all rows have phrase 'Employment/Population Ratio'; which is the most recent phrase
+  mutate(description = str_replace(.$description, 'Employed; ', 'Employment/Population Ratio; ')) %>%
+  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
+  filter(geo_description %in% geo_areas,
+         # only keep employment rate rows and total population counts
+         # totals are needed to derive percentages from artificially created groups (age bins)
+         str_detect(description, 'Employment[/]Population Ratio;|Total')) %>%
+  # the last section of the variable name (label) column is the same for estiamtes and totals
+  # this section needs to be extracted so that estimate and total data sets can be merged on it
+  mutate(var_name = str_extract(label, 'VC[0-9][0-9]$'))
+
+# make the total counts an additional column
+
+# create new dataset with just totals
+emp_total <- df %>%
+  # filter for only totals
+  filter(str_detect(description, 'Total'),
+         # remove 'PERCENT IMPUTED' rows because these do not reflect counts
+         !str_detect(description, 'PERCENT IMPUTED')) %>%
+  # only keep the variables that are needed to merge this dataset with the primary dataset
+  select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
+
+# remove totals from primary data set and merge in newly created totals data set
+df <- df %>%
+  filter(!str_detect(description, 'Total')) %>%
+  left_join(emp_total, by = c('var_name', 'geo_description', 'year')) %>%
+  rename(estimate = estimate.x, moe = moe.x,
+         population = estimate.y, population_moe = moe.y)
+
+# create vector of years of data, to be used later
+years <- seq(2006, 2017, 1)
+```
+
+------
+
+### Employment rate disparities by race and ethnicity
+
+Disparities by ethnicity reflect ratios between white employment rates and african american or hispanic rates.
+
+#### Create disparities by race and ethnicity dataset
+
+The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
+
+```{r}
+# create dataset of ratios
+ethnicity <- df %>%
+  # filter for rows containing ethnicity data
+  ff_acs_ethnicity(description)
+
+# create different datasets for each race
+# this is needed to calculate ratios by race
+ethnicity_aa <- filter(ethnicity, ethnicity == 'African American')
+ethnicity_hl <- filter(ethnicity, ethnicity == 'Hispanic/Latino')
+ethnicity_wh <- filter(ethnicity, ethnicity == 'White, non-Hispanic')
+
+# each dataset must have the same number of rows, if they do not there is a problem
+# check to see if all the datasets do not have the same number of rows
+if (!(nrow(ethnicity_aa) == nrow(ethnicity_hl) &
+    nrow(ethnicity_aa) == nrow(ethnicity_wh) &
+    nrow(ethnicity_hl) == nrow(ethnicity_wh))) {
+  
+  print('!!!!! There is a problem. All the racial comparison data sets do not have the same number of rows!!!!')
+      
+}
+
+# calculate ratio and moe of each racial comparison
+aa_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
+                       ethnicity_aa$estimate, ethnicity_aa$moe) %>%
+  #add years, repeat each year once for each geographic area
+  mutate(year = rep(years, each=length(geo_areas)),
+         # add geographic areas; add each geographic area once for each year
+         geo_description = rep(geo_areas, times=length(years)),
+         # add description of comparison
+         description = 'White to african american ratio')
+
+hl_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
+                       ethnicity_hl$estimate, ethnicity_hl$moe) %>%
+  #add years, repeat each year once for each geographic area
+  mutate(year = rep(years, each=length(geo_areas)),
+         # add geographic areas; add each geographic area once for each year
+         geo_description = rep(geo_areas, times=length(years)),
+         # add description of comparison
+         description = 'White to hispanic/latinx ratio')
+
+# combine both datasets into one
+ethnic_ratios <- bind_rows(aa_wh, hl_wh) %>%
+  # reorder columns
+  select(year, description, everything())
+```
+
+#### Plot
+
+The plot below shows employment rate disparities by ethnicity and year. 
+
+```{r}
+ethnic_ratios %>%
+  ggplot(aes(year, ratio, color = geo_description)) +
+    geom_line(size = 1) +
+    # create seperate plots for each ethnicity comparison
+    facet_wrap(vars(description), nrow=2) +
+    # create bold vertical line at 1
+    geom_hline(yintercept = 1) +
+    labs(title = 'Forsyth county employment rate ratios by ethnicity',
+         color = 'Comparison communities',
+         y = 'Ratio') +
+    scale_x_continuous(breaks = seq(min(ethnic_ratios$year), max(ethnic_ratios$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Data
+
+The data for ethnicities is as follows.
+
+```{r}
+ethnic_ratios %>%
+  select(geo_description, year, description, ratio, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "ethnicities") # create workbook
+    writeData(wb, "ethnicities", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate disparities by ethnicity', escape=FALSE,
+        col.names = c('Geographic area', 'Year', 'Comparison ethnicities', 'Ratio', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+Below are tables of z-scores for employment disparities by ethnicity comparisons and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
+
+**White to african american employment disparities**
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
+
+ethnic_ratios %>%
+  filter(year %in% ethnicity_years,
+         description == 'White to african american ratio') %>%
+  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
+  ff_acs_zscore_kable('White to african american employment disparity z-scores by year and geographic area')
+```
+
+**White to hispanic/latinx employment disparities**
+
+*Note: NA values reflect insufficient data*
+
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
+
+ethnic_ratios %>%
+  filter(year %in% ethnicity_years,
+         description == 'White to hispanic/latinx ratio') %>%
+  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
+  ff_acs_zscore_kable('White to hispanic/latinx disparities employment disparity z-scores by year and geographic area')
+```
+
+And here are the z-scores for all years with Forsyth County.
+
+**Forsyth County white to african american employment disparities**
+```{r}
+ethnic_ratios %>%
+  filter(geo_description == 'Forsyth',
+         description == 'White to african american ratio') %>% 
+  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
+  ff_acs_zscore_kable('White to african american employment disparity z-scores for Forsyth County')
+```
+
+**Forsyth County white to hispanic/latinx employment disparities**
+
+*Note: NA values reflect insufficient data*
+
+```{r}
+ethnic_ratios %>%
+  filter(geo_description == 'Forsyth',
+         description == 'White to hispanic/latinx ratio') %>%
+  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
+  ff_acs_zscore_kable('White to hispanic/latinx employment disparity z-scores for Forsyth County')
+```
+
+------
+
+### Employment rate disparities by gender
+
+Gender disparities reflect the ratio of the male employment rate to the female employment rate.
+
+
+#### Create disparities by gender dataset
+
+The code block below calculates disparities by gender, along with the se, moe, and cv.
+
+```{r}
+# gender rows have the following descriptions
+gender_descriptions <- c("Employment/Population Ratio; Estimate; Population 20 to 64 years - SEX - Male",
+                         "Employment/Population Ratio; Estimate; Population 20 to 64 years - SEX - Female",
+                         "Employment/Population Ratio; Estimate; SEX - Male",
+                         "Employment/Population Ratio; Estimate; SEX - Female")
+
+gender <- df %>%
+  # only keep gender
+  filter(description %in% gender_descriptions) %>%
+  # create new variable that is only the gender
+  # extract either the word Male or Female from the description
+  mutate(gender = str_extract(description, 'Male|Female'))
+
+
+# create different datasets for each gender
+# this is needed to calculate ratios by gender
+gender_male <- filter(gender, gender == 'Male')
+gender_female <- filter(gender, gender == 'Female')
+
+# each dataset must have the same number of rows, if they do not there is a problem
+# check to see if all the datasets do not have the same number of rows
+if (!(nrow(gender_male) == nrow(gender_female))) {
+  
+  print('!!!!! There is a problem. All the gender comparison data sets do not have the same number of rows!!!!')
+      
+}
+
+# calculate ratio and moe of each racial comparison
+gender_ratios <- ff_acs_ratios(gender_male$estimate, gender_male$moe, 
+                              gender_female$estimate, gender_female$moe) %>%
+  #add years, repeat each year once for each geographic area
+  mutate(year = rep(years, each=length(geo_areas)),
+         # add geographic areas; add each geographic area once for each year
+         geo_description = rep(geo_areas, times=length(years)),
+         # add description of comparison
+         description = 'Male to female ratio')
+```
+
+#### Plot
+
+The plot for employment rate disparities by gender is below.
+
+```{r}
+gender_ratios %>%
+  ggplot(aes(year, ratio, color = geo_description)) +
+    geom_line(size = 1) +
+    # create bold vertical line at 1
+    geom_hline(yintercept = 1) +
+    labs(title = 'Employment rate ratios by gender',
+         color = 'Comparison communities',
+         y = 'Ratio') +
+    scale_x_continuous(breaks = seq(min(gender_ratios$year), max(gender_ratios$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Data
+
+The data for gender disparities is as follows.
+
+```{r}
+gender_ratios %>%
+  select(geo_description, year, description, ratio, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "gender") # create workbook
+    writeData(wb, "gender", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate disparities by gender', escape=FALSE,
+        col.names = c('Geographic area', 'Year', 'Comparison ethnicities', 'Ratio', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+Below are tables of z-scores for employment disparities by gender and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
+
+```{r}
+# enter comparison years here
+gender_years <- c(max(gender_ratios$year), max(gender_ratios$year)-1)
+
+gender_ratios %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
+  ff_acs_zscore_kable('Gender employment disparity z-scores by year and geographic area')
+```
+
+And here are gender disparity z-scores for Forsyth County in all years.
+
+```{r}
+gender_ratios %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
+  ff_acs_zscore_kable('Forsyth County gender employment disparity z-scores by year')
+```
+
+Write out excel workbook if needed.
+
+```{r}
+if (write_to_excel == TRUE) {
+  saveWorkbook(wb, excel_file, overwrite=T)
+} 
