@@ -93,12 +93,12 @@ years <- seq(2006, 2017, 1)
 
 ### Forsyth County employment rate disparities by race and ethnicity
 
-#### Plot
+#### Create disparities by race and ethnicity dataset
 
-The plot below shows Forsyth County's employment rate disparities by ethnicity and year. The disparities reflect ratios between white income and african american or hispanic income. Many hispanic values are missing due to insufficient data.
+The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
 
 ```{r}
-
+# create dataset of ratios
 ethnicity <- df %>%
   # filter for rows containing ethnicity data
   ff_acs_ethnicity(description)
@@ -142,7 +142,13 @@ hl_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe,
 ethnic_ratios <- bind_rows(aa_wh, hl_wh) %>%
   # reorder columns
   select(year, description, everything())
+```
 
+#### Plot
+
+The plot below shows Forsyth County's employment rate disparities by ethnicity and year. The disparities reflect ratios between white income and african american or hispanic income. Many hispanic values are missing due to insufficient data.
+
+```{r}
 ethnic_ratios %>%
   ggplot(aes(year, ratio, color = geo_description)) +
     geom_line(size = 1) +
@@ -237,9 +243,10 @@ ethnic_ratios %>%
 
 Gender disparities reflect the ratio of the male employment rate to the female employment rate.
 
-#### Plot
 
-The plot for employment rate disparities by gender is below.
+#### Create disparities by gender dataset
+
+The code block below calculates disparities by gender, along with the se, moe, and cv.
 
 ```{r}
 # gender rows have the following descriptions
@@ -278,7 +285,13 @@ gender_ratios <- ff_acs_ratios(gender_male$estimate, gender_male$moe,
          geo_description = rep(geo_areas, times=length(years)),
          # add description of comparison
          description = 'Male to female ratio')
+```
 
+#### Plot
+
+The plot for employment rate disparities by gender is below.
+
+```{r}
 gender_ratios %>%
   ggplot(aes(year, ratio, color = geo_description)) +
     geom_line(size = 1) +
