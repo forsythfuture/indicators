@@ -23,7 +23,7 @@ source('../../functions/acs_load_funcs.R')
 
 ```
 
-This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel workbook where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`. TO change the filename of the saved workbook, edit `excel_file <- 'employment_disparities.xlsx'`.
+This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel workbook where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`. To change the filename of the saved workbook, edit `excel_file <- 'employment_disparities.xlsx'`.
 
 ```{r}
 # change to 'TRUE' to write out datasets to excel
@@ -193,7 +193,10 @@ ethnic_ratios %>%
   ff_acs_zscore_kable('White to african american employment disparity z-scores by year and geographic area')
 ```
 
-**White to hispanic/latinx disparities employment disparities**
+**White to hispanic/latinx employment disparities**
+
+*Note: NA values reflect insufficient data*
+
 ```{r}
 # enter comparison years here
 ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
@@ -216,7 +219,10 @@ ethnic_ratios %>%
   ff_acs_zscore_kable('White to african american employment disparity z-scores for Forsyth County')
 ```
 
-**Forsyth County white to hispanic/latinx disparities employment disparities**
+**Forsyth County white to hispanic/latinx employment disparities**
+
+*Note: NA values reflect insufficient data*
+
 ```{r}
 ethnic_ratios %>%
   filter(geo_description == 'Forsyth',
@@ -228,6 +234,8 @@ ethnic_ratios %>%
 ------
 
 ### Employment rate disparities by gender
+
+Gender disparities reflect the ratio of the male employment rate to the female employment rate.
 
 #### Plot
 
@@ -286,7 +294,7 @@ gender_ratios %>%
 
 #### Data
 
-The data for ethnicities is as follows.
+The data for gender disparities is as follows.
 
 ```{r}
 gender_ratios %>%
@@ -305,7 +313,7 @@ gender_ratios %>%
 
 #### Z-scores
 
-Below are tables of z-scores for employment disparities by gender comparisons and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
+Below are tables of z-scores for employment disparities by gender and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
 
 ```{r}
 # enter comparison years here
@@ -317,7 +325,7 @@ gender_ratios %>%
   ff_acs_zscore_kable('Gender employment disparity z-scores by year and geographic area')
 ```
 
-And here are gender disparity z-scores for Forsyth County and years.
+And here are gender disparity z-scores for Forsyth County in all years.
 
 ```{r}
 gender_ratios %>%
