@@ -181,7 +181,7 @@ ethnic_ratios %>%
 
 Below are tables of z-scores for employment disparities by ethnicity comparisons and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
 
-*White to african american employment disparities*
+**White to african american employment disparities**
 ```{r}
 # enter comparison years here
 ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
@@ -193,7 +193,7 @@ ethnic_ratios %>%
   ff_acs_zscore_kable('White to african american employment disparity z-scores by year and geographic area')
 ```
 
-*White to hispanic/latinx disparities employment disparities*
+**White to hispanic/latinx disparities employment disparities**
 ```{r}
 # enter comparison years here
 ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
@@ -207,7 +207,7 @@ ethnic_ratios %>%
 
 And here are the z-scores for all years with Forsyth County.
 
-*White to african american employment disparities*
+**Forsyth County white to african american employment disparities**
 ```{r}
 ethnic_ratios %>%
   filter(geo_description == 'Forsyth',
@@ -216,7 +216,7 @@ ethnic_ratios %>%
   ff_acs_zscore_kable('White to african american employment disparity z-scores for Forsyth County')
 ```
 
-*White to hispanic/latinx disparities employment disparities*
+**Forsyth County white to hispanic/latinx disparities employment disparities**
 ```{r}
 ethnic_ratios %>%
   filter(geo_description == 'Forsyth',
@@ -307,7 +307,6 @@ gender_ratios %>%
 
 Below are tables of z-scores for employment disparities by gender comparisons and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
 
-*White to african american employment disparities*
 ```{r}
 # enter comparison years here
 gender_years <- c(max(gender_ratios$year), max(gender_ratios$year)-1)
