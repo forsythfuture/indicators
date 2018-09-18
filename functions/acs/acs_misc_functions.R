@@ -170,3 +170,89 @@ ff_cv_color <- function(df) {
     mutate(cv = cell_spec(cv, color = ifelse(cv > 12 & cv <= 30, "blue",
                                              ifelse(cv > 30, 'red', 'black'))))
 }
+
+ff_ratios_race <- function(df, years, geo_areas) {
+  
+  # input:
+  #   df: a dataframe where there is a column called ethnicity with values of either:
+  #         'African American', 'Hispanic/Latino', or 'White, non-Hispanic'
+  #   years: the years in the dataset
+  #   geo_areas: the geographic areas in the dataset
+  
+  # create different datasets for each race
+  # this is needed to calculate ratios by race
+  ethnicity_aa <- filter(df, ethnicity == 'African American')
+  ethnicity_hl <- filter(df, ethnicity == 'Hispanic/Latino')
+  ethnicity_wh <- filter(df, ethnicity == 'White, non-Hispanic')
+  
+  # each dataset must have the same number of rows, if they do not there is a problem
+  # check to see if all the datasets do not have the same number of rows
+  if (!(nrow(ethnicity_aa) == nrow(ethnicity_hl) &
+        nrow(ethnicity_aa) == nrow(ethnicity_wh) &
+        nrow(ethnicity_hl) == nrow(ethnicity_wh))) {
+    
+    stop('!!!!! There is a problem. All the racial comparison data sets do not have the same number of rows!!!!')
+    
+  }
+  
+  # calculate ratio and moe of each racial comparison
+  aa_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
+                         ethnicity_aa$estimate, ethnicity_aa$moe) %>%
+    #add years, repeat each year once for each geographic area
+    mutate(year = rep(years, each=length(geo_areas)),
+           # add geographic areas; add each geographic area once for each year
+           geo_description = rep(geo_areas, times=length(years)),
+           # add description of comparison
+           description = 'White to african american ratio')
+  
+  hl_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
+                         ethnicity_hl$estimate, ethnicity_hl$moe) %>%
+    #add years, repeat each year once for each geographic area
+    mutate(year = rep(years, each=length(geo_areas)),
+           # add geographic areas; add each geographic area once for each year
+           geo_description = rep(geo_areas, times=length(years)),
+           # add description of comparison
+           description = 'White to hispanic/latinx ratio')
+  
+  # combine both datasets into one
+  ethnic_ratios <- bind_rows(aa_wh, hl_wh) %>%
+    # reorder columns
+    select(year, description, geo_description, everything())
+  
+  return(ethnic_ratios)
+}
+
+
+ff_ratios_gender <- function(df, years, geo_areas) {
+  
+  # input:
+  #   df: a dataframe where there is a column called gender with values of either 'Male', or 'Female'
+  #   years: the years in the dataset
+  #   geo_areas: the geographic areas in the dataset
+  
+  # create different datasets for each gender
+  # this is needed to calculate ratios by gender
+  gender_male <- filter(df, gender == 'Male')
+  gender_female <- filter(df, gender == 'Female')
+  
+  # each dataset must have the same number of rows, if they do not there is a problem
+  # check to see if all the datasets do not have the same number of rows
+  if (!(nrow(gender_male) == nrow(gender_female))) {
+    
+    print('!!!!! There is a problem. All the gender comparison data sets do not have the same number of rows!!!!')
+    
+  }
+  
+  # calculate ratio and moe of each racial comparison
+  gender_ratios <- ff_acs_ratios(gender_male$estimate, gender_male$moe, 
+                                 gender_female$estimate, gender_female$moe) %>%
+    #add years, repeat each year once for each geographic area
+    mutate(year = rep(years, each=length(geo_areas)),
+           # add geographic areas; add each geographic area once for each year
+           geo_description = rep(geo_areas, times=length(years)),
+           # add description of comparison
+           description = 'Male to female ratio')
+  
+  return(gender_ratios)
+  
+}

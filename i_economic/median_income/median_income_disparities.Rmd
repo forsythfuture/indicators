@@ -1,0 +1,309 @@
+---
+title: "Median Income Disparities"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+```{r import}
+ # import functions and packages
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+
+```
+
+This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
+
+```{r}
+# change to 'TRUE' to write out datasets to excel
+write_to_excel <- FALSE
+
+
+if (write_to_excel == TRUE) {
+  # install package to write to excel only if it is needed
+  library(openxlsx)
+  
+  # name of the excel file to save to (can be changed)
+  excel_file <- 'median_income_disparities.xlsx'
+  
+  # create workbook to save sheets to
+  wb <- createWorkbook()
+}
+```
+
+Median income data comes American Fact Finder table S1903.
+
+### Data cleaning
+
+This code block imports and cleans the data. It filters out unneeded NC counties and rows, and cleans up variable descriptions.
+
+```{r}
+# create list of geographic areas to keep
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+df <- read_csv('data/median_income_all_years_counties.csv') %>%
+  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
+  filter(geo_description %in% geo_areas,
+         # remove 'PERCENT IMPUTED' rows
+         !str_detect(description, 'PERCENT IMPUTED'),
+         # remove 'PERCENT ALLOCATED' rows
+         !str_detect(description, 'PERCENT ALLOCATED'),
+         # we are only looking at households, so remove families and non-family household
+         !str_detect(description, 'FAMILIES -'),
+         !str_detect(description, 'NONFAMILY HOUSEHOLDS -'),
+         # filter out total columns because we only need median incomes, not counts
+         !str_detect(description, 'Total'),
+         # starting in 2017, total number of people and percent is in data; remove these so we only have median incomes
+         !str_detect(description, '^Number;'),
+         !str_detect(description, '^Percent'))
+
+# years will be needed alter
+years <- seq(2006, 2017, 1)
+```
+
+------
+
+### Median income disparities by race and ethnicity
+
+Disparities by ethnicity reflect ratios between white median income and african american or hispanic median income.
+ 
+#### Create disparities by race and ethnicity dataset
+
+The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
+
+```{r}
+# filter or ethnicity data
+ethnicity <- df %>%
+  # filter for race
+  ff_acs_ethnicity(description) %>%
+  # calculate ratios
+  ff_ratios_race(ethnicity, years, geo_areas)
+
+```
+
+___________________________________________________
+
+
+### US, NC, and county comparisions
+
+#### Plot
+
+The plot below shows the median income of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+# rows with total median income have the following descriptions
+# we will filter on these descriptions to extract rows signifying total median income
+total_median_descriptions <- c('Median income (dollars); Estimate; Households',
+                               paste0('Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC ', 
+                               'OR LATINO ORIGIN OF HOUSEHOLDER - Households'))
+
+df %>%
+  # only keep overall median income
+  filter(description %in% total_median_descriptions) %>%
+  ggplot(aes(year, estimate, color = geo_description)) +
+    geom_line(size = 1) +
+    labs(title = 'Median income',
+         color = 'Comparison Unit',
+         y = 'Median income') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Data
+
+Below is the raw data for median income by geographies.
+
+```{r}
+df %>%
+  # only keep total employment rate
+  filter(description %in% total_median_descriptions) %>%
+  select(geo_description, year, estimate, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "comparisons") # create workbook
+    writeData(wb, "comparisons", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Median income by geographic area and year', escape=F,
+        col.names = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  
+```
+
+#### Z-scores
+
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`.
+
+```{r}
+year_comparison <- c(max(df$year), max(df$year)-1)
+
+df %>%
+  # only keep total employment rate
+  filter(description %in% total_median_descriptions,
+         # only keep data for the most recent year
+         year %in% year_comparison) %>%
+  ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
+  # create kable table for z scores
+  ff_acs_zscore_kable(paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ')))
+```
+
+------
+
+### Forsyth County year-to-year trends
+
+#### Z-scores
+
+The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+
+```{r}
+df %>%
+  # only keep total employment rate
+  filter(description %in% total_median_descriptions,
+         # only keep data for the most recent year
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore('estimate', 'se', 'year') %>%
+  ff_acs_zscore_kable('Forsyth County yearly trend z-scores')
+```
+
+------
+
+### Forsyth County median income by ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's median income by ethnicity and year.
+
+```{r}
+ethnicity <- df %>%
+  # filter for forsyth county
+  filter(geo_description == 'Forsyth') %>%
+  # filter for race
+  ff_acs_ethnicity(description)
+
+ethnicity %>%
+  ggplot(aes(year, estimate, color = ethnicity)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth county median income by ethnicity',
+         color = 'Ethnicity') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Data
+
+The data for ethnicities is as follows.
+
+```{r}
+ethnicity %>%
+  select(geo_description, year, ethnicity, estimate, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "ethnicity") # create workbook
+    writeData(wb, "ethnicity", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Employment rate by ethnicity', escape=F,
+        col.names = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+Below is a table of z-scores for Forsyth County ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)` with the desired year.
+
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+
+ethnicity %>%
+  filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
+  ff_acs_zscore_kable('Forsyth County z-scores by year and ethnicity')
+```
+
+------
+
+### Forsyth County median income by age
+
+#### Plot
+
+The following plot examines Forsyth County's median income by age group.
+
+```{r}
+age <- df %>%
+  # only keep age related rows
+  filter(str_detect(description, 'HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER'),
+         geo_description == 'Forsyth',
+         # remove rows that start with 'Percent Distribution' or 'Number' which is new in 2017
+         !str_detect(description, 'Percent Distribution|Number')) %>%
+  # extract age from description and place in its own column
+  mutate(age = str_extract(description, '[0-9][0-9].*'))
+  
+  
+age %>%
+    ggplot(aes(year, estimate, color = age)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth county median income by age group',
+         color = 'Age group') +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Data
+
+Age data is below.
+
+```{r}
+age %>%
+  select(geo_description, year, age, estimate, moe, se, cv) %T>%
+  # write out data set to excel only needed
+  {if (write_to_excel == TRUE) {
+    addWorksheet(wb, "age") # create workbook
+    writeData(wb, "age", ., rowNames = FALSE) # write data to workbook
+  } else .} %>%
+  # add color to CVs
+  ff_cv_color() %>%
+  kable(caption = 'Median income by age', escape=F,
+        col.names = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'))  %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r}
+# enter comparison years here
+age_years <- c(max(age$year), max(age$year)-1)
+
+age %>%
+  filter(year %in% age_years,
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
+  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
+```
+
+Write out excel workbook if needed.
+
+```{r}
+if (write_to_excel == TRUE) {
+  saveWorkbook(wb, excel_file, overwrite=T)
+} 
+```
