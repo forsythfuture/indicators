@@ -91,7 +91,7 @@ years <- seq(2006, 2017, 1)
 
 ------
 
-### Forsyth County employment rate disparities by race and ethnicity
+### Employment rate disparities by race and ethnicity
 
 #### Create disparities by race and ethnicity dataset
 
