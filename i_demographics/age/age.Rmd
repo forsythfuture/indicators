@@ -30,46 +30,44 @@ The employment rate is the percentage of people age 16 and over who are working.
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-# create list of geographic areas to keep
-#geo_areas <- c('United States', 'North Carolina', 
-               # 'Forsyth', 'Guilford', 'Durham')
+# only using Forsyth county for demographics 
 
-df <- read_csv('data/age_all_years.csv') %>% 
+df <- read_csv('data/age_all_years.csv')
+df <- df %>%
   # convert year to integer for better plotting
   mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
   # this will make it easier to filter based on counties
   mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
-  # we only need rows representing the employment rate
-  # these rows have the phrase 'Employed;' or 'Employment/Population Ratio' in the description
-  # change the description so all rows have phrase 'Employment/Population Ratio'; which is the most recent phrase
-  mutate(description = str_replace(.$description, 'Employed; ', 'Employment/Population Ratio; ')) %>%
-  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
-  filter(geo_description %in% geo_areas,
-         # only keep employment rate rows and total population counts
-         # totals are needed to derive percentages from artificially created groups (age bins)
-         str_detect(description, 'Employment[/]Population Ratio;|Total')) %>%
   # the last section of the variable name (label) column is the same for estiamtes and totals
   # this section needs to be extracted so that estimate and total data sets can be merged on it
-  mutate(var_name = str_extract(label, 'VC[0-9][0-9]$'))
+  mutate(var_name = str_extract(description, 'Total;|Male|Female'))%>%
+        .$var_name == 'Total;','Total') 
+
+
 
 # make the total counts an additional column
-
-# create new dataset with just totals
-emp_total <- df %>%
+pop_total <- df %>%
   # filter for only totals
-  filter(str_detect(description, 'Total'),
-         # remove 'PERCENT IMPUTED' rows because these do not reflect counts
-         !str_detect(description, 'PERCENT IMPUTED')) %>%
+  filter(str_detect(label,'VC01')) %>%
   # only keep the variables that are needed to merge this dataset with the primary dataset
   select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
 
+  # create 2 dataframes one with only needed age ranges and the other with total population counts
+  # totals are needed to derive percentages from artificially created groups (age bins)
+df <- df %>%
+        filter(str_detect(description, 'Under 5 years|5 to 9|10 to 14|15 to 17|18 to 24|25 to 29|30 to 34|35 to 39|40 to 44|45 to 49|50 to 54|55 to 59|60 to 64|65 to 69|70 to 74|75 to 79|80 to 84|85')) 
+
+
+
+
+# tidy up total dataframe to include only select only needed variables create new dataset with just totals
+
 # remove totals from primary data set and merge in newly created totals data set
 df <- df %>%
-  filter(!str_detect(description, 'Total')) %>%
-  left_join(emp_total, by = c('var_name', 'geo_description', 'year')) %>%
+  left_join(pop_total, by = c('year')) %>%
   rename(estimate = estimate.x, moe = moe.x,
-         population = estimate.y, population_moe = moe.y)
+         total_population = estimate.y, total_population_moe = moe.y)
          
 ```
 
