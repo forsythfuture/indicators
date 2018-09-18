@@ -93,6 +93,8 @@ years <- seq(2006, 2017, 1)
 
 ### Employment rate disparities by race and ethnicity
 
+Disparities by ethnicity reflect ratios between white income and african american or hispanic income.
+
 #### Create disparities by race and ethnicity dataset
 
 The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
@@ -146,7 +148,7 @@ ethnic_ratios <- bind_rows(aa_wh, hl_wh) %>%
 
 #### Plot
 
-The plot below shows Forsyth County's employment rate disparities by ethnicity and year. The disparities reflect ratios between white income and african american or hispanic income. Many hispanic values are missing due to insufficient data.
+The plot below shows employment rate disparities by ethnicity and year. 
 
 ```{r}
 ethnic_ratios %>%
