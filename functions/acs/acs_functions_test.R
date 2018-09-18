@@ -23,19 +23,19 @@ ff_acs_ratios <- function(num_estimate, num_moe, den_estimate, den_moe) {
   # The output is the same dataframe with the ratio and margin of error added to the dataframe
   
   # calculate the ratio 
-  ratio  <- num_estimate / den_estimate
+  ratio  <- round( num_estimate / den_estimate, 4 )
   
   # calculate MOE
   # uses the tidycensus package
-  moe <- moe_ratio(num_estimate, den_estimate, num_moe, den_moe)
+  moe <- round( moe_ratio(num_estimate, den_estimate, num_moe, den_moe), 4 )
   
   # calcuate standard error
   # note: since 95% confidence intervals are used, the moe is divided
   # by 1.96, not 1.645 when using the 90% moe's from AFF
-  se <- moe / 1.96
+  se <- round( moe / 1.96, 4)
   
   # calculate cv
-  cv <- (ratio / se) * 100
+  cv <- round( (se / ratio) * 100, 2 )
   
   # add ratio, MOE, se and cv to dataframe
   df <- data.frame(ratio = ratio,

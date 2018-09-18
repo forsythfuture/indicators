@@ -135,9 +135,6 @@ df %>%
 #### Z-scores
 
 The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
-**HOW TO DO ALL YEARS? CAN ESPECIALLY BE USEFUL WHEN COMPARING CURRENT TO PRE-RECESSION, I.E., 2006/07 VS 2017
-**OUTPUT XLXS OF ALL YEARS PERHAPS, JUST TRYING TO THINK OF HOW TO MAKE IT EASY TO SEE WHERE "ss" THINGS ARE HAPPENING
-**CAN YOU HIGHLIGHT SCORES OVER 1.96?
 
 ```{r}
 year_comparison <- c(max(df$year), max(df$year)-1)
