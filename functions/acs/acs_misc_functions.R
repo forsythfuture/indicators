@@ -170,3 +170,143 @@ ff_cv_color <- function(df) {
     mutate(cv = cell_spec(cv, color = ifelse(cv > 12 & cv <= 30, "blue",
                                              ifelse(cv > 30, 'red', 'black'))))
 }
+
+ff_ratios_race <- function(df, years, geo_areas) {
+  
+  # input:
+  #   df: a dataframe where there is a column called ethnicity with values of either:
+  #         'African American', 'Hispanic/Latino', or 'White, non-Hispanic'
+  #   years: the years in the dataset
+  #   geo_areas: the geographic areas in the dataset
+  
+  # create different datasets for each race
+  # this is needed to calculate ratios by race
+  ethnicity_aa <- filter(df, ethnicity == 'African American')
+  ethnicity_hl <- filter(df, ethnicity == 'Hispanic/Latino')
+  ethnicity_wh <- filter(df, ethnicity == 'White, non-Hispanic')
+  
+  # each dataset must have the same number of rows, if they do not there is a problem
+  # check to see if all the datasets do not have the same number of rows
+  if (!(nrow(ethnicity_aa) == nrow(ethnicity_hl) &
+        nrow(ethnicity_aa) == nrow(ethnicity_wh) &
+        nrow(ethnicity_hl) == nrow(ethnicity_wh))) {
+    
+    stop('!!!!! There is a problem. All the racial comparison data sets do not have the same number of rows!!!!')
+    
+  }
+  
+  # calculate ratio and moe of each racial comparison
+  aa_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
+                         ethnicity_aa$estimate, ethnicity_aa$moe) %>%
+    #add years, repeat each year once for each geographic area
+    mutate(year = rep(years, each=length(geo_areas)),
+           # add geographic areas; add each geographic area once for each year
+           geo_description = rep(geo_areas, times=length(years)),
+           # add description of comparison
+           description = 'White to african american ratio')
+  
+  hl_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
+                         ethnicity_hl$estimate, ethnicity_hl$moe) %>%
+    #add years, repeat each year once for each geographic area
+    mutate(year = rep(years, each=length(geo_areas)),
+           # add geographic areas; add each geographic area once for each year
+           geo_description = rep(geo_areas, times=length(years)),
+           # add description of comparison
+           description = 'White to hispanic/latinx ratio')
+  
+  # combine both datasets into one
+  ethnic_ratios <- bind_rows(aa_wh, hl_wh) %>%
+    # reorder columns
+    select(year, description, geo_description, everything())
+  
+  return(ethnic_ratios)
+}
+
+
+ff_ratios_gender <- function(df, years, geo_areas) {
+  
+  # input:
+  #   df: a dataframe where there is a column called gender with values of either 'Male', or 'Female'
+  #   years: the years in the dataset
+  #   geo_areas: the geographic areas in the dataset
+  
+  # create different datasets for each gender
+  # this is needed to calculate ratios by gender
+  gender_male <- filter(df, gender == 'Male')
+  gender_female <- filter(df, gender == 'Female')
+  
+  # each dataset must have the same number of rows, if they do not there is a problem
+  # check to see if all the datasets do not have the same number of rows
+  if (!(nrow(gender_male) == nrow(gender_female))) {
+    
+    print('!!!!! There is a problem. All the gender comparison data sets do not have the same number of rows!!!!')
+    
+  }
+  
+  # calculate ratio and moe of each racial comparison
+  gender_ratios <- ff_acs_ratios(gender_male$estimate, gender_male$moe, 
+                                 gender_female$estimate, gender_female$moe) %>%
+    #add years, repeat each year once for each geographic area
+    mutate(year = rep(years, each=length(geo_areas)),
+           # add geographic areas; add each geographic area once for each year
+           geo_description = rep(geo_areas, times=length(years)),
+           # add description of comparison
+           description = 'Male to female ratio')
+  
+  return(gender_ratios)
+  
+}
+
+ff_write_to_excel <- function(excel_data, write_to_excel, excel_file) {
+  
+  # inputs:
+  #   excel_data: dataset to write to excel
+  #   write_to_excel: a boolean value (TRUE or FALSE) of whether to write
+  #                   needed so there is a way not to write when file is knit
+  #                   the function will only run if true
+  #   excel_file: file name for excel file that will be written out
+  
+  if (write_to_excel == TRUE) {
+    
+    # install package to write to excel only if it is needed
+    library(openxlsx)
+    
+    # create workbook to save sheets to
+    wb <- createWorkbook()
+    
+    # create worksheet to store full dataset
+    addWorksheet(wb, 'All data') 
+    # write all data to first workbook
+    writeData(wb, 'All data', excel_data, rowNames = FALSE) 
+    
+    ### create seperate workbooks for each type of data
+    
+    # create vector of each type (gender, race, etc);
+    # each type will become a different dataset and sheet within the workbook
+    types <- distinct(excel_data, type)[[1]]
+    
+    # iterate through each type
+    for (single_type in types) {
+      
+      # filter data for specific type
+      sheet <- excel_data %>%
+        filter(type == single_type)
+      
+      # create workbook
+      addWorksheet(wb, single_type) 
+      # write data to workbook
+      writeData(wb, single_type, sheet, rowNames = FALSE) 
+      
+    } 
+    
+    # write out workbook to disk
+    # it will be saved in the same folder as the markdown file
+    saveWorkbook(wb, excel_file, overwrite=T)
+    
+  } else {
+    
+    # return blank value if there is no need to write out workbook
+    return()
+    
+  }
+}
