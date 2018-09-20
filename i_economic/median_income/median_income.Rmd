@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_depth: 4
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -16,30 +17,18 @@ knitr::opts_chunk$set(warning = FALSE,
  # import functions and packages
 library(tidyverse)
 library(knitr)
-library(kableExtra)
 library(tidycensus)
+library(DT)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
-
 ```
 
 This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
 
 ```{r}
 # change to 'TRUE' to write out datasets to excel
-write_to_excel <- TRUE
-
-
-if (write_to_excel == TRUE) {
-  # install package to write to excel only if it is needed
-  library(openxlsx)
-  
-  # name of the excel file to save to (can be changed)
-  excel_file <- 'median_income.xlsx'
-  
-  # create workbook to save sheets to
-  wb <- createWorkbook()
-}
+write_to_excel <- FALSE
+excel_data <- data.frame()
 ```
 
 Median income data comes American Fact Finder table S1903 
@@ -67,7 +56,11 @@ df <- read_csv('data/median_income_all_years_counties.csv') %>%
          !str_detect(description, 'Total'),
          # starting in 2017, total number of people and percent is in data; remove these so we only have median incomes
          !str_detect(description, '^Number;'),
-         !str_detect(description, '^Percent'))
+         !str_detect(description, '^Percent')) %>%
+  # change United States to US and North Carolina to NC
+  mutate(geo_description = ifelse(.$geo_description == 'United States', 'US',
+                                  ifelse(.$geo_description == 'North Carolina', 'NC',
+                                         .$geo_description)))
          
 ```
 
@@ -96,7 +89,7 @@ df %>%
          y = 'Median income') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 ```
 
 #### Data
@@ -104,21 +97,24 @@ df %>%
 Below is the raw data for median income by geographies.
 
 ```{r}
-df %>%
+total_data <- df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions) %>%
-  select(geo_description, year, estimate, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "comparisons") # create workbook
-    writeData(wb, "comparisons", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Median income by geographic area and year', escape=F,
-        col.names = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
-  
+  select(geo_description, year, estimate, moe, se, cv)
+
+if (write_to_excel == TRUE) {
+  excel_data <- total_data %>%
+    # add type of column
+    mutate(type = 'Median Income',
+           subtype = 'Total Population')
+}
+
+total_data %>%
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -131,11 +127,8 @@ year_comparison <- c(max(df$year), max(df$year)-1)
 df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions,
-         # only keep data for the most recent year
          year %in% year_comparison) %>%
-  ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
-  # create kable table for z scores
-  ff_acs_zscore_kable(paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ')))
+  ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
 ```
 
 ------
@@ -152,8 +145,7 @@ df %>%
   filter(description %in% total_median_descriptions,
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'se', 'year') %>%
-  ff_acs_zscore_kable('Forsyth County yearly trend z-scores')
+  ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 
 ------
@@ -162,23 +154,23 @@ df %>%
 
 #### Plot
 
-The plot below shows Forsyth County's median income by ethnicity and year.
+The plot below shows median income by ethnicity and year.
 
-```{r}
+```{r fig.width=8,fig.height=10}
 ethnicity <- df %>%
-  # filter for forsyth county
-  filter(geo_description == 'Forsyth') %>%
   # filter for race
   ff_acs_ethnicity(description)
 
 ethnicity %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
-    labs(title = 'Forsyth county median income by ethnicity',
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Median income by ethnicity',
          color = 'Ethnicity') +
     scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 ```
 
 #### Data
@@ -186,23 +178,32 @@ ethnicity %>%
 The data for ethnicities is as follows.
 
 ```{r}
-ethnicity %>%
-  select(geo_description, year, ethnicity, estimate, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "ethnicity") # create workbook
-    writeData(wb, "ethnicity", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Employment rate by ethnicity', escape=F,
-        col.names = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+ethnicity_data <- ethnicity %>%
+  select(geo_description, year, ethnicity, estimate, moe, se, cv)
+
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+  excel_data <- ethnicity_data %>%
+    # add type of column
+    mutate(type = 'Race and Ethnicity',
+           subtype = ethnicity) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-ethnicity) %>%
+    bind_rows(excel_data, .)
+}
+
+ethnicity_data %>%
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+            colnames = c('Geographic area', 'Year', 'Ethnicity', 'Median Income', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+  formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
 
-Below is a table of z-scores for Forsyth County ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)` with the desired year.
+Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)` with the desired year.
 
 ```{r}
 # enter comparison years here
@@ -210,8 +211,15 @@ ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
-  ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
-  ff_acs_zscore_kable('Forsyth County z-scores by year and ethnicity')
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'ethnicity'))
+```
+
+A table of z-scores for Forsyth County in all years is below.
+
+```{r}
+ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
 ```
 
 ------
@@ -220,13 +228,12 @@ ethnicity %>%
 
 #### Plot
 
-The following plot examines Forsyth County's median income by age group.
+The following plot examines Median income by age group.
 
-```{r}
+```{r fig.width=8,fig.height=10}
 age <- df %>%
   # only keep age related rows
   filter(str_detect(description, 'HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER'),
-         geo_description == 'Forsyth',
          # remove rows that start with 'Percent Distribution' or 'Number' which is new in 2017
          !str_detect(description, 'Percent Distribution|Number')) %>%
   # extract age from description and place in its own column
@@ -236,11 +243,13 @@ age <- df %>%
 age %>%
     ggplot(aes(year, estimate, color = age)) +
     geom_line(size = 1) +
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
     labs(title = 'Forsyth county median income by age group',
          color = 'Age group') +
     scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 ```
 
 #### Data
@@ -248,18 +257,29 @@ age %>%
 Age data is below.
 
 ```{r}
-age %>%
-  select(geo_description, year, age, estimate, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "age") # create workbook
-    writeData(wb, "age", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Median income by age', escape=F,
-        col.names = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+age_data <-  age %>%
+  select(geo_description, year, age, estimate, moe, se, cv) 
+
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+  excel_data <- age_data %>%
+    # add type of column
+    mutate(type = 'Age Group',
+           subtype = age) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-age) %>%
+    bind_rows(excel_data, .)
+}
+
+
+age_data %>%
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+
 ```
 
 #### Z-scores
@@ -271,16 +291,26 @@ The table below highlights z-scores for each age group in the past two years.
 age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
-  filter(year %in% age_years,
-         geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
-  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
+  filter(year %in% age_years) %>%
+  # shorten age descriptions (take off the word 'year') so they apepar cleaner and shorter as column titles
+  mutate(age = str_extract(age, '\\d\\d to \\d\\d|\\d\\d y')) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'age'))
+```
+
+Here are z-scores for all eyars within Forsyth County.
+
+```{r}
+age %>%
+  filter(geo_description == 'Forsyth') %>%
+  # shorten age descriptions (take off the word 'year') so they apepar cleaner and shorter as column titles
+  mutate(age = str_extract(age, '\\d\\d to \\d\\d|\\d\\d y')) %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'age'))
 ```
 
 Write out excel workbook if needed.
 
 ```{r}
-if (write_to_excel == TRUE) {
-  saveWorkbook(wb, excel_file, overwrite=T)
-} 
+excel_data %>%
+  # write to excel
+  ff_write_to_excel(., write_to_excel, 'median_income.xlsx')
 ```

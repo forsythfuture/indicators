@@ -129,6 +129,26 @@ ff_acs_zscore_kable <- function(zscore_matrix, table_name) {
 }
 
 
+ff_acs_zscore_dt <- function(data_frame, estimate, se, var_names = NULL) {
+  
+  # This function takes as input a dataframe and returns a datatable table of z scores.
+  # The input is the same input that is requires for `ff_acs_zscore`
+  #
+  # Input:
+  #   data_frame: the dataframe where the estimates and se are housed
+  #   estimate: a string that is the column name of the column containing the estimate
+  #   se: a string that is the column name of the column containing the se
+  #   var_names: a character vector of variables that can be combined to created
+  #              distinct names for each row and column
+  
+  ff_acs_zscore(data_frame, estimate, se, var_names) %>%
+    datatable(filter='top', extensions = c('FixedColumns', 'Buttons'), 
+              options = list(scrollX = TRUE, fixedColumns = TRUE, dom = 'Bfrtip')) %>%
+    formatStyle(columns=colnames(.), color=styleInterval(1.96, c('gray', 'blue')))
+  
+}
+
+
 ff_acs_zplot <- function(zscore_matrix) {
   
   # This function returns a plot similair to a correlatin plot,
