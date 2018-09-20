@@ -30,46 +30,49 @@ The employment rate is the percentage of people age 16 and over who are working.
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-# create list of geographic areas to keep
-#geo_areas <- c('United States', 'North Carolina', 
-               # 'Forsyth', 'Guilford', 'Durham')
+# only using Forsyth county for demographics 
 
-df <- read_csv('data/age_all_years.csv') %>% 
+df <- read_csv('data/age_all_years.csv')
+df <- df %>%
   # convert year to integer for better plotting
   mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
   # this will make it easier to filter based on counties
   mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
-  # we only need rows representing the employment rate
-  # these rows have the phrase 'Employed;' or 'Employment/Population Ratio' in the description
-  # change the description so all rows have phrase 'Employment/Population Ratio'; which is the most recent phrase
-  mutate(description = str_replace(.$description, 'Employed; ', 'Employment/Population Ratio; ')) %>%
-  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
-  filter(geo_description %in% geo_areas,
-         # only keep employment rate rows and total population counts
-         # totals are needed to derive percentages from artificially created groups (age bins)
-         str_detect(description, 'Employment[/]Population Ratio;|Total')) %>%
   # the last section of the variable name (label) column is the same for estiamtes and totals
   # this section needs to be extracted so that estimate and total data sets can be merged on it
-  mutate(var_name = str_extract(label, 'VC[0-9][0-9]$'))
+  mutate(var_name = str_extract(description, 'Total;|Male|Female'))
+  
+df <- df %>%
+        mutate(var_name = (replace(df$var_name, df$var_name == "Total;", "Total"))) %>%
+        # remove all of the percent estimate & percent moe columns from 2017 data that are not in any of the            other years 
+        filter(!str_detect(description, "Percent"))%>%
+        filter
 
 # make the total counts an additional column
-
-# create new dataset with just totals
-emp_total <- df %>%
+pop_total <- df %>%
   # filter for only totals
-  filter(str_detect(description, 'Total'),
-         # remove 'PERCENT IMPUTED' rows because these do not reflect counts
-         !str_detect(description, 'PERCENT IMPUTED')) %>%
+  filter(str_detect(label,'VC01')) %>%
   # only keep the variables that are needed to merge this dataset with the primary dataset
-  select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
+  select(description, var_name, estimate, moe, year) %>%
+  select(-description)
+
+
+  # create 2 dataframes one with only needed age ranges and the other with total population counts
+  # totals are needed to derive percentages from artificially created groups (age bins)
+df <- df %>%
+        filter(str_detect(description, 'Under 5 years|5 to 9|10 to 14|15 to 17|18 to 24|25 to 29|30 to 34|35 to 39|40 to 44|45 to 49|50 to 54|55 to 59|60 to 64|65 to 69|70 to 74|75 to 79|80 to 84|85')) 
+filter(str_detect())
+
+
+
+# tidy up total dataframe to include only select only needed variables create new dataset with just totals
 
 # remove totals from primary data set and merge in newly created totals data set
 df <- df %>%
-  filter(!str_detect(description, 'Total')) %>%
-  left_join(emp_total, by = c('var_name', 'geo_description', 'year')) %>%
+  left_join(pop_total, by = c('var_name','year')) %>%
   rename(estimate = estimate.x, moe = moe.x,
-         population = estimate.y, population_moe = moe.y)
+         total_population = estimate.y, total_population_moe = moe.y)
          
 ```
 
@@ -79,7 +82,7 @@ df <- df %>%
 
 #### Plot
 
-The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
+The plot below shows the overall age of the Forsyth county.
 
 ```{r}
 df %>%
@@ -241,18 +244,12 @@ age <- df %>%
          pop_employed_moe = sqrt((estimate/100)^2 * population_moe^2 + population^2 * (moe/100)^2)) %>%
   # reclassify ages based on new categories
         
-  ## HOW TO DEAL WITH DIFFERENT AGE BREAKDOWNS THAT STARTED IN 2015? SHOULD WE JUST DO 16 TO 24, 25 TO 44, 45 TO 64, 6599 (PER BELOW)?
-  ## I ADDED 6599 BECAUSE I THOUGHT THERE MIGHT BE SOMETHING INTERESTING GOING ON WITH THE OLDER FOLKS AND IT APPEARS THERE MAY BE
-        
-  # mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" | .$age == "25 to 29 years", '16 to 29 years',
-                       #ifelse(.$age == "30 to 34 years" | .$age == "35 to 44 years" |
-                                #.$age == "25 to 44 years", '30 to 44 years', '45 years and over')))
-    mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" , '1624',
+        mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" , '1624',
                        ifelse(.$age == "25 to 29 years" | .$age == "30 to 34 years" | .$age == "35 to 44 years" |
                                 .$age == "25 to 44 years", '2544', 
                        ifelse(.$age == "45 to 54 years" | .$age == "55 to 64 years" , '4564','6599'))))
 
-
+'Under 5 years|5 to 9|10 to 14|15 to 17|18 to 24|25 to 29|30 to 34|35 to 39|40 to 44|45 to 49|50 to 54|55 to 59|60 to 64|65 to 69|70 to 74|75 to 79|80 to 84|85'
 # The following section creates the employment rate and MOE of each artificially derived age bin
 
 age <- age %>%

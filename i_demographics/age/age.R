@@ -18,9 +18,25 @@ df <- ff_import_acs_tmp(zip_file,
 # write out data frame
 write_csv(df, 'i_demographics/age/data/age_all_years.csv')
 
-for (file in list.files('i_demographics/age/data/raw_data')) {
-  print(file)
+ff_unzip_files <- function(file_path, output_dir) {
+        
+        # This function takes a zipped file of ACS data, unzips it,
+        # and only keeps the data files
+        
+        # Input:
+        # file_path: path to zip file
+        # output_dir: directory for outpt
+        
+        # unzip files
+        unzip(file_path, exdir = output_dir)
+        
+        # we do not want text files and metadata files; metadata is in data file
+        # delete these files
+        # need to paste directory to file names
+        files_remove <- paste0(output_dir, '/', list.files(path = output_dir, pattern = 'metadata|txt|S1903'))
+        file.remove(files_remove)
 }
+
 
 ##******************************************************************************************************
 ff_import_acs_tmp <- function(zip_file, raw_data_path, years) {
