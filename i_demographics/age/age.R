@@ -18,17 +18,6 @@ df <- ff_import_acs_tmp(zip_file,
 # write out data frame
 write_csv(df, 'i_demographics/age/data/age_all_years.csv')
 
-for (file in list.files('i_demographics/age/data/raw_data')) {
-  print(file)
-}
-junk <- dir(path="i_demographics/age/data/raw_data", pattern="S0101") # ?dir
-file.remove(junk) # ?file.remove
-
-library(tidyverse)
-
-ff_unzip_files('zip_files/age_all_years.zip','i_demographics/age/data/raw_data')
-
-
 ff_unzip_files <- function(file_path, output_dir) {
         
         # This function takes a zipped file of ACS data, unzips it,
@@ -48,11 +37,6 @@ ff_unzip_files <- function(file_path, output_dir) {
         file.remove(files_remove)
 }
 
-files_remove <- paste0('i_demographics/age/data/raw_data', '/', list.files(path = 'i_demographics/age/data/raw_data'), pattern = 'S0101', inv=T, value=T)
-file.remove(files_remove)
-
-
-if (file in list.files('i_demographics/age/data/raw_data')) 
 
 ##******************************************************************************************************
 ff_import_acs_tmp <- function(zip_file, raw_data_path, years) {
