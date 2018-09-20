@@ -256,3 +256,57 @@ ff_ratios_gender <- function(df, years, geo_areas) {
   return(gender_ratios)
   
 }
+
+ff_write_to_excel <- function(excel_data, write_to_excel, excel_file) {
+  
+  # inputs:
+  #   excel_data: dataset to write to excel
+  #   write_to_excel: a boolean value (TRUE or FALSE) of whether to write
+  #                   needed so there is a way not to write when file is knit
+  #                   the function will only run if true
+  #   excel_file: file name for excel file that will be written out
+  
+  if (write_to_excel == TRUE) {
+    
+    # install package to write to excel only if it is needed
+    library(openxlsx)
+    
+    # create workbook to save sheets to
+    wb <- createWorkbook()
+    
+    # create worksheet to store full dataset
+    addWorksheet(wb, 'All data') 
+    # write all data to first workbook
+    writeData(wb, 'All data', excel_data, rowNames = FALSE) 
+    
+    ### create seperate workbooks for each type of data
+    
+    # create vector of each type (gender, race, etc);
+    # each type will become a different dataset and sheet within the workbook
+    types <- distinct(excel_data, type)[[1]]
+    
+    # iterate through each type
+    for (single_type in types) {
+      
+      # filter data for specific type
+      sheet <- excel_data %>%
+        filter(type == single_type)
+      
+      # create workbook
+      addWorksheet(wb, single_type) 
+      # write data to workbook
+      writeData(wb, single_type, sheet, rowNames = FALSE) 
+      
+    } 
+    
+    # write out workbook to disk
+    # it will be saved in the same folder as the markdown file
+    saveWorkbook(wb, excel_file, overwrite=T)
+    
+  } else {
+    
+    # return blank value if there is no need to write out workbook
+    return()
+    
+  }
+}
