@@ -35,44 +35,40 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 df <- read_csv('data/age_all_years.csv')
 df <- df %>%
   # convert year to integer for better plotting
-  mutate(year = as.integer(year)) %>%
+    mutate(year = as.integer(year)) %>%
   # from counties, remove 'county, North Carolina';
-  # this will make it easier to filter based on counties
-  mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
-  # the last section of the variable name (label) column is the same for estiamtes and totals
-  # this section needs to be extracted so that estimate and total data sets can be merged on it
-  mutate(var_name = str_extract(description, 'Total;|Male|Female'))
-  
-df <- df %>%
-        mutate(var_name = (replace(df$var_name, df$var_name == "Total;", "Total"))) %>%
-        # remove all of the percent estimate & percent moe columns from 2017 data that are not in any of the            other years 
-        filter(!str_detect(description, "Percent"))%>%
-        filter
-
-# make the total counts an additional column
+    mutate(geo_description = str_replace(geo_description, " County, North Carolina", "")) %>%
+  # filter for only total population age estimates (remove age by gender rows)
+    filter(str_detect(description, "Total;|Percent; Estimate;"))
+       
+# create 2 dataframes one with only needed age ranges and the other with total population counts
+# make the total population an additional column
 pop_total <- df %>%
-  # filter for only totals
+  # filter for only total forsyth county population
+  # totals are needed to derive percentages from artificially created groups (age bins)
   filter(str_detect(label,'VC01')) %>%
   # only keep the variables that are needed to merge this dataset with the primary dataset
-  select(description, var_name, estimate, moe, year) %>%
-  select(-description)
+  select(estimate, description, year)%>%
+  filter(!str_detect(description, "Percent;"))
 
+pop_total <- pop_total %>% 
+        select(-description)
 
-  # create 2 dataframes one with only needed age ranges and the other with total population counts
-  # totals are needed to derive percentages from artificially created groups (age bins)
+df_backup <- df
+df <- df_backup
+
 df <- df %>%
-        filter(str_detect(description, 'Under 5 years|5 to 9|10 to 14|15 to 17|18 to 24|25 to 29|30 to 34|35 to 39|40 to 44|45 to 49|50 to 54|55 to 59|60 to 64|65 to 69|70 to 74|75 to 79|80 to 84|85')) 
-filter(str_detect())
+        filter(str_detect(description, 'Under 5 years|5 to 9|10 to 14|15 to 17|18 to 24|25 to 29|30 to 34|35 to 39|40 to 44|45 to 49|50 to 54|55 to 59|60 to 64|65 to 69|70 to 74|75 to 79|80 to 84|85'))
 
 
+df <- df [!((df$year == "2017") & (str_detect(df$description, 'Total; Estimate;'))),]
 
-# tidy up total dataframe to include only select only needed variables create new dataset with just totals
 
-# remove totals from primary data set and merge in newly created totals data set
+# merge the 2 dataframes
 df <- df %>%
-  left_join(pop_total, by = c('var_name','year')) %>%
-  rename(estimate = estimate.x, moe = moe.x,
-         total_population = estimate.y, total_population_moe = moe.y)
+  left_join(pop_total, by = 'year') %>%
+  rename(estimate = estimate.x,
+         total_population = estimate.y)
          
 ```
 
