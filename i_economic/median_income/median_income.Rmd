@@ -8,9 +8,18 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-# prevent printing or R code in the output
-knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE)
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- FALSE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE 
+                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
 ```
 
 ```{r import}
@@ -21,13 +30,6 @@ library(tidycensus)
 library(DT)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
-```
-
-This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
-
-```{r}
-# change to 'TRUE' to write out datasets to excel
-write_to_excel <- FALSE
 ```
 
 Median income data comes American Fact Finder table S1903 
@@ -83,39 +85,34 @@ df %>%
          y = 'Median income') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
 ```
 
 #### Data
 
 Below is the raw data for median income by geographies.
 
-```{r}
+```{r include = to_include}
 total_data <- df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions) %>%
   select(geo_description, year, estimate, moe, se, cv)
 
-if (write_to_excel == TRUE) {
-  excel_data <- total_data %>%
-    # add type of column
-    mutate(type = 'Median Income',
-           subtype = 'Total Population')
-}
+# this represents the final dataset that will be sent to others for visualizations
+tableau_data <- total_data %>%
+  # add type of column
+  mutate(type = 'Median Income',
+         subtype = 'Total Population')
 
-total_data %>%
-  datatable(filter='top', extensions='Buttons',
-            colnames = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'),
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
-  # color cv numbers based on value
-    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+ff_data_dt(total_data,
+           c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`.
 
-```{r}
+```{r include = to_include}
 year_comparison <- c(max(df$year), max(df$year)-1)
 
 df %>%
@@ -133,7 +130,7 @@ df %>%
 
 The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
 
-```{r}
+```{r include = to_include}
 df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions,
@@ -144,62 +141,69 @@ df %>%
 
 ------
 
-### Forsyth County median income by ethnicity
+### Median income by ethnicity
 
 #### Plot
 
 The plot below shows median income by ethnicity and year.
 
-```{r fig.width=8,fig.height=10}
+```{r}
 ethnicity <- df %>%
   # filter for race
   ff_acs_ethnicity(description)
 
 ethnicity %>%
+  filter(geo_description=='Forsyth') %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
-    facet_grid(rows = vars(geo_description)) +
-    labs(title = 'Median income by ethnicity',
+    #facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Forsyth County median income by ethnicity',
          color = 'Ethnicity') +
     scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
+```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(ethnicity, estimate, fill=geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('Median income by ethnicity', ' in ', max(ethnicity$year)),
+       fill = 'Geography',
+         y = 'Median income') +
+  theme_minimal()
 ```
 
 #### Data
 
 The data for ethnicities is as follows.
 
-```{r}
+```{r include = to_include}
 ethnicity_data <- ethnicity %>%
   select(geo_description, year, ethnicity, estimate, moe, se, cv)
 
-# write out data set to excel only needed
-if (write_to_excel == TRUE) {
-  
-  excel_data <- ethnicity_data %>%
-    # add type of column
-    mutate(type = 'Race and Ethnicity',
-           subtype = ethnicity) %>%
-    # delete ethnicity column since this is now in the subtype column
-    select(-ethnicity) %>%
-    bind_rows(excel_data, .)
-}
+# add ethnicity to Tableau dataset
+tableau_data <- ethnicity_data %>%
+  # add type of column
+  mutate(type = 'Race and Ethnicity',
+         subtype = ethnicity) %>%
+  # delete ethnicity column since this is now in the subtype column
+  select(-ethnicity) %>%
+  bind_rows(tableau_data, .)
 
-ethnicity_data %>%
-  datatable(filter='top', extensions='Buttons',
-            colnames = c('Geographic area', 'Year', 'Ethnicity', 'Median Income', '95% MOE', 'St. Error', 'CV'),
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
-  # color cv numbers based on value
-  formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+ff_data_dt(ethnicity_data,
+           c('Geographic area', 'Year', 'Ethnicity', 'Median Income', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)` with the desired year.
 
-```{r}
+```{r include = to_include}
 # enter comparison years here
 ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 
@@ -210,7 +214,7 @@ ethnicity %>%
 
 A table of z-scores for Forsyth County in all years is below.
 
-```{r}
+```{r include = to_include}
 ethnicity %>%
   filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
@@ -218,13 +222,13 @@ ethnicity %>%
 
 ------
 
-### Forsyth County median income by age
+### Median income by age
 
 #### Plot
 
 The following plot examines Median income by age group.
 
-```{r fig.width=8,fig.height=10}
+```{r}
 age <- df %>%
   # only keep age related rows
   filter(str_detect(description, 'HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER'),
@@ -235,7 +239,8 @@ age <- df %>%
   
   
 age %>%
-    ggplot(aes(year, estimate, color = age)) +
+  filter(geo_description == 'Forsyth') %>%
+  ggplot(aes(year, estimate, color = age)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
     facet_grid(rows = vars(geo_description)) +
@@ -243,44 +248,48 @@ age %>%
          color = 'Age group') +
     scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
+```
+
+```{r}
+# bar chart of age with all geographies in the most recent year
+age %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(age, estimate, fill=geo_description)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Median income by age', ' in ', max(age$year)),
+         fill = 'Geography',
+           y = 'Percent employed') +
+    theme_minimal()
 ```
 
 #### Data
 
 Age data is below.
 
-```{r}
+```{r include = to_include}
 age_data <-  age %>%
   select(geo_description, year, age, estimate, moe, se, cv) 
 
-# write out data set to excel only needed
-if (write_to_excel == TRUE) {
-  
-  excel_data <- age_data %>%
-    # add type of column
-    mutate(type = 'Age Group',
-           subtype = age) %>%
-    # delete ethnicity column since this is now in the subtype column
-    select(-age) %>%
-    bind_rows(excel_data, .)
-}
+# add age data to tableau dataset
+tableau_data <- age_data %>%
+  # add type of column
+  mutate(type = 'Age Group',
+         subtype = age) %>%
+  # delete ethnicity column since this is now in the subtype column
+  select(-age) %>%
+  bind_rows(tableau_data, .)
 
-
-age_data %>%
-  datatable(filter='top', extensions='Buttons',
-            colnames = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'),
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
-  # color cv numbers based on value
-    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
-
+ff_data_dt(age_data,
+           c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 The table below highlights z-scores for each age group in the past two years.
 
-```{r}
+```{r include = to_include}
 # enter comparison years here
 age_years <- c(max(age$year), max(age$year)-1)
 
@@ -289,9 +298,9 @@ age %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'age'))
 ```
 
-Here are z-scores for all eyars within Forsyth County.
+Here are z-scores for all years within Forsyth County.
 
-```{r}
+```{r include = to_include}
 age %>%
   filter(geo_description == 'Forsyth') %>%
   # shorten age descriptions (take off the word 'year') so they apepar cleaner and shorter as column titles
@@ -299,15 +308,104 @@ age %>%
   ff_acs_zscore_dt('estimate', 'moe', c('year', 'age'))
 ```
 
-Write out excel workbook if needed.
+------
+
+### Median income by gender
+
+Median income by gender is in table B20017. This table must be imported and cleaned.
 
 ```{r}
-# write out data set to excel only needed
-if (write_to_excel == TRUE) {
+gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  # only include rows for working full time
+  filter(str_detect(description,  'Worked full-time')) %>%
+  # extract the gender of the row and place in a seperate columns
+  mutate(gender = str_extract(description, 'Male|Female'))
+```
 
-  excel_data %>%
-    # write to excel
-    ff_write_to_excel(., 'median_income.xlsx')
+#### Plot
 
-}
+The plot for median income by gender is below.
+
+```{r}
+gender %>%
+  filter(geo_description == 'Forsyth') %>%
+    ggplot(aes(year, estimate, color = gender)) +
+      geom_line(size=1) +
+      # create a seperate plot for each geography
+      #facet_grid(rows = vars(geo_description)) +
+      labs(title = 'Forsyth County median income by gender',
+           color = 'Gender',
+           y = 'Median income') +
+      scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                         minor_breaks = NULL) +
+      theme_minimal()
+```
+
+```{r}
+gender %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(gender, estimate, fill=geo_description)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Median income by gender', ' in ', max(gender$year)),
+         fill = 'Geography',
+           y = 'Percent employed') +
+    theme_minimal()
+```
+
+#### Interpretation
+
+#### Data
+
+And here is the underlying data.
+
+```{r include = to_include}
+gender_data <- gender %>%
+  select(geo_description, year, gender, estimate, moe, se, cv)
+
+# add gender data to final dataset
+tableau_data <- gender_data %>%
+    # add type of column
+    mutate(type = 'Gender',
+           subtype = gender) %>%
+    # delete gender column since this is now in the subtype column
+    select(-gender) %>%
+    bind_rows(tableau_data, .)
+
+ff_data_dt(gender_data,
+           c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r include = to_include}
+# enter comparison years here
+gender_years <- c(max(gender$year), max(gender$year)-1)
+
+gender %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'gender'))
+```
+
+And here are Forsyth County's z-scores for all years.
+
+```{r include = to_include}
+gender %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
+```
+
+### Tableau dataset
+
+This is the final dataset that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
+
+```{r}
+# create table to Tableau data
+tableau_data %>%
+  select(year, geo_description, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Percent Employed'), for_tableau=TRUE)
 ```
