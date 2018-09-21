@@ -17,7 +17,7 @@ knitr::opts_chunk$set(warning = FALSE,
  # import functions and packages
 library(tidyverse)
 library(knitr)
-library(kableExtra)
+library(DT)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
@@ -26,7 +26,7 @@ This markdown file produces individual datasets that filter the data in various 
 
 ```{r}
 # change to 'TRUE' to write out datasets to excel
-write_to_excel <- TRUE
+write_to_excel <- FALSE
 ```
 
 The poverty rate reflects the percentage of the population with incomeThe data for poverty rates comes American Fact Finder table S1701. 
@@ -84,12 +84,13 @@ if (write_to_excel == TRUE) {
            subtype = 'Total Population')
 }
 
-total_data %>% 
- # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Poverty rate by geographic area and year', escape = F,
-        col.names = c('Geographic area', 'Year', 'Poverty Rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+# create table
+total_data %>%
+  datatable(filter='top', extensions='Buttons',
+            colnames = c('Geographic area', 'Year', 'Poverty Rate', '95% MOE', 'St. Error', 'CV'),
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
   
 ```
 
@@ -105,8 +106,7 @@ df %>%
   filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
          # only keep data for the most recent year
          year %in% year_comparison) %>%
-  ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
-  ff_acs_zscore_kable(paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ')))
+  ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
 ```
 
 ------
@@ -123,8 +123,7 @@ df %>%
   filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
          # only keep Forsyth
          geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'se', 'year') %>%
-  ff_acs_zscore_kable('Forsyth County yearly trend z-scores')
+  ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 
 ------
@@ -174,11 +173,11 @@ if (write_to_excel == TRUE) {
 }
   
 ethnicity_data %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Povety rate by ethnicity', escape = F,
-        col.names = c('Geographic area', 'Year', 'Ethnicity', 'Poverty rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  datatable(filter='top', extensions='Buttons',
+            colnames = c('Geographic area', 'Year', 'Ethnicity', 'Poverty Rate', '95% MOE', 'St. Error', 'CV'),
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
+  # color cv numbers based on value
+  formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -191,8 +190,7 @@ ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
-  ff_acs_zscore('estimate', 'se', c('year','geo_description', 'ethnicity'))  %>%
-  ff_acs_zscore_kable(paste0('Z-scores by year and ethnicity', ' in ', paste(ethnicity_years, collapse = ' and ')))
+  ff_acs_zscore_dt('estimate', 'se', c('year','geo_description', 'ethnicity'))
 ```
 
 The next table has ethnicity z-scores for all years within Forsyth County.
@@ -200,8 +198,7 @@ The next table has ethnicity z-scores for all years within Forsyth County.
 ```{r}
 ethnicity %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
-  ff_acs_zscore_kable('Forsyth County z-scores by year and ethnicity')
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
 ```
 
 ------
@@ -267,11 +264,11 @@ if (write_to_excel == TRUE) {
 }  
   
 age_data %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Poverty rate by age', escape = FALSE,
-        col.names = c('Geographic area', 'Year', 'Age group', 'Poverty rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  datatable(filter='top', extensions='Buttons', 
+            colnames = c('Geographic area', 'Year', 'Age group', 'Poverty Rate', '95% MOE', 'St. Error', 'CV'),
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -284,8 +281,7 @@ age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
   filter(year %in% age_years) %>%
-  ff_acs_zscore('estimate', 'moe', c('year', 'geo_description', 'age'))  %>%
-  ff_acs_zscore_kable(paste0('Z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'age'))
 ```
 
 Here are the age comparisons for all years within Forsyth County.
@@ -293,18 +289,20 @@ Here are the age comparisons for all years within Forsyth County.
 ```{r}
 age %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
-  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group'))
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'age'))
 ```
 
 
 Write out excel workbook if needed.
 
 ```{r}
-# estimates are percentages displayed in tens (60.45)
-# convert to numbers to decimal percentages (.6045)
-excel_data %>%
-  mutate_at(vars(estimate:se), funs(./100)) %>%
-  # write to excel
-  ff_write_to_excel(., write_to_excel, 'poverty_rate.xlsx')
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  # estimates are percentages displayed in tens (60.45)
+  # convert to numbers to decimal percentages (.6045)
+  excel_data %>%
+    mutate_at(vars(estimate:se), funs(./100)) %>%
+    # write to excel
+    ff_write_to_excel(., 'poverty_rate.xlsx')
+}
 ```

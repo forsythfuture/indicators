@@ -28,7 +28,6 @@ This markdown file produces individual datasets that filter the data in various 
 ```{r}
 # change to 'TRUE' to write out datasets to excel
 write_to_excel <- FALSE
-excel_data <- data.frame()
 ```
 
 Median income data comes American Fact Finder table S1903 
@@ -56,12 +55,7 @@ df <- read_csv('data/median_income_all_years_counties.csv') %>%
          !str_detect(description, 'Total'),
          # starting in 2017, total number of people and percent is in data; remove these so we only have median incomes
          !str_detect(description, '^Number;'),
-         !str_detect(description, '^Percent')) %>%
-  # change United States to US and North Carolina to NC
-  mutate(geo_description = ifelse(.$geo_description == 'United States', 'US',
-                                  ifelse(.$geo_description == 'North Carolina', 'NC',
-                                         .$geo_description)))
-         
+         !str_detect(description, '^Percent'))
 ```
 
 ------
@@ -110,9 +104,9 @@ if (write_to_excel == TRUE) {
 }
 
 total_data %>%
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-              colnames = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'))) %>%
+  datatable(filter='top', extensions='Buttons',
+            colnames = c('Geographic area', 'Year', 'Median income', '95% MOE', 'St. Error', 'CV'),
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
   # color cv numbers based on value
     formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
@@ -194,9 +188,9 @@ if (write_to_excel == TRUE) {
 }
 
 ethnicity_data %>%
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-            colnames = c('Geographic area', 'Year', 'Ethnicity', 'Median Income', '95% MOE', 'St. Error', 'CV'))) %>%
+  datatable(filter='top', extensions='Buttons',
+            colnames = c('Geographic area', 'Year', 'Ethnicity', 'Median Income', '95% MOE', 'St. Error', 'CV'),
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
   # color cv numbers based on value
   formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
@@ -274,9 +268,9 @@ if (write_to_excel == TRUE) {
 
 
 age_data %>%
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-              colnames = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'))) %>%
+  datatable(filter='top', extensions='Buttons',
+            colnames = c('Geographic area', 'Year', 'Age group', 'Median income', '95% MOE', 'St. Error', 'CV'),
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
   # color cv numbers based on value
     formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 
@@ -292,8 +286,6 @@ age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
   filter(year %in% age_years) %>%
-  # shorten age descriptions (take off the word 'year') so they apepar cleaner and shorter as column titles
-  mutate(age = str_extract(age, '\\d\\d to \\d\\d|\\d\\d y')) %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'age'))
 ```
 
@@ -310,7 +302,12 @@ age %>%
 Write out excel workbook if needed.
 
 ```{r}
-excel_data %>%
-  # write to excel
-  ff_write_to_excel(., write_to_excel, 'median_income.xlsx')
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+
+  excel_data %>%
+    # write to excel
+    ff_write_to_excel(., 'median_income.xlsx')
+
+}
 ```

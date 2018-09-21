@@ -257,16 +257,11 @@ ff_ratios_gender <- function(df, years, geo_areas) {
   
 }
 
-ff_write_to_excel <- function(excel_data, write_to_excel, excel_file) {
+ff_write_to_excel <- function(excel_data, excel_file) {
   
   # inputs:
   #   excel_data: dataset to write to excel
-  #   write_to_excel: a boolean value (TRUE or FALSE) of whether to write
-  #                   needed so there is a way not to write when file is knit
-  #                   the function will only run if true
   #   excel_file: file name for excel file that will be written out
-  
-  if (write_to_excel == TRUE) {
     
     # install package to write to excel only if it is needed
     library(openxlsx)
@@ -302,11 +297,4 @@ ff_write_to_excel <- function(excel_data, write_to_excel, excel_file) {
     # write out workbook to disk
     # it will be saved in the same folder as the markdown file
     saveWorkbook(wb, excel_file, overwrite=T)
-    
-  } else {
-    
-    # return blank value if there is no need to write out workbook
-    return()
-    
-  }
 }
