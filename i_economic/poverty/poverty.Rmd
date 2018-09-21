@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_depth: 4
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -25,19 +26,7 @@ This markdown file produces individual datasets that filter the data in various 
 
 ```{r}
 # change to 'TRUE' to write out datasets to excel
-write_to_excel <- FALSE
-
-
-if (write_to_excel == TRUE) {
-  # install package to write to excel only if it is needed
-  library(openxlsx)
-  
-  # name of the excel file to save to (can be changed)
-  excel_file <- 'poverty_rate.xlsx'
-  
-  # create workbook to save sheets to
-  wb <- createWorkbook()
-}
+write_to_excel <- TRUE
 ```
 
 The poverty rate reflects the percentage of the population with incomeThe data for poverty rates comes American Fact Finder table S1701. 
@@ -83,18 +72,22 @@ df %>%
 Below is the raw data for poverty rates by geographies.
 
 ```{r}
-df %>%
+total_data <- df %>%
   # only keep total poverty rate
   filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
-  select(geo_description, year, estimate, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "comparisons") # create workbook
-    writeData(wb, "comparisons", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
-  # add color to CVs
+  select(geo_description, year, estimate, moe, se, cv)
+
+if (write_to_excel == TRUE) {
+  excel_data <- total_data %>%
+    # add type of column
+    mutate(type = 'Poverty Rate',
+           subtype = 'Total Population')
+}
+
+total_data %>% 
+ # add color to CVs
   ff_cv_color() %>%
-  kable(caption = 'Employment rate by geographic area and year', escape = F,
+  kable(caption = 'Poverty rate by geographic area and year', escape = F,
         col.names = c('Geographic area', 'Year', 'Poverty Rate (%)', '95% MOE', 'St. Error', 'CV'))  %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
   
@@ -140,19 +133,19 @@ df %>%
 
 #### Plot
 
-The plot below shows Forsyth County's poverty rate by ethnicity and year.
+The plot below shows poverty rates by ethnicity and year.
 
-```{r}
+```{r fig.width=8,fig.height=10}
 ethnicity <- df %>%
-  # filter for forsyth county
-  filter(geo_description == 'Forsyth') %>%
   # filter for race
   ff_acs_ethnicity(description)
 
 ethnicity %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
-    labs(title = 'Forsyth county poverty rate by ethnicity',
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Poverty rates by ethnicity',
          color = 'Ethnicity',
          y = 'Poverty rate (%)') +
     scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
@@ -165,13 +158,22 @@ ethnicity %>%
 The data for ethnicities is as follows.
 
 ```{r}
-ethnicity %>%
-  select(geo_description, year, ethnicity, estimate, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "ethnicity") # create workbook
-    writeData(wb, "ethnicity", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
+ethnicity_data <- ethnicity %>%
+  select(geo_description, year, ethnicity, estimate, moe, se, cv) 
+
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+  excel_data <- ethnicity_data %>%
+    # add type of column
+    mutate(type = 'Race and Ethnicity',
+           subtype = ethnicity) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-ethnicity) %>%
+    bind_rows(excel_data, .)
+}
+  
+ethnicity_data %>%
   # add color to CVs
   ff_cv_color() %>%
   kable(caption = 'Povety rate by ethnicity', escape = F,
@@ -181,7 +183,7 @@ ethnicity %>%
 
 #### Z-scores
 
-Below is a table of z-scores for Forsyth County ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
+Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
 
 ```{r}
 # enter comparison years here
@@ -189,6 +191,15 @@ ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore('estimate', 'se', c('year','geo_description', 'ethnicity'))  %>%
+  ff_acs_zscore_kable(paste0('Z-scores by year and ethnicity', ' in ', paste(ethnicity_years, collapse = ' and ')))
+```
+
+The next table has ethnicity z-scores for all years within Forsyth County.
+
+```{r}
+ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
   ff_acs_zscore_kable('Forsyth County z-scores by year and ethnicity')
 ```
@@ -201,7 +212,7 @@ ethnicity %>%
 
 In 2015, the Census created additional age groups, such as under 5 and 5 to 17. Prior to 2015, however, the youngest age group was 18 and under. Therefore, yearly age comparisons only trace back to 2015.
 
-```{r}
+```{r fig.width=6,fig.height=10}
 # list of the end of age rows, to filter on
 age_descriptions <- c('Under 5 years',
                       '5 to 17 years',
@@ -216,7 +227,6 @@ age_re <- paste0(age_descriptions, collapse = '$|')
 age <- df %>%
   # only keep variables for 2015 and later
   filter(year >= 2015,
-         geo_description == 'Forsyth',
          str_detect(description, age_re)) %>%
   # create new column that extracts the age from the description column
   mutate(age = str_extract(description, age_re))
@@ -224,6 +234,8 @@ age <- df %>%
 age %>%
     ggplot(aes(year, estimate, color = age)) +
     geom_line(size = 1) +
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
     labs(title = 'Forsyth county poverty rate by age group',
          color = 'Age group',
          y = 'Poverty rate (%)') +
@@ -239,13 +251,22 @@ age %>%
 Age data is below.
 
 ```{r}
-age %>%
-  select(geo_description, year, age, estimate, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "age") # create workbook
-    writeData(wb, "age", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
+age_data <- age %>%
+  select(geo_description, year, age, estimate, moe, se, cv)
+
+ # write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+  excel_data <- age_data %>%
+    # add type of column
+    mutate(type = 'Age Group',
+           subtype = age) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-age) %>%
+    bind_rows(excel_data, .)
+}  
+  
+age_data %>%
   # add color to CVs
   ff_cv_color() %>%
   kable(caption = 'Poverty rate by age', escape = FALSE,
@@ -262,17 +283,28 @@ The table below highlights z-scores for each age group in the past two years.
 age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
-  filter(year %in% age_years,
-         geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
-  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
+  filter(year %in% age_years) %>%
+  ff_acs_zscore('estimate', 'moe', c('year', 'geo_description', 'age'))  %>%
+  ff_acs_zscore_kable(paste0('Z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
 ```
+
+Here are the age comparisons for all years within Forsyth County.
+
+```{r}
+age %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore('estimate', 'moe', c('year', 'age'))  %>%
+  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group'))
+```
+
 
 Write out excel workbook if needed.
 
 ```{r}
-if (write_to_excel == TRUE) {
-  saveWorkbook(wb, excel_file, overwrite=T)
-} 
+# estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+excel_data %>%
+  mutate_at(vars(estimate:se), funs(./100)) %>%
+  # write to excel
+  ff_write_to_excel(., write_to_excel, 'poverty_rate.xlsx')
 ```
-

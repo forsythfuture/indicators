@@ -4,6 +4,7 @@ output:
   html_document:
     toc: true
     toc_depth: 4
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +17,7 @@ knitr::opts_chunk$set(warning = FALSE,
 # import functions and packages
 library(tidyverse)
 library(knitr)
-library(kableExtra)
+library(DT)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
@@ -94,7 +95,7 @@ df %>%
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 ```
 
 #### Data
@@ -116,11 +117,11 @@ if (write_to_excel == TRUE) {
 
 # create table
 total_data %>%
-  # color code cv scores
-  ff_cv_color() %>%
-  kable(caption = 'Employment rate by geographic area and year', escape=FALSE,
-        col.names = c('Geographic area', 'Year', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -135,8 +136,7 @@ df %>%
   filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
          # only keep data for the most recent year
          year %in% year_comparison) %>%
-  ff_acs_zscore('estimate', 'se', c('geo_description', 'year')) %>%
-  ff_acs_zscore_kable(paste0("Comparison community z-scores", ' in ', paste0(year_comparison, collapse=' and ')))
+  ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
 ```
 
 ------
@@ -153,8 +153,7 @@ df %>%
   filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'se', 'year') %>%
-  ff_acs_zscore_kable('Forsyth County yearly trend z-scores')
+  ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 
 ------
@@ -165,7 +164,7 @@ df %>%
 
 The plot below shows Forsyth County's employment rate by ethnicity and year. Many hispanic values are missing due to insufficient data.
 
-```{r}
+```{r fig.width=8,fig.height=10}
 ethnicity <- df %>%
   # filter for race
   ff_acs_ethnicity(description)
@@ -180,7 +179,7 @@ ethnicity %>%
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 ```
 
 #### Data
@@ -203,12 +202,12 @@ if (write_to_excel == TRUE) {
     bind_rows(excel_data, .)
 }
 
-ethnicity_data %>%  
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Employment rate by ethnicity', escape=FALSE,
-        col.names = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+ethnicity_data %>% 
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+            colnames = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+  formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -230,8 +229,7 @@ Below if a table of z-scores for ethnicities in all years within Forsyth County.
 ```{r}
 ethnicity %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'se', c('year', 'ethnicity'))  %>%
-  ff_acs_zscore_kable(paste0('Z-scores by ethnicity', ' in ', paste(ethnicity_years, collapse = ' and ')))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
 ```
 
 ------
@@ -242,7 +240,7 @@ ethnicity %>%
 
 The following plot examines Forsyth County's employment rate by age group.
 
-```{r}
+```{r fig.width=8,fig.height=10}
 # some age bins are artificially created; we will need to derive percentages for these bins
 
 # creat bins for age
@@ -310,7 +308,7 @@ age %>%
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 
 ```
 
@@ -337,11 +335,11 @@ if (write_to_excel == TRUE) {
 }
   
 age_data %>%  
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Employment rate by age', escape=FALSE,
-        col.names = c('Geographic area', 'Year', 'Age group', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', 'Age group', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -354,8 +352,7 @@ age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
   filter(year %in% age_years) %>%
-  ff_acs_zscore('perc_employed', 'perc_employed_moe', c('year', 'geo_description', 'age'))  %>%
-  ff_acs_zscore_kable(paste0('Z-scores by age group', ' in ', paste(age_years, collapse = ' and ')))
+  ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'geo_description', 'age'))
 ```
 
 Below is a table of z-scores for all years and ages within Forsyth County.
@@ -363,8 +360,7 @@ Below is a table of z-scores for all years and ages within Forsyth County.
 ```{r}
 age %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore('perc_employed', 'perc_employed_moe', c('year', 'age'))  %>%
-  ff_acs_zscore_kable(paste0('Forsyth County z-scores by age group'))
+  ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'age'))
 ```
 
 ------
@@ -375,7 +371,7 @@ age %>%
 
 The plot for employment rate by gender is below.
 
-```{r}
+```{r fig.width=8,fig.height=10}
 # only keep rows related to gender
 
 # gender rows have the following descriptions
@@ -401,7 +397,7 @@ gender %>%
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
                        minor_breaks = NULL) +
-    theme_minimal()
+    theme_bw()
 
 ```
 
@@ -426,11 +422,11 @@ if (write_to_excel == TRUE) {
 }
 
 gender_data %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Employment rate by gender', escape=FALSE,
-        col.names = c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
 ```
 
 #### Z-scores
@@ -443,8 +439,7 @@ gender_years <- c(max(gender$year), max(gender$year)-1)
 
 gender %>%
   filter(year %in% gender_years) %>%
-  ff_acs_zscore('estimate', 'moe', c('year', 'geo_description', 'gender'))  %>%
-  ff_acs_zscore_kable(paste0('Z-scores by gender', ' in ', paste(gender_years, collapse = ' and ')))
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'gender'))
 ```
 
 And here are Forsyth County's z-scores for all years.
@@ -452,15 +447,13 @@ And here are Forsyth County's z-scores for all years.
 ```{r}
 gender %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore('estimate', 'moe', c('year', 'gender'))  %>%
-  ff_acs_zscore_kable(paste0('Forsyth County z-scores by gender'))
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
 ```
 
 
 Write out excel workbook if needed.
 
 ```{r}
-
 # estimates are percentages displayed in tens (60.45)
 # convert to numbers to decimal percentages (.6045)
 excel_data %>%
