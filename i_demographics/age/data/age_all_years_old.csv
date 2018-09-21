@@ -1,0 +1,1131 @@
+geo_description,label,year,description,estimate,moe,se,cv
+United States,HC02_EST_VC02,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,48451,97.7,49.85,0.1
+North Carolina,HC02_EST_VC02,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,42625,524.26,267.48,0.63
+Durham,HC02_EST_VC02,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,46636,2213.79,1129.48,2.42
+Forsyth,HC02_EST_VC02,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,45792,1790.81,913.68,2
+Guilford,HC02_EST_VC02,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,43892,2555.74,1303.95,2.97
+United States,HC02_EST_VC04,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,51429,82.21,41.94,0.08
+North Carolina,HC02_EST_VC04,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,48179,633.87,323.4,0.67
+Durham,HC02_EST_VC04,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,60476,4014.13,2048.03,3.39
+Forsyth,HC02_EST_VC04,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,52720,2621.28,1337.39,2.54
+Guilford,HC02_EST_VC04,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,53594,2587.91,1320.36,2.46
+United States,HC02_EST_VC05,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,32372,184.68,94.22,0.29
+North Carolina,HC02_EST_VC05,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,29243,775.66,395.74,1.35
+Durham,HC02_EST_VC05,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,34220,3433.87,1751.97,5.12
+Forsyth,HC02_EST_VC05,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,30951,4302.47,2195.14,7.09
+Guilford,HC02_EST_VC05,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,30530,3060.94,1561.7,5.12
+United States,HC02_EST_VC06,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,33762,785.19,400.61,1.19
+North Carolina,HC02_EST_VC06,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,29785,4421.62,2255.93,7.57
+Durham,HC02_EST_VC06,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,37319,25310.81,12913.68,34.6
+United States,HC02_EST_VC07,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,63642,776.85,396.35,0.62
+North Carolina,HC02_EST_VC07,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,52670,7195.4,3671.12,6.97
+Durham,HC02_EST_VC07,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,49037,31437.45,16039.52,32.71
+Forsyth,HC02_EST_VC07,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,56811,15037.79,7672.34,13.51
+Guilford,HC02_EST_VC07,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,41884,23067.23,11768.99,28.1
+United States,HC02_EST_VC08,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,49361,2846.47,1452.28,2.94
+North Carolina,HC02_EST_VC08,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,34385,16023.15,8175.08,23.78
+Durham,HC02_EST_VC08,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,38372,415.83,212.16,0.55
+North Carolina,HC02_EST_VC09,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,31898,1882.55,960.48,3.01
+Durham,HC02_EST_VC09,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,29769,28392,14485.71,48.66
+Forsyth,HC02_EST_VC09,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,30720,5321.19,2714.89,8.84
+Guilford,HC02_EST_VC09,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,32858,8459.57,4316.11,13.14
+United States,HC02_EST_VC10,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,42213,527.83,269.3,0.64
+North Carolina,HC02_EST_VC10,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,34106,3016.85,1539.21,4.51
+Durham,HC02_EST_VC10,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,34811,35713.7,18221.28,52.34
+Forsyth,HC02_EST_VC10,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,NA,NA,NA,NA
+Guilford,HC02_EST_VC10,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,44660,6995.23,3568.99,7.99
+United States,HC02_EST_VC11,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),38747,244.26,124.62,0.32
+North Carolina,HC02_EST_VC11,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),33187,1822.98,930.09,2.8
+Durham,HC02_EST_VC11,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),39217,23323.4,11899.69,30.34
+Forsyth,HC02_EST_VC11,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),31205,6349.45,3239.52,10.38
+Guilford,HC02_EST_VC11,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),31972,7655.32,3905.78,12.22
+United States,HC02_EST_VC12,2006,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",52375,86.98,44.38,0.08
+North Carolina,HC02_EST_VC12,2006,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",48624,661.28,337.39,0.69
+Durham,HC02_EST_VC12,2006,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",60643,3946.21,2013.37,3.32
+Forsyth,HC02_EST_VC12,2006,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",54163,3226.55,1646.2,3.04
+Guilford,HC02_EST_VC12,2006,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",54403,2411.57,1230.39,2.26
+United States,HC02_EST_VC14,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,25419,275.23,140.42,0.55
+North Carolina,HC02_EST_VC14,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,22221,1223.66,624.32,2.81
+Durham,HC02_EST_VC14,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,17380,7614.81,3885.11,22.35
+Forsyth,HC02_EST_VC14,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,21572,14712.51,7506.38,34.8
+Guilford,HC02_EST_VC14,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,16715,4291.74,2189.66,13.1
+United States,HC02_EST_VC15,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,53141,189.45,96.66,0.18
+North Carolina,HC02_EST_VC15,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,47237,760.17,387.84,0.82
+Durham,HC02_EST_VC15,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,48550,3993.87,2037.69,4.2
+Forsyth,HC02_EST_VC15,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,45889,3299.23,1683.28,3.67
+Guilford,HC02_EST_VC15,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,47157,4292.94,2190.28,4.64
+United States,HC02_EST_VC16,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,59781,171.57,87.54,0.15
+North Carolina,HC02_EST_VC16,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,51428,666.04,339.82,0.66
+Durham,HC02_EST_VC16,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56098,7326.47,3737.99,6.66
+Forsyth,HC02_EST_VC16,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,55294,4513.36,2302.73,4.16
+Guilford,HC02_EST_VC16,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56372,3985.53,2033.43,3.61
+United States,HC02_EST_VC17,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,30200,123.91,63.22,0.21
+North Carolina,HC02_EST_VC17,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,27862,698.21,356.23,1.28
+Durham,HC02_EST_VC17,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39004,3796.09,1936.78,4.97
+Forsyth,HC02_EST_VC17,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,33694,3080,1571.43,4.66
+Guilford,HC02_EST_VC17,2006,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,31391,4179.74,2132.52,6.79
+United States,HC02_EST_VC02,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,50740,89.36,45.59,0.09
+North Carolina,HC02_EST_VC02,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,44670,514.72,262.61,0.59
+Durham,HC02_EST_VC02,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,47186,2885.79,1472.34,3.12
+Forsyth,HC02_EST_VC02,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,45636,3364.77,1716.72,3.76
+Guilford,HC02_EST_VC02,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,45922,2758.3,1407.3,3.06
+United States,HC02_EST_VC04,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,53714,129.87,66.26,0.12
+North Carolina,HC02_EST_VC04,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,50458,533.79,272.34,0.54
+Durham,HC02_EST_VC04,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,61628,4651.57,2373.25,3.85
+Forsyth,HC02_EST_VC04,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,54691,3035.91,1548.93,2.83
+Guilford,HC02_EST_VC04,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,54787,3966.47,2023.71,3.69
+United States,HC02_EST_VC05,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,34001,247.83,126.44,0.37
+North Carolina,HC02_EST_VC05,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,30690,742.3,378.72,1.23
+Durham,HC02_EST_VC05,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,34952,3699.57,1887.54,5.4
+Forsyth,HC02_EST_VC05,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,28924,3304,1685.71,5.83
+Guilford,HC02_EST_VC05,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,32483,3222.98,1644.38,5.06
+United States,HC02_EST_VC06,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,35343,850.72,434.04,1.23
+North Carolina,HC02_EST_VC06,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,30175,3389.79,1729.48,5.73
+Durham,HC02_EST_VC06,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,47722,15681.19,8000.61,16.77
+Guilford,HC02_EST_VC06,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,22125,19217.53,9804.86,44.32
+United States,HC02_EST_VC07,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,66935,554.04,282.67,0.42
+North Carolina,HC02_EST_VC07,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,59028,5822.81,2970.82,5.03
+Durham,HC02_EST_VC07,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,52024,18501.45,9439.52,18.14
+Forsyth,HC02_EST_VC07,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,59672,34774.81,17742.25,29.73
+Guilford,HC02_EST_VC07,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,44716,25838.64,13182.98,29.48
+United States,HC02_EST_VC08,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,55273,3169.36,1617.02,2.93
+North Carolina,HC02_EST_VC08,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,35885,35085.79,17900.91,49.88
+Durham,HC02_EST_VC08,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,40755,321.7,164.13,0.4
+North Carolina,HC02_EST_VC09,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,33564,2089.87,1066.26,3.18
+Durham,HC02_EST_VC09,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,36467,18851.74,9618.23,26.38
+Forsyth,HC02_EST_VC09,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,29943,8923.06,4552.58,15.2
+Guilford,HC02_EST_VC09,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,24261,3645.96,1860.18,7.67
+United States,HC02_EST_VC10,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,44626,726.81,370.82,0.83
+North Carolina,HC02_EST_VC10,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,33009,6373.28,3251.67,9.85
+Durham,HC02_EST_VC10,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,44884,30623.66,15624.32,34.81
+Forsyth,HC02_EST_VC10,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,33681,18987.57,9687.54,28.76
+Guilford,HC02_EST_VC10,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,40728,11804.09,6022.49,14.79
+United States,HC02_EST_VC11,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),40766,216.85,110.64,0.27
+North Carolina,HC02_EST_VC11,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),35404,1444.09,736.78,2.08
+Durham,HC02_EST_VC11,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),36426,17942.64,9154.41,25.13
+Forsyth,HC02_EST_VC11,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),30611,6774.81,3456.54,11.29
+Guilford,HC02_EST_VC11,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),25790,6065.87,3094.83,12
+United States,HC02_EST_VC12,2007,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",55096,126.3,64.44,0.12
+North Carolina,HC02_EST_VC12,2007,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",50724,520.68,265.65,0.52
+Durham,HC02_EST_VC12,2007,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",62712,4490.72,2291.18,3.65
+Forsyth,HC02_EST_VC12,2007,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",55769,3979.57,2030.39,3.64
+Guilford,HC02_EST_VC12,2007,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",54964,3800.85,1939.21,3.53
+United States,HC02_EST_VC14,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,26747,276.43,141.04,0.53
+North Carolina,HC02_EST_VC14,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23297,1542.98,787.23,3.38
+Durham,HC02_EST_VC14,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,19730,14327.66,7310.03,37.05
+Forsyth,HC02_EST_VC14,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,25282,8282.04,4225.53,16.71
+Guilford,HC02_EST_VC14,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20852,4468.09,2279.64,10.93
+United States,HC02_EST_VC15,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,55413,181.11,92.4,0.17
+North Carolina,HC02_EST_VC15,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,49320,1100.94,561.7,1.14
+Durham,HC02_EST_VC15,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,48335,3685.28,1880.24,3.89
+Forsyth,HC02_EST_VC15,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,43702,5060.26,2581.77,5.91
+Guilford,HC02_EST_VC15,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,47289,6647.32,3391.49,7.17
+United States,HC02_EST_VC16,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,61962,138.21,70.52,0.11
+North Carolina,HC02_EST_VC16,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,53649,855.49,436.47,0.81
+Durham,HC02_EST_VC16,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,59821,7729.19,3943.46,6.59
+Forsyth,HC02_EST_VC16,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,60394,4128.51,2106.38,3.49
+Guilford,HC02_EST_VC16,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,58658,4204.77,2145.29,3.66
+United States,HC02_EST_VC17,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,32158,134.64,68.69,0.21
+North Carolina,HC02_EST_VC17,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,28535,836.43,426.75,1.5
+Durham,HC02_EST_VC17,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,34115,3746.04,1911.24,5.6
+Forsyth,HC02_EST_VC17,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,35849,4071.32,2077.2,5.79
+Guilford,HC02_EST_VC17,2007,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,30873,2925.11,1492.4,4.83
+United States,HC02_EST_VC02,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,52029,86.98,44.38,0.09
+North Carolina,HC02_EST_VC02,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,46549,504,257.14,0.55
+Durham,HC02_EST_VC02,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,51028,2465.19,1257.75,2.46
+Forsyth,HC02_EST_VC02,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,46912,2136.34,1089.97,2.32
+Guilford,HC02_EST_VC02,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,47553,2203.06,1124.01,2.36
+United States,HC02_EST_VC04,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,55333,114.38,58.36,0.11
+North Carolina,HC02_EST_VC04,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,52020,583.83,297.87,0.57
+Durham,HC02_EST_VC04,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,63943,5681.02,2898.48,4.53
+Forsyth,HC02_EST_VC04,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,57735,3949.79,2015.2,3.49
+Guilford,HC02_EST_VC04,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,57340,2917.96,1488.76,2.6
+United States,HC02_EST_VC05,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,35425,196.6,100.31,0.28
+North Carolina,HC02_EST_VC05,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,32345,931.74,475.38,1.47
+Durham,HC02_EST_VC05,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,39777,6487.66,3310.03,8.32
+Forsyth,HC02_EST_VC05,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,32937,4213.11,2149.55,6.53
+Guilford,HC02_EST_VC05,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,34007,2767.83,1412.16,4.15
+United States,HC02_EST_VC06,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,37815,1180.77,602.43,1.59
+North Carolina,HC02_EST_VC06,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,31996,3993.87,2037.69,6.37
+Durham,HC02_EST_VC06,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,40644,6246.98,3187.23,7.84
+Guilford,HC02_EST_VC06,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,25542,17513.7,8935.56,34.98
+United States,HC02_EST_VC07,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,70069,711.32,362.92,0.52
+North Carolina,HC02_EST_VC07,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,61969,4260.77,2173.86,3.51
+Durham,HC02_EST_VC07,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,76041,32285.79,16472.34,21.66
+Forsyth,HC02_EST_VC07,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,61952,13499.57,6887.54,11.12
+Guilford,HC02_EST_VC07,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,45467,23261.45,11868.09,26.1
+United States,HC02_EST_VC08,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,57721,4723.06,2409.72,4.17
+North Carolina,HC02_EST_VC08,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,48084,21545.7,10992.7,22.86
+Durham,HC02_EST_VC08,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,100992,33812.09,17251.07,17.08
+United States,HC02_EST_VC09,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,40522,369.36,188.45,0.47
+North Carolina,HC02_EST_VC09,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,31020,1335.66,681.46,2.2
+Durham,HC02_EST_VC09,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,30764,6028.94,3075.99,10
+Forsyth,HC02_EST_VC09,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,30880,7757.79,3958.06,12.82
+Guilford,HC02_EST_VC09,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,35445,8055.66,4110.03,11.6
+United States,HC02_EST_VC10,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,46640,694.64,354.41,0.76
+North Carolina,HC02_EST_VC10,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,42426,6291.06,3209.72,7.57
+Durham,HC02_EST_VC10,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,45679,24554.21,12527.66,27.43
+Forsyth,HC02_EST_VC10,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,29928,31169.36,15902.73,53.14
+Guilford,HC02_EST_VC10,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,56992,19124.6,9757.45,17.12
+United States,HC02_EST_VC11,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),41470,220.43,112.46,0.27
+North Carolina,HC02_EST_VC11,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),34426,2026.72,1034.04,3
+Durham,HC02_EST_VC11,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),36341,8153.36,4159.88,11.45
+Forsyth,HC02_EST_VC11,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),32662,4677.79,2386.63,7.31
+Guilford,HC02_EST_VC11,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),35369,7409.87,3780.55,10.69
+United States,HC02_EST_VC12,2008,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",56826,116.77,59.58,0.1
+North Carolina,HC02_EST_VC12,2008,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",52412,645.79,329.48,0.63
+Durham,HC02_EST_VC12,2008,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",65917,5927.66,3024.32,4.59
+Forsyth,HC02_EST_VC12,2008,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",58496,4165.45,2125.23,3.63
+Guilford,HC02_EST_VC12,2008,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",57727,3246.81,1656.54,2.87
+United States,HC02_EST_VC14,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,27047,281.19,143.46,0.53
+North Carolina,HC02_EST_VC14,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,26599,1652.6,843.16,3.17
+Durham,HC02_EST_VC14,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,22247,6560.34,3347.11,15.05
+Forsyth,HC02_EST_VC14,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23059,4179.74,2132.52,9.25
+Guilford,HC02_EST_VC14,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,15309,2567.66,1310.03,8.56
+United States,HC02_EST_VC15,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,57034,178.72,91.18,0.16
+North Carolina,HC02_EST_VC15,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,50957,840,428.57,0.84
+Durham,HC02_EST_VC15,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,50498,3704.34,1889.97,3.74
+Forsyth,HC02_EST_VC15,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,45931,3943.83,2012.16,4.38
+Guilford,HC02_EST_VC15,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,50916,2278.13,1162.31,2.28
+United States,HC02_EST_VC16,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,63837,202.55,103.34,0.16
+North Carolina,HC02_EST_VC16,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,55319,842.38,429.79,0.78
+Durham,HC02_EST_VC16,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,66353,7324.09,3736.78,5.63
+Forsyth,HC02_EST_VC16,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,60548,4527.66,2310.03,3.82
+Guilford,HC02_EST_VC16,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56830,3921.19,2000.61,3.52
+United States,HC02_EST_VC17,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,33787,140.6,71.73,0.21
+North Carolina,HC02_EST_VC17,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,31184,672,342.86,1.1
+Durham,HC02_EST_VC17,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,41656,7626.72,3891.18,9.34
+Forsyth,HC02_EST_VC17,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36122,3641.19,1857.75,5.14
+Guilford,HC02_EST_VC17,2008,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,35480,3125.28,1594.53,4.49
+United States,HC02_EST_VC02,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,50221,88.17,44.98,0.09
+North Carolina,HC02_EST_VC02,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,43674,446.81,227.96,0.52
+Durham,HC02_EST_VC02,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,48457,2995.4,1528.27,3.15
+Forsyth,HC02_EST_VC02,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,45584,2095.83,1069.3,2.35
+Guilford,HC02_EST_VC02,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households,44176,1528.68,779.94,1.77
+United States,HC02_EST_VC04,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,53131,107.23,54.71,0.1
+North Carolina,HC02_EST_VC04,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,49245,498.04,254.1,0.52
+Durham,HC02_EST_VC04,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,63013,3547.06,1809.72,2.87
+Forsyth,HC02_EST_VC04,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,49972,2043.4,1042.55,2.09
+Guilford,HC02_EST_VC04,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - White,54343,3157.45,1610.94,2.96
+United States,HC02_EST_VC05,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,33463,215.66,110.03,0.33
+North Carolina,HC02_EST_VC05,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,30845,695.83,355.02,1.15
+Durham,HC02_EST_VC05,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,33972,2503.32,1277.2,3.76
+Forsyth,HC02_EST_VC05,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,35309,5166.3,2635.87,7.47
+Guilford,HC02_EST_VC05,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Black or African American,30301,2487.83,1269.3,4.19
+United States,HC02_EST_VC06,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,35381,987.74,503.95,1.42
+North Carolina,HC02_EST_VC06,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,26423,4854.13,2476.6,9.37
+Durham,HC02_EST_VC06,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC02_EST_VC07,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,68780,629.11,320.97,0.47
+North Carolina,HC02_EST_VC07,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,62699,5638.13,2876.6,4.59
+Durham,HC02_EST_VC07,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,48313,31513.7,16078.42,33.28
+Forsyth,HC02_EST_VC07,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,75478,72947.74,37218.23,49.31
+Guilford,HC02_EST_VC07,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Asian,58128,13845.11,7063.83,12.15
+United States,HC02_EST_VC08,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,53455,3504.17,1787.84,3.34
+North Carolina,HC02_EST_VC08,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,58204,23590.3,12035.87,20.68
+Durham,HC02_EST_VC08,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,39122,392,200,0.51
+North Carolina,HC02_EST_VC09,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,28387,1703.83,869.3,3.06
+Durham,HC02_EST_VC09,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,36501,8528.68,4351.37,11.92
+Forsyth,HC02_EST_VC09,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,23523,8068.77,4116.72,17.5
+Guilford,HC02_EST_VC09,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - One race-- - Some other race,29233,9086.3,4635.87,15.86
+United States,HC02_EST_VC10,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,44014,764.94,390.28,0.89
+North Carolina,HC02_EST_VC10,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,36289,3449.36,1759.88,4.85
+Durham,HC02_EST_VC10,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,27253,19304.51,9849.24,36.14
+Forsyth,HC02_EST_VC10,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,39072,30204.26,15410.34,39.44
+Guilford,HC02_EST_VC10,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Two or more races,35308,31595.91,16120.36,45.66
+United States,HC02_EST_VC11,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),39923,245.45,125.23,0.31
+North Carolina,HC02_EST_VC11,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),31449,1357.11,692.4,2.2
+Durham,HC02_EST_VC11,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),38633,8876.6,4528.88,11.72
+Forsyth,HC02_EST_VC11,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),25604,5695.32,2905.78,11.35
+Guilford,HC02_EST_VC11,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - Hispanic or Latino origin (of any race),34176,10240.85,5224.92,15.29
+United States,HC02_EST_VC12,2009,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",54671,113.19,57.75,0.11
+North Carolina,HC02_EST_VC12,2009,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",49785,505.19,257.75,0.52
+Durham,HC02_EST_VC12,2009,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",63847,3573.28,1823.1,2.86
+Forsyth,HC02_EST_VC12,2009,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",50555,2315.06,1181.15,2.34
+Guilford,HC02_EST_VC12,2009,"Median income (dollars); Estimate; HOUSEHOLD INCOME BY RACE AND HISPANIC OR LATINO ORIGIN OF HOUSEHOLDER - Households - White alone, not Hispanic or Latino",55324,3946.21,2013.37,3.64
+United States,HC02_EST_VC14,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,24904,245.45,125.23,0.5
+North Carolina,HC02_EST_VC14,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23030,1452.43,741.04,3.22
+Durham,HC02_EST_VC14,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,18163,5168.68,2637.08,14.52
+Forsyth,HC02_EST_VC14,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,16953,4908.94,2504.56,14.77
+Guilford,HC02_EST_VC14,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,19635,7712.51,3934.95,20.04
+United States,HC02_EST_VC15,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,54924,200.17,102.13,0.19
+North Carolina,HC02_EST_VC15,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,48217,729.19,372.04,0.77
+Durham,HC02_EST_VC15,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,50815,3021.62,1541.64,3.03
+Forsyth,HC02_EST_VC15,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,46674,4908.94,2504.56,5.37
+Guilford,HC02_EST_VC15,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,44390,2508.09,1279.64,2.88
+United States,HC02_EST_VC16,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,61354,171.57,87.54,0.14
+North Carolina,HC02_EST_VC16,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,52509,916.26,467.48,0.89
+Durham,HC02_EST_VC16,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,57839,4370.38,2229.79,3.86
+Forsyth,HC02_EST_VC16,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,54557,7212.09,3679.64,6.74
+Guilford,HC02_EST_VC16,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,58716,4777.87,2437.69,4.15
+United States,HC02_EST_VC17,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,33712,141.79,72.34,0.21
+North Carolina,HC02_EST_VC17,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,31064,648.17,330.7,1.06
+Durham,HC02_EST_VC17,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39066,6008.68,3065.65,7.85
+Forsyth,HC02_EST_VC17,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,32434,3716.26,1896.05,5.85
+Guilford,HC02_EST_VC17,2009,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,32455,4341.79,2215.2,6.83
+United States,HC02_EST_VC02,2010,Median income (dollars); Estimate; Households,50046,76.26,38.91,0.08
+North Carolina,HC02_EST_VC02,2010,Median income (dollars); Estimate; Households,43326,440.85,224.92,0.52
+Durham,HC02_EST_VC02,2010,Median income (dollars); Estimate; Households,47401,2765.45,1410.94,2.98
+Forsyth,HC02_EST_VC02,2010,Median income (dollars); Estimate; Households,43537,3051.4,1556.84,3.58
+Guilford,HC02_EST_VC02,2010,Median income (dollars); Estimate; Households,42090,1365.45,696.66,1.66
+United States,HC02_EST_VC04,2010,Median income (dollars); Estimate; One race-- - White,52480,98.89,50.45,0.1
+North Carolina,HC02_EST_VC04,2010,Median income (dollars); Estimate; One race-- - White,48493,613.62,313.07,0.65
+Durham,HC02_EST_VC04,2010,Median income (dollars); Estimate; One race-- - White,62335,5584.51,2849.24,4.57
+Forsyth,HC02_EST_VC04,2010,Median income (dollars); Estimate; One race-- - White,48820,3626.89,1850.45,3.79
+Guilford,HC02_EST_VC04,2010,Median income (dollars); Estimate; One race-- - White,50287,2043.4,1042.55,2.07
+United States,HC02_EST_VC05,2010,Median income (dollars); Estimate; One race-- - Black or African American,33578,258.55,131.91,0.39
+North Carolina,HC02_EST_VC05,2010,Median income (dollars); Estimate; One race-- - Black or African American,30952,656.51,334.95,1.08
+Durham,HC02_EST_VC05,2010,Median income (dollars); Estimate; One race-- - Black or African American,35067,5362.89,2736.17,7.8
+Forsyth,HC02_EST_VC05,2010,Median income (dollars); Estimate; One race-- - Black or African American,34862,4578.89,2336.17,6.7
+Guilford,HC02_EST_VC05,2010,Median income (dollars); Estimate; One race-- - Black or African American,29688,2083.91,1063.22,3.58
+United States,HC02_EST_VC06,2010,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,35062,816.17,416.41,1.19
+North Carolina,HC02_EST_VC06,2010,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,30558,2833.36,1445.59,4.73
+Durham,HC02_EST_VC06,2010,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2010,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2010,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC02_EST_VC07,2010,Median income (dollars); Estimate; One race-- - Asian,67022,495.66,252.89,0.38
+North Carolina,HC02_EST_VC07,2010,Median income (dollars); Estimate; One race-- - Asian,55558,10419.57,5316.11,9.57
+Durham,HC02_EST_VC07,2010,Median income (dollars); Estimate; One race-- - Asian,60415,21324.09,10879.64,18.01
+Forsyth,HC02_EST_VC07,2010,Median income (dollars); Estimate; One race-- - Asian,70645,19710.81,10056.54,14.24
+Guilford,HC02_EST_VC07,2010,Median income (dollars); Estimate; One race-- - Asian,48857,13644.94,6961.7,14.25
+United States,HC02_EST_VC08,2010,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,52776,3296.85,1682.07,3.19
+North Carolina,HC02_EST_VC08,2010,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,75598,32804.09,16736.78,22.14
+Durham,HC02_EST_VC08,2010,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2010,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2010,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2010,Median income (dollars); Estimate; One race-- - Some other race,38230,490.89,250.45,0.66
+North Carolina,HC02_EST_VC09,2010,Median income (dollars); Estimate; One race-- - Some other race,30383,2332.94,1190.28,3.92
+Durham,HC02_EST_VC09,2010,Median income (dollars); Estimate; One race-- - Some other race,40352,7190.64,3668.69,9.09
+Forsyth,HC02_EST_VC09,2010,Median income (dollars); Estimate; One race-- - Some other race,28398,12433.19,6343.46,22.34
+Guilford,HC02_EST_VC09,2010,Median income (dollars); Estimate; One race-- - Some other race,37458,32213.11,16435.26,43.88
+United States,HC02_EST_VC10,2010,Median income (dollars); Estimate; Two or more races,43597,786.38,401.21,0.92
+North Carolina,HC02_EST_VC10,2010,Median income (dollars); Estimate; Two or more races,36468,3132.43,1598.18,4.38
+Durham,HC02_EST_VC10,2010,Median income (dollars); Estimate; Two or more races,25522,14389.62,7341.64,28.77
+Forsyth,HC02_EST_VC10,2010,Median income (dollars); Estimate; Two or more races,34743,16306.72,8319.76,23.95
+Guilford,HC02_EST_VC10,2010,Median income (dollars); Estimate; Two or more races,35531,19472.51,9934.95,27.96
+United States,HC02_EST_VC12,2010,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),40165,175.15,89.36,0.22
+North Carolina,HC02_EST_VC12,2010,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32262,1305.87,666.26,2.07
+Durham,HC02_EST_VC12,2010,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),43188,4606.3,2350.15,5.44
+Forsyth,HC02_EST_VC12,2010,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),29936,4724.26,2410.34,8.05
+Guilford,HC02_EST_VC12,2010,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32170,10574.47,5395.14,16.77
+United States,HC02_EST_VC13,2010,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",54168,129.87,66.26,0.12
+North Carolina,HC02_EST_VC13,2010,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",49383,610.04,311.24,0.63
+Durham,HC02_EST_VC13,2010,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",63924,5645.28,2880.24,4.51
+Forsyth,HC02_EST_VC13,2010,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",50503,3099.06,1581.15,3.13
+Guilford,HC02_EST_VC13,2010,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",51257,1938.55,989.06,1.93
+United States,HC02_EST_VC16,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,24143,319.32,162.92,0.67
+North Carolina,HC02_EST_VC16,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,22511,1497.7,764.13,3.39
+Durham,HC02_EST_VC16,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,19846,5864.51,2992.1,15.08
+Forsyth,HC02_EST_VC16,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,15153,7672,3914.29,25.83
+Guilford,HC02_EST_VC16,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20159,3979.57,2030.39,10.07
+United States,HC02_EST_VC17,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,54024,185.87,94.83,0.18
+North Carolina,HC02_EST_VC17,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,47257,794.72,405.47,0.86
+Durham,HC02_EST_VC17,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,50915,2487.83,1269.3,2.49
+Forsyth,HC02_EST_VC17,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,46442,3923.57,2001.82,4.31
+Guilford,HC02_EST_VC17,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,42716,2860.77,1459.58,3.42
+United States,HC02_EST_VC18,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,60683,148.94,75.99,0.13
+North Carolina,HC02_EST_VC18,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,50983,707.74,361.09,0.71
+Durham,HC02_EST_VC18,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,58381,10890.21,5556.23,9.52
+Forsyth,HC02_EST_VC18,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56109,5121.02,2612.77,4.66
+Guilford,HC02_EST_VC18,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,50811,3309.96,1688.76,3.32
+United States,HC02_EST_VC19,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,34381,115.57,58.96,0.17
+North Carolina,HC02_EST_VC19,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,31694,529.02,269.91,0.85
+Durham,HC02_EST_VC19,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39586,8122.38,4144.07,10.47
+Forsyth,HC02_EST_VC19,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,31574,2111.32,1077.2,3.41
+Guilford,HC02_EST_VC19,2010,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36817,4690.89,2393.31,6.5
+United States,HC02_EST_VC02,2011,Median income (dollars); Estimate; Households,50502,86.98,44.38,0.09
+North Carolina,HC02_EST_VC02,2011,Median income (dollars); Estimate; Households,43916,618.38,315.5,0.72
+Durham,HC02_EST_VC02,2011,Median income (dollars); Estimate; Households,46231,3110.98,1587.23,3.43
+Forsyth,HC02_EST_VC02,2011,Median income (dollars); Estimate; Households,42911,2813.11,1435.26,3.34
+Guilford,HC02_EST_VC02,2011,Median income (dollars); Estimate; Households,43419,3083.57,1573.25,3.62
+United States,HC02_EST_VC04,2011,Median income (dollars); Estimate; One race-- - White,53444,126.3,64.44,0.12
+North Carolina,HC02_EST_VC04,2011,Median income (dollars); Estimate; One race-- - White,49247,775.66,395.74,0.8
+Durham,HC02_EST_VC04,2011,Median income (dollars); Estimate; One race-- - White,55583,3584,1828.57,3.29
+Forsyth,HC02_EST_VC04,2011,Median income (dollars); Estimate; One race-- - White,51421,3395.74,1732.52,3.37
+Guilford,HC02_EST_VC04,2011,Median income (dollars); Estimate; One race-- - White,53386,3312.34,1689.97,3.17
+United States,HC02_EST_VC05,2011,Median income (dollars); Estimate; One race-- - Black or African American,33223,269.28,137.39,0.41
+North Carolina,HC02_EST_VC05,2011,Median income (dollars); Estimate; One race-- - Black or African American,30829,891.23,454.71,1.47
+Durham,HC02_EST_VC05,2011,Median income (dollars); Estimate; One race-- - Black or African American,31691,4340.6,2214.59,6.99
+Forsyth,HC02_EST_VC05,2011,Median income (dollars); Estimate; One race-- - Black or African American,25884,2502.13,1276.6,4.93
+Guilford,HC02_EST_VC05,2011,Median income (dollars); Estimate; One race-- - Black or African American,32854,2797.62,1427.36,4.34
+United States,HC02_EST_VC06,2011,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,35192,975.83,497.87,1.41
+North Carolina,HC02_EST_VC06,2011,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,33827,5380.77,2745.29,8.12
+Durham,HC02_EST_VC06,2011,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2011,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2011,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,42071,37475.91,19120.36,45.45
+United States,HC02_EST_VC07,2011,Median income (dollars); Estimate; One race-- - Asian,67885,954.38,486.93,0.72
+North Carolina,HC02_EST_VC07,2011,Median income (dollars); Estimate; One race-- - Asian,61982,3809.19,1943.46,3.14
+Durham,HC02_EST_VC07,2011,Median income (dollars); Estimate; One race-- - Asian,67483,39017.7,19906.99,29.5
+Forsyth,HC02_EST_VC07,2011,Median income (dollars); Estimate; One race-- - Asian,84236,42086.98,21472.95,25.49
+Guilford,HC02_EST_VC07,2011,Median income (dollars); Estimate; One race-- - Asian,35478,6720,3428.57,9.66
+United States,HC02_EST_VC08,2011,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,49378,3479.15,1775.08,3.59
+North Carolina,HC02_EST_VC08,2011,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,53788,32300.09,16479.64,30.64
+Durham,HC02_EST_VC08,2011,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2011,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2011,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2011,Median income (dollars); Estimate; One race-- - Some other race,37172,351.49,179.33,0.48
+North Carolina,HC02_EST_VC09,2011,Median income (dollars); Estimate; One race-- - Some other race,30440,2321.02,1184.19,3.89
+Durham,HC02_EST_VC09,2011,Median income (dollars); Estimate; One race-- - Some other race,33813,8883.74,4532.52,13.4
+Forsyth,HC02_EST_VC09,2011,Median income (dollars); Estimate; One race-- - Some other race,32189,12237.79,6243.77,19.4
+Guilford,HC02_EST_VC09,2011,Median income (dollars); Estimate; One race-- - Some other race,26101,7025.02,3584.19,13.73
+United States,HC02_EST_VC10,2011,Median income (dollars); Estimate; Two or more races,44115,868.6,443.16,1
+North Carolina,HC02_EST_VC10,2011,Median income (dollars); Estimate; Two or more races,33145,3983.15,2032.22,6.13
+Durham,HC02_EST_VC10,2011,Median income (dollars); Estimate; Two or more races,21046,11930.38,6086.93,28.92
+Forsyth,HC02_EST_VC10,2011,Median income (dollars); Estimate; Two or more races,34086,20242.21,10327.66,30.3
+Guilford,HC02_EST_VC10,2011,Median income (dollars); Estimate; Two or more races,29206,7269.28,3708.82,12.7
+United States,HC02_EST_VC12,2011,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),39589,295.49,150.76,0.38
+North Carolina,HC02_EST_VC12,2011,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32852,1666.89,850.45,2.59
+Durham,HC02_EST_VC12,2011,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32100,8233.19,4200.61,13.09
+Forsyth,HC02_EST_VC12,2011,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),30230,4325.11,2206.69,7.3
+Guilford,HC02_EST_VC12,2011,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),27066,4205.96,2145.9,7.93
+United States,HC02_EST_VC13,2011,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",55305,123.91,63.22,0.11
+North Carolina,HC02_EST_VC13,2011,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",50273,612.43,312.46,0.62
+Durham,HC02_EST_VC13,2011,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",60962,6523.4,3328.27,5.46
+Forsyth,HC02_EST_VC13,2011,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",55335,4052.26,2067.48,3.74
+Guilford,HC02_EST_VC13,2011,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",55091,3286.13,1676.6,3.04
+United States,HC02_EST_VC16,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23788,283.57,144.68,0.61
+North Carolina,HC02_EST_VC16,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,22236,869.79,443.77,2
+Durham,HC02_EST_VC16,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,15696,4769.53,2433.43,15.5
+Forsyth,HC02_EST_VC16,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,18771,5178.21,2641.94,14.07
+Guilford,HC02_EST_VC16,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,16527,2018.38,1029.79,6.23
+United States,HC02_EST_VC17,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,54768,246.64,125.84,0.23
+North Carolina,HC02_EST_VC17,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,46861,903.15,460.79,0.98
+Durham,HC02_EST_VC17,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,45394,5744.17,2930.7,6.46
+Forsyth,HC02_EST_VC17,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,42012,3865.19,1972.04,4.69
+Guilford,HC02_EST_VC17,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,44866,4450.21,2270.52,5.06
+United States,HC02_EST_VC18,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,61148,131.06,66.87,0.11
+North Carolina,HC02_EST_VC18,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,52345,894.81,456.54,0.87
+Durham,HC02_EST_VC18,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,58642,6681.87,3409.12,5.81
+Forsyth,HC02_EST_VC18,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56087,6264.85,3196.35,5.7
+Guilford,HC02_EST_VC18,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56206,4814.81,2456.54,4.37
+United States,HC02_EST_VC19,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,35107,142.98,72.95,0.21
+North Carolina,HC02_EST_VC19,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,32936,737.53,376.29,1.14
+Durham,HC02_EST_VC19,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,41971,7728,3942.86,9.39
+Forsyth,HC02_EST_VC19,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36057,3159.83,1612.16,4.47
+Guilford,HC02_EST_VC19,2011,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,33815,3038.3,1550.15,4.58
+United States,HC02_EST_VC02,2012,Median income (dollars); Estimate; Households,51371,63.15,32.22,0.06
+North Carolina,HC02_EST_VC02,2012,Median income (dollars); Estimate; Households,45150,465.87,237.69,0.53
+Durham,HC02_EST_VC02,2012,Median income (dollars); Estimate; Households,51094,3020.43,1541.04,3.02
+Forsyth,HC02_EST_VC02,2012,Median income (dollars); Estimate; Households,42489,1802.72,919.76,2.16
+Guilford,HC02_EST_VC02,2012,Median income (dollars); Estimate; Households,42706,1964.77,1002.43,2.35
+United States,HC02_EST_VC04,2012,Median income (dollars); Estimate; One race-- - White,54729,97.7,49.85,0.09
+North Carolina,HC02_EST_VC04,2012,Median income (dollars); Estimate; One race-- - White,50476,473.02,241.34,0.48
+Durham,HC02_EST_VC04,2012,Median income (dollars); Estimate; One race-- - White,61875,3890.21,1984.8,3.21
+Forsyth,HC02_EST_VC04,2012,Median income (dollars); Estimate; One race-- - White,49871,2511.66,1281.46,2.57
+Guilford,HC02_EST_VC04,2012,Median income (dollars); Estimate; One race-- - White,52322,3852.09,1965.35,3.76
+United States,HC02_EST_VC05,2012,Median income (dollars); Estimate; One race-- - Black or African American,33764,241.87,123.4,0.37
+North Carolina,HC02_EST_VC05,2012,Median income (dollars); Estimate; One race-- - Black or African American,31650,693.45,353.8,1.12
+Durham,HC02_EST_VC05,2012,Median income (dollars); Estimate; One race-- - Black or African American,37417,7735.15,3946.51,10.55
+Forsyth,HC02_EST_VC05,2012,Median income (dollars); Estimate; One race-- - Black or African American,27376,2612.94,1333.13,4.87
+Guilford,HC02_EST_VC05,2012,Median income (dollars); Estimate; One race-- - Black or African American,33e3,3525.62,1798.79,5.45
+United States,HC02_EST_VC06,2012,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,35310,714.89,364.74,1.03
+North Carolina,HC02_EST_VC06,2012,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,26752,3180.09,1622.49,6.06
+Durham,HC02_EST_VC06,2012,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,60331,62487.66,31881.46,52.84
+Forsyth,HC02_EST_VC06,2012,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2012,Median income (dollars); Estimate; One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC02_EST_VC07,2012,Median income (dollars); Estimate; One race-- - Asian,70644,413.45,210.94,0.3
+North Carolina,HC02_EST_VC07,2012,Median income (dollars); Estimate; One race-- - Asian,62579,4261.96,2174.47,3.47
+Durham,HC02_EST_VC07,2012,Median income (dollars); Estimate; One race-- - Asian,71958,22135.49,11293.62,15.69
+Forsyth,HC02_EST_VC07,2012,Median income (dollars); Estimate; One race-- - Asian,51820,38290.89,19536.17,37.7
+Guilford,HC02_EST_VC07,2012,Median income (dollars); Estimate; One race-- - Asian,44771,8982.64,4582.98,10.24
+United States,HC02_EST_VC08,2012,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,51322,1964.77,1002.43,1.95
+North Carolina,HC02_EST_VC08,2012,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,33167,20249.36,10331.31,31.15
+Durham,HC02_EST_VC08,2012,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2012,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2012,Median income (dollars); Estimate; One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2012,Median income (dollars); Estimate; One race-- - Some other race,38439,505.19,257.75,0.67
+North Carolina,HC02_EST_VC09,2012,Median income (dollars); Estimate; One race-- - Some other race,33194,2136.34,1089.97,3.28
+Durham,HC02_EST_VC09,2012,Median income (dollars); Estimate; One race-- - Some other race,NA,NA,NA,NA
+Forsyth,HC02_EST_VC09,2012,Median income (dollars); Estimate; One race-- - Some other race,27099,3188.43,1626.75,6
+Guilford,HC02_EST_VC09,2012,Median income (dollars); Estimate; One race-- - Some other race,35962,7028.6,3586.02,9.97
+United States,HC02_EST_VC10,2012,Median income (dollars); Estimate; Two or more races,44930,803.06,409.72,0.91
+North Carolina,HC02_EST_VC10,2012,Median income (dollars); Estimate; Two or more races,36648,4291.74,2189.66,5.97
+Durham,HC02_EST_VC10,2012,Median income (dollars); Estimate; Two or more races,46771,10931.91,5577.51,11.93
+Forsyth,HC02_EST_VC10,2012,Median income (dollars); Estimate; Two or more races,50170,40113.87,20466.26,40.79
+Guilford,HC02_EST_VC10,2012,Median income (dollars); Estimate; Two or more races,33021,13154.04,6711.24,20.32
+United States,HC02_EST_VC12,2012,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),40417,191.83,97.87,0.24
+North Carolina,HC02_EST_VC12,2012,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),33940,1477.45,753.8,2.22
+Durham,HC02_EST_VC12,2012,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),36684,8703.83,4440.73,12.11
+Forsyth,HC02_EST_VC12,2012,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),25504,2790.47,1423.71,5.58
+Guilford,HC02_EST_VC12,2012,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),29449,9709.45,4953.8,16.82
+United States,HC02_EST_VC13,2012,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",56565,94.13,48.03,0.08
+North Carolina,HC02_EST_VC13,2012,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",51306,480.17,244.98,0.48
+Durham,HC02_EST_VC13,2012,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",68233,5168.68,2637.08,3.86
+Forsyth,HC02_EST_VC13,2012,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",52952,3127.66,1595.74,3.01
+Guilford,HC02_EST_VC13,2012,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",53969,4067.74,2075.38,3.85
+United States,HC02_EST_VC16,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,24476,315.74,161.09,0.66
+North Carolina,HC02_EST_VC16,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,22996,1562.04,796.96,3.47
+Durham,HC02_EST_VC16,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20131,6891.57,3516.11,17.47
+Forsyth,HC02_EST_VC16,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,21223,3578.04,1825.53,8.6
+Guilford,HC02_EST_VC16,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20862,9075.57,4630.39,22.2
+United States,HC02_EST_VC17,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,55821,170.38,86.93,0.16
+North Carolina,HC02_EST_VC17,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,48377,899.57,458.96,0.95
+Durham,HC02_EST_VC17,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,52302,3985.53,2033.43,3.89
+Forsyth,HC02_EST_VC17,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,41398,3752,1914.29,4.62
+Guilford,HC02_EST_VC17,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,41518,2091.06,1066.87,2.57
+United States,HC02_EST_VC18,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,62049,127.49,65.05,0.1
+North Carolina,HC02_EST_VC18,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,53487,922.21,470.52,0.88
+Durham,HC02_EST_VC18,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,66853,7763.74,3961.09,5.93
+Forsyth,HC02_EST_VC18,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,52077,4178.55,2131.91,4.09
+Guilford,HC02_EST_VC18,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,55542,3824.68,1951.37,3.51
+United States,HC02_EST_VC19,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36743,128.68,65.65,0.18
+North Carolina,HC02_EST_VC19,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,33749,699.4,356.84,1.06
+Durham,HC02_EST_VC19,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,40346,5160.34,2632.83,6.53
+Forsyth,HC02_EST_VC19,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,38902,3476.77,1773.86,4.56
+Guilford,HC02_EST_VC19,2012,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36826,3228.94,1647.42,4.47
+United States,HC02_EST_VC02,2013,Median income (dollars); Estimate; Households,52250,77.45,39.52,0.08
+North Carolina,HC02_EST_VC02,2013,Median income (dollars); Estimate; Households,45906,505.19,257.75,0.56
+Durham,HC02_EST_VC02,2013,Median income (dollars); Estimate; Households,52488,3103.83,1583.59,3.02
+Forsyth,HC02_EST_VC02,2013,Median income (dollars); Estimate; Households,45580,2760.68,1408.51,3.09
+Guilford,HC02_EST_VC02,2013,Median income (dollars); Estimate; Households,45726,2254.3,1150.15,2.52
+United States,HC02_EST_VC04,2013,Median income (dollars); Estimate; Households - One race-- - White,55867,126.3,64.44,0.12
+North Carolina,HC02_EST_VC04,2013,Median income (dollars); Estimate; Households - One race-- - White,51132,529.02,269.91,0.53
+Durham,HC02_EST_VC04,2013,Median income (dollars); Estimate; Households - One race-- - White,63430,5753.7,2935.56,4.63
+Forsyth,HC02_EST_VC04,2013,Median income (dollars); Estimate; Households - One race-- - White,54844,3244.43,1655.32,3.02
+Guilford,HC02_EST_VC04,2013,Median income (dollars); Estimate; Households - One race-- - White,57049,3262.3,1664.44,2.92
+United States,HC02_EST_VC05,2013,Median income (dollars); Estimate; Households - One race-- - Black or African American,34815,240.68,122.8,0.35
+North Carolina,HC02_EST_VC05,2013,Median income (dollars); Estimate; Households - One race-- - Black or African American,32092,626.72,319.76,1
+Durham,HC02_EST_VC05,2013,Median income (dollars); Estimate; Households - One race-- - Black or African American,40659,4397.79,2243.77,5.52
+Forsyth,HC02_EST_VC05,2013,Median income (dollars); Estimate; Households - One race-- - Black or African American,27002,2540.26,1296.05,4.8
+Guilford,HC02_EST_VC05,2013,Median income (dollars); Estimate; Households - One race-- - Black or African American,32454,3578.04,1825.53,5.62
+United States,HC02_EST_VC06,2013,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,36641,778.04,396.96,1.08
+North Carolina,HC02_EST_VC06,2013,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,29381,3550.64,1811.55,6.17
+Durham,HC02_EST_VC06,2013,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2013,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2013,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,49003,28667.23,14626.14,29.85
+United States,HC02_EST_VC07,2013,Median income (dollars); Estimate; Households - One race-- - Asian,72472,725.62,370.21,0.51
+North Carolina,HC02_EST_VC07,2013,Median income (dollars); Estimate; Households - One race-- - Asian,67263,4634.89,2364.74,3.52
+Durham,HC02_EST_VC07,2013,Median income (dollars); Estimate; Households - One race-- - Asian,45678,12980.09,6622.49,14.5
+Forsyth,HC02_EST_VC07,2013,Median income (dollars); Estimate; Households - One race-- - Asian,61549,27720,14142.86,22.98
+Guilford,HC02_EST_VC07,2013,Median income (dollars); Estimate; Households - One race-- - Asian,49763,13515.06,6895.44,13.86
+United States,HC02_EST_VC08,2013,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,50591,2288.85,1167.78,2.31
+North Carolina,HC02_EST_VC08,2013,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,60844,28251.4,14413.98,23.69
+Durham,HC02_EST_VC08,2013,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2013,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2013,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,38765,17974.81,9170.82,23.66
+United States,HC02_EST_VC09,2013,Median income (dollars); Estimate; Households - One race-- - Some other race,39346,580.26,296.05,0.75
+North Carolina,HC02_EST_VC09,2013,Median income (dollars); Estimate; Households - One race-- - Some other race,32558,2969.19,1514.89,4.65
+Durham,HC02_EST_VC09,2013,Median income (dollars); Estimate; Households - One race-- - Some other race,46232,30523.57,15573.25,33.69
+Forsyth,HC02_EST_VC09,2013,Median income (dollars); Estimate; Households - One race-- - Some other race,26456,4469.28,2280.24,8.62
+Guilford,HC02_EST_VC09,2013,Median income (dollars); Estimate; Households - One race-- - Some other race,37965,12782.3,6521.58,17.18
+United States,HC02_EST_VC10,2013,Median income (dollars); Estimate; Households - Two or more races,46709,580.26,296.05,0.63
+North Carolina,HC02_EST_VC10,2013,Median income (dollars); Estimate; Households - Two or more races,37052,4760,2428.57,6.55
+Durham,HC02_EST_VC10,2013,Median income (dollars); Estimate; Households - Two or more races,47950,21543.32,10991.49,22.92
+Forsyth,HC02_EST_VC10,2013,Median income (dollars); Estimate; Households - Two or more races,46957,9703.49,4950.76,10.54
+Guilford,HC02_EST_VC10,2013,Median income (dollars); Estimate; Households - Two or more races,11672,7780.43,3969.61,34.01
+United States,HC02_EST_VC12,2013,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),41508,216.85,110.64,0.27
+North Carolina,HC02_EST_VC12,2013,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),34637,1886.13,962.31,2.78
+Durham,HC02_EST_VC12,2013,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),40258,4247.66,2167.17,5.38
+Forsyth,HC02_EST_VC12,2013,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),27674,6241.02,3184.19,11.51
+Guilford,HC02_EST_VC12,2013,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),35760,10632.85,5424.92,15.17
+United States,HC02_EST_VC13,2013,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",57684,170.38,86.93,0.15
+North Carolina,HC02_EST_VC13,2013,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",51793,514.72,262.61,0.51
+Durham,HC02_EST_VC13,2013,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",68402,7315.74,3732.52,5.46
+Forsyth,HC02_EST_VC13,2013,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",56591,2574.81,1313.68,2.32
+Guilford,HC02_EST_VC13,2013,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",58337,3068.09,1565.35,2.68
+United States,HC02_EST_VC16,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,25391,246.64,125.84,0.5
+North Carolina,HC02_EST_VC16,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,24266,1372.6,700.31,2.89
+Durham,HC02_EST_VC16,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23836,9808.34,5004.26,20.99
+Forsyth,HC02_EST_VC16,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,18813,6202.89,3164.74,16.82
+Guilford,HC02_EST_VC16,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,21552,5758.47,2937.99,13.63
+United States,HC02_EST_VC17,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,56987,195.4,99.69,0.17
+North Carolina,HC02_EST_VC17,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,49693,1212.94,618.85,1.25
+Durham,HC02_EST_VC17,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,52008,4578.89,2336.17,4.49
+Forsyth,HC02_EST_VC17,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,45887,6175.49,3150.76,6.87
+Guilford,HC02_EST_VC17,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,44106,4472.85,2282.07,5.17
+United States,HC02_EST_VC18,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,63474,213.28,108.82,0.17
+North Carolina,HC02_EST_VC18,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,53876,901.96,460.18,0.85
+Durham,HC02_EST_VC18,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,65291,10585.19,5400.61,8.27
+Forsyth,HC02_EST_VC18,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,54454,2788.09,1422.49,2.61
+Guilford,HC02_EST_VC18,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,54902,3470.81,1770.82,3.23
+United States,HC02_EST_VC19,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,37847,163.23,83.28,0.22
+North Carolina,HC02_EST_VC19,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,34931,639.83,326.44,0.93
+Durham,HC02_EST_VC19,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,41041,5241.36,2674.16,6.52
+Forsyth,HC02_EST_VC19,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36444,3371.91,1720.36,4.72
+Guilford,HC02_EST_VC19,2013,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,38607,4524.09,2308.21,5.98
+United States,HC02_EST_VC02,2014,Median income (dollars); Estimate; Households,53657,110.81,56.54,0.11
+North Carolina,HC02_EST_VC02,2014,Median income (dollars); Estimate; Households,46556,453.96,231.61,0.5
+Durham,HC02_EST_VC02,2014,Median income (dollars); Estimate; Households,50504,2100.6,1071.73,2.12
+Forsyth,HC02_EST_VC02,2014,Median income (dollars); Estimate; Households,45220,2774.98,1415.81,3.13
+Guilford,HC02_EST_VC02,2014,Median income (dollars); Estimate; Households,44069,2399.66,1224.32,2.78
+United States,HC02_EST_VC04,2014,Median income (dollars); Estimate; Households - One race-- - White,57355,112,57.14,0.1
+North Carolina,HC02_EST_VC04,2014,Median income (dollars); Estimate; Households - One race-- - White,51707,514.72,262.61,0.51
+Durham,HC02_EST_VC04,2014,Median income (dollars); Estimate; Households - One race-- - White,62410,4246.47,2166.57,3.47
+Forsyth,HC02_EST_VC04,2014,Median income (dollars); Estimate; Households - One race-- - White,52188,2310.3,1178.72,2.26
+Guilford,HC02_EST_VC04,2014,Median income (dollars); Estimate; Households - One race-- - White,55214,3149.11,1606.69,2.91
+United States,HC02_EST_VC05,2014,Median income (dollars); Estimate; Households - One race-- - Black or African American,35481,198.98,101.52,0.29
+North Carolina,HC02_EST_VC05,2014,Median income (dollars); Estimate; Households - One race-- - Black or African American,33022,1053.28,537.39,1.63
+Durham,HC02_EST_VC05,2014,Median income (dollars); Estimate; Households - One race-- - Black or African American,38014,3929.53,2004.86,5.27
+Forsyth,HC02_EST_VC05,2014,Median income (dollars); Estimate; Households - One race-- - Black or African American,30331,3226.55,1646.2,5.43
+Guilford,HC02_EST_VC05,2014,Median income (dollars); Estimate; Households - One race-- - Black or African American,32282,3134.81,1599.39,4.95
+United States,HC02_EST_VC06,2014,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,37227,940.09,479.64,1.29
+North Carolina,HC02_EST_VC06,2014,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,33094,2353.19,1200.61,3.63
+Durham,HC02_EST_VC06,2014,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2014,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,60015,10701.96,5460.18,9.1
+Guilford,HC02_EST_VC06,2014,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,43847,21096.51,10763.53,24.55
+United States,HC02_EST_VC07,2014,Median income (dollars); Estimate; Households - One race-- - Asian,74105,813.79,415.2,0.56
+North Carolina,HC02_EST_VC07,2014,Median income (dollars); Estimate; Households - One race-- - Asian,69651,5094.81,2599.39,3.73
+Durham,HC02_EST_VC07,2014,Median income (dollars); Estimate; Households - One race-- - Asian,64780,17815.15,9089.36,14.03
+Forsyth,HC02_EST_VC07,2014,Median income (dollars); Estimate; Households - One race-- - Asian,67081,13252.94,6761.7,10.08
+Guilford,HC02_EST_VC07,2014,Median income (dollars); Estimate; Households - One race-- - Asian,55e3,10315.91,5263.22,9.57
+United States,HC02_EST_VC08,2014,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,52815,2947.74,1503.95,2.85
+North Carolina,HC02_EST_VC08,2014,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,41953,15233.19,7772.04,18.53
+Durham,HC02_EST_VC08,2014,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2014,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2014,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2014,Median income (dollars); Estimate; Households - One race-- - Some other race,40865,361.02,184.19,0.45
+North Carolina,HC02_EST_VC09,2014,Median income (dollars); Estimate; Households - One race-- - Some other race,29978,2209.02,1127.05,3.76
+Durham,HC02_EST_VC09,2014,Median income (dollars); Estimate; Households - One race-- - Some other race,35453,11272.68,5751.37,16.22
+Forsyth,HC02_EST_VC09,2014,Median income (dollars); Estimate; Households - One race-- - Some other race,32236,11800.51,6020.67,18.68
+Guilford,HC02_EST_VC09,2014,Median income (dollars); Estimate; Households - One race-- - Some other race,36594,8668.09,4422.49,12.09
+United States,HC02_EST_VC10,2014,Median income (dollars); Estimate; Households - Two or more races,48424,851.91,434.65,0.9
+North Carolina,HC02_EST_VC10,2014,Median income (dollars); Estimate; Households - Two or more races,37547,4101.11,2092.4,5.57
+Durham,HC02_EST_VC10,2014,Median income (dollars); Estimate; Households - Two or more races,53591,19192.51,9792.1,18.27
+Forsyth,HC02_EST_VC10,2014,Median income (dollars); Estimate; Households - Two or more races,31950,34246.98,17472.95,54.69
+Guilford,HC02_EST_VC10,2014,Median income (dollars); Estimate; Households - Two or more races,21233,11093.96,5660.18,26.66
+United States,HC02_EST_VC12,2014,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),42748,282.38,144.07,0.34
+North Carolina,HC02_EST_VC12,2014,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32463,2106.55,1074.77,3.31
+Durham,HC02_EST_VC12,2014,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),37135,9979.91,5091.79,13.71
+Forsyth,HC02_EST_VC12,2014,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),27490,9335.32,4762.92,17.33
+Guilford,HC02_EST_VC12,2014,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32944,5713.19,2914.89,8.85
+United States,HC02_EST_VC13,2014,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",59622,138.21,70.52,0.12
+North Carolina,HC02_EST_VC13,2014,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",52759,700.6,357.45,0.68
+Durham,HC02_EST_VC13,2014,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",67266,6634.21,3384.8,5.03
+Forsyth,HC02_EST_VC13,2014,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",54325,2703.49,1379.33,2.54
+Guilford,HC02_EST_VC13,2014,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",56762,2671.32,1362.92,2.4
+United States,HC02_EST_VC16,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,27047,274.04,139.82,0.52
+North Carolina,HC02_EST_VC16,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23630,2796.43,1426.75,6.04
+Durham,HC02_EST_VC16,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,25221,7527.83,3840.73,15.23
+Forsyth,HC02_EST_VC16,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20120,4906.55,2503.34,12.44
+Guilford,HC02_EST_VC16,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20121,3609.02,1841.34,9.15
+United States,HC02_EST_VC17,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,58970,265.7,135.56,0.23
+North Carolina,HC02_EST_VC17,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,49869,835.23,426.14,0.85
+Durham,HC02_EST_VC17,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,50165,2948.94,1504.56,3
+Forsyth,HC02_EST_VC17,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,45228,3980.77,2031.01,4.49
+Guilford,HC02_EST_VC17,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,43387,2684.43,1369.61,3.16
+United States,HC02_EST_VC18,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,65018,175.15,89.36,0.14
+North Carolina,HC02_EST_VC18,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,55226,855.49,436.47,0.79
+Durham,HC02_EST_VC18,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,63666,9789.28,4994.53,7.84
+Forsyth,HC02_EST_VC18,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,53790,5359.32,2734.35,5.08
+Guilford,HC02_EST_VC18,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,57857,3819.91,1948.93,3.37
+United States,HC02_EST_VC19,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39186,127.49,65.05,0.17
+North Carolina,HC02_EST_VC19,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36252,713.7,364.13,1
+Durham,HC02_EST_VC19,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,47951,5260.43,2683.89,5.6
+Forsyth,HC02_EST_VC19,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39954,3648.34,1861.4,4.66
+Guilford,HC02_EST_VC19,2014,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,35418,2537.87,1294.83,3.66
+United States,HC02_EST_VC02,2015,Median income (dollars); Estimate; Households,55775,101.28,51.67,0.09
+North Carolina,HC02_EST_VC02,2015,Median income (dollars); Estimate; Households,47830,620.77,316.72,0.66
+Durham,HC02_EST_VC02,2015,Median income (dollars); Estimate; Households,53495,3541.11,1806.69,3.38
+Forsyth,HC02_EST_VC02,2015,Median income (dollars); Estimate; Households,46477,2845.28,1451.67,3.12
+Guilford,HC02_EST_VC02,2015,Median income (dollars); Estimate; Households,47786,2695.15,1375.08,2.88
+United States,HC02_EST_VC04,2015,Median income (dollars); Estimate; Households - One race-- - White,59698,166.81,85.11,0.14
+North Carolina,HC02_EST_VC04,2015,Median income (dollars); Estimate; Households - One race-- - White,53273,778.04,396.96,0.75
+Durham,HC02_EST_VC04,2015,Median income (dollars); Estimate; Households - One race-- - White,65817,3850.89,1964.74,2.99
+Forsyth,HC02_EST_VC04,2015,Median income (dollars); Estimate; Households - One race-- - White,54074,3510.13,1790.88,3.31
+Guilford,HC02_EST_VC04,2015,Median income (dollars); Estimate; Households - One race-- - White,58312,4425.19,2257.75,3.87
+United States,HC02_EST_VC05,2015,Median income (dollars); Estimate; Households - One race-- - Black or African American,36544,193.02,98.48,0.27
+North Carolina,HC02_EST_VC05,2015,Median income (dollars); Estimate; Households - One race-- - Black or African American,32884,1021.11,520.97,1.58
+Durham,HC02_EST_VC05,2015,Median income (dollars); Estimate; Households - One race-- - Black or African American,40815,4705.19,2400.61,5.88
+Forsyth,HC02_EST_VC05,2015,Median income (dollars); Estimate; Households - One race-- - Black or African American,31378,2363.91,1206.08,3.84
+Guilford,HC02_EST_VC05,2015,Median income (dollars); Estimate; Households - One race-- - Black or African American,34004,2480.68,1265.65,3.72
+United States,HC02_EST_VC06,2015,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,38530,1118.81,570.82,1.48
+North Carolina,HC02_EST_VC06,2015,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,35521,3584,1828.57,5.15
+Durham,HC02_EST_VC06,2015,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,33620,9347.23,4768.99,14.18
+Forsyth,HC02_EST_VC06,2015,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,19844,11678.98,5958.66,30.03
+Guilford,HC02_EST_VC06,2015,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC02_EST_VC07,2015,Median income (dollars); Estimate; Households - One race-- - Asian,77368,651.74,332.52,0.43
+North Carolina,HC02_EST_VC07,2015,Median income (dollars); Estimate; Households - One race-- - Asian,75558,4042.72,2062.61,2.73
+Durham,HC02_EST_VC07,2015,Median income (dollars); Estimate; Households - One race-- - Asian,50994,14239.49,7265.05,14.25
+Forsyth,HC02_EST_VC07,2015,Median income (dollars); Estimate; Households - One race-- - Asian,71509,34486.47,17595.14,24.61
+Guilford,HC02_EST_VC07,2015,Median income (dollars); Estimate; Households - One race-- - Asian,52122,15662.13,7990.88,15.33
+United States,HC02_EST_VC08,2015,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,55607,3419.57,1744.68,3.14
+North Carolina,HC02_EST_VC08,2015,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,36715,24740.09,12622.49,34.38
+Durham,HC02_EST_VC08,2015,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2015,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2015,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2015,Median income (dollars); Estimate; Households - One race-- - Some other race,42461,415.83,212.16,0.5
+North Carolina,HC02_EST_VC09,2015,Median income (dollars); Estimate; Households - One race-- - Some other race,33446,2262.64,1154.41,3.45
+Durham,HC02_EST_VC09,2015,Median income (dollars); Estimate; Households - One race-- - Some other race,42816,20124.26,10267.48,23.98
+Forsyth,HC02_EST_VC09,2015,Median income (dollars); Estimate; Households - One race-- - Some other race,34835,7755.4,3956.84,11.36
+Guilford,HC02_EST_VC09,2015,Median income (dollars); Estimate; Households - One race-- - Some other race,35514,7386.04,3768.39,10.61
+United States,HC02_EST_VC10,2015,Median income (dollars); Estimate; Households - Two or more races,51737,548.09,279.64,0.54
+North Carolina,HC02_EST_VC10,2015,Median income (dollars); Estimate; Households - Two or more races,45550,5678.64,2897.27,6.36
+Durham,HC02_EST_VC10,2015,Median income (dollars); Estimate; Households - Two or more races,64065,32681.36,16674.16,26.03
+Forsyth,HC02_EST_VC10,2015,Median income (dollars); Estimate; Households - Two or more races,32078,28481.36,14531.31,45.3
+Guilford,HC02_EST_VC10,2015,Median income (dollars); Estimate; Households - Two or more races,47632,9315.06,4752.58,9.98
+United States,HC02_EST_VC12,2015,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),44782,334.81,170.82,0.38
+North Carolina,HC02_EST_VC12,2015,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),34935,1192.68,608.51,1.74
+Durham,HC02_EST_VC12,2015,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),37958,7092.94,3618.85,9.53
+Forsyth,HC02_EST_VC12,2015,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),32532,7937.7,4049.85,12.45
+Guilford,HC02_EST_VC12,2015,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),40286,8862.3,4521.58,11.22
+United States,HC02_EST_VC13,2015,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",61394,113.19,57.75,0.09
+North Carolina,HC02_EST_VC13,2015,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",54700,755.4,385.41,0.7
+Durham,HC02_EST_VC13,2015,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",70524,7109.62,3627.36,5.14
+Forsyth,HC02_EST_VC13,2015,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",56766,3321.87,1694.83,2.99
+Guilford,HC02_EST_VC13,2015,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",60328,3438.64,1754.41,2.91
+United States,HC02_EST_VC16,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,28411,384.85,196.35,0.69
+North Carolina,HC02_EST_VC16,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,26464,1411.91,720.36,2.72
+Durham,HC02_EST_VC16,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,21079,14252.6,7271.73,34.5
+Forsyth,HC02_EST_VC16,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,20932,18774.3,9578.72,45.76
+Guilford,HC02_EST_VC16,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,25413,10267.06,5238.3,20.61
+United States,HC02_EST_VC17,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,60810,127.49,65.05,0.11
+North Carolina,HC02_EST_VC17,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,51244,624.34,318.54,0.62
+Durham,HC02_EST_VC17,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,60923,5964.6,3043.16,5
+Forsyth,HC02_EST_VC17,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,47147,4611.06,2352.58,4.99
+Guilford,HC02_EST_VC17,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,46612,2403.23,1226.14,2.63
+United States,HC02_EST_VC18,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,67224,184.68,94.22,0.14
+North Carolina,HC02_EST_VC18,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,56514,910.3,464.44,0.82
+Durham,HC02_EST_VC18,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,61806,6629.45,3382.37,5.47
+Forsyth,HC02_EST_VC18,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,61006,6666.38,3401.21,5.58
+Guilford,HC02_EST_VC18,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,60368,5622.64,2868.69,4.75
+United States,HC02_EST_VC19,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,40971,146.55,74.77,0.18
+North Carolina,HC02_EST_VC19,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,37468,745.87,380.55,1.02
+Durham,HC02_EST_VC19,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,44469,6260.09,3193.92,7.18
+Forsyth,HC02_EST_VC19,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,36365,2413.96,1231.61,3.39
+Guilford,HC02_EST_VC19,2015,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,40331,5099.57,2601.82,6.45
+United States,HC02_EST_VC02,2016,Median income (dollars); Estimate; Households,57617,137.02,69.91,0.12
+North Carolina,HC02_EST_VC02,2016,Median income (dollars); Estimate; Households,50584,347.91,177.51,0.35
+Durham,HC02_EST_VC02,2016,Median income (dollars); Estimate; Households,53832,2581.96,1317.33,2.45
+Forsyth,HC02_EST_VC02,2016,Median income (dollars); Estimate; Households,48271,2639.15,1346.51,2.79
+Guilford,HC02_EST_VC02,2016,Median income (dollars); Estimate; Households,47262,1980.26,1010.34,2.14
+United States,HC02_EST_VC04,2016,Median income (dollars); Estimate; Households - One race-- - White,61349,104.85,53.49,0.09
+North Carolina,HC02_EST_VC04,2016,Median income (dollars); Estimate; Households - One race-- - White,55656,652.94,333.13,0.6
+Durham,HC02_EST_VC04,2016,Median income (dollars); Estimate; Households - One race-- - White,67461,4825.53,2462.01,3.65
+Forsyth,HC02_EST_VC04,2016,Median income (dollars); Estimate; Households - One race-- - White,57484,2939.4,1499.69,2.61
+Guilford,HC02_EST_VC04,2016,Median income (dollars); Estimate; Households - One race-- - White,57814,3158.64,1611.55,2.79
+United States,HC02_EST_VC05,2016,Median income (dollars); Estimate; Households - One race-- - Black or African American,38555,295.49,150.76,0.39
+North Carolina,HC02_EST_VC05,2016,Median income (dollars); Estimate; Households - One race-- - Black or African American,36014,747.06,381.15,1.06
+Durham,HC02_EST_VC05,2016,Median income (dollars); Estimate; Households - One race-- - Black or African American,40912,2087.49,1065.05,2.6
+Forsyth,HC02_EST_VC05,2016,Median income (dollars); Estimate; Households - One race-- - Black or African American,31192,1985.02,1012.77,3.25
+Guilford,HC02_EST_VC05,2016,Median income (dollars); Estimate; Households - One race-- - Black or African American,33004,3200.34,1632.83,4.95
+United States,HC02_EST_VC06,2016,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,39719,1226.04,625.53,1.57
+North Carolina,HC02_EST_VC06,2016,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,38002,4385.87,2237.69,5.89
+Durham,HC02_EST_VC06,2016,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,76160,36502.47,18623.71,24.45
+Forsyth,HC02_EST_VC06,2016,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,29385,20087.32,10248.63,34.88
+Guilford,HC02_EST_VC06,2016,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,22466,21874.55,11160.48,49.68
+United States,HC02_EST_VC07,2016,Median income (dollars); Estimate; Households - One race-- - Asian,80720,531.4,271.12,0.34
+North Carolina,HC02_EST_VC07,2016,Median income (dollars); Estimate; Households - One race-- - Asian,80381,4499.06,2295.44,2.86
+Durham,HC02_EST_VC07,2016,Median income (dollars); Estimate; Households - One race-- - Asian,66390,37019.57,18887.54,28.45
+Forsyth,HC02_EST_VC07,2016,Median income (dollars); Estimate; Households - One race-- - Asian,87178,43680,22285.71,25.56
+Guilford,HC02_EST_VC07,2016,Median income (dollars); Estimate; Households - One race-- - Asian,57583,11495.49,5865.05,10.19
+United States,HC02_EST_VC08,2016,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,57112,3834.21,1956.23,3.43
+North Carolina,HC02_EST_VC08,2016,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,52963,36920.68,18837.08,35.57
+Durham,HC02_EST_VC08,2016,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2016,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2016,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC09,2016,Median income (dollars); Estimate; Households - One race-- - Some other race,44798,589.79,300.91,0.67
+North Carolina,HC02_EST_VC09,2016,Median income (dollars); Estimate; Households - One race-- - Some other race,37002,2852.43,1455.32,3.93
+Durham,HC02_EST_VC09,2016,Median income (dollars); Estimate; Households - One race-- - Some other race,45421,8886.13,4533.74,9.98
+Forsyth,HC02_EST_VC09,2016,Median income (dollars); Estimate; Households - One race-- - Some other race,31197,6034.89,3079.03,9.87
+Guilford,HC02_EST_VC09,2016,Median income (dollars); Estimate; Households - One race-- - Some other race,45057,20133.79,10272.34,22.8
+United States,HC02_EST_VC10,2016,Median income (dollars); Estimate; Households - Two or more races,53114,816.17,416.41,0.78
+North Carolina,HC02_EST_VC10,2016,Median income (dollars); Estimate; Households - Two or more races,44049,6387.57,3258.96,7.4
+Durham,HC02_EST_VC10,2016,Median income (dollars); Estimate; Households - Two or more races,48233,52796.09,26936.78,55.85
+Forsyth,HC02_EST_VC10,2016,Median income (dollars); Estimate; Households - Two or more races,39350,7419.4,3785.41,9.62
+Guilford,HC02_EST_VC10,2016,Median income (dollars); Estimate; Households - Two or more races,43772,8448.85,4310.64,9.85
+United States,HC02_EST_VC12,2016,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),46882,250.21,127.66,0.27
+North Carolina,HC02_EST_VC12,2016,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),39388,2517.62,1284.5,3.26
+Durham,HC02_EST_VC12,2016,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),47155,8142.64,4154.41,8.81
+Forsyth,HC02_EST_VC12,2016,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),34880,6424.51,3277.81,9.4
+Guilford,HC02_EST_VC12,2016,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),36063,14371.74,7332.52,20.33
+United States,HC02_EST_VC13,2016,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",63155,151.32,77.2,0.12
+North Carolina,HC02_EST_VC13,2016,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",56669,685.11,349.55,0.62
+Durham,HC02_EST_VC13,2016,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",69401,6084.94,3104.56,4.47
+Forsyth,HC02_EST_VC13,2016,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",59486,2832.17,1444.98,2.43
+Guilford,HC02_EST_VC13,2016,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",58609,3153.87,1609.12,2.75
+United States,HC02_EST_VC16,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,30524,265.7,135.56,0.44
+North Carolina,HC02_EST_VC16,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,28993,2026.72,1034.04,3.57
+Durham,HC02_EST_VC16,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,34148,6646.13,3390.88,9.93
+Forsyth,HC02_EST_VC16,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,26935,9326.98,4758.66,17.67
+Guilford,HC02_EST_VC16,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,21699,15616.85,7967.78,36.72
+United States,HC02_EST_VC17,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,62815,243.06,124.01,0.2
+North Carolina,HC02_EST_VC17,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,53466,1058.04,539.82,1.01
+Durham,HC02_EST_VC17,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,52133,4613.45,2353.8,4.51
+Forsyth,HC02_EST_VC17,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,46877,3284.94,1675.99,3.58
+Guilford,HC02_EST_VC17,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,46742,2485.45,1268.09,2.71
+United States,HC02_EST_VC18,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,69822,240.68,122.8,0.18
+North Carolina,HC02_EST_VC18,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,60780,903.15,460.79,0.76
+Durham,HC02_EST_VC18,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,67684,9287.66,4738.6,7
+Forsyth,HC02_EST_VC18,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,60016,5249.7,2678.42,4.46
+Guilford,HC02_EST_VC18,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,57055,4353.7,2221.28,3.89
+United States,HC02_EST_VC19,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,42113,164.43,83.89,0.2
+North Carolina,HC02_EST_VC19,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,38794,688.68,351.37,0.91
+Durham,HC02_EST_VC19,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,49577,5094.81,2599.39,5.24
+Forsyth,HC02_EST_VC19,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,42042,2889.36,1474.16,3.51
+Guilford,HC02_EST_VC19,2016,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39025,3620.94,1847.42,4.73
+United States,HC01_EST_VC02,2017,Number; Estimate; Households,120062818,192006.13,97962.31,0.08
+North Carolina,HC01_EST_VC02,2017,Number; Estimate; Households,3955069,17603.06,8981.15,0.23
+Durham,HC01_EST_VC02,2017,Number; Estimate; Households,126123,2369.87,1209.12,0.96
+Forsyth,HC01_EST_VC02,2017,Number; Estimate; Households,144681,3034.72,1548.33,1.07
+Guilford,HC01_EST_VC02,2017,Number; Estimate; Households,203199,3280.17,1673.56,0.82
+United States,HC02_EST_VC02,2017,Percent Distribution; Estimate; Households,120062818,192006.13,97962.31,0.08
+North Carolina,HC02_EST_VC02,2017,Percent Distribution; Estimate; Households,3955069,17603.06,8981.15,0.23
+Durham,HC02_EST_VC02,2017,Percent Distribution; Estimate; Households,126123,2369.87,1209.12,0.96
+Forsyth,HC02_EST_VC02,2017,Percent Distribution; Estimate; Households,144681,3034.72,1548.33,1.07
+Guilford,HC02_EST_VC02,2017,Percent Distribution; Estimate; Households,203199,3280.17,1673.56,0.82
+United States,HC03_EST_VC02,2017,Median income (dollars); Estimate; Households,60336,102.47,52.28,0.09
+North Carolina,HC03_EST_VC02,2017,Median income (dollars); Estimate; Households,52752,607.66,310.03,0.59
+Durham,HC03_EST_VC02,2017,Median income (dollars); Estimate; Households,59891,4115.4,2099.69,3.51
+Forsyth,HC03_EST_VC02,2017,Median income (dollars); Estimate; Households,50185,2555.74,1303.95,2.6
+Guilford,HC03_EST_VC02,2017,Median income (dollars); Estimate; Households,52098,1926.64,982.98,1.89
+United States,HC01_EST_VC04,2017,Number; Estimate; Households - One race-- - White,91620445,127569.19,65086.32,0.07
+North Carolina,HC01_EST_VC04,2017,Number; Estimate; Households - One race-- - White,2846979,15280.85,7796.35,0.27
+Durham,HC01_EST_VC04,2017,Number; Estimate; Households - One race-- - White,68771,2374.64,1211.55,1.76
+Forsyth,HC01_EST_VC04,2017,Number; Estimate; Households - One race-- - White,102152,3126.47,1595.14,1.56
+Guilford,HC01_EST_VC04,2017,Number; Estimate; Households - One race-- - White,122804,2864.34,1461.4,1.19
+United States,HC02_EST_VC04,2017,Percent Distribution; Estimate; Households - One race-- - White,76.3,0.12,0.06,0.08
+North Carolina,HC02_EST_VC04,2017,Percent Distribution; Estimate; Households - One race-- - White,72,0.24,0.12,0.17
+Durham,HC02_EST_VC04,2017,Percent Distribution; Estimate; Households - One race-- - White,54.5,1.79,0.91,1.67
+Forsyth,HC02_EST_VC04,2017,Percent Distribution; Estimate; Households - One race-- - White,70.6,1.55,0.79,1.12
+Guilford,HC02_EST_VC04,2017,Percent Distribution; Estimate; Households - One race-- - White,60.4,1.07,0.55,0.91
+United States,HC03_EST_VC04,2017,Median income (dollars); Estimate; Households - One race-- - White,63704,171.57,87.54,0.14
+North Carolina,HC03_EST_VC04,2017,Median income (dollars); Estimate; Households - One race-- - White,58925,916.26,467.48,0.79
+Durham,HC03_EST_VC04,2017,Median income (dollars); Estimate; Households - One race-- - White,72190,6617.53,3376.29,4.68
+Forsyth,HC03_EST_VC04,2017,Median income (dollars); Estimate; Households - One race-- - White,58584,5038.81,2570.82,4.39
+Guilford,HC03_EST_VC04,2017,Median income (dollars); Estimate; Households - One race-- - White,63749,3080,1571.43,2.47
+United States,HC01_EST_VC05,2017,Number; Estimate; Households - One race-- - Black or African American,14800044,52082.38,26572.64,0.18
+North Carolina,HC01_EST_VC05,2017,Number; Estimate; Households - One race-- - Black or African American,833815,11208.34,5718.54,0.69
+Durham,HC01_EST_VC05,2017,Number; Estimate; Households - One race-- - Black or African American,45612,2808.34,1432.83,3.14
+Forsyth,HC01_EST_VC05,2017,Number; Estimate; Households - One race-- - Black or African American,35652,2328.17,1187.84,3.33
+Guilford,HC01_EST_VC05,2017,Number; Estimate; Households - One race-- - Black or African American,66296,2444.94,1247.42,1.88
+United States,HC02_EST_VC05,2017,Percent Distribution; Estimate; Households - One race-- - Black or African American,12.3,0.12,0.06,0.49
+North Carolina,HC02_EST_VC05,2017,Percent Distribution; Estimate; Households - One race-- - Black or African American,21.1,0.24,0.12,0.57
+Durham,HC02_EST_VC05,2017,Percent Distribution; Estimate; Households - One race-- - Black or African American,36.2,2.03,1.04,2.87
+Forsyth,HC02_EST_VC05,2017,Percent Distribution; Estimate; Households - One race-- - Black or African American,24.6,1.55,0.79,3.21
+Guilford,HC02_EST_VC05,2017,Percent Distribution; Estimate; Households - One race-- - Black or African American,32.6,1.07,0.55,1.69
+United States,HC03_EST_VC05,2017,Median income (dollars); Estimate; Households - One race-- - Black or African American,40232,229.96,117.33,0.29
+North Carolina,HC03_EST_VC05,2017,Median income (dollars); Estimate; Households - One race-- - Black or African American,38320,1290.38,658.36,1.72
+Durham,HC03_EST_VC05,2017,Median income (dollars); Estimate; Households - One race-- - Black or African American,39325,3054.98,1558.66,3.96
+Forsyth,HC03_EST_VC05,2017,Median income (dollars); Estimate; Households - One race-- - Black or African American,34051,3594.72,1834.04,5.39
+Guilford,HC03_EST_VC05,2017,Median income (dollars); Estimate; Households - One race-- - Black or African American,38137,4247.66,2167.17,5.68
+United States,HC01_EST_VC06,2017,Number; Estimate; Households - One race-- - American Indian and Alaska Native,882702,18729.02,9555.62,1.08
+North Carolina,HC01_EST_VC06,2017,Number; Estimate; Households - One race-- - American Indian and Alaska Native,40750,2850.04,1454.1,3.57
+Durham,HC01_EST_VC06,2017,Number; Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC01_EST_VC06,2017,Number; Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC01_EST_VC06,2017,Number; Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC02_EST_VC06,2017,Percent Distribution; Estimate; Households - One race-- - American Indian and Alaska Native,0.7,0.12,0.06,8.57
+North Carolina,HC02_EST_VC06,2017,Percent Distribution; Estimate; Households - One race-- - American Indian and Alaska Native,1,0.12,0.06,6
+Durham,HC02_EST_VC06,2017,Percent Distribution; Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC02_EST_VC06,2017,Percent Distribution; Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC02_EST_VC06,2017,Percent Distribution; Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC03_EST_VC06,2017,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,41882,749.45,382.37,0.91
+North Carolina,HC03_EST_VC06,2017,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,38236,4811.23,2454.71,6.42
+Durham,HC03_EST_VC06,2017,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Forsyth,HC03_EST_VC06,2017,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+Guilford,HC03_EST_VC06,2017,Median income (dollars); Estimate; Households - One race-- - American Indian and Alaska Native,NA,NA,NA,NA
+United States,HC01_EST_VC07,2017,Number; Estimate; Households - One race-- - Asian,5739939,31022.81,15827.96,0.28
+North Carolina,HC01_EST_VC07,2017,Number; Estimate; Households - One race-- - Asian,92509,3897.36,1988.45,2.15
+Durham,HC01_EST_VC07,2017,Number; Estimate; Households - One race-- - Asian,NA,NA,NA,NA
+Forsyth,HC01_EST_VC07,2017,Number; Estimate; Households - One race-- - Asian,NA,NA,NA,NA
+Guilford,HC01_EST_VC07,2017,Number; Estimate; Households - One race-- - Asian,8049,1284.43,655.32,8.14
+United States,HC02_EST_VC07,2017,Percent Distribution; Estimate; Households - One race-- - Asian,4.8,0.12,0.06,1.25
+North Carolina,HC02_EST_VC07,2017,Percent Distribution; Estimate; Households - One race-- - Asian,2.3,0.12,0.06,2.61
+Durham,HC02_EST_VC07,2017,Percent Distribution; Estimate; Households - One race-- - Asian,NA,NA,NA,NA
+Forsyth,HC02_EST_VC07,2017,Percent Distribution; Estimate; Households - One race-- - Asian,NA,NA,NA,NA
+Guilford,HC02_EST_VC07,2017,Percent Distribution; Estimate; Households - One race-- - Asian,4,0.6,0.31,7.75
+United States,HC03_EST_VC07,2017,Median income (dollars); Estimate; Households - One race-- - Asian,83456,911.49,465.05,0.56
+North Carolina,HC03_EST_VC07,2017,Median income (dollars); Estimate; Households - One race-- - Asian,79780,4233.36,2159.88,2.71
+Durham,HC03_EST_VC07,2017,Median income (dollars); Estimate; Households - One race-- - Asian,98075,24102.64,12297.27,12.54
+Forsyth,HC03_EST_VC07,2017,Median income (dollars); Estimate; Households - One race-- - Asian,63040,18152.34,9261.4,14.69
+Guilford,HC03_EST_VC07,2017,Median income (dollars); Estimate; Households - One race-- - Asian,54145,17656.68,9008.51,16.64
+United States,HC01_EST_VC08,2017,Number; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,159732,6909.45,3525.23,2.21
+North Carolina,HC01_EST_VC08,2017,Number; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Durham,HC01_EST_VC08,2017,Number; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC01_EST_VC08,2017,Number; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC01_EST_VC08,2017,Number; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC02_EST_VC08,2017,Percent Distribution; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,0.1,0.12,0.06,60
+North Carolina,HC02_EST_VC08,2017,Percent Distribution; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Durham,HC02_EST_VC08,2017,Percent Distribution; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC02_EST_VC08,2017,Percent Distribution; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC02_EST_VC08,2017,Percent Distribution; Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC03_EST_VC08,2017,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,60734,3553.02,1812.77,2.98
+North Carolina,HC03_EST_VC08,2017,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,43305,24898.55,12703.34,29.33
+Durham,HC03_EST_VC08,2017,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Forsyth,HC03_EST_VC08,2017,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+Guilford,HC03_EST_VC08,2017,Median income (dollars); Estimate; Households - One race-- - Native Hawaiian and Other Pacific Islander,NA,NA,NA,NA
+United States,HC01_EST_VC09,2017,Number; Estimate; Households - One race-- - Some other race,4383033,43610.89,22250.45,0.51
+North Carolina,HC01_EST_VC09,2017,Number; Estimate; Households - One race-- - Some other race,80180,5426.04,2768.39,3.45
+Durham,HC01_EST_VC09,2017,Number; Estimate; Households - One race-- - Some other race,NA,NA,NA,NA
+Forsyth,HC01_EST_VC09,2017,Number; Estimate; Households - One race-- - Some other race,NA,NA,NA,NA
+Guilford,HC01_EST_VC09,2017,Number; Estimate; Households - One race-- - Some other race,NA,NA,NA,NA
+United States,HC02_EST_VC09,2017,Percent Distribution; Estimate; Households - One race-- - Some other race,3.7,0.12,0.06,1.62
+North Carolina,HC02_EST_VC09,2017,Percent Distribution; Estimate; Households - One race-- - Some other race,2,0.12,0.06,3
+Durham,HC02_EST_VC09,2017,Percent Distribution; Estimate; Households - One race-- - Some other race,NA,NA,NA,NA
+Forsyth,HC02_EST_VC09,2017,Percent Distribution; Estimate; Households - One race-- - Some other race,NA,NA,NA,NA
+Guilford,HC02_EST_VC09,2017,Percent Distribution; Estimate; Households - One race-- - Some other race,NA,NA,NA,NA
+United States,HC03_EST_VC09,2017,Median income (dollars); Estimate; Households - One race-- - Some other race,47219,449.19,229.18,0.49
+North Carolina,HC03_EST_VC09,2017,Median income (dollars); Estimate; Households - One race-- - Some other race,38249,3068.09,1565.35,4.09
+Durham,HC03_EST_VC09,2017,Median income (dollars); Estimate; Households - One race-- - Some other race,58880,37074.38,18915.5,32.13
+Forsyth,HC03_EST_VC09,2017,Median income (dollars); Estimate; Households - One race-- - Some other race,37894,17759.15,9060.79,23.91
+Guilford,HC03_EST_VC09,2017,Median income (dollars); Estimate; Households - One race-- - Some other race,28348,32776.68,16722.8,58.99
+United States,HC01_EST_VC10,2017,Number; Estimate; Households - Two or more races,2476923,42747.06,21809.72,0.88
+North Carolina,HC01_EST_VC10,2017,Number; Estimate; Households - Two or more races,58768,5289.02,2698.48,4.59
+Durham,HC01_EST_VC10,2017,Number; Estimate; Households - Two or more races,NA,NA,NA,NA
+Forsyth,HC01_EST_VC10,2017,Number; Estimate; Households - Two or more races,NA,NA,NA,NA
+Guilford,HC01_EST_VC10,2017,Number; Estimate; Households - Two or more races,NA,NA,NA,NA
+United States,HC02_EST_VC10,2017,Percent Distribution; Estimate; Households - Two or more races,2.1,0.12,0.06,2.86
+North Carolina,HC02_EST_VC10,2017,Percent Distribution; Estimate; Households - Two or more races,1.5,0.12,0.06,4
+Durham,HC02_EST_VC10,2017,Percent Distribution; Estimate; Households - Two or more races,NA,NA,NA,NA
+Forsyth,HC02_EST_VC10,2017,Percent Distribution; Estimate; Households - Two or more races,NA,NA,NA,NA
+Guilford,HC02_EST_VC10,2017,Percent Distribution; Estimate; Households - Two or more races,NA,NA,NA,NA
+United States,HC03_EST_VC10,2017,Median income (dollars); Estimate; Households - Two or more races,56519,830.47,423.71,0.75
+North Carolina,HC03_EST_VC10,2017,Median income (dollars); Estimate; Households - Two or more races,47268,4397.79,2243.77,4.75
+Durham,HC03_EST_VC10,2017,Median income (dollars); Estimate; Households - Two or more races,55102,18725.45,9553.8,17.34
+Forsyth,HC03_EST_VC10,2017,Median income (dollars); Estimate; Households - Two or more races,45449,21475.4,10956.84,24.11
+Guilford,HC03_EST_VC10,2017,Median income (dollars); Estimate; Households - Two or more races,45845,13672.34,6975.68,15.22
+United States,HC01_EST_VC12,2017,Number; Estimate; Hispanic or Latino origin (of any race),15832610,59192,30200,0.19
+North Carolina,HC01_EST_VC12,2017,Number; Estimate; Hispanic or Latino origin (of any race),249455,6802.21,3470.52,1.39
+Durham,HC01_EST_VC12,2017,Number; Estimate; Hispanic or Latino origin (of any race),10774,1252.26,638.91,5.93
+Forsyth,HC01_EST_VC12,2017,Number; Estimate; Hispanic or Latino origin (of any race),12542,1426.21,727.66,5.8
+Guilford,HC01_EST_VC12,2017,Number; Estimate; Hispanic or Latino origin (of any race),10605,1241.53,633.43,5.97
+United States,HC02_EST_VC12,2017,Percent Distribution; Estimate; Hispanic or Latino origin (of any race),13.2,0.12,0.06,0.45
+North Carolina,HC02_EST_VC12,2017,Percent Distribution; Estimate; Hispanic or Latino origin (of any race),6.3,0.12,0.06,0.95
+Durham,HC02_EST_VC12,2017,Percent Distribution; Estimate; Hispanic or Latino origin (of any race),8.5,0.95,0.48,5.65
+Forsyth,HC02_EST_VC12,2017,Percent Distribution; Estimate; Hispanic or Latino origin (of any race),8.7,0.95,0.48,5.52
+Guilford,HC02_EST_VC12,2017,Percent Distribution; Estimate; Hispanic or Latino origin (of any race),5.2,0.6,0.31,5.96
+United States,HC03_EST_VC12,2017,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),49793,306.21,156.23,0.31
+North Carolina,HC03_EST_VC12,2017,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),40546,1299.91,663.22,1.64
+Durham,HC03_EST_VC12,2017,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),40121,15062.81,7685.11,19.15
+Forsyth,HC03_EST_VC12,2017,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),36899,6761.7,3449.85,9.35
+Guilford,HC03_EST_VC12,2017,Median income (dollars); Estimate; Hispanic or Latino origin (of any race),43265,12673.87,6466.26,14.95
+United States,HC01_EST_VC13,2017,"Number; Estimate; White alone, not Hispanic or Latino",81071882,99282.04,50654.1,0.06
+North Carolina,HC01_EST_VC13,2017,"Number; Estimate; White alone, not Hispanic or Latino",2689841,14489.7,7392.7,0.27
+Durham,HC01_EST_VC13,2017,"Number; Estimate; White alone, not Hispanic or Latino",60587,1976.68,1008.51,1.66
+Forsyth,HC01_EST_VC13,2017,"Number; Estimate; White alone, not Hispanic or Latino",91998,2921.53,1490.58,1.62
+Guilford,HC01_EST_VC13,2017,"Number; Estimate; White alone, not Hispanic or Latino",115605,2497.36,1274.16,1.1
+United States,HC02_EST_VC13,2017,"Percent Distribution; Estimate; White alone, not Hispanic or Latino",67.5,0.12,0.06,0.09
+North Carolina,HC02_EST_VC13,2017,"Percent Distribution; Estimate; White alone, not Hispanic or Latino",68,0.24,0.12,0.18
+Durham,HC02_EST_VC13,2017,"Percent Distribution; Estimate; White alone, not Hispanic or Latino",48,1.55,0.79,1.65
+Forsyth,HC02_EST_VC13,2017,"Percent Distribution; Estimate; White alone, not Hispanic or Latino",63.6,1.55,0.79,1.24
+Guilford,HC02_EST_VC13,2017,"Percent Distribution; Estimate; White alone, not Hispanic or Latino",56.9,0.95,0.48,0.84
+United States,HC03_EST_VC13,2017,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",65845,151.32,77.2,0.12
+North Carolina,HC03_EST_VC13,2017,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",60263,669.62,341.64,0.57
+Durham,HC03_EST_VC13,2017,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",80403,6618.72,3376.9,4.2
+Forsyth,HC03_EST_VC13,2017,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",62390,4210.72,2148.33,3.44
+Guilford,HC03_EST_VC13,2017,"Median income (dollars); Estimate; White alone, not Hispanic or Latino",64231,3080,1571.43,2.45
+United States,HC01_EST_VC16,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,4334161,44038.64,22468.69,0.52
+North Carolina,HC01_EST_VC16,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,149136,8234.38,4201.21,2.82
+Durham,HC01_EST_VC16,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,6447,1464.34,747.11,11.59
+Forsyth,HC01_EST_VC16,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,4568,1177.19,600.61,13.15
+Guilford,HC01_EST_VC16,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,8055,1590.64,811.55,10.08
+United States,HC02_EST_VC16,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,3.6,0.12,0.06,1.67
+North Carolina,HC02_EST_VC16,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,3.8,0.24,0.12,3.16
+Durham,HC02_EST_VC16,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,5.1,1.07,0.55,10.78
+Forsyth,HC02_EST_VC16,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,3.2,0.83,0.42,13.12
+Guilford,HC02_EST_VC16,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,4,0.71,0.36,9
+United States,HC03_EST_VC16,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,31867,275.23,140.42,0.44
+North Carolina,HC03_EST_VC16,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,30406,1258.21,641.94,2.11
+Durham,HC03_EST_VC16,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,25637,7892.43,4026.75,15.71
+Forsyth,HC03_EST_VC16,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,23368,16682.04,8511.24,36.42
+Guilford,HC03_EST_VC16,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 15 to 24 years,33662,7801.87,3980.55,11.83
+United States,HC01_EST_VC17,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,38660668,86895.32,44334.35,0.11
+North Carolina,HC01_EST_VC17,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,1276108,13044.43,6655.32,0.52
+Durham,HC01_EST_VC17,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,52168,2419.91,1234.65,2.37
+Forsyth,HC01_EST_VC17,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,47872,2349.62,1198.79,2.5
+Guilford,HC01_EST_VC17,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,67134,2415.15,1232.22,1.84
+United States,HC02_EST_VC17,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,32.2,0.12,0.06,0.19
+North Carolina,HC02_EST_VC17,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,32.3,0.36,0.18,0.56
+Durham,HC02_EST_VC17,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,41.4,1.79,0.91,2.2
+Forsyth,HC02_EST_VC17,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,33.1,1.31,0.67,2.02
+Guilford,HC02_EST_VC17,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,33,1.07,0.55,1.67
+United States,HC03_EST_VC17,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,65879,212.09,108.21,0.16
+North Carolina,HC03_EST_VC17,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,57616,1531.06,781.15,1.36
+Durham,HC03_EST_VC17,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,61034,5200.85,2653.49,4.35
+Forsyth,HC03_EST_VC17,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,49390,5376,2742.86,5.55
+Guilford,HC03_EST_VC17,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 25 to 44 years,52296,6139.74,3132.52,5.99
+United States,HC01_EST_VC18,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,46375863,85022.3,43378.72,0.09
+North Carolina,HC01_EST_VC18,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,1522534,15616.85,7967.78,0.52
+Durham,HC01_EST_VC18,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,43221,1923.06,981.15,2.27
+Forsyth,HC01_EST_VC18,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,55169,2058.89,1050.45,1.9
+Guilford,HC01_EST_VC18,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,79010,2856,1457.14,1.84
+United States,HC02_EST_VC18,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,38.6,0.12,0.06,0.16
+North Carolina,HC02_EST_VC18,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,38.5,0.36,0.18,0.47
+Durham,HC02_EST_VC18,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,34.3,1.43,0.73,2.13
+Forsyth,HC02_EST_VC18,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,38.1,1.43,0.73,1.92
+Guilford,HC02_EST_VC18,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,38.9,1.31,0.67,1.72
+United States,HC03_EST_VC18,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,72443,221.62,113.07,0.16
+North Carolina,HC03_EST_VC18,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,62474,1034.21,527.66,0.84
+Durham,HC03_EST_VC18,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,76779,9960.85,5082.07,6.62
+Forsyth,HC03_EST_VC18,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,62390,4978.04,2539.82,4.07
+Guilford,HC03_EST_VC18,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 45 to 64 years,61959,5119.83,2612.16,4.22
+United States,HC01_EST_VC19,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,30692126,64677.62,32998.79,0.11
+North Carolina,HC01_EST_VC19,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,1007291,8769.36,4474.16,0.44
+Durham,HC01_EST_VC19,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,24287,1537.02,784.19,3.23
+Forsyth,HC01_EST_VC19,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,37072,1668.09,851.07,2.3
+Guilford,HC01_EST_VC19,2017,Number; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,49e3,2000.51,1020.67,2.08
+United States,HC02_EST_VC19,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,25.6,0.12,0.06,0.23
+North Carolina,HC02_EST_VC19,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,25.5,0.24,0.12,0.47
+Durham,HC02_EST_VC19,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,19.3,1.19,0.61,3.16
+Forsyth,HC02_EST_VC19,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,25.6,1.07,0.55,2.15
+Guilford,HC02_EST_VC19,2017,Percent Distribution; Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,24.1,0.95,0.48,1.99
+United States,HC03_EST_VC19,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,43735,138.21,70.52,0.16
+North Carolina,HC03_EST_VC19,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,40070,764.94,390.28,0.97
+Durham,HC03_EST_VC19,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,50019,6229.11,3178.12,6.35
+Forsyth,HC03_EST_VC19,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,39371,3679.32,1877.2,4.77
+Guilford,HC03_EST_VC19,2017,Median income (dollars); Estimate; HOUSEHOLD INCOME BY AGE OF HOUSEHOLDER - 65 years and over,42427,4740.94,2418.85,5.7
+United States,HC01_EST_VC33,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+North Carolina,HC01_EST_VC33,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+Durham,HC01_EST_VC33,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+Forsyth,HC01_EST_VC33,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+Guilford,HC01_EST_VC33,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+United States,HC02_EST_VC33,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+North Carolina,HC02_EST_VC33,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+Durham,HC02_EST_VC33,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+Forsyth,HC02_EST_VC33,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+Guilford,HC02_EST_VC33,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,NA,NA,NA,NA
+United States,HC03_EST_VC33,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,65539,193.02,98.48,0.15
+North Carolina,HC03_EST_VC33,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,60407,817.36,417.02,0.69
+Durham,HC03_EST_VC33,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,82240,4833.87,2466.26,3
+Forsyth,HC03_EST_VC33,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,63420,7442.04,3796.96,5.99
+Guilford,HC03_EST_VC33,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 2-person families,61914,4559.83,2326.44,3.76
+United States,HC01_EST_VC34,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+North Carolina,HC01_EST_VC34,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+Durham,HC01_EST_VC34,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+Forsyth,HC01_EST_VC34,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+Guilford,HC01_EST_VC34,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+United States,HC02_EST_VC34,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+North Carolina,HC02_EST_VC34,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+Durham,HC02_EST_VC34,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+Forsyth,HC02_EST_VC34,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+Guilford,HC02_EST_VC34,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,NA,NA,NA,NA
+United States,HC03_EST_VC34,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,76046,376.51,192.1,0.25
+North Carolina,HC03_EST_VC34,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,67211,2118.47,1080.85,1.61
+Durham,HC03_EST_VC34,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,84219,10024,5114.29,6.07
+Forsyth,HC03_EST_VC34,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,62158,7899.57,4030.39,6.48
+Guilford,HC03_EST_VC34,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 3-person families,63154,5386.72,2748.33,4.35
+United States,HC01_EST_VC35,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+North Carolina,HC01_EST_VC35,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+Durham,HC01_EST_VC35,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+Forsyth,HC01_EST_VC35,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+Guilford,HC01_EST_VC35,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+United States,HC02_EST_VC35,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+North Carolina,HC02_EST_VC35,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+Durham,HC02_EST_VC35,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+Forsyth,HC02_EST_VC35,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+Guilford,HC02_EST_VC35,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,NA,NA,NA,NA
+United States,HC03_EST_VC35,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,90748,393.19,200.61,0.22
+North Carolina,HC03_EST_VC35,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,82994,2203.06,1124.01,1.35
+Durham,HC03_EST_VC35,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,93766,21225.19,10829.18,11.55
+Forsyth,HC03_EST_VC35,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,83515,11465.7,5849.85,7
+Guilford,HC03_EST_VC35,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 4-person families,87987,10612.6,5414.59,6.15
+United States,HC01_EST_VC36,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+North Carolina,HC01_EST_VC36,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+Durham,HC01_EST_VC36,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+Forsyth,HC01_EST_VC36,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+Guilford,HC01_EST_VC36,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+United States,HC02_EST_VC36,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+North Carolina,HC02_EST_VC36,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+Durham,HC02_EST_VC36,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+Forsyth,HC02_EST_VC36,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+Guilford,HC02_EST_VC36,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,NA,NA,NA,NA
+United States,HC03_EST_VC36,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,83070,788.77,402.43,0.48
+North Carolina,HC03_EST_VC36,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,69689,2845.28,1451.67,2.08
+Durham,HC03_EST_VC36,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,71204,38010.89,19393.31,27.24
+Forsyth,HC03_EST_VC36,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,61478,7650.55,3903.34,6.35
+Guilford,HC03_EST_VC36,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 5-person families,58192,7376.51,3763.53,6.47
+United States,HC01_EST_VC37,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+North Carolina,HC01_EST_VC37,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+Durham,HC01_EST_VC37,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+Forsyth,HC01_EST_VC37,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+Guilford,HC01_EST_VC37,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+United States,HC02_EST_VC37,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+North Carolina,HC02_EST_VC37,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+Durham,HC02_EST_VC37,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+Forsyth,HC02_EST_VC37,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+Guilford,HC02_EST_VC37,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,NA,NA,NA,NA
+United States,HC03_EST_VC37,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,79840,925.79,472.34,0.59
+North Carolina,HC03_EST_VC37,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,65606,6283.91,3206.08,4.89
+Durham,HC03_EST_VC37,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,75616,34544.85,17624.92,23.31
+Forsyth,HC03_EST_VC37,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,70998,27932.09,14251.07,20.07
+Guilford,HC03_EST_VC37,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 6-person families,79513,25014.13,12762.31,16.05
+United States,HC01_EST_VC38,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+North Carolina,HC01_EST_VC38,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+Durham,HC01_EST_VC38,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+Forsyth,HC01_EST_VC38,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+Guilford,HC01_EST_VC38,2017,Number; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+United States,HC02_EST_VC38,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+North Carolina,HC02_EST_VC38,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+Durham,HC02_EST_VC38,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+Forsyth,HC02_EST_VC38,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+Guilford,HC02_EST_VC38,2017,Percent Distribution; Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,NA,NA,NA,NA
+United States,HC03_EST_VC38,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,82874,1253.45,639.52,0.77
+North Carolina,HC03_EST_VC38,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,68738,6550.81,3342.25,4.86
+Durham,HC03_EST_VC38,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,39529,25284.6,12900.31,32.64
+Forsyth,HC03_EST_VC38,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,82407,86965.62,44370.21,53.84
+Guilford,HC03_EST_VC38,2017,Median income (dollars); Estimate; FAMILY INCOME BY FAMILY SIZE - 7-or-more person families,111783,27238.64,13897.27,12.43
+United States,HC01_EST_VC41,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,11661067,53015.32,27048.63,0.23
+North Carolina,HC01_EST_VC41,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,420513,10964.09,5593.92,1.33
+Durham,HC01_EST_VC41,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,9377,1678.81,856.54,9.13
+Forsyth,HC01_EST_VC41,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,14181,1911.15,975.08,6.88
+Guilford,HC01_EST_VC41,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,17270,1919.49,979.33,5.67
+United States,HC02_EST_VC41,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,14.8,0.12,0.06,0.41
+North Carolina,HC02_EST_VC41,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,16.2,0.36,0.18,1.11
+Durham,HC02_EST_VC41,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,12.6,2.26,1.15,9.13
+Forsyth,HC02_EST_VC41,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,15.9,2.03,1.04,6.54
+Guilford,HC02_EST_VC41,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,13.6,1.43,0.73,5.37
+United States,HC03_EST_VC41,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,37987,252.6,128.88,0.34
+North Carolina,HC03_EST_VC41,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,35966,979.4,499.69,1.39
+Durham,HC03_EST_VC41,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,31749,4823.15,2460.79,7.75
+Forsyth,HC03_EST_VC41,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,32833,4037.96,2060.18,6.27
+Guilford,HC03_EST_VC41,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - No earners,36373,5229.45,2668.09,7.34
+United States,HC01_EST_VC42,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,25431562,86468.77,44116.72,0.17
+North Carolina,HC01_EST_VC42,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,869429,14240.68,7265.65,0.84
+Durham,HC01_EST_VC42,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,24541,3495.83,1783.59,7.27
+Forsyth,HC01_EST_VC42,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,30701,2890.55,1474.77,4.8
+Guilford,HC01_EST_VC42,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,47240,3894.98,1987.23,4.21
+United States,HC02_EST_VC42,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,32.3,0.12,0.06,0.19
+North Carolina,HC02_EST_VC42,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,33.6,0.48,0.24,0.71
+Durham,HC02_EST_VC42,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,33.1,4.05,2.07,6.25
+Forsyth,HC02_EST_VC42,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,34.5,2.98,1.52,4.41
+Guilford,HC02_EST_VC42,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,37.2,2.62,1.34,3.6
+United States,HC03_EST_VC42,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,51600,142.98,72.95,0.14
+North Carolina,HC03_EST_VC42,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,47470,1167.66,595.74,1.25
+Durham,HC03_EST_VC42,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,50579,10723.4,5471.12,10.82
+Forsyth,HC03_EST_VC42,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,42207,7461.11,3806.69,9.02
+Guilford,HC03_EST_VC42,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 1 earner,45526,5870.47,2995.14,6.58
+United States,HC01_EST_VC43,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,32522227,131657.19,67172.04,0.21
+North Carolina,HC01_EST_VC43,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,1064959,16069.62,8198.79,0.77
+Durham,HC01_EST_VC43,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,34741,3385.02,1727.05,4.97
+Forsyth,HC01_EST_VC43,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,36847,3541.11,1806.69,4.9
+Guilford,HC01_EST_VC43,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,52013,4070.13,2076.6,3.99
+United States,HC02_EST_VC43,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,41.4,0.12,0.06,0.14
+North Carolina,HC02_EST_VC43,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,41.1,0.48,0.24,0.58
+Durham,HC02_EST_VC43,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,46.8,4.05,2.07,4.42
+Forsyth,HC02_EST_VC43,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,41.4,3.34,1.7,4.11
+Guilford,HC02_EST_VC43,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,41,2.62,1.34,3.27
+United States,HC03_EST_VC43,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,95405,241.87,123.4,0.13
+North Carolina,HC03_EST_VC43,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,86748,1330.89,679.03,0.78
+Durham,HC03_EST_VC43,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,106783,6354.21,3241.94,3.04
+Forsyth,HC03_EST_VC43,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,89833,4619.4,2356.84,2.62
+Guilford,HC03_EST_VC43,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 2 earners,88258,4557.45,2325.23,2.63
+United States,HC01_EST_VC44,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,9016307,58368.68,29779.94,0.33
+North Carolina,HC01_EST_VC44,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,235279,9835.74,5018.23,2.13
+Durham,HC01_EST_VC44,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,5517,1460.77,745.29,13.51
+Forsyth,HC01_EST_VC44,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,7347,1427.4,728.27,9.91
+Guilford,HC01_EST_VC44,2017,Number; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,10460,1769.36,902.73,8.63
+United States,HC02_EST_VC44,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,11.5,0.12,0.06,0.52
+North Carolina,HC02_EST_VC44,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,9.1,0.36,0.18,1.98
+Durham,HC02_EST_VC44,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,7.4,1.91,0.97,13.11
+Forsyth,HC02_EST_VC44,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,8.2,1.55,0.79,9.63
+Guilford,HC02_EST_VC44,2017,Percent Distribution; Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,8.2,1.31,0.67,8.17
+United States,HC03_EST_VC44,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,116350,490.89,250.45,0.22
+North Carolina,HC03_EST_VC44,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,104467,3109.79,1586.63,1.52
+Durham,HC03_EST_VC44,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,118973,26374.81,13456.54,11.31
+Forsyth,HC03_EST_VC44,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,121153,22732.43,11598.18,9.57
+Guilford,HC03_EST_VC44,2017,Median income (dollars); Estimate; FAMILY INCOME BY NUMBER OF EARNERS - 3 or more earners,104068,14390.81,7342.25,7.06
