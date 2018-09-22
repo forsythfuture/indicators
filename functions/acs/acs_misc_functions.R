@@ -257,16 +257,39 @@ ff_ratios_gender <- function(df, years, geo_areas) {
   
 }
 
-ff_write_to_excel <- function(excel_data, write_to_excel, excel_file) {
+ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
+  
+  # Input:
+  #   df: a dataframe of raw data that you want convert to a DT datatable
+  #   col_names: column names for the datatable
+  #   for_tableau: whether this table is for tableau output
+  #
+  # To color cv values, the cv column must be names 'cv'
+  #
+  # Note: Do not sue this to create a table of z-scores; use ff_acs_zscore_dt
+  
+  if (for_tableau == FALSE) {
+  
+    datatable(df, filter='top', extensions='Buttons', rownames = FALSE,
+              colnames = col_names,
+              options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip')) %>%
+      # color cv numbers based on value, only if column named 'cv' exists
+        formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+    
+  } else {
+    
+    datatable(df, filter='top', extensions='Buttons', rownames = FALSE,
+              colnames = col_names,
+              options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip'))
+    
+  }
+}
+
+ff_write_to_excel <- function(excel_data, excel_file) {
   
   # inputs:
   #   excel_data: dataset to write to excel
-  #   write_to_excel: a boolean value (TRUE or FALSE) of whether to write
-  #                   needed so there is a way not to write when file is knit
-  #                   the function will only run if true
   #   excel_file: file name for excel file that will be written out
-  
-  if (write_to_excel == TRUE) {
     
     # install package to write to excel only if it is needed
     library(openxlsx)
@@ -302,11 +325,4 @@ ff_write_to_excel <- function(excel_data, write_to_excel, excel_file) {
     # write out workbook to disk
     # it will be saved in the same folder as the markdown file
     saveWorkbook(wb, excel_file, overwrite=T)
-    
-  } else {
-    
-    # return blank value if there is no need to write out workbook
-    return()
-    
-  }
 }

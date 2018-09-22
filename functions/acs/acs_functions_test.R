@@ -91,6 +91,21 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
     # create vector of label names by pasting columns together
     names_vec <- apply( data_frame[ , var_names], 1, paste, collapse = ": " )
     
+    # shorted names so they appear clener and shorter in the matrix as column and row headers
+    
+    # replace any United States and North Carolina values with NC and US
+    names_vec <- str_replace_all(names_vec, 'United States', 'US') %>%
+      str_replace_all('North Carolina', 'NC') %>%
+      # replace and ethnicities with abbreviation
+      str_replace_all('African American', 'AA') %>%
+      str_replace_all('Hispanic/Latinx', 'HL') %>%
+      str_replace_all('White, non-Hispanic', 'Wh') %>%
+      # shorten age descriptions (take off the word 'year')
+      str_replace_all(' years', '') %>%
+      str_replace_all(' and over', '+') %>%
+      # shorten age by converting 'to' to '-'
+      str_replace_all(' to ', '-')
+      
     # add labels as column and row names
     colnames(z_score_mat) <- names_vec
     row.names(z_score_mat) <- names_vec
@@ -141,10 +156,13 @@ ff_acs_zscore_dt <- function(data_frame, estimate, se, var_names = NULL) {
   #   var_names: a character vector of variables that can be combined to created
   #              distinct names for each row and column
   
-  ff_acs_zscore(data_frame, estimate, se, var_names) %>%
-    datatable(filter='top', extensions = c('FixedColumns', 'Buttons'), 
-              options = list(scrollX = TRUE, fixedColumns = TRUE, dom = 'Bfrtip')) %>%
-    formatStyle(columns=colnames(.), color=styleInterval(1.96, c('gray', 'blue')))
+  z_mat <- ff_acs_zscore(data_frame, estimate, se, var_names)
+  
+  datatable(z_mat, filter='top', extensions = c('FixedColumns', 'Buttons'), 
+            options = list(scrollX = TRUE, fixedColumns = TRUE, dom = 'Bfrtip')) %>%
+  formatStyle(columns = names(z_mat),
+              backgroundColor = styleInterval(1.96, c('white', 'gray')),
+              color = styleInterval(1.96, c('black', 'white')))
   
 }
 

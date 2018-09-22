@@ -8,9 +8,18 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-# prevent printing or R code in the output
-knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE)
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- FALSE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE 
+                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
 ```
 
 ```{r import}
@@ -22,13 +31,6 @@ library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
 
-```
-
-This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
-
-```{r}
-# change to 'TRUE' to write out datasets to excel
-write_to_excel <- TRUE
 ```
 
 The employment rate is the percentage of people age 16 and over who are working. The data comes from U.S. Census Bureau, American Fact Finder table S2301. 
@@ -65,7 +67,7 @@ emp_total <- df %>%
          # remove 'PERCENT IMPUTED' rows because these do not reflect counts
          !str_detect(description, 'PERCENT IMPUTED')) %>%
   # only keep the variables that are needed to merge this dataset with the primary dataset
-  select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
+  select(var_name, geo_description, estimate, moe, year)
 
 # remove totals from primary data set and merge in newly created totals data set
 df <- df %>%
@@ -95,40 +97,36 @@ df %>%
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
 ```
+
+#### Interpretation
 
 #### Data
 
 Below is the raw data for employment rates by geographies.
 
-```{r}
+```{r include = to_include}
 total_data <- df %>%
   # only keep total employment rate
   filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over') %>%
   select(geo_description, year, estimate, moe, se, cv)
 
-if (write_to_excel == TRUE) {
-  excel_data <- total_data %>%
+# this represents the final dataset that will be sent to others for visualizations
+tableau_data <- total_data %>%
     # add type of column
     mutate(type = 'Employment Rate',
            subtype = 'Total Population')
-}
 
 # create table
-total_data %>%
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-              colnames = c('Geographic area', 'Year', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
-  # color cv numbers based on value
-    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+ff_data_dt(total_data, c('Geographic area', 'Year', '% Employed', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
 
-```{r}
+```{r include = to_include}
 year_comparison <- c(max(df$year), max(df$year)-1)
 
 df %>%
@@ -147,7 +145,7 @@ df %>%
 
 The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
 
-```{r}
+```{r include = to_include}
 df %>%
   # only keep total employment rate
   filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
@@ -162,71 +160,80 @@ df %>%
 
 #### Plot
 
-The plot below shows Forsyth County's employment rate by ethnicity and year. Many hispanic values are missing due to insufficient data.
+The plots below show employment rate by ethnicity and year. Many hispanic values are missing due to insufficient data.
 
-```{r fig.width=8,fig.height=10}
+```{r}
 ethnicity <- df %>%
   # filter for race
   ff_acs_ethnicity(description)
 
+# line plot of ethnicity with Forsyth and all years
 ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
-    facet_grid(rows = vars(geo_description)) +
-    labs(title = 'Employment rate by ethnicity',
+    #facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Forsyth County employment rate by ethnicity',
          color = 'Ethnicity',
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
 ```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(ethnicity, estimate, fill=geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('Employment rate by ethnicity', ' in ', max(ethnicity$year)),
+       fill = 'Geography',
+         y = 'Percent employed') +
+  theme_minimal()
+```
+
+#### Interpretation
 
 #### Data
 
 The data for ethnicities is as follows.
 
-```{r}
+```{r include = to_include}
 ethnicity_data <- ethnicity  %>%
   select(geo_description, year, ethnicity, estimate, moe, se, cv)
 
-# write out data set to excel only needed
-if (write_to_excel == TRUE) {
-  
-  excel_data <- ethnicity_data %>%
+# add ethnicity information t ofinal datasets
+tableau_data <- ethnicity_data %>%
     # add type of column
     mutate(type = 'Race and Ethnicity',
            subtype = ethnicity) %>%
     # delete ethnicity column since this is now in the subtype column
     select(-ethnicity) %>%
-    bind_rows(excel_data, .)
-}
+    bind_rows(tableau_data, .)
 
-ethnicity_data %>% 
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-            colnames = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
-  # color cv numbers based on value
-  formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+ff_data_dt(ethnicity_data,
+           c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
 
-```{r}
+```{r include = to_include}
 # enter comparison years here
 ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
 
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
-  ff_acs_zscore('estimate', 'se', c('year', 'geo_description', 'ethnicity'))  %>%
-  ff_acs_zscore_kable('Z-scores by year and ethnicity')
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'ethnicity'))
 ```
 
 Below if a table of z-scores for ethnicities in all years within Forsyth County.
 
-```{r}
+```{r include = to_include}
 ethnicity %>%
   filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
@@ -234,13 +241,13 @@ ethnicity %>%
 
 ------
 
-### Forsyth County employment rate by age
+### Employment rate by age
 
 #### Plot
 
-The following plot examines Forsyth County's employment rate by age group.
+The following plots examines the employment rate by age group.
 
-```{r fig.width=8,fig.height=10}
+```{r}
 # some age bins are artificially created; we will need to derive percentages for these bins
 
 # creat bins for age
@@ -294,59 +301,68 @@ age <- age %>%
          perc_employed_cv = round((perc_employed_se / perc_employed) * 100, 2)) %>%
   # data was previously grouped by year and age; ungroup data so it is a normal dataframe
   ungroup()
+```
 
-# add Forsyth back as the geographic unit
-#age$geo_description <- geo_areas
-
+```{r}
+# line plot of age with Forsyth and all years
 age %>%
-    ggplot(aes(year, perc_employed, color = age)) +
+  filter(geo_description=='Forsyth') %>%
+  ggplot(aes(year, perc_employed, color = age)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
-    facet_grid(rows = vars(geo_description)) +
-    labs(title = 'Employment rate by age group',
+    #facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Forsyth County employment rate by age group',
          color = 'Age group',
          y = 'Percent employed') +
     scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
 
 ```
+
+```{r}
+# bar chart of age with all geographies in the most recent year
+age %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(age, perc_employed, fill=geo_description)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Employment rate by age', ' in ', max(age$year)),
+         fill = 'Geography',
+           y = 'Percent employed') +
+    theme_minimal()
+```
+
+#### Interpretation
 
 #### Data
 
 Age data is below.
 
-```{r}
+```{r include = to_include}
 age_data <- age %>%
   # select needed variable, reorder to match primary excel data dataframe, and rename to match primary excel dataframe
   select(geo_description, year, age, estimate = perc_employed, moe = perc_employed_moe, 
          se = perc_employed_se, cv = perc_employed_cv)
 
- # write out data set to excel only needed
-if (write_to_excel == TRUE) {
-  
-  excel_data <- age_data %>%
+# add age data to final dataset
+tableau_data <- age_data %>%
     # add type of column
     mutate(type = 'Age Group',
            subtype = age) %>%
     # delete ethnicity column since this is now in the subtype column
     select(-age) %>%
-    bind_rows(excel_data, .)
-}
+    bind_rows(tableau_data, .)
   
-age_data %>%  
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-              colnames = c('Geographic area', 'Year', 'Age group', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
-  # color cv numbers based on value
-    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+age_data %>%
+  ff_data_dt(c('Geographic area', 'Year', 'Age group', '% Employed', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 The table below highlights z-scores for each age group and geography in the past two years.
 
-```{r}
+```{r include = to_include}
 # enter comparison years here
 age_years <- c(max(age$year), max(age$year)-1)
 
@@ -357,7 +373,7 @@ age %>%
 
 Below is a table of z-scores for all years and ages within Forsyth County.
 
-```{r}
+```{r include = to_include}
 age %>%
   filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'age'))
@@ -365,13 +381,13 @@ age %>%
 
 ------
 
-### Forsyth County employment rate by gender
+### Employment rate by gender
 
 #### Plot
 
-The plot for employment rate by gender is below.
+The plots for employment rate by gender are below.
 
-```{r fig.width=8,fig.height=10}
+```{r}
 # only keep rows related to gender
 
 # gender rows have the following descriptions
@@ -388,52 +404,59 @@ gender <- df %>%
   mutate(gender = str_extract(description, 'Male|Female'))
 
 gender %>%
+  filter(geo_description == 'Forsyth') %>%
     ggplot(aes(year, estimate, color = gender)) +
-    geom_line(size = 1) +
-    # create a seperate plot for each geography
-    facet_grid(rows = vars(geo_description)) +
-    labs(title = 'Employment rate by gender',
-         color = 'Gender',
-         y = 'Percent employed') +
-    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
-                       minor_breaks = NULL) +
-    theme_bw()
-
+      geom_line(size = 1) +
+      # create a seperate plot for each geography
+      #facet_grid(rows = vars(geo_description)) +
+      labs(title = 'Forsyth County employment rate by gender',
+           color = 'Gender',
+           y = 'Percent employed') +
+      scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                         minor_breaks = NULL) +
+      theme_minimal()
 ```
+
+```{r}
+gender %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(gender, estimate, fill=geo_description)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Employment rate by gender', ' in ', max(gender$year)),
+         fill = 'Geography',
+           y = 'Percent employed') +
+    theme_minimal()
+```
+
+#### Interpretation
 
 #### Data
 
 And here is the underlying data.
 
-```{r}
+```{r include = to_include}
 gender_data <- gender %>%
   select(geo_description, year, gender, estimate, moe, se, cv)
 
-# write out data set to excel only needed
-if (write_to_excel == TRUE) {
-  
-    excel_data <- gender_data %>%
+# add gender data to final dataset
+tableau_data <- gender_data %>%
     # add type of column
     mutate(type = 'Gender',
            subtype = gender) %>%
     # delete gender column since this is now in the subtype column
     select(-gender) %>%
-    bind_rows(excel_data, .)
-}
+    bind_rows(tableau_data, .)
 
-gender_data %>%
-  datatable(filter='top', extensions='Buttons', 
-            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
-              colnames = c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
-  # color cv numbers based on value
-    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+ff_data_dt(gender_data,
+           c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
 The table below highlights z-scores for each age group in the past two years.
 
-```{r}
+```{r include = to_include}
 # enter comparison years here
 gender_years <- c(max(gender$year), max(gender$year)-1)
 
@@ -444,20 +467,23 @@ gender %>%
 
 And here are Forsyth County's z-scores for all years.
 
-```{r}
+```{r include = to_include}
 gender %>%
   filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
 ```
 
+### Tableau dataset
 
-Write out excel workbook if needed.
+This is the final dataset that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
 
 ```{r}
 # estimates are percentages displayed in tens (60.45)
 # convert to numbers to decimal percentages (.6045)
-excel_data %>%
+tableau_data %>%
   mutate_at(vars(estimate:se), funs(./100)) %>%
-  # write to excel
-  ff_write_to_excel(., write_to_excel, 'employment.xlsx')
-```
+  # reorder column and do not include unneded columns
+  select(year, geo_description, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Percent Employed'), for_tableau=TRUE)
+``` 
