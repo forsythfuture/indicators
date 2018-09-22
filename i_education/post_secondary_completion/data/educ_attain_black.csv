@@ -1,0 +1,1121 @@
+geo_description,label,year,description,estimate,moe,se,cv
+United States,HD01_VD01,2006,Estimate; Total:,21877084,29283.23,14940.42,0.07
+North Carolina,HD01_VD01,2006,Estimate; Total:,1145348,6585.36,3359.88,0.29
+Durham ,HD01_VD01,2006,Estimate; Total:,55267,921.02,469.91,0.85
+Forsyth ,HD01_VD01,2006,Estimate; Total:,50325,583.83,297.87,0.59
+Guilford ,HD01_VD01,2006,Estimate; Total:,80334,1297.53,662.01,0.82
+United States,HD01_VD02,2006,Estimate; Male:,9947576,23780.94,12133.13,0.12
+North Carolina,HD01_VD02,2006,Estimate; Male:,510949,4911.32,2505.78,0.49
+Durham ,HD01_VD02,2006,Estimate; Male:,23867,689.87,351.97,1.47
+Forsyth ,HD01_VD02,2006,Estimate; Male:,21604,327.66,167.17,0.77
+Guilford ,HD01_VD02,2006,Estimate; Male:,35865,791.15,403.65,1.13
+United States,HD01_VD03,2006,Estimate; Male: - Less than 9th grade,617232,14645.79,7472.34,1.21
+North Carolina,HD01_VD03,2006,Estimate; Male: - Less than 9th grade,35744,3607.83,1840.73,5.15
+Durham ,HD01_VD03,2006,Estimate; Male: - Less than 9th grade,665,434.89,221.88,33.37
+Forsyth ,HD01_VD03,2006,Estimate; Male: - Less than 9th grade,1097,730.38,372.64,33.97
+Guilford ,HD01_VD03,2006,Estimate; Male: - Less than 9th grade,1272,655.32,334.35,26.29
+United States,HD01_VD04,2006,"Estimate; Male: - 9th to 12th grade, no diploma",1551570,23442.55,11960.48,0.77
+North Carolina,HD01_VD04,2006,"Estimate; Male: - 9th to 12th grade, no diploma",85789,4761.19,2429.18,2.83
+Durham ,HD01_VD04,2006,"Estimate; Male: - 9th to 12th grade, no diploma",4365,1307.06,666.87,15.28
+Forsyth ,HD01_VD04,2006,"Estimate; Male: - 9th to 12th grade, no diploma",2914,1137.87,580.55,19.92
+Guilford ,HD01_VD04,2006,"Estimate; Male: - 9th to 12th grade, no diploma",4570,1056.85,539.21,11.8
+United States,HD01_VD05,2006,Estimate; Male: - High school graduate (includes equivalency),3643070,31314.72,15976.9,0.44
+North Carolina,HD01_VD05,2006,Estimate; Male: - High school graduate (includes equivalency),198381,8137.87,4151.97,2.09
+Durham ,HD01_VD05,2006,Estimate; Male: - High school graduate (includes equivalency),9039,1678.81,856.54,9.48
+Forsyth ,HD01_VD05,2006,Estimate; Male: - High school graduate (includes equivalency),8348,1563.23,797.57,9.55
+Guilford ,HD01_VD05,2006,Estimate; Male: - High school graduate (includes equivalency),11440,1766.98,901.52,7.88
+United States,HD01_VD06,2006,"Estimate; Male: - Some college, no degree",1964538,27965.45,14268.09,0.73
+North Carolina,HD01_VD06,2006,"Estimate; Male: - Some college, no degree",92630,6364.94,3247.42,3.51
+Durham ,HD01_VD06,2006,"Estimate; Male: - Some college, no degree",4096,1354.72,691.18,16.87
+Forsyth ,HD01_VD06,2006,"Estimate; Male: - Some college, no degree",3244,1099.74,561.09,17.3
+Guilford ,HD01_VD06,2006,"Estimate; Male: - Some college, no degree",10382,2107.74,1075.38,10.36
+United States,HD01_VD07,2006,Estimate; Male: - Associate's degree,638318,19086.47,9737.99,1.53
+North Carolina,HD01_VD07,2006,Estimate; Male: - Associate's degree,30007,2912,1485.71,4.95
+Durham ,HD01_VD07,2006,Estimate; Male: - Associate's degree,959,582.64,297.27,31
+Forsyth ,HD01_VD07,2006,Estimate; Male: - Associate's degree,1228,774.47,395.14,32.18
+Guilford ,HD01_VD07,2006,Estimate; Male: - Associate's degree,1230,657.7,335.56,27.28
+United States,HD01_VD08,2006,Estimate; Male: - Bachelor's degree,1035172,21411.06,10924.01,1.06
+North Carolina,HD01_VD08,2006,Estimate; Male: - Bachelor's degree,48579,4575.32,2334.35,4.81
+Durham ,HD01_VD08,2006,Estimate; Male: - Bachelor's degree,2823,891.23,454.71,16.11
+Forsyth ,HD01_VD08,2006,Estimate; Male: - Bachelor's degree,4264,1316.6,671.73,15.75
+Guilford ,HD01_VD08,2006,Estimate; Male: - Bachelor's degree,4744,1477.45,753.8,15.89
+United States,HD01_VD09,2006,Estimate; Male: - Graduate degree,497676,12050.72,6148.33,1.24
+North Carolina,HD01_VD09,2006,Estimate; Male: - Graduate degree,19819,2796.43,1426.75,7.2
+Durham ,HD01_VD09,2006,Estimate; Male: - Graduate degree,1920,810.21,413.37,21.53
+Forsyth ,HD01_VD09,2006,Estimate; Male: - Graduate degree,509,383.66,195.74,38.46
+Guilford ,HD01_VD09,2006,Estimate; Male: - Graduate degree,2227,881.7,449.85,20.2
+United States,HD01_VD10,2006,Estimate; Female:,11929508,17329.02,8841.34,0.07
+North Carolina,HD01_VD10,2006,Estimate; Female:,634399,4335.83,2212.16,0.35
+Durham ,HD01_VD10,2006,Estimate; Female:,31400,481.36,245.59,0.78
+Forsyth ,HD01_VD10,2006,Estimate; Female:,28721,488.51,249.24,0.87
+Guilford ,HD01_VD10,2006,Estimate; Female:,44469,714.89,364.74,0.82
+United States,HD01_VD11,2006,Estimate; Female: - Less than 9th grade,685609,13938.04,7111.24,1.04
+North Carolina,HD01_VD11,2006,Estimate; Female: - Less than 9th grade,39406,2870.3,1464.44,3.72
+Durham ,HD01_VD11,2006,Estimate; Female: - Less than 9th grade,1125,569.53,290.58,25.83
+Forsyth ,HD01_VD11,2006,Estimate; Female: - Less than 9th grade,1277,592.17,302.13,23.66
+Guilford ,HD01_VD11,2006,Estimate; Female: - Less than 9th grade,1690,743.49,379.33,22.45
+United States,HD01_VD12,2006,"Estimate; Female: - 9th to 12th grade, no diploma",1644485,23148.26,11810.34,0.72
+North Carolina,HD01_VD12,2006,"Estimate; Female: - 9th to 12th grade, no diploma",89882,5159.15,2632.22,2.93
+Durham ,HD01_VD12,2006,"Estimate; Female: - 9th to 12th grade, no diploma",2556,866.21,441.94,17.29
+Forsyth ,HD01_VD12,2006,"Estimate; Female: - 9th to 12th grade, no diploma",2500,1053.28,537.39,21.5
+Guilford ,HD01_VD12,2006,"Estimate; Female: - 9th to 12th grade, no diploma",4940,1068.77,545.29,11.04
+United States,HD01_VD13,2006,Estimate; Female: - High school graduate (includes equivalency),3830917,33312.85,16996.35,0.44
+North Carolina,HD01_VD13,2006,Estimate; Female: - High school graduate (includes equivalency),204837,8139.06,4152.58,2.03
+Durham ,HD01_VD13,2006,Estimate; Female: - High school graduate (includes equivalency),7555,1662.13,848.03,11.22
+Forsyth ,HD01_VD13,2006,Estimate; Female: - High school graduate (includes equivalency),8077,1820.6,928.88,11.5
+Guilford ,HD01_VD13,2006,Estimate; Female: - High school graduate (includes equivalency),13965,1600.17,816.41,5.85
+United States,HD01_VD14,2006,"Estimate; Female: - Some college, no degree",2671493,29554.89,15079.03,0.56
+North Carolina,HD01_VD14,2006,"Estimate; Female: - Some college, no degree",140612,6960.68,3551.37,2.53
+Durham ,HD01_VD14,2006,"Estimate; Female: - Some college, no degree",7718,1651.4,842.55,10.92
+Forsyth ,HD01_VD14,2006,"Estimate; Female: - Some college, no degree",7670,1464.34,747.11,9.74
+Guilford ,HD01_VD14,2006,"Estimate; Female: - Some college, no degree",10105,1658.55,846.2,8.37
+United States,HD01_VD15,2006,Estimate; Female: - Associate's degree,940566,20006.3,10207.3,1.09
+North Carolina,HD01_VD15,2006,Estimate; Female: - Associate's degree,53422,4640.85,2367.78,4.43
+Durham ,HD01_VD15,2006,Estimate; Female: - Associate's degree,2651,1134.3,578.72,21.83
+Forsyth ,HD01_VD15,2006,Estimate; Female: - Associate's degree,1744,809.02,412.77,23.67
+Guilford ,HD01_VD15,2006,Estimate; Female: - Associate's degree,3544,1146.21,584.8,16.5
+United States,HD01_VD16,2006,Estimate; Female: - Bachelor's degree,1408401,22663.32,11562.92,0.82
+North Carolina,HD01_VD16,2006,Estimate; Female: - Bachelor's degree,77861,5725.11,2920.97,3.75
+Durham ,HD01_VD16,2006,Estimate; Female: - Bachelor's degree,6881,1473.87,751.97,10.93
+Forsyth ,HD01_VD16,2006,Estimate; Female: - Bachelor's degree,6013,1384.51,706.38,11.75
+Guilford ,HD01_VD16,2006,Estimate; Female: - Bachelor's degree,6830,1706.21,870.52,12.75
+United States,HD01_VD17,2006,Estimate; Female: - Graduate degree,748037,16500.94,8418.85,1.13
+North Carolina,HD01_VD17,2006,Estimate; Female: - Graduate degree,28379,2891.74,1475.38,5.2
+Durham ,HD01_VD17,2006,Estimate; Female: - Graduate degree,2914,1035.4,528.27,18.13
+Forsyth ,HD01_VD17,2006,Estimate; Female: - Graduate degree,1440,654.13,333.74,23.18
+Guilford ,HD01_VD17,2006,Estimate; Female: - Graduate degree,3395,1085.45,553.8,16.31
+United States,HD01_VD01,2007,Estimate; Total:,22171628,35691.06,18209.72,0.08
+North Carolina,HD01_VD01,2007,Estimate; Total:,1171804,7383.66,3767.17,0.32
+Durham ,HD01_VD01,2007,Estimate; Total:,56920,955.57,487.54,0.86
+Forsyth ,HD01_VD01,2007,Estimate; Total:,52073,475.4,242.55,0.47
+Guilford ,HD01_VD01,2007,Estimate; Total:,84413,922.21,470.52,0.56
+United States,HD01_VD02,2007,Estimate; Male:,10088053,26243.74,13389.66,0.13
+North Carolina,HD01_VD02,2007,Estimate; Male:,521680,5524.94,2818.85,0.54
+Durham ,HD01_VD02,2007,Estimate; Male:,24494,636.26,324.62,1.33
+Forsyth ,HD01_VD02,2007,Estimate; Male:,22198,308.6,157.45,0.71
+Guilford ,HD01_VD02,2007,Estimate; Male:,37418,617.19,314.89,0.84
+United States,HD01_VD03,2007,Estimate; Male: - Less than 9th grade,598529,14973.45,7639.52,1.28
+North Carolina,HD01_VD03,2007,Estimate; Male: - Less than 9th grade,32193,3121.7,1592.7,4.95
+Durham ,HD01_VD03,2007,Estimate; Male: - Less than 9th grade,1364,660.09,336.78,24.69
+Forsyth ,HD01_VD03,2007,Estimate; Male: - Less than 9th grade,610,324.09,165.35,27.11
+Guilford ,HD01_VD03,2007,Estimate; Male: - Less than 9th grade,1360,691.06,352.58,25.92
+United States,HD01_VD04,2007,"Estimate; Male: - 9th to 12th grade, no diploma",1510016,20659.23,10540.42,0.7
+North Carolina,HD01_VD04,2007,"Estimate; Male: - 9th to 12th grade, no diploma",77060,5596.43,2855.32,3.71
+Durham ,HD01_VD04,2007,"Estimate; Male: - 9th to 12th grade, no diploma",2203,792.34,404.26,18.35
+Forsyth ,HD01_VD04,2007,"Estimate; Male: - 9th to 12th grade, no diploma",2287,1129.53,576.29,25.2
+Guilford ,HD01_VD04,2007,"Estimate; Male: - 9th to 12th grade, no diploma",5735,1390.47,709.42,12.37
+United States,HD01_VD05,2007,Estimate; Male: - High school graduate (includes equivalency),3713686,35202.55,17960.48,0.48
+North Carolina,HD01_VD05,2007,Estimate; Male: - High school graduate (includes equivalency),204013,8438.13,4305.17,2.11
+Durham ,HD01_VD05,2007,Estimate; Male: - High school graduate (includes equivalency),6729,1447.66,738.6,10.98
+Forsyth ,HD01_VD05,2007,Estimate; Male: - High school graduate (includes equivalency),8254,1553.7,792.7,9.6
+Guilford ,HD01_VD05,2007,Estimate; Male: - High school graduate (includes equivalency),13464,2060.09,1051.07,7.81
+United States,HD01_VD06,2007,"Estimate; Male: - Some college, no degree",2033224,28835.23,14711.85,0.72
+North Carolina,HD01_VD06,2007,"Estimate; Male: - Some college, no degree",99784,6834.38,3486.93,3.49
+Durham ,HD01_VD06,2007,"Estimate; Male: - Some college, no degree",5966,1216.51,620.67,10.4
+Forsyth ,HD01_VD06,2007,"Estimate; Male: - Some college, no degree",5921,1494.13,762.31,12.87
+Guilford ,HD01_VD06,2007,"Estimate; Male: - Some college, no degree",8346,1832.51,934.95,11.2
+United States,HD01_VD07,2007,Estimate; Male: - Associate's degree,642946,19641.7,10021.28,1.56
+North Carolina,HD01_VD07,2007,Estimate; Male: - Associate's degree,31897,3354.04,1711.24,5.36
+Durham ,HD01_VD07,2007,Estimate; Male: - Associate's degree,1367,714.89,364.74,26.68
+Forsyth ,HD01_VD07,2007,Estimate; Male: - Associate's degree,1016,596.94,304.56,29.98
+Guilford ,HD01_VD07,2007,Estimate; Male: - Associate's degree,1137,697.02,355.62,31.28
+United States,HD01_VD08,2007,Estimate; Male: - Bachelor's degree,1079758,19947.91,10177.51,0.94
+North Carolina,HD01_VD08,2007,Estimate; Male: - Bachelor's degree,53818,4761.19,2429.18,4.51
+Durham ,HD01_VD08,2007,Estimate; Male: - Bachelor's degree,4549,1394.04,711.24,15.64
+Forsyth ,HD01_VD08,2007,Estimate; Male: - Bachelor's degree,3171,1165.28,594.53,18.75
+Guilford ,HD01_VD08,2007,Estimate; Male: - Bachelor's degree,5366,1695.49,865.05,16.12
+United States,HD01_VD09,2007,Estimate; Male: - Graduate degree,509894,13261.28,6765.96,1.33
+North Carolina,HD01_VD09,2007,Estimate; Male: - Graduate degree,22915,3606.64,1840.12,8.03
+Durham ,HD01_VD09,2007,Estimate; Male: - Graduate degree,2316,1060.43,541.04,23.36
+Forsyth ,HD01_VD09,2007,Estimate; Male: - Graduate degree,939,571.91,291.79,31.07
+Guilford ,HD01_VD09,2007,Estimate; Male: - Graduate degree,2010,840,428.57,21.32
+United States,HD01_VD10,2007,Estimate; Female:,12083575,22383.32,11420.06,0.09
+North Carolina,HD01_VD10,2007,Estimate; Female:,650124,4923.23,2511.85,0.39
+Durham ,HD01_VD10,2007,Estimate; Female:,32426,589.79,300.91,0.93
+Forsyth ,HD01_VD10,2007,Estimate; Female:,29875,293.11,149.55,0.5
+Guilford ,HD01_VD10,2007,Estimate; Female:,46995,505.19,257.75,0.55
+United States,HD01_VD11,2007,Estimate; Female: - Less than 9th grade,652403,13745.02,7012.77,1.07
+North Carolina,HD01_VD11,2007,Estimate; Female: - Less than 9th grade,37316,3455.32,1762.92,4.72
+Durham ,HD01_VD11,2007,Estimate; Female: - Less than 9th grade,692,408.68,208.51,30.13
+Forsyth ,HD01_VD11,2007,Estimate; Female: - Less than 9th grade,963,434.89,221.88,23.04
+Guilford ,HD01_VD11,2007,Estimate; Female: - Less than 9th grade,1872,905.53,462.01,24.68
+United States,HD01_VD12,2007,"Estimate; Female: - 9th to 12th grade, no diploma",1641918,22546.55,11503.34,0.7
+North Carolina,HD01_VD12,2007,"Estimate; Female: - 9th to 12th grade, no diploma",86753,5546.38,2829.79,3.26
+Durham ,HD01_VD12,2007,"Estimate; Female: - 9th to 12th grade, no diploma",4241,1327.32,677.2,15.97
+Forsyth ,HD01_VD12,2007,"Estimate; Female: - 9th to 12th grade, no diploma",3022,1197.45,610.94,20.22
+Guilford ,HD01_VD12,2007,"Estimate; Female: - 9th to 12th grade, no diploma",5259,1504.85,767.78,14.6
+United States,HD01_VD13,2007,Estimate; Female: - High school graduate (includes equivalency),3899360,37298.38,19029.79,0.49
+North Carolina,HD01_VD13,2007,Estimate; Female: - High school graduate (includes equivalency),213762,8420.26,4296.05,2.01
+Durham ,HD01_VD13,2007,Estimate; Female: - High school graduate (includes equivalency),6992,1764.6,900.31,12.88
+Forsyth ,HD01_VD13,2007,Estimate; Female: - High school graduate (includes equivalency),10027,1738.38,886.93,8.85
+Guilford ,HD01_VD13,2007,Estimate; Female: - High school graduate (includes equivalency),14815,2097.02,1069.91,7.22
+United States,HD01_VD14,2007,"Estimate; Female: - Some college, no degree",2675417,33173.45,16925.23,0.63
+North Carolina,HD01_VD14,2007,"Estimate; Female: - Some college, no degree",138545,7481.36,3817.02,2.76
+Durham ,HD01_VD14,2007,"Estimate; Female: - Some college, no degree",7213,1739.57,887.54,12.3
+Forsyth ,HD01_VD14,2007,"Estimate; Female: - Some college, no degree",5789,1267.74,646.81,11.17
+Guilford ,HD01_VD14,2007,"Estimate; Female: - Some college, no degree",9086,2119.66,1081.46,11.9
+United States,HD01_VD15,2007,Estimate; Female: - Associate's degree,977064,16998.98,8672.95,0.89
+North Carolina,HD01_VD15,2007,Estimate; Female: - Associate's degree,55527,4664.68,2379.94,4.29
+Durham ,HD01_VD15,2007,Estimate; Female: - Associate's degree,2472,1056.85,539.21,21.81
+Forsyth ,HD01_VD15,2007,Estimate; Female: - Associate's degree,2259,962.72,491.18,21.74
+Guilford ,HD01_VD15,2007,Estimate; Female: - Associate's degree,2468,1044.94,533.13,21.6
+United States,HD01_VD16,2007,Estimate; Female: - Bachelor's degree,1454689,20179.06,10295.44,0.71
+North Carolina,HD01_VD16,2007,Estimate; Female: - Bachelor's degree,82758,5165.11,2635.26,3.18
+Durham ,HD01_VD16,2007,Estimate; Female: - Bachelor's degree,7788,1615.66,824.32,10.58
+Forsyth ,HD01_VD16,2007,Estimate; Female: - Bachelor's degree,5626,1292.77,659.58,11.72
+Guilford ,HD01_VD16,2007,Estimate; Female: - Bachelor's degree,8964,1833.7,935.56,10.44
+United States,HD01_VD17,2007,Estimate; Female: - Graduate degree,782724,14125.11,7206.69,0.92
+North Carolina,HD01_VD17,2007,Estimate; Female: - Graduate degree,35463,3259.91,1663.22,4.69
+Durham ,HD01_VD17,2007,Estimate; Female: - Graduate degree,3028,1012.77,516.72,17.06
+Forsyth ,HD01_VD17,2007,Estimate; Female: - Graduate degree,2189,836.43,426.75,19.5
+Guilford ,HD01_VD17,2007,Estimate; Female: - Graduate degree,4531,1514.38,772.64,17.05
+United States,HD01_VD01,2008,Estimate; Total:,22610676,37736.85,19253.49,0.09
+North Carolina,HD01_VD01,2008,Estimate; Total:,1203197,7225.19,3686.32,0.31
+Durham ,HD01_VD01,2008,Estimate; Total:,58693,999.66,510.03,0.87
+Forsyth ,HD01_VD01,2008,Estimate; Total:,52920,403.91,206.08,0.39
+Guilford ,HD01_VD01,2008,Estimate; Total:,87455,1190.3,607.3,0.69
+United States,HD01_VD02,2008,Estimate; Male:,10298348,28059.57,14316.11,0.14
+North Carolina,HD01_VD02,2008,Estimate; Male:,534101,5856.17,2987.84,0.56
+Durham ,HD01_VD02,2008,Estimate; Male:,25524,588.6,300.31,1.18
+Forsyth ,HD01_VD02,2008,Estimate; Male:,22611,390.81,199.39,0.88
+Guilford ,HD01_VD02,2008,Estimate; Male:,38916,775.66,395.74,1.02
+United States,HD01_VD03,2008,Estimate; Male: - Less than 9th grade,631948,17058.55,8703.34,1.38
+North Carolina,HD01_VD03,2008,Estimate; Male: - Less than 9th grade,35905,3933.11,2006.69,5.59
+Durham ,HD01_VD03,2008,Estimate; Male: - Less than 9th grade,1743,824.51,420.67,24.13
+Forsyth ,HD01_VD03,2008,Estimate; Male: - Less than 9th grade,875,574.3,293.01,33.49
+Guilford ,HD01_VD03,2008,Estimate; Male: - Less than 9th grade,2136,934.13,476.6,22.31
+United States,HD01_VD04,2008,"Estimate; Male: - 9th to 12th grade, no diploma",1506459,25724.26,13124.62,0.87
+North Carolina,HD01_VD04,2008,"Estimate; Male: - 9th to 12th grade, no diploma",86887,6270.81,3199.39,3.68
+Durham ,HD01_VD04,2008,"Estimate; Male: - 9th to 12th grade, no diploma",3826,1029.45,525.23,13.73
+Forsyth ,HD01_VD04,2008,"Estimate; Male: - 9th to 12th grade, no diploma",2607,1035.4,528.27,20.26
+Guilford ,HD01_VD04,2008,"Estimate; Male: - 9th to 12th grade, no diploma",5184,1714.55,874.77,16.87
+United States,HD01_VD05,2008,Estimate; Male: - Regular high school diploma,2966685,38620.94,19704.56,0.66
+North Carolina,HD01_VD05,2008,Estimate; Male: - Regular high school diploma,162284,6963.06,3552.58,2.19
+Durham ,HD01_VD05,2008,Estimate; Male: - Regular high school diploma,5607,1143.83,583.59,10.41
+Forsyth ,HD01_VD05,2008,Estimate; Male: - Regular high school diploma,8068,1680,857.14,10.62
+Guilford ,HD01_VD05,2008,Estimate; Male: - Regular high school diploma,12815,1951.66,995.74,7.77
+United States,HD01_VD06,2008,Estimate; Male: - GED or alternative credential,568379,16193.53,8262.01,1.45
+North Carolina,HD01_VD06,2008,Estimate; Male: - GED or alternative credential,27346,3215.83,1640.73,6
+Durham ,HD01_VD06,2008,Estimate; Male: - GED or alternative credential,1453,626.72,319.76,22.01
+Forsyth ,HD01_VD06,2008,Estimate; Male: - GED or alternative credential,1117,520.68,265.65,23.78
+Guilford ,HD01_VD06,2008,Estimate; Male: - GED or alternative credential,1465,676.77,345.29,23.57
+United States,HD01_VD07,2008,"Estimate; Male: - Some college, no degree",2344414,28548.09,14565.35,0.62
+North Carolina,HD01_VD07,2008,"Estimate; Male: - Some college, no degree",117151,7567.15,3860.79,3.3
+Durham ,HD01_VD07,2008,"Estimate; Male: - Some college, no degree",6534,1554.89,793.31,12.14
+Forsyth ,HD01_VD07,2008,"Estimate; Male: - Some college, no degree",4939,1621.62,827.36,16.75
+Guilford ,HD01_VD07,2008,"Estimate; Male: - Some college, no degree",10286,1988.6,1014.59,9.86
+United States,HD01_VD08,2008,Estimate; Male: - Associate's degree,654326,16699.91,8520.36,1.3
+North Carolina,HD01_VD08,2008,Estimate; Male: - Associate's degree,32045,3248,1657.14,5.17
+Durham ,HD01_VD08,2008,Estimate; Male: - Associate's degree,1276,676.77,345.29,27.06
+Forsyth ,HD01_VD08,2008,Estimate; Male: - Associate's degree,1153,677.96,345.9,30
+Guilford ,HD01_VD08,2008,Estimate; Male: - Associate's degree,1328,664.85,339.21,25.54
+United States,HD01_VD09,2008,Estimate; Male: - Bachelor's degree,1094250,24491.06,12495.44,1.14
+North Carolina,HD01_VD09,2008,Estimate; Male: - Bachelor's degree,52487,5166.3,2635.87,5.02
+Durham ,HD01_VD09,2008,Estimate; Male: - Bachelor's degree,3177,917.45,468.09,14.73
+Forsyth ,HD01_VD09,2008,Estimate; Male: - Bachelor's degree,3206,1147.4,585.41,18.26
+Guilford ,HD01_VD09,2008,Estimate; Male: - Bachelor's degree,3996,1239.15,632.22,15.82
+United States,HD01_VD10,2008,Estimate; Male: - Graduate degree,531887,14500.43,7398.18,1.39
+North Carolina,HD01_VD10,2008,Estimate; Male: - Graduate degree,19996,2758.3,1407.3,7.04
+Durham ,HD01_VD10,2008,Estimate; Male: - Graduate degree,1908,873.36,445.59,23.35
+Forsyth ,HD01_VD10,2008,Estimate; Male: - Graduate degree,646,538.55,274.77,42.53
+Guilford ,HD01_VD10,2008,Estimate; Male: - Graduate degree,1706,817.36,417.02,24.44
+United States,HD01_VD11,2008,Estimate; Female:,12312328,23234.04,11854.1,0.1
+North Carolina,HD01_VD11,2008,Estimate; Female:,669096,4441.87,2266.26,0.34
+Durham ,HD01_VD11,2008,Estimate; Female:,33169,728,371.43,1.12
+Forsyth ,HD01_VD11,2008,Estimate; Female:,30309,322.89,164.74,0.54
+Guilford ,HD01_VD11,2008,Estimate; Female:,48539,643.4,328.27,0.68
+United States,HD01_VD12,2008,Estimate; Female: - Less than 9th grade,689089,16584.34,8461.4,1.23
+North Carolina,HD01_VD12,2008,Estimate; Female: - Less than 9th grade,40601,3421.96,1745.9,4.3
+Durham ,HD01_VD12,2008,Estimate; Female: - Less than 9th grade,1048,560,285.71,27.26
+Forsyth ,HD01_VD12,2008,Estimate; Female: - Less than 9th grade,933,545.7,278.42,29.84
+Guilford ,HD01_VD12,2008,Estimate; Female: - Less than 9th grade,2159,577.87,294.83,13.66
+United States,HD01_VD13,2008,"Estimate; Female: - 9th to 12th grade, no diploma",1546192,21754.21,11099.09,0.72
+North Carolina,HD01_VD13,2008,"Estimate; Female: - 9th to 12th grade, no diploma",85176,5851.4,2985.41,3.5
+Durham ,HD01_VD13,2008,"Estimate; Female: - 9th to 12th grade, no diploma",3147,1288,657.14,20.88
+Forsyth ,HD01_VD13,2008,"Estimate; Female: - 9th to 12th grade, no diploma",3531,1224.85,624.92,17.7
+Guilford ,HD01_VD13,2008,"Estimate; Female: - 9th to 12th grade, no diploma",3825,1401.19,714.89,18.69
+United States,HD01_VD14,2008,Estimate; Female: - Regular high school diploma,3132057,39956.6,20386.02,0.65
+North Carolina,HD01_VD14,2008,Estimate; Female: - Regular high school diploma,169393,7689.87,3923.4,2.32
+Durham ,HD01_VD14,2008,Estimate; Female: - Regular high school diploma,5808,1646.64,840.12,14.46
+Forsyth ,HD01_VD14,2008,Estimate; Female: - Regular high school diploma,8609,1964.77,1002.43,11.64
+Guilford ,HD01_VD14,2008,Estimate; Female: - Regular high school diploma,13769,1936.17,987.84,7.17
+United States,HD01_VD15,2008,Estimate; Female: - GED or alternative credential,442849,14542.13,7419.45,1.68
+North Carolina,HD01_VD15,2008,Estimate; Female: - GED or alternative credential,22765,2572.43,1312.46,5.77
+Durham ,HD01_VD15,2008,Estimate; Female: - GED or alternative credential,729,571.91,291.79,40.03
+Forsyth ,HD01_VD15,2008,Estimate; Female: - GED or alternative credential,1438,816.17,416.41,28.96
+Guilford ,HD01_VD15,2008,Estimate; Female: - GED or alternative credential,1620,781.62,398.79,24.62
+United States,HD01_VD16,2008,"Estimate; Female: - Some college, no degree",3139721,26462.98,13501.52,0.43
+North Carolina,HD01_VD16,2008,"Estimate; Female: - Some college, no degree",174987,7974.64,4068.69,2.33
+Durham ,HD01_VD16,2008,"Estimate; Female: - Some college, no degree",7282,1813.45,925.23,12.71
+Forsyth ,HD01_VD16,2008,"Estimate; Female: - Some college, no degree",7208,1562.04,796.96,11.06
+Guilford ,HD01_VD16,2008,"Estimate; Female: - Some college, no degree",13275,1980.26,1010.34,7.61
+United States,HD01_VD17,2008,Estimate; Female: - Associate's degree,1022740,24470.81,12485.11,1.22
+North Carolina,HD01_VD17,2008,Estimate; Female: - Associate's degree,54532,4872,2485.71,4.56
+Durham ,HD01_VD17,2008,Estimate; Female: - Associate's degree,3691,1302.3,664.44,18
+Forsyth ,HD01_VD17,2008,Estimate; Female: - Associate's degree,1813,981.79,500.91,27.63
+Guilford ,HD01_VD17,2008,Estimate; Female: - Associate's degree,2492,949.62,484.5,19.44
+United States,HD01_VD18,2008,Estimate; Female: - Bachelor's degree,1509835,25973.28,13251.67,0.88
+North Carolina,HD01_VD18,2008,Estimate; Female: - Bachelor's degree,86462,5819.23,2968.99,3.43
+Durham ,HD01_VD18,2008,Estimate; Female: - Bachelor's degree,7037,1589.45,810.94,11.52
+Forsyth ,HD01_VD18,2008,Estimate; Female: - Bachelor's degree,4819,1340.43,683.89,14.19
+Guilford ,HD01_VD18,2008,Estimate; Female: - Bachelor's degree,8305,1739.57,887.54,10.69
+United States,HD01_VD19,2008,Estimate; Female: - Graduate degree,829845,19423.66,9910.03,1.19
+North Carolina,HD01_VD19,2008,Estimate; Female: - Graduate degree,35180,3337.36,1702.73,4.84
+Durham ,HD01_VD19,2008,Estimate; Female: - Graduate degree,4427,1348.77,688.15,15.54
+Forsyth ,HD01_VD19,2008,Estimate; Female: - Graduate degree,1958,753.02,384.19,19.62
+Guilford ,HD01_VD19,2008,Estimate; Female: - Graduate degree,3094,996.09,508.21,16.43
+United States,HD01_VD01,2009,Estimate; Total:,22975410,33835.91,17263.22,0.08
+North Carolina,HD01_VD01,2009,Estimate; Total:,1208179,8644.26,4410.34,0.37
+Durham ,HD01_VD01,2009,Estimate; Total:,60566,1392.85,710.64,1.17
+Forsyth ,HD01_VD01,2009,Estimate; Total:,55056,836.43,426.75,0.78
+Guilford ,HD01_VD01,2009,Estimate; Total:,89521,1168.85,596.35,0.67
+United States,HD01_VD02,2009,Estimate; Male:,10467310,23689.19,12086.32,0.12
+North Carolina,HD01_VD02,2009,Estimate; Male:,539232,6957.11,3549.55,0.66
+Durham ,HD01_VD02,2009,Estimate; Male:,25960,930.55,474.77,1.83
+Forsyth ,HD01_VD02,2009,Estimate; Male:,23431,711.32,362.92,1.55
+Guilford ,HD01_VD02,2009,Estimate; Male:,39693,637.45,325.23,0.82
+United States,HD01_VD03,2009,Estimate; Male: - Less than 9th grade,613450,13783.15,7032.22,1.15
+North Carolina,HD01_VD03,2009,Estimate; Male: - Less than 9th grade,37434,3918.81,1999.39,5.34
+Durham ,HD01_VD03,2009,Estimate; Male: - Less than 9th grade,1235,638.64,325.84,26.38
+Forsyth ,HD01_VD03,2009,Estimate; Male: - Less than 9th grade,949,579.06,295.44,31.13
+Guilford ,HD01_VD03,2009,Estimate; Male: - Less than 9th grade,2237,851.91,434.65,19.43
+United States,HD01_VD04,2009,"Estimate; Male: - 9th to 12th grade, no diploma",1484950,27237.45,13896.66,0.94
+North Carolina,HD01_VD04,2009,"Estimate; Male: - 9th to 12th grade, no diploma",80662,5793.02,2955.62,3.66
+Durham ,HD01_VD04,2009,"Estimate; Male: - 9th to 12th grade, no diploma",4115,1096.17,559.27,13.59
+Forsyth ,HD01_VD04,2009,"Estimate; Male: - 9th to 12th grade, no diploma",2451,710.13,362.31,14.78
+Guilford ,HD01_VD04,2009,"Estimate; Male: - 9th to 12th grade, no diploma",4736,1440.51,734.95,15.52
+United States,HD01_VD05,2009,Estimate; Male: - Regular high school diploma,3049290,36566.81,18656.54,0.61
+North Carolina,HD01_VD05,2009,Estimate; Male: - Regular high school diploma,159532,6623.49,3379.33,2.12
+Durham ,HD01_VD05,2009,Estimate; Male: - Regular high school diploma,3636,1272.51,649.24,17.86
+Forsyth ,HD01_VD05,2009,Estimate; Male: - Regular high school diploma,7214,1570.38,801.21,11.11
+Guilford ,HD01_VD05,2009,Estimate; Male: - Regular high school diploma,10841,1739.57,887.54,8.19
+United States,HD01_VD06,2009,Estimate; Male: - GED or alternative credential,581769,16990.64,8668.69,1.49
+North Carolina,HD01_VD06,2009,Estimate; Male: - GED or alternative credential,27178,3836.6,1957.45,7.2
+Durham ,HD01_VD06,2009,Estimate; Male: - GED or alternative credential,2304,1124.77,573.86,24.91
+Forsyth ,HD01_VD06,2009,Estimate; Male: - GED or alternative credential,757,521.87,266.26,35.17
+Guilford ,HD01_VD06,2009,Estimate; Male: - GED or alternative credential,2031,1093.79,558.06,27.48
+United States,HD01_VD07,2009,"Estimate; Male: - Some college, no degree",2442161,31906.89,16279.03,0.67
+North Carolina,HD01_VD07,2009,"Estimate; Male: - Some college, no degree",119025,5741.79,2929.48,2.46
+Durham ,HD01_VD07,2009,"Estimate; Male: - Some college, no degree",6674,1610.89,821.88,12.31
+Forsyth ,HD01_VD07,2009,"Estimate; Male: - Some college, no degree",6263,1324.94,675.99,10.79
+Guilford ,HD01_VD07,2009,"Estimate; Male: - Some college, no degree",10051,1970.72,1005.47,10
+United States,HD01_VD08,2009,Estimate; Male: - Associate's degree,663605,18670.64,9525.84,1.44
+North Carolina,HD01_VD08,2009,Estimate; Male: - Associate's degree,35028,4991.15,2546.51,7.27
+Durham ,HD01_VD08,2009,Estimate; Male: - Associate's degree,1249,629.11,320.97,25.7
+Forsyth ,HD01_VD08,2009,Estimate; Male: - Associate's degree,1024,596.94,304.56,29.74
+Guilford ,HD01_VD08,2009,Estimate; Male: - Associate's degree,2296,1322.55,674.77,29.39
+United States,HD01_VD09,2009,Estimate; Male: - Bachelor's degree,1104074,22849.19,11657.75,1.06
+North Carolina,HD01_VD09,2009,Estimate; Male: - Bachelor's degree,57661,5272.34,2689.97,4.67
+Durham ,HD01_VD09,2009,Estimate; Male: - Bachelor's degree,4445,1464.34,747.11,16.81
+Forsyth ,HD01_VD09,2009,Estimate; Male: - Bachelor's degree,4063,1411.91,720.36,17.73
+Guilford ,HD01_VD09,2009,Estimate; Male: - Bachelor's degree,5482,1257.02,641.34,11.7
+United States,HD01_VD10,2009,Estimate; Male: - Graduate degree,528011,14271.66,7281.46,1.38
+North Carolina,HD01_VD10,2009,Estimate; Male: - Graduate degree,22712,2723.74,1389.66,6.12
+Durham ,HD01_VD10,2009,Estimate; Male: - Graduate degree,2302,842.38,429.79,18.67
+Forsyth ,HD01_VD10,2009,Estimate; Male: - Graduate degree,710,375.32,191.49,26.97
+Guilford ,HD01_VD10,2009,Estimate; Male: - Graduate degree,2019,975.83,497.87,24.66
+United States,HD01_VD11,2009,Estimate; Female:,12508100,20261.28,10337.39,0.08
+North Carolina,HD01_VD11,2009,Estimate; Female:,668947,4736.17,2416.41,0.36
+Durham ,HD01_VD11,2009,Estimate; Female:,34606,961.53,490.58,1.42
+Forsyth ,HD01_VD11,2009,Estimate; Female:,31625,330.04,168.39,0.53
+Guilford ,HD01_VD11,2009,Estimate; Female:,49828,787.57,401.82,0.81
+United States,HD01_VD12,2009,Estimate; Female: - Less than 9th grade,655559,14756.6,7528.88,1.15
+North Carolina,HD01_VD12,2009,Estimate; Female: - Less than 9th grade,34319,3125.28,1594.53,4.65
+Durham ,HD01_VD12,2009,Estimate; Female: - Less than 9th grade,1259,747.06,381.15,30.27
+Forsyth ,HD01_VD12,2009,Estimate; Female: - Less than 9th grade,1332,661.28,337.39,25.33
+Guilford ,HD01_VD12,2009,Estimate; Female: - Less than 9th grade,1359,729.19,372.04,27.38
+United States,HD01_VD13,2009,"Estimate; Female: - 9th to 12th grade, no diploma",1524025,21669.62,11055.93,0.73
+North Carolina,HD01_VD13,2009,"Estimate; Female: - 9th to 12th grade, no diploma",85246,4948.26,2524.62,2.96
+Durham ,HD01_VD13,2009,"Estimate; Female: - 9th to 12th grade, no diploma",4001,1278.47,652.28,16.3
+Forsyth ,HD01_VD13,2009,"Estimate; Female: - 9th to 12th grade, no diploma",2989,1218.89,621.88,20.81
+Guilford ,HD01_VD13,2009,"Estimate; Female: - 9th to 12th grade, no diploma",4805,1211.74,618.23,12.87
+United States,HD01_VD14,2009,Estimate; Female: - Regular high school diploma,3192533,34977.36,17845.59,0.56
+North Carolina,HD01_VD14,2009,Estimate; Female: - Regular high school diploma,164263,6952.34,3547.11,2.16
+Durham ,HD01_VD14,2009,Estimate; Female: - Regular high school diploma,5833,1342.81,685.11,11.75
+Forsyth ,HD01_VD14,2009,Estimate; Female: - Regular high school diploma,8040,1478.64,754.41,9.38
+Guilford ,HD01_VD14,2009,Estimate; Female: - Regular high school diploma,12302,2244.77,1145.29,9.31
+United States,HD01_VD15,2009,Estimate; Female: - GED or alternative credential,439153,13447.15,6860.79,1.56
+North Carolina,HD01_VD15,2009,Estimate; Female: - GED or alternative credential,20217,2514.04,1282.67,6.34
+Durham ,HD01_VD15,2009,Estimate; Female: - GED or alternative credential,571,358.64,182.98,32.05
+Forsyth ,HD01_VD15,2009,Estimate; Female: - GED or alternative credential,794,581.45,296.66,37.36
+Guilford ,HD01_VD15,2009,Estimate; Female: - GED or alternative credential,1863,878.13,448.03,24.05
+United States,HD01_VD16,2009,"Estimate; Female: - Some college, no degree",3278211,30985.87,15809.12,0.48
+North Carolina,HD01_VD16,2009,"Estimate; Female: - Some college, no degree",172423,6905.87,3523.4,2.04
+Durham ,HD01_VD16,2009,"Estimate; Female: - Some college, no degree",8318,1583.49,807.9,9.71
+Forsyth ,HD01_VD16,2009,"Estimate; Female: - Some college, no degree",9917,1631.15,832.22,8.39
+Guilford ,HD01_VD16,2009,"Estimate; Female: - Some college, no degree",14211,2250.72,1148.33,8.08
+United States,HD01_VD17,2009,Estimate; Female: - Associate's degree,1010597,18673.02,9527.05,0.94
+North Carolina,HD01_VD17,2009,Estimate; Female: - Associate's degree,62615,4495.49,2293.62,3.66
+Durham ,HD01_VD17,2009,Estimate; Female: - Associate's degree,2566,1089.02,555.62,21.65
+Forsyth ,HD01_VD17,2009,Estimate; Female: - Associate's degree,1584,780.43,398.18,25.14
+Guilford ,HD01_VD17,2009,Estimate; Female: - Associate's degree,3471,1379.74,703.95,20.28
+United States,HD01_VD18,2009,Estimate; Female: - Bachelor's degree,1531439,24133.62,12313.07,0.8
+North Carolina,HD01_VD18,2009,Estimate; Female: - Bachelor's degree,87654,4774.3,2435.87,2.78
+Durham ,HD01_VD18,2009,Estimate; Female: - Bachelor's degree,8318,1529.87,780.55,9.38
+Forsyth ,HD01_VD18,2009,Estimate; Female: - Bachelor's degree,4524,1199.83,612.16,13.53
+Guilford ,HD01_VD18,2009,Estimate; Female: - Bachelor's degree,8691,1662.13,848.03,9.76
+United States,HD01_VD19,2009,Estimate; Female: - Graduate degree,876583,18606.3,9493.01,1.08
+North Carolina,HD01_VD19,2009,Estimate; Female: - Graduate degree,42210,4068.94,2075.99,4.92
+Durham ,HD01_VD19,2009,Estimate; Female: - Graduate degree,3740,1152.17,587.84,15.72
+Forsyth ,HD01_VD19,2009,Estimate; Female: - Graduate degree,2445,930.55,474.77,19.42
+Guilford ,HD01_VD19,2009,Estimate; Female: - Graduate degree,3126,922.21,470.52,15.05
+United States,HD01_VD01,2010,Estimate; Total:,23530646,37878.64,19325.84,0.08
+North Carolina,HD01_VD01,2010,Estimate; Total:,1267686,8515.57,4344.68,0.34
+Durham ,HD01_VD01,2010,Estimate; Total:,61896,1120,571.43,0.92
+Forsyth ,HD01_VD01,2010,Estimate; Total:,55550,1012.77,516.72,0.93
+Guilford ,HD01_VD01,2010,Estimate; Total:,91902,1413.11,720.97,0.78
+United States,HD01_VD02,2010,Estimate; Male:,10745175,26479.66,13510.03,0.13
+North Carolina,HD01_VD02,2010,Estimate; Male:,563953,5281.87,2694.83,0.48
+Durham ,HD01_VD02,2010,Estimate; Male:,26211,792.34,404.26,1.54
+Forsyth ,HD01_VD02,2010,Estimate; Male:,24050,595.74,303.95,1.26
+Guilford ,HD01_VD02,2010,Estimate; Male:,40026,1118.81,570.82,1.43
+United States,HD01_VD03,2010,Estimate; Male: - Less than 9th grade,598716,14507.57,7401.82,1.24
+North Carolina,HD01_VD03,2010,Estimate; Male: - Less than 9th grade,34884,3382.64,1725.84,4.95
+Durham ,HD01_VD03,2010,Estimate; Male: - Less than 9th grade,1168,649.36,331.31,28.37
+Forsyth ,HD01_VD03,2010,Estimate; Male: - Less than 9th grade,566,446.81,227.96,40.28
+Guilford ,HD01_VD03,2010,Estimate; Male: - Less than 9th grade,1644,878.13,448.03,27.25
+United States,HD01_VD04,2010,"Estimate; Male: - 9th to 12th grade, no diploma",1511170,25807.66,13167.17,0.87
+North Carolina,HD01_VD04,2010,"Estimate; Male: - 9th to 12th grade, no diploma",90596,6104,3114.29,3.44
+Durham ,HD01_VD04,2010,"Estimate; Male: - 9th to 12th grade, no diploma",2877,1129.53,576.29,20.03
+Forsyth ,HD01_VD04,2010,"Estimate; Male: - 9th to 12th grade, no diploma",2929,1334.47,680.85,23.25
+Guilford ,HD01_VD04,2010,"Estimate; Male: - 9th to 12th grade, no diploma",4622,1559.66,795.74,17.22
+United States,HD01_VD05,2010,Estimate; Male: - Regular high school diploma,3149475,32358.47,16509.42,0.52
+North Carolina,HD01_VD05,2010,Estimate; Male: - Regular high school diploma,167163,7221.62,3684.5,2.2
+Durham ,HD01_VD05,2010,Estimate; Male: - Regular high school diploma,6272,1664.51,849.24,13.54
+Forsyth ,HD01_VD05,2010,Estimate; Male: - Regular high school diploma,7843,1672.85,853.49,10.88
+Guilford ,HD01_VD05,2010,Estimate; Male: - Regular high school diploma,11599,2019.57,1030.39,8.88
+United States,HD01_VD06,2010,Estimate; Male: - GED or alternative credential,618863,14527.83,7412.16,1.2
+North Carolina,HD01_VD06,2010,Estimate; Male: - GED or alternative credential,27241,3424.34,1747.11,6.41
+Durham ,HD01_VD06,2010,Estimate; Male: - GED or alternative credential,2140,886.47,452.28,21.13
+Forsyth ,HD01_VD06,2010,Estimate; Male: - GED or alternative credential,1279,650.55,331.91,25.95
+Guilford ,HD01_VD06,2010,Estimate; Male: - GED or alternative credential,1306,732.77,373.86,28.63
+United States,HD01_VD07,2010,"Estimate; Male: - Some college, no degree",2511279,32998.3,16835.87,0.67
+North Carolina,HD01_VD07,2010,"Estimate; Male: - Some college, no degree",129109,5931.23,3026.14,2.34
+Durham ,HD01_VD07,2010,"Estimate; Male: - Some college, no degree",6013,1778.89,907.6,15.09
+Forsyth ,HD01_VD07,2010,"Estimate; Male: - Some college, no degree",5583,1212.94,618.85,11.08
+Guilford ,HD01_VD07,2010,"Estimate; Male: - Some college, no degree",11633,2217.36,1131.31,9.73
+United States,HD01_VD08,2010,Estimate; Male: - Associate's degree,669058,15821.79,8072.34,1.21
+North Carolina,HD01_VD08,2010,Estimate; Male: - Associate's degree,32566,3979.57,2030.39,6.23
+Durham ,HD01_VD08,2010,Estimate; Male: - Associate's degree,1302,736.34,375.68,28.85
+Forsyth ,HD01_VD08,2010,Estimate; Male: - Associate's degree,727,549.28,280.24,38.55
+Guilford ,HD01_VD08,2010,Estimate; Male: - Associate's degree,2166,854.3,435.87,20.12
+United States,HD01_VD09,2010,Estimate; Male: - Bachelor's degree,1140082,21915.06,11181.15,0.98
+North Carolina,HD01_VD09,2010,Estimate; Male: - Bachelor's degree,59857,4902.98,2501.52,4.18
+Durham ,HD01_VD09,2010,Estimate; Male: - Bachelor's degree,4297,1235.57,630.39,14.67
+Forsyth ,HD01_VD09,2010,Estimate; Male: - Bachelor's degree,3259,1268.94,647.42,19.87
+Guilford ,HD01_VD09,2010,Estimate; Male: - Bachelor's degree,5005,1349.96,688.76,13.76
+United States,HD01_VD10,2010,Estimate; Male: - Graduate degree,546532,16493.79,8415.2,1.54
+North Carolina,HD01_VD10,2010,Estimate; Male: - Graduate degree,22537,3002.55,1531.91,6.8
+Durham ,HD01_VD10,2010,Estimate; Male: - Graduate degree,2142,959.15,489.36,22.85
+Forsyth ,HD01_VD10,2010,Estimate; Male: - Graduate degree,1864,728,371.43,19.93
+Guilford ,HD01_VD10,2010,Estimate; Male: - Graduate degree,2051,1016.34,518.54,25.28
+United States,HD01_VD11,2010,Estimate; Female:,12785471,26672.68,13608.51,0.11
+North Carolina,HD01_VD11,2010,Estimate; Female:,703733,5561.87,2837.69,0.4
+Durham ,HD01_VD11,2010,Estimate; Female:,35685,756.6,386.02,1.08
+Forsyth ,HD01_VD11,2010,Estimate; Female:,31500,735.15,375.08,1.19
+Guilford ,HD01_VD11,2010,Estimate; Female:,51876,868.6,443.16,0.85
+United States,HD01_VD12,2010,Estimate; Female: - Less than 9th grade,645131,15066.38,7686.93,1.19
+North Carolina,HD01_VD12,2010,Estimate; Female: - Less than 9th grade,34190,2817.87,1437.69,4.21
+Durham ,HD01_VD12,2010,Estimate; Female: - Less than 9th grade,1067,582.64,297.27,27.86
+Forsyth ,HD01_VD12,2010,Estimate; Female: - Less than 9th grade,799,476.6,243.16,30.43
+Guilford ,HD01_VD12,2010,Estimate; Female: - Less than 9th grade,1864,860.26,438.91,23.55
+United States,HD01_VD13,2010,"Estimate; Female: - 9th to 12th grade, no diploma",1498969,22442.89,11450.45,0.76
+North Carolina,HD01_VD13,2010,"Estimate; Female: - 9th to 12th grade, no diploma",87188,5940.77,3031.01,3.48
+Durham ,HD01_VD13,2010,"Estimate; Female: - 9th to 12th grade, no diploma",4012,1262.98,644.38,16.06
+Forsyth ,HD01_VD13,2010,"Estimate; Female: - 9th to 12th grade, no diploma",3217,1093.79,558.06,17.35
+Guilford ,HD01_VD13,2010,"Estimate; Female: - 9th to 12th grade, no diploma",5396,1344,685.71,12.71
+United States,HD01_VD14,2010,Estimate; Female: - Regular high school diploma,3239838,31941.45,16296.66,0.5
+North Carolina,HD01_VD14,2010,Estimate; Female: - Regular high school diploma,171936,8247.49,4207.9,2.45
+Durham ,HD01_VD14,2010,Estimate; Female: - Regular high school diploma,5700,1631.15,832.22,14.6
+Forsyth ,HD01_VD14,2010,Estimate; Female: - Regular high school diploma,9381,1730.04,882.67,9.41
+Guilford ,HD01_VD14,2010,Estimate; Female: - Regular high school diploma,13528,2200.68,1122.8,8.3
+United States,HD01_VD15,2010,Estimate; Female: - GED or alternative credential,450444,15056.85,7682.07,1.71
+North Carolina,HD01_VD15,2010,Estimate; Female: - GED or alternative credential,21293,2813.11,1435.26,6.74
+Durham ,HD01_VD15,2010,Estimate; Female: - GED or alternative credential,1062,598.13,305.17,28.74
+Forsyth ,HD01_VD15,2010,Estimate; Female: - GED or alternative credential,1172,590.98,301.52,25.73
+Guilford ,HD01_VD15,2010,Estimate; Female: - GED or alternative credential,1558,742.3,378.72,24.31
+United States,HD01_VD16,2010,"Estimate; Female: - Some college, no degree",3340764,38909.28,19851.67,0.59
+North Carolina,HD01_VD16,2010,"Estimate; Female: - Some college, no degree",192548,7830.47,3995.14,2.07
+Durham ,HD01_VD16,2010,"Estimate; Female: - Some college, no degree",7889,1813.45,925.23,11.73
+Forsyth ,HD01_VD16,2010,"Estimate; Female: - Some college, no degree",7457,1927.83,983.59,13.19
+Guilford ,HD01_VD16,2010,"Estimate; Female: - Some college, no degree",14275,2138.72,1091.18,7.64
+United States,HD01_VD17,2010,Estimate; Female: - Associate's degree,1083737,21554.04,10996.96,1.01
+North Carolina,HD01_VD17,2010,Estimate; Female: - Associate's degree,62875,5221.11,2663.83,4.24
+Durham ,HD01_VD17,2010,Estimate; Female: - Associate's degree,4110,1311.83,669.3,16.28
+Forsyth ,HD01_VD17,2010,Estimate; Female: - Associate's degree,2429,1078.3,550.15,22.65
+Guilford ,HD01_VD17,2010,Estimate; Female: - Associate's degree,3689,1295.15,660.79,17.91
+United States,HD01_VD18,2010,Estimate; Female: - Bachelor's degree,1607631,20854.64,10640.12,0.66
+North Carolina,HD01_VD18,2010,Estimate; Female: - Bachelor's degree,95022,7108.43,3626.75,3.82
+Durham ,HD01_VD18,2010,Estimate; Female: - Bachelor's degree,8364,1820.6,928.88,11.11
+Forsyth ,HD01_VD18,2010,Estimate; Female: - Bachelor's degree,5723,1417.87,723.4,12.64
+Guilford ,HD01_VD18,2010,Estimate; Female: - Bachelor's degree,8230,1744.34,889.97,10.81
+United States,HD01_VD19,2010,Estimate; Female: - Graduate degree,918957,18714.72,9548.33,1.04
+North Carolina,HD01_VD19,2010,Estimate; Female: - Graduate degree,38681,3912.85,1996.35,5.16
+Durham ,HD01_VD19,2010,Estimate; Female: - Graduate degree,3481,1065.19,543.46,15.61
+Forsyth ,HD01_VD19,2010,Estimate; Female: - Graduate degree,1322,536.17,273.56,20.69
+Guilford ,HD01_VD19,2010,Estimate; Female: - Graduate degree,3336,1258.21,641.94,19.24
+United States,HD01_VD01,2011,Estimate; Total:,23898097,43869.45,22382.37,0.09
+North Carolina,HD01_VD01,2011,Estimate; Total:,1292433,7330.04,3739.82,0.29
+Durham ,HD01_VD01,2011,Estimate; Total:,63171,1174.81,599.39,0.95
+Forsyth ,HD01_VD01,2011,Estimate; Total:,56099,608.85,310.64,0.55
+Guilford ,HD01_VD01,2011,Estimate; Total:,96324,1801.53,919.15,0.95
+United States,HD01_VD02,2011,Estimate; Male:,10930075,30996.6,15814.59,0.14
+North Carolina,HD01_VD02,2011,Estimate; Male:,574036,5387.91,2748.93,0.48
+Durham ,HD01_VD02,2011,Estimate; Male:,27281,669.62,341.64,1.25
+Forsyth ,HD01_VD02,2011,Estimate; Male:,24371,258.55,131.91,0.54
+Guilford ,HD01_VD02,2011,Estimate; Male:,42101,1295.15,660.79,1.57
+United States,HD01_VD03,2011,Estimate; Male: - Less than 9th grade,590304,14097.7,7192.7,1.22
+North Carolina,HD01_VD03,2011,Estimate; Male: - Less than 9th grade,33204,3288.51,1677.81,5.05
+Durham ,HD01_VD03,2011,Estimate; Male: - Less than 9th grade,869,514.72,262.61,30.22
+Forsyth ,HD01_VD03,2011,Estimate; Male: - Less than 9th grade,773,453.96,231.61,29.96
+Guilford ,HD01_VD03,2011,Estimate; Male: - Less than 9th grade,1613,763.74,389.66,24.16
+United States,HD01_VD04,2011,"Estimate; Male: - 9th to 12th grade, no diploma",1488657,19454.64,9925.84,0.67
+North Carolina,HD01_VD04,2011,"Estimate; Male: - 9th to 12th grade, no diploma",88050,5939.57,3030.39,3.44
+Durham ,HD01_VD04,2011,"Estimate; Male: - 9th to 12th grade, no diploma",3596,1367.83,697.87,19.41
+Forsyth ,HD01_VD04,2011,"Estimate; Male: - 9th to 12th grade, no diploma",4371,1278.47,652.28,14.92
+Guilford ,HD01_VD04,2011,"Estimate; Male: - 9th to 12th grade, no diploma",5335,1463.15,746.51,13.99
+United States,HD01_VD05,2011,Estimate; Male: - Regular high school diploma,3162069,37813.11,19292.4,0.61
+North Carolina,HD01_VD05,2011,Estimate; Male: - Regular high school diploma,181947,9243.57,4716.11,2.59
+Durham ,HD01_VD05,2011,Estimate; Male: - Regular high school diploma,7097,1408.34,718.54,10.12
+Forsyth ,HD01_VD05,2011,Estimate; Male: - Regular high school diploma,6883,1460.77,745.29,10.83
+Guilford ,HD01_VD05,2011,Estimate; Male: - Regular high school diploma,11750,2236.43,1141.04,9.71
+United States,HD01_VD06,2011,Estimate; Male: - GED or alternative credential,635456,16305.53,8319.15,1.31
+North Carolina,HD01_VD06,2011,Estimate; Male: - GED or alternative credential,30518,3375.49,1722.19,5.64
+Durham ,HD01_VD06,2011,Estimate; Male: - GED or alternative credential,1977,799.49,407.9,20.63
+Forsyth ,HD01_VD06,2011,Estimate; Male: - GED or alternative credential,1198,664.85,339.21,28.31
+Guilford ,HD01_VD06,2011,Estimate; Male: - GED or alternative credential,1900,805.45,410.94,21.63
+United States,HD01_VD07,2011,"Estimate; Male: - Some college, no degree",2585679,33459.4,17071.12,0.66
+North Carolina,HD01_VD07,2011,"Estimate; Male: - Some college, no degree",124587,7254.98,3701.52,2.97
+Durham ,HD01_VD07,2011,"Estimate; Male: - Some college, no degree",7096,1794.38,915.5,12.9
+Forsyth ,HD01_VD07,2011,"Estimate; Male: - Some college, no degree",4647,1276.09,651.07,14.01
+Guilford ,HD01_VD07,2011,"Estimate; Male: - Some college, no degree",10003,1635.91,834.65,8.34
+United States,HD01_VD08,2011,Estimate; Male: - Associate's degree,695461,20740.26,10581.77,1.52
+North Carolina,HD01_VD08,2011,Estimate; Male: - Associate's degree,34608,4204.77,2145.29,6.2
+Durham ,HD01_VD08,2011,Estimate; Male: - Associate's degree,1353,923.4,471.12,34.82
+Forsyth ,HD01_VD08,2011,Estimate; Male: - Associate's degree,2468,1209.36,617.02,25
+Guilford ,HD01_VD08,2011,Estimate; Male: - Associate's degree,2914,1339.23,683.28,23.45
+United States,HD01_VD09,2011,Estimate; Male: - Bachelor's degree,1181757,26081.7,13306.99,1.13
+North Carolina,HD01_VD09,2011,Estimate; Male: - Bachelor's degree,59575,5561.87,2837.69,4.76
+Durham ,HD01_VD09,2011,Estimate; Male: - Bachelor's degree,3466,1121.19,572.04,16.5
+Forsyth ,HD01_VD09,2011,Estimate; Male: - Bachelor's degree,3187,1054.47,537.99,16.88
+Guilford ,HD01_VD09,2011,Estimate; Male: - Bachelor's degree,6554,1793.19,914.89,13.96
+United States,HD01_VD10,2011,Estimate; Male: - Graduate degree,590692,15707.4,8013.98,1.36
+North Carolina,HD01_VD10,2011,Estimate; Male: - Graduate degree,21547,2926.3,1493.01,6.93
+Durham ,HD01_VD10,2011,Estimate; Male: - Graduate degree,1827,865.02,441.34,24.16
+Forsyth ,HD01_VD10,2011,Estimate; Male: - Graduate degree,844,573.11,292.4,34.64
+Guilford ,HD01_VD10,2011,Estimate; Male: - Graduate degree,2032,851.91,434.65,21.39
+United States,HD01_VD11,2011,Estimate; Female:,12968022,23274.55,11874.77,0.09
+North Carolina,HD01_VD11,2011,Estimate; Female:,718397,4861.28,2480.24,0.35
+Durham ,HD01_VD11,2011,Estimate; Female:,35890,707.74,361.09,1.01
+Forsyth ,HD01_VD11,2011,Estimate; Female:,31728,488.51,249.24,0.79
+Guilford ,HD01_VD11,2011,Estimate; Female:,54223,1114.04,568.39,1.05
+United States,HD01_VD12,2011,Estimate; Female: - Less than 9th grade,619298,14063.15,7175.08,1.16
+North Carolina,HD01_VD12,2011,Estimate; Female: - Less than 9th grade,33361,3314.72,1691.18,5.07
+Durham ,HD01_VD12,2011,Estimate; Female: - Less than 9th grade,937,747.06,381.15,40.68
+Forsyth ,HD01_VD12,2011,Estimate; Female: - Less than 9th grade,816,444.43,226.75,27.79
+Guilford ,HD01_VD12,2011,Estimate; Female: - Less than 9th grade,1696,814.98,415.81,24.52
+United States,HD01_VD13,2011,"Estimate; Female: - 9th to 12th grade, no diploma",1495716,24418.38,12458.36,0.83
+North Carolina,HD01_VD13,2011,"Estimate; Female: - 9th to 12th grade, no diploma",86584,5591.66,2852.89,3.29
+Durham ,HD01_VD13,2011,"Estimate; Female: - 9th to 12th grade, no diploma",3186,1008,514.29,16.14
+Forsyth ,HD01_VD13,2011,"Estimate; Female: - 9th to 12th grade, no diploma",3308,1005.62,513.07,15.51
+Guilford ,HD01_VD13,2011,"Estimate; Female: - 9th to 12th grade, no diploma",5816,1624,828.57,14.25
+United States,HD01_VD14,2011,Estimate; Female: - Regular high school diploma,3297844,33538.04,17111.24,0.52
+North Carolina,HD01_VD14,2011,Estimate; Female: - Regular high school diploma,177784,8768.17,4473.56,2.52
+Durham ,HD01_VD14,2011,Estimate; Female: - Regular high school diploma,6459,1502.47,766.57,11.87
+Forsyth ,HD01_VD14,2011,Estimate; Female: - Regular high school diploma,6914,1572.77,802.43,11.61
+Guilford ,HD01_VD14,2011,Estimate; Female: - Regular high school diploma,12448,2039.83,1040.73,8.36
+United States,HD01_VD15,2011,Estimate; Female: - GED or alternative credential,441244,13269.62,6770.21,1.53
+North Carolina,HD01_VD15,2011,Estimate; Female: - GED or alternative credential,23732,3262.3,1664.44,7.01
+Durham ,HD01_VD15,2011,Estimate; Female: - GED or alternative credential,979,555.23,283.28,28.94
+Forsyth ,HD01_VD15,2011,Estimate; Female: - GED or alternative credential,1515,658.89,336.17,22.19
+Guilford ,HD01_VD15,2011,Estimate; Female: - GED or alternative credential,1249,587.4,299.69,23.99
+United States,HD01_VD16,2011,"Estimate; Female: - Some college, no degree",3390851,40429.62,20627.36,0.61
+North Carolina,HD01_VD16,2011,"Estimate; Female: - Some college, no degree",196098,8302.3,4235.87,2.16
+Durham ,HD01_VD16,2011,"Estimate; Female: - Some college, no degree",10798,1540.6,786.02,7.28
+Forsyth ,HD01_VD16,2011,"Estimate; Female: - Some college, no degree",11257,1699.06,866.87,7.7
+Guilford ,HD01_VD16,2011,"Estimate; Female: - Some college, no degree",16186,2193.53,1119.15,6.91
+United States,HD01_VD17,2011,Estimate; Female: - Associate's degree,1094602,19514.21,9956.23,0.91
+North Carolina,HD01_VD17,2011,Estimate; Female: - Associate's degree,62807,6058.72,3091.18,4.92
+Durham ,HD01_VD17,2011,Estimate; Female: - Associate's degree,2070,925.79,472.34,22.82
+Forsyth ,HD01_VD17,2011,Estimate; Female: - Associate's degree,2148,823.32,420.06,19.56
+Guilford ,HD01_VD17,2011,Estimate; Female: - Associate's degree,3399,1052.09,536.78,15.79
+United States,HD01_VD18,2011,Estimate; Female: - Bachelor's degree,1658857,28195.4,14385.41,0.87
+North Carolina,HD01_VD18,2011,Estimate; Female: - Bachelor's degree,99429,7694.64,3925.84,3.95
+Durham ,HD01_VD18,2011,Estimate; Female: - Bachelor's degree,6865,1534.64,782.98,11.41
+Forsyth ,HD01_VD18,2011,Estimate; Female: - Bachelor's degree,3974,1110.47,566.57,14.26
+Guilford ,HD01_VD18,2011,Estimate; Female: - Bachelor's degree,9454,2405.62,1227.36,12.98
+United States,HD01_VD19,2011,Estimate; Female: - Graduate degree,969610,18062.98,9215.81,0.95
+North Carolina,HD01_VD19,2011,Estimate; Female: - Graduate degree,38602,4328.68,2208.51,5.72
+Durham ,HD01_VD19,2011,Estimate; Female: - Graduate degree,4596,1515.57,773.25,16.82
+Forsyth ,HD01_VD19,2011,Estimate; Female: - Graduate degree,1796,911.49,465.05,25.89
+Guilford ,HD01_VD19,2011,Estimate; Female: - Graduate degree,3975,1305.87,666.26,16.76
+United States,HD01_VD01,2012,Estimate; Total:,24280587,32566.98,16615.81,0.07
+North Carolina,HD01_VD01,2012,Estimate; Total:,1315560,7376.51,3763.53,0.29
+Durham ,HD01_VD01,2012,Estimate; Total:,64697,997.28,508.82,0.79
+Forsyth ,HD01_VD01,2012,Estimate; Total:,56718,548.09,279.64,0.49
+Guilford ,HD01_VD01,2012,Estimate; Total:,99471,1659.74,846.81,0.85
+United States,HD01_VD02,2012,Estimate; Male:,11132547,24292.09,12393.92,0.11
+North Carolina,HD01_VD02,2012,Estimate; Male:,588988,5041.19,2572.04,0.44
+Durham ,HD01_VD02,2012,Estimate; Male:,27541,711.32,362.92,1.32
+Forsyth ,HD01_VD02,2012,Estimate; Male:,24267,418.21,213.37,0.88
+Guilford ,HD01_VD02,2012,Estimate; Male:,43601,909.11,463.83,1.06
+United States,HD01_VD03,2012,Estimate; Male: - Less than 9th grade,564178,13801.02,7041.34,1.25
+North Carolina,HD01_VD03,2012,Estimate; Male: - Less than 9th grade,34951,3127.66,1595.74,4.57
+Durham ,HD01_VD03,2012,Estimate; Male: - Less than 9th grade,966,394.38,201.21,20.83
+Forsyth ,HD01_VD03,2012,Estimate; Male: - Less than 9th grade,895,513.53,262.01,29.27
+Guilford ,HD01_VD03,2012,Estimate; Male: - Less than 9th grade,1873,813.79,415.2,22.17
+United States,HD01_VD04,2012,"Estimate; Male: - 9th to 12th grade, no diploma",1465036,25012.94,12761.7,0.87
+North Carolina,HD01_VD04,2012,"Estimate; Male: - 9th to 12th grade, no diploma",84210,5322.38,2715.5,3.22
+Durham ,HD01_VD04,2012,"Estimate; Male: - 9th to 12th grade, no diploma",3385,1192.68,608.51,17.98
+Forsyth ,HD01_VD04,2012,"Estimate; Male: - 9th to 12th grade, no diploma",2349,823.32,420.06,17.88
+Guilford ,HD01_VD04,2012,"Estimate; Male: - 9th to 12th grade, no diploma",4579,1282.04,654.1,14.28
+United States,HD01_VD05,2012,Estimate; Male: - Regular high school diploma,3199395,33318.81,16999.39,0.53
+North Carolina,HD01_VD05,2012,Estimate; Male: - Regular high school diploma,187415,8124.77,4145.29,2.21
+Durham ,HD01_VD05,2012,Estimate; Male: - Regular high school diploma,6467,1232,628.57,9.72
+Forsyth ,HD01_VD05,2012,Estimate; Male: - Regular high school diploma,9239,1308.26,667.48,7.22
+Guilford ,HD01_VD05,2012,Estimate; Male: - Regular high school diploma,11297,1989.79,1015.2,8.99
+United States,HD01_VD06,2012,Estimate; Male: - GED or alternative credential,661525,14991.32,7648.63,1.16
+North Carolina,HD01_VD06,2012,Estimate; Male: - GED or alternative credential,30740,2764.26,1410.34,4.59
+Durham ,HD01_VD06,2012,Estimate; Male: - GED or alternative credential,1416,602.89,307.6,21.72
+Forsyth ,HD01_VD06,2012,Estimate; Male: - GED or alternative credential,1322,621.96,317.33,24
+Guilford ,HD01_VD06,2012,Estimate; Male: - GED or alternative credential,1917,817.36,417.02,21.75
+United States,HD01_VD07,2012,"Estimate; Male: - Some college, no degree",2700300,25721.87,13123.4,0.49
+North Carolina,HD01_VD07,2012,"Estimate; Male: - Some college, no degree",133087,6308.94,3218.85,2.42
+Durham ,HD01_VD07,2012,"Estimate; Male: - Some college, no degree",7816,1609.7,821.28,10.51
+Forsyth ,HD01_VD07,2012,"Estimate; Male: - Some college, no degree",5664,1482.21,756.23,13.35
+Guilford ,HD01_VD07,2012,"Estimate; Male: - Some college, no degree",11660,1809.87,923.4,7.92
+United States,HD01_VD08,2012,Estimate; Male: - Associate's degree,720739,17222.98,8787.23,1.22
+North Carolina,HD01_VD08,2012,Estimate; Male: - Associate's degree,35715,4039.15,2060.79,5.77
+Durham ,HD01_VD08,2012,Estimate; Male: - Associate's degree,1598,668.43,341.04,21.34
+Forsyth ,HD01_VD08,2012,Estimate; Male: - Associate's degree,1106,706.55,360.48,32.59
+Guilford ,HD01_VD08,2012,Estimate; Male: - Associate's degree,3055,1072.34,547.11,17.91
+United States,HD01_VD09,2012,Estimate; Male: - Bachelor's degree,1214189,20361.36,10388.45,0.86
+North Carolina,HD01_VD09,2012,Estimate; Male: - Bachelor's degree,58562,4615.83,2355.02,4.02
+Durham ,HD01_VD09,2012,Estimate; Male: - Bachelor's degree,3795,1060.43,541.04,14.26
+Forsyth ,HD01_VD09,2012,Estimate; Male: - Bachelor's degree,2828,884.09,451.07,15.95
+Guilford ,HD01_VD09,2012,Estimate; Male: - Bachelor's degree,6645,1478.64,754.41,11.35
+United States,HD01_VD10,2012,Estimate; Male: - Graduate degree,607185,15027.06,7666.87,1.26
+North Carolina,HD01_VD10,2012,Estimate; Male: - Graduate degree,24308,3071.66,1567.17,6.45
+Durham ,HD01_VD10,2012,Estimate; Male: - Graduate degree,2098,797.11,406.69,19.38
+Forsyth ,HD01_VD10,2012,Estimate; Male: - Graduate degree,864,474.21,241.94,28
+Guilford ,HD01_VD10,2012,Estimate; Male: - Graduate degree,2575,938.89,479.03,18.6
+United States,HD01_VD11,2012,Estimate; Female:,13148040,24062.13,12276.6,0.09
+North Carolina,HD01_VD11,2012,Estimate; Female:,726572,4787.4,2442.55,0.34
+Durham ,HD01_VD11,2012,Estimate; Female:,37156,646.98,330.09,0.89
+Forsyth ,HD01_VD11,2012,Estimate; Female:,32451,300.26,153.19,0.47
+Guilford ,HD01_VD11,2012,Estimate; Female:,55870,1191.49,607.9,1.09
+United States,HD01_VD12,2012,Estimate; Female: - Less than 9th grade,617069,13244.6,6757.45,1.1
+North Carolina,HD01_VD12,2012,Estimate; Female: - Less than 9th grade,30035,3237.28,1651.67,5.5
+Durham ,HD01_VD12,2012,Estimate; Female: - Less than 9th grade,1121,581.45,296.66,26.46
+Forsyth ,HD01_VD12,2012,Estimate; Female: - Less than 9th grade,654,420.6,214.59,32.81
+Guilford ,HD01_VD12,2012,Estimate; Female: - Less than 9th grade,2282,760.17,387.84,17
+United States,HD01_VD13,2012,"Estimate; Female: - 9th to 12th grade, no diploma",1437913,24815.15,12660.79,0.88
+North Carolina,HD01_VD13,2012,"Estimate; Female: - 9th to 12th grade, no diploma",81554,6211.23,3168.99,3.89
+Durham ,HD01_VD13,2012,"Estimate; Female: - 9th to 12th grade, no diploma",3378,1022.3,521.58,15.44
+Forsyth ,HD01_VD13,2012,"Estimate; Female: - 9th to 12th grade, no diploma",3184,1158.13,590.88,18.56
+Guilford ,HD01_VD13,2012,"Estimate; Female: - 9th to 12th grade, no diploma",5958,1458.38,744.07,12.49
+United States,HD01_VD14,2012,Estimate; Female: - Regular high school diploma,3275732,31258.72,15948.33,0.49
+North Carolina,HD01_VD14,2012,Estimate; Female: - Regular high school diploma,179307,7053.62,3598.79,2.01
+Durham ,HD01_VD14,2012,Estimate; Female: - Regular high school diploma,5638,1440.51,734.95,13.04
+Forsyth ,HD01_VD14,2012,Estimate; Female: - Regular high school diploma,7906,1345.19,686.32,8.68
+Guilford ,HD01_VD14,2012,Estimate; Female: - Regular high school diploma,13215,2173.28,1108.82,8.39
+United States,HD01_VD15,2012,Estimate; Female: - GED or alternative credential,465366,12963.4,6613.98,1.42
+North Carolina,HD01_VD15,2012,Estimate; Female: - GED or alternative credential,21737,2815.49,1436.47,6.61
+Durham ,HD01_VD15,2012,Estimate; Female: - GED or alternative credential,870,533.79,272.34,31.3
+Forsyth ,HD01_VD15,2012,Estimate; Female: - GED or alternative credential,1473,770.89,393.31,26.7
+Guilford ,HD01_VD15,2012,Estimate; Female: - GED or alternative credential,1157,570.72,291.18,25.17
+United States,HD01_VD16,2012,"Estimate; Female: - Some college, no degree",3470522,30388.94,15504.56,0.45
+North Carolina,HD01_VD16,2012,"Estimate; Female: - Some college, no degree",202151,6892.77,3516.72,1.74
+Durham ,HD01_VD16,2012,"Estimate; Female: - Some college, no degree",9600,1971.91,1006.08,10.48
+Forsyth ,HD01_VD16,2012,"Estimate; Female: - Some college, no degree",9480,1634.72,834.04,8.8
+Guilford ,HD01_VD16,2012,"Estimate; Female: - Some college, no degree",14876,2408,1228.57,8.26
+United States,HD01_VD17,2012,Estimate; Female: - Associate's degree,1155665,19545.19,9972.04,0.86
+North Carolina,HD01_VD17,2012,Estimate; Female: - Associate's degree,68273,4714.72,2405.47,3.52
+Durham ,HD01_VD17,2012,Estimate; Female: - Associate's degree,2897,1123.57,573.25,19.79
+Forsyth ,HD01_VD17,2012,Estimate; Female: - Associate's degree,1801,717.28,365.96,20.32
+Guilford ,HD01_VD17,2012,Estimate; Female: - Associate's degree,3552,1011.57,516.11,14.53
+United States,HD01_VD18,2012,Estimate; Female: - Bachelor's degree,1692628,23950.13,12219.45,0.72
+North Carolina,HD01_VD18,2012,Estimate; Female: - Bachelor's degree,99208,5802.55,2960.48,2.98
+Durham ,HD01_VD18,2012,Estimate; Female: - Bachelor's degree,8486,1894.47,966.57,11.39
+Forsyth ,HD01_VD18,2012,Estimate; Female: - Bachelor's degree,5276,1004.43,512.46,9.71
+Guilford ,HD01_VD18,2012,Estimate; Female: - Bachelor's degree,10792,1970.72,1005.47,9.32
+United States,HD01_VD19,2012,Estimate; Female: - Graduate degree,1033145,19874.04,10139.82,0.98
+North Carolina,HD01_VD19,2012,Estimate; Female: - Graduate degree,44307,4003.4,2042.55,4.61
+Durham ,HD01_VD19,2012,Estimate; Female: - Graduate degree,5166,1295.15,660.79,12.79
+Forsyth ,HD01_VD19,2012,Estimate; Female: - Graduate degree,2677,1040.17,530.7,19.82
+Guilford ,HD01_VD19,2012,Estimate; Female: - Graduate degree,4038,953.19,486.32,12.04
+United States,HD01_VD01,2013,Estimate; Total:,24615101,41635.4,21242.55,0.09
+North Carolina,HD01_VD01,2013,Estimate; Total:,1332148,7621.96,3888.76,0.29
+Durham ,HD01_VD01,2013,Estimate; Total:,68746,1011.57,516.11,0.75
+Forsyth ,HD01_VD01,2013,Estimate; Total:,57609,949.62,484.5,0.84
+Guilford ,HD01_VD01,2013,Estimate; Total:,103138,2088.68,1065.65,1.03
+United States,HD01_VD02,2013,Estimate; Male:,11287646,29149.79,14872.34,0.13
+North Carolina,HD01_VD02,2013,Estimate; Male:,593907,5632.17,2873.56,0.48
+Durham ,HD01_VD02,2013,Estimate; Male:,30465,533.79,272.34,0.89
+Forsyth ,HD01_VD02,2013,Estimate; Male:,24897,670.81,342.25,1.37
+Guilford ,HD01_VD02,2013,Estimate; Male:,44954,1040.17,530.7,1.18
+United States,HD01_VD03,2013,Estimate; Male: - Less than 9th grade,562630,15433.36,7874.16,1.4
+North Carolina,HD01_VD03,2013,Estimate; Male: - Less than 9th grade,33145,2983.49,1522.19,4.59
+Durham ,HD01_VD03,2013,Estimate; Male: - Less than 9th grade,1530,699.4,356.84,23.32
+Forsyth ,HD01_VD03,2013,Estimate; Male: - Less than 9th grade,900,555.23,283.28,31.48
+Guilford ,HD01_VD03,2013,Estimate; Male: - Less than 9th grade,1793,669.62,341.64,19.05
+United States,HD01_VD04,2013,"Estimate; Male: - 9th to 12th grade, no diploma",1447394,25319.15,12917.93,0.89
+North Carolina,HD01_VD04,2013,"Estimate; Male: - 9th to 12th grade, no diploma",85660,5949.11,3035.26,3.54
+Durham ,HD01_VD04,2013,"Estimate; Male: - 9th to 12th grade, no diploma",3179,1129.53,576.29,18.13
+Forsyth ,HD01_VD04,2013,"Estimate; Male: - 9th to 12th grade, no diploma",3072,910.3,464.44,15.12
+Guilford ,HD01_VD04,2013,"Estimate; Male: - 9th to 12th grade, no diploma",4695,1170.04,596.96,12.71
+United States,HD01_VD05,2013,Estimate; Male: - Regular high school diploma,3239505,35741.11,18235.26,0.56
+North Carolina,HD01_VD05,2013,Estimate; Male: - Regular high school diploma,171665,7527.83,3840.73,2.24
+Durham ,HD01_VD05,2013,Estimate; Male: - Regular high school diploma,5650,1366.64,697.27,12.34
+Forsyth ,HD01_VD05,2013,Estimate; Male: - Regular high school diploma,7589,1427.4,728.27,9.6
+Guilford ,HD01_VD05,2013,Estimate; Male: - Regular high school diploma,14050,2324.6,1186.02,8.44
+United States,HD01_VD06,2013,Estimate; Male: - GED or alternative credential,679110,15708.6,8014.59,1.18
+North Carolina,HD01_VD06,2013,Estimate; Male: - GED or alternative credential,31215,3682.89,1879.03,6.02
+Durham ,HD01_VD06,2013,Estimate; Male: - GED or alternative credential,1699,807.83,412.16,24.26
+Forsyth ,HD01_VD06,2013,Estimate; Male: - GED or alternative credential,1614,813.79,415.2,25.72
+Guilford ,HD01_VD06,2013,Estimate; Male: - GED or alternative credential,1505,863.83,440.73,29.28
+United States,HD01_VD07,2013,"Estimate; Male: - Some college, no degree",2728520,29481.02,15041.34,0.55
+North Carolina,HD01_VD07,2013,"Estimate; Male: - Some college, no degree",143040,7069.11,3606.69,2.52
+Durham ,HD01_VD07,2013,"Estimate; Male: - Some college, no degree",6470,1621.62,827.36,12.79
+Forsyth ,HD01_VD07,2013,"Estimate; Male: - Some college, no degree",6703,1436.94,733.13,10.94
+Guilford ,HD01_VD07,2013,"Estimate; Male: - Some college, no degree",11871,1983.83,1012.16,8.53
+United States,HD01_VD08,2013,Estimate; Male: - Associate's degree,750176,15759.83,8040.73,1.07
+North Carolina,HD01_VD08,2013,Estimate; Male: - Associate's degree,36846,3731.74,1903.95,5.17
+Durham ,HD01_VD08,2013,Estimate; Male: - Associate's degree,2233,1027.06,524.01,23.47
+Forsyth ,HD01_VD08,2013,Estimate; Male: - Associate's degree,926,481.36,245.59,26.52
+Guilford ,HD01_VD08,2013,Estimate; Male: - Associate's degree,2952,1067.57,544.68,18.45
+United States,HD01_VD09,2013,Estimate; Male: - Bachelor's degree,1243511,24401.7,12449.85,1
+North Carolina,HD01_VD09,2013,Estimate; Male: - Bachelor's degree,64757,5452.26,2781.77,4.3
+Durham ,HD01_VD09,2013,Estimate; Male: - Bachelor's degree,5870,1515.57,773.25,13.17
+Forsyth ,HD01_VD09,2013,Estimate; Male: - Bachelor's degree,3473,1196.26,610.34,17.57
+Guilford ,HD01_VD09,2013,Estimate; Male: - Bachelor's degree,4868,1202.21,613.37,12.6
+United States,HD01_VD10,2013,Estimate; Male: - Graduate or professional degree,636800,15164.09,7736.78,1.21
+North Carolina,HD01_VD10,2013,Estimate; Male: - Graduate or professional degree,27579,3029.96,1545.9,5.61
+Durham ,HD01_VD10,2013,Estimate; Male: - Graduate or professional degree,3834,1254.64,640.12,16.7
+Forsyth ,HD01_VD10,2013,Estimate; Male: - Graduate or professional degree,620,394.38,201.21,32.45
+Guilford ,HD01_VD10,2013,Estimate; Male: - Graduate or professional degree,3220,1109.28,565.96,17.58
+United States,HD01_VD11,2013,Estimate; Female:,13327455,24473.19,12486.32,0.09
+North Carolina,HD01_VD11,2013,Estimate; Female:,738241,4643.23,2368.99,0.32
+Durham ,HD01_VD11,2013,Estimate; Female:,38281,874.55,446.2,1.17
+Forsyth ,HD01_VD11,2013,Estimate; Female:,32712,426.55,217.63,0.67
+Guilford ,HD01_VD11,2013,Estimate; Female:,58184,1326.13,676.6,1.16
+United States,HD01_VD12,2013,Estimate; Female: - Less than 9th grade,601385,14469.45,7382.37,1.23
+North Carolina,HD01_VD12,2013,Estimate; Female: - Less than 9th grade,30916,3126.47,1595.14,5.16
+Durham ,HD01_VD12,2013,Estimate; Female: - Less than 9th grade,959,448,228.57,23.83
+Forsyth ,HD01_VD12,2013,Estimate; Female: - Less than 9th grade,1115,626.72,319.76,28.68
+Guilford ,HD01_VD12,2013,Estimate; Female: - Less than 9th grade,2186,644.6,328.88,15.04
+United States,HD01_VD13,2013,"Estimate; Female: - 9th to 12th grade, no diploma",1408640,20380.43,10398.18,0.74
+North Carolina,HD01_VD13,2013,"Estimate; Female: - 9th to 12th grade, no diploma",81805,5457.02,2784.19,3.4
+Durham ,HD01_VD13,2013,"Estimate; Female: - 9th to 12th grade, no diploma",3475,1454.81,742.25,21.36
+Forsyth ,HD01_VD13,2013,"Estimate; Female: - 9th to 12th grade, no diploma",2539,936.51,477.81,18.82
+Guilford ,HD01_VD13,2013,"Estimate; Female: - 9th to 12th grade, no diploma",4256,1118.81,570.82,13.41
+United States,HD01_VD14,2013,Estimate; Female: - Regular high school diploma,3255327,36506.04,18625.53,0.57
+North Carolina,HD01_VD14,2013,Estimate; Female: - Regular high school diploma,171622,7302.64,3725.84,2.17
+Durham ,HD01_VD14,2013,Estimate; Female: - Regular high school diploma,6115,1751.49,893.62,14.61
+Forsyth ,HD01_VD14,2013,Estimate; Female: - Regular high school diploma,5802,1201.02,612.77,10.56
+Guilford ,HD01_VD14,2013,Estimate; Female: - Regular high school diploma,12592,1774.13,905.17,7.19
+United States,HD01_VD15,2013,Estimate; Female: - GED or alternative credential,474157,13157.62,6713.07,1.42
+North Carolina,HD01_VD15,2013,Estimate; Female: - GED or alternative credential,26582,3025.19,1543.46,5.81
+Durham ,HD01_VD15,2013,Estimate; Female: - GED or alternative credential,1091,720.85,367.78,33.71
+Forsyth ,HD01_VD15,2013,Estimate; Female: - GED or alternative credential,1385,732.77,373.86,26.99
+Guilford ,HD01_VD15,2013,Estimate; Female: - GED or alternative credential,1721,692.26,353.19,20.52
+United States,HD01_VD16,2013,"Estimate; Female: - Some college, no degree",3518601,34522.21,17613.37,0.5
+North Carolina,HD01_VD16,2013,"Estimate; Female: - Some college, no degree",204308,7872.17,4016.41,1.97
+Durham ,HD01_VD16,2013,"Estimate; Female: - Some college, no degree",11323,2281.7,1164.13,10.28
+Forsyth ,HD01_VD16,2013,"Estimate; Female: - Some college, no degree",10193,1750.3,893.01,8.76
+Guilford ,HD01_VD16,2013,"Estimate; Female: - Some college, no degree",17879,2378.21,1213.37,6.79
+United States,HD01_VD17,2013,Estimate; Female: - Associate's degree,1196938,21265.7,10849.85,0.91
+North Carolina,HD01_VD17,2013,Estimate; Female: - Associate's degree,63552,4606.3,2350.15,3.7
+Durham ,HD01_VD17,2013,Estimate; Female: - Associate's degree,3417,1097.36,559.88,16.39
+Forsyth ,HD01_VD17,2013,Estimate; Female: - Associate's degree,3271,1059.23,540.42,16.52
+Guilford ,HD01_VD17,2013,Estimate; Female: - Associate's degree,5374,1588.26,810.34,15.08
+United States,HD01_VD18,2013,Estimate; Female: - Bachelor's degree,1774373,27959.49,14265.05,0.8
+North Carolina,HD01_VD18,2013,Estimate; Female: - Bachelor's degree,102785,5477.28,2794.53,2.72
+Durham ,HD01_VD18,2013,Estimate; Female: - Bachelor's degree,6565,1876.6,957.45,14.58
+Forsyth ,HD01_VD18,2013,Estimate; Female: - Bachelor's degree,4758,1277.28,651.67,13.7
+Guilford ,HD01_VD18,2013,Estimate; Female: - Bachelor's degree,9034,2000.51,1020.67,11.3
+United States,HD01_VD19,2013,Estimate; Female: - Graduate or professional degree,1098034,19734.64,10068.69,0.92
+North Carolina,HD01_VD19,2013,Estimate; Female: - Graduate or professional degree,56671,4176.17,2130.7,3.76
+Durham ,HD01_VD19,2013,Estimate; Female: - Graduate or professional degree,5336,1563.23,797.57,14.95
+Forsyth ,HD01_VD19,2013,Estimate; Female: - Graduate or professional degree,3649,1011.57,516.11,14.14
+Guilford ,HD01_VD19,2013,Estimate; Female: - Graduate or professional degree,5142,1178.38,601.21,11.69
+United States,HD01_VD01,2014,Estimate; Total:,25133184,40862.13,20848.03,0.08
+North Carolina,HD01_VD01,2014,Estimate; Total:,1359841,6922.55,3531.91,0.26
+Durham ,HD01_VD01,2014,Estimate; Total:,71015,699.4,356.84,0.5
+Forsyth ,HD01_VD01,2014,Estimate; Total:,58728,856.68,437.08,0.74
+Guilford ,HD01_VD01,2014,Estimate; Total:,104736,1010.38,515.5,0.49
+United States,HD01_VD02,2014,Estimate; Male:,11527093,28993.7,14792.7,0.13
+North Carolina,HD01_VD02,2014,Estimate; Male:,606483,4811.23,2454.71,0.4
+Durham ,HD01_VD02,2014,Estimate; Male:,31036,494.47,252.28,0.81
+Forsyth ,HD01_VD02,2014,Estimate; Male:,25205,579.06,295.44,1.17
+Guilford ,HD01_VD02,2014,Estimate; Male:,45221,669.62,341.64,0.76
+United States,HD01_VD03,2014,Estimate; Male: - Less than 9th grade,522827,15907.57,8116.11,1.55
+North Carolina,HD01_VD03,2014,Estimate; Male: - Less than 9th grade,29325,3373.11,1720.97,5.87
+Durham ,HD01_VD03,2014,Estimate; Male: - Less than 9th grade,1240,683.91,348.93,28.14
+Forsyth ,HD01_VD03,2014,Estimate; Male: - Less than 9th grade,535,297.87,151.97,28.41
+Guilford ,HD01_VD03,2014,Estimate; Male: - Less than 9th grade,1466,829.28,423.1,28.86
+United States,HD01_VD04,2014,"Estimate; Male: - 9th to 12th grade, no diploma",1434434,23122.04,11796.96,0.82
+North Carolina,HD01_VD04,2014,"Estimate; Male: - 9th to 12th grade, no diploma",81278,5384.34,2747.11,3.38
+Durham ,HD01_VD04,2014,"Estimate; Male: - 9th to 12th grade, no diploma",3200,986.55,503.34,15.73
+Forsyth ,HD01_VD04,2014,"Estimate; Male: - 9th to 12th grade, no diploma",3758,967.49,493.62,13.14
+Guilford ,HD01_VD04,2014,"Estimate; Male: - 9th to 12th grade, no diploma",4204,1376.17,702.13,16.7
+United States,HD01_VD05,2014,Estimate; Male: - Regular high school diploma,3359674,32317.96,16488.76,0.49
+North Carolina,HD01_VD05,2014,Estimate; Male: - Regular high school diploma,187542,7885.28,4023.1,2.15
+Durham ,HD01_VD05,2014,Estimate; Male: - Regular high school diploma,7013,1684.77,859.58,12.26
+Forsyth ,HD01_VD05,2014,Estimate; Male: - Regular high school diploma,7096,1445.28,737.39,10.39
+Guilford ,HD01_VD05,2014,Estimate; Male: - Regular high school diploma,13955,2429.45,1239.52,8.88
+United States,HD01_VD06,2014,Estimate; Male: - GED or alternative credential,685314,15044.94,7675.99,1.12
+North Carolina,HD01_VD06,2014,Estimate; Male: - GED or alternative credential,28785,3084.77,1573.86,5.47
+Durham ,HD01_VD06,2014,Estimate; Male: - GED or alternative credential,1177,800.68,408.51,34.71
+Forsyth ,HD01_VD06,2014,Estimate; Male: - GED or alternative credential,1598,743.49,379.33,23.74
+Guilford ,HD01_VD06,2014,Estimate; Male: - GED or alternative credential,1454,688.68,351.37,24.17
+United States,HD01_VD07,2014,"Estimate; Male: - Some college, no degree",2766729,33113.87,16894.83,0.61
+North Carolina,HD01_VD07,2014,"Estimate; Male: - Some college, no degree",143005,7027.4,3585.41,2.51
+Durham ,HD01_VD07,2014,"Estimate; Male: - Some college, no degree",8148,1993.36,1017.02,12.48
+Forsyth ,HD01_VD07,2014,"Estimate; Male: - Some college, no degree",6183,1503.66,767.17,12.41
+Guilford ,HD01_VD07,2014,"Estimate; Male: - Some college, no degree",11956,1799.15,917.93,7.68
+United States,HD01_VD08,2014,Estimate; Male: - Associate's degree,777660,18780.26,9581.77,1.23
+North Carolina,HD01_VD08,2014,Estimate; Male: - Associate's degree,39737,4186.89,2136.17,5.38
+Durham ,HD01_VD08,2014,Estimate; Male: - Associate's degree,1291,705.36,359.88,27.88
+Forsyth ,HD01_VD08,2014,Estimate; Male: - Associate's degree,968,504,257.14,26.56
+Guilford ,HD01_VD08,2014,Estimate; Male: - Associate's degree,3409,1133.11,578.12,16.96
+United States,HD01_VD09,2014,Estimate; Male: - Bachelor's degree,1303762,23677.28,12080.24,0.93
+North Carolina,HD01_VD09,2014,Estimate; Male: - Bachelor's degree,66411,4836.26,2467.48,3.72
+Durham ,HD01_VD09,2014,Estimate; Male: - Bachelor's degree,6453,1719.32,877.2,13.59
+Forsyth ,HD01_VD09,2014,Estimate; Male: - Bachelor's degree,3386,1098.55,560.48,16.55
+Guilford ,HD01_VD09,2014,Estimate; Male: - Bachelor's degree,5708,1675.23,854.71,14.97
+United States,HD01_VD10,2014,Estimate; Male: - Graduate or professional degree,676693,17047.83,8697.87,1.29
+North Carolina,HD01_VD10,2014,Estimate; Male: - Graduate or professional degree,30400,3138.38,1601.21,5.27
+Durham ,HD01_VD10,2014,Estimate; Male: - Graduate or professional degree,2514,869.79,443.77,17.65
+Forsyth ,HD01_VD10,2014,Estimate; Male: - Graduate or professional degree,1681,842.38,429.79,25.57
+Guilford ,HD01_VD10,2014,Estimate; Male: - Graduate or professional degree,3069,733.96,374.47,12.2
+United States,HD01_VD11,2014,Estimate; Female:,13606091,24545.87,12523.4,0.09
+North Carolina,HD01_VD11,2014,Estimate; Female:,753358,4341.79,2215.2,0.29
+Durham ,HD01_VD11,2014,Estimate; Female:,39979,526.64,268.69,0.67
+Forsyth ,HD01_VD11,2014,Estimate; Female:,33523,581.45,296.66,0.88
+Guilford ,HD01_VD11,2014,Estimate; Female:,59515,686.3,350.15,0.59
+United States,HD01_VD12,2014,Estimate; Female: - Less than 9th grade,585906,13233.87,6751.97,1.15
+North Carolina,HD01_VD12,2014,Estimate; Female: - Less than 9th grade,29430,2730.89,1393.31,4.73
+Durham ,HD01_VD12,2014,Estimate; Female: - Less than 9th grade,1066,668.43,341.04,31.99
+Forsyth ,HD01_VD12,2014,Estimate; Female: - Less than 9th grade,673,374.13,190.88,28.36
+Guilford ,HD01_VD12,2014,Estimate; Female: - Less than 9th grade,1982,853.11,435.26,21.96
+United States,HD01_VD13,2014,"Estimate; Female: - 9th to 12th grade, no diploma",1387986,20156.43,10283.89,0.74
+North Carolina,HD01_VD13,2014,"Estimate; Female: - 9th to 12th grade, no diploma",73846,4737.36,2417.02,3.27
+Durham ,HD01_VD13,2014,"Estimate; Female: - 9th to 12th grade, no diploma",2663,1096.17,559.27,21
+Forsyth ,HD01_VD13,2014,"Estimate; Female: - 9th to 12th grade, no diploma",2880,1009.19,514.89,17.88
+Guilford ,HD01_VD13,2014,"Estimate; Female: - 9th to 12th grade, no diploma",4653,1285.62,655.93,14.1
+United States,HD01_VD14,2014,Estimate; Female: - Regular high school diploma,3409860,35598.13,18162.31,0.53
+North Carolina,HD01_VD14,2014,Estimate; Female: - Regular high school diploma,183095,7262.13,3705.17,2.02
+Durham ,HD01_VD14,2014,Estimate; Female: - Regular high school diploma,6427,1674.04,854.1,13.29
+Forsyth ,HD01_VD14,2014,Estimate; Female: - Regular high school diploma,6462,1422.64,725.84,11.23
+Guilford ,HD01_VD14,2014,Estimate; Female: - Regular high school diploma,16584,2546.21,1299.09,7.83
+United States,HD01_VD15,2014,Estimate; Female: - GED or alternative credential,478933,11462.13,5848.03,1.22
+North Carolina,HD01_VD15,2014,Estimate; Female: - GED or alternative credential,22386,2592.68,1322.8,5.91
+Durham ,HD01_VD15,2014,Estimate; Female: - GED or alternative credential,664,428.94,218.85,32.96
+Forsyth ,HD01_VD15,2014,Estimate; Female: - GED or alternative credential,1170,662.47,337.99,28.89
+Guilford ,HD01_VD15,2014,Estimate; Female: - GED or alternative credential,1470,753.02,384.19,26.14
+United States,HD01_VD16,2014,"Estimate; Female: - Some college, no degree",3530890,31386.21,16013.37,0.45
+North Carolina,HD01_VD16,2014,"Estimate; Female: - Some college, no degree",200510,7030.98,3587.23,1.79
+Durham ,HD01_VD16,2014,"Estimate; Female: - Some college, no degree",11226,2194.72,1119.76,9.97
+Forsyth ,HD01_VD16,2014,"Estimate; Female: - Some college, no degree",11090,1644.26,838.91,7.56
+Guilford ,HD01_VD16,2014,"Estimate; Female: - Some college, no degree",16336,2162.55,1103.34,6.75
+United States,HD01_VD17,2014,Estimate; Female: - Associate's degree,1242718,24130.04,12311.24,0.99
+North Carolina,HD01_VD17,2014,Estimate; Female: - Associate's degree,74513,4650.38,2372.64,3.18
+Durham ,HD01_VD17,2014,Estimate; Female: - Associate's degree,3198,1360.68,694.22,21.71
+Forsyth ,HD01_VD17,2014,Estimate; Female: - Associate's degree,2551,1043.74,532.52,20.87
+Guilford ,HD01_VD17,2014,Estimate; Female: - Associate's degree,5262,1411.91,720.36,13.69
+United States,HD01_VD18,2014,Estimate; Female: - Bachelor's degree,1807184,24824.68,12665.65,0.7
+North Carolina,HD01_VD18,2014,Estimate; Female: - Bachelor's degree,112001,5968.17,3044.98,2.72
+Durham ,HD01_VD18,2014,Estimate; Female: - Bachelor's degree,8636,1859.91,948.93,10.99
+Forsyth ,HD01_VD18,2014,Estimate; Female: - Bachelor's degree,6134,1327.32,677.2,11.04
+Guilford ,HD01_VD18,2014,Estimate; Female: - Bachelor's degree,9009,2060.09,1051.07,11.67
+United States,HD01_VD19,2014,Estimate; Female: - Graduate or professional degree,1162614,22793.19,11629.18,1
+North Carolina,HD01_VD19,2014,Estimate; Female: - Graduate or professional degree,57577,4867.23,2483.28,4.31
+Durham ,HD01_VD19,2014,Estimate; Female: - Graduate or professional degree,6099,1582.3,807.3,13.24
+Forsyth ,HD01_VD19,2014,Estimate; Female: - Graduate or professional degree,2563,934.13,476.6,18.6
+Guilford ,HD01_VD19,2014,Estimate; Female: - Graduate or professional degree,4219,873.36,445.59,10.56
+United States,HD01_VD01,2015,Estimate; Total:,25578326,32707.57,16687.54,0.07
+North Carolina,HD01_VD01,2015,Estimate; Total:,1386316,7282.38,3715.5,0.27
+Durham ,HD01_VD01,2015,Estimate; Total:,72355,1090.21,556.23,0.77
+Forsyth ,HD01_VD01,2015,Estimate; Total:,59577,897.19,457.75,0.77
+Guilford ,HD01_VD01,2015,Estimate; Total:,106237,1143.83,583.59,0.55
+United States,HD01_VD02,2015,Estimate; Male:,11752682,23436.6,11957.45,0.1
+North Carolina,HD01_VD02,2015,Estimate; Male:,613063,5580.94,2847.42,0.46
+Durham ,HD01_VD02,2015,Estimate; Male:,30905,767.32,391.49,1.27
+Forsyth ,HD01_VD02,2015,Estimate; Male:,25695,420.6,214.59,0.84
+Guilford ,HD01_VD02,2015,Estimate; Male:,45884,714.89,364.74,0.79
+United States,HD01_VD03,2015,Estimate; Male: - Less than 9th grade,526997,12280.68,6265.65,1.19
+North Carolina,HD01_VD03,2015,Estimate; Male: - Less than 9th grade,28869,3589.96,1831.61,6.34
+Durham ,HD01_VD03,2015,Estimate; Male: - Less than 9th grade,795,482.55,246.2,30.97
+Forsyth ,HD01_VD03,2015,Estimate; Male: - Less than 9th grade,612,450.38,229.79,37.55
+Guilford ,HD01_VD03,2015,Estimate; Male: - Less than 9th grade,1074,511.15,260.79,24.28
+United States,HD01_VD04,2015,"Estimate; Male: - 9th to 12th grade, no diploma",1436144,20846.3,10635.87,0.74
+North Carolina,HD01_VD04,2015,"Estimate; Male: - 9th to 12th grade, no diploma",78242,5289.02,2698.48,3.45
+Durham ,HD01_VD04,2015,"Estimate; Male: - 9th to 12th grade, no diploma",4385,1547.74,789.66,18.01
+Forsyth ,HD01_VD04,2015,"Estimate; Male: - 9th to 12th grade, no diploma",2453,769.7,392.7,16.01
+Guilford ,HD01_VD04,2015,"Estimate; Male: - 9th to 12th grade, no diploma",5912,1618.04,825.53,13.96
+United States,HD01_VD05,2015,Estimate; Male: - Regular high school diploma,3408598,39671.83,20240.73,0.59
+North Carolina,HD01_VD05,2015,Estimate; Male: - Regular high school diploma,185138,7246.64,3697.27,2
+Durham ,HD01_VD05,2015,Estimate; Male: - Regular high school diploma,5912,1643.06,838.3,14.18
+Forsyth ,HD01_VD05,2015,Estimate; Male: - Regular high school diploma,7259,1577.53,804.86,11.09
+Guilford ,HD01_VD05,2015,Estimate; Male: - Regular high school diploma,12458,2120.85,1082.07,8.69
+United States,HD01_VD06,2015,Estimate; Male: - GED or alternative credential,687394,17046.64,8697.27,1.27
+North Carolina,HD01_VD06,2015,Estimate; Male: - GED or alternative credential,31608,3736.51,1906.38,6.03
+Durham ,HD01_VD06,2015,Estimate; Male: - GED or alternative credential,1775,788.77,402.43,22.67
+Forsyth ,HD01_VD06,2015,Estimate; Male: - GED or alternative credential,1559,957.96,488.76,31.35
+Guilford ,HD01_VD06,2015,Estimate; Male: - GED or alternative credential,1384,722.04,368.39,26.62
+United States,HD01_VD07,2015,"Estimate; Male: - Some college, no degree",2788337,33306.89,16993.31,0.61
+North Carolina,HD01_VD07,2015,"Estimate; Male: - Some college, no degree",150306,7468.26,3810.34,2.54
+Durham ,HD01_VD07,2015,"Estimate; Male: - Some college, no degree",8693,2004.09,1022.49,11.76
+Forsyth ,HD01_VD07,2015,"Estimate; Male: - Some college, no degree",6825,1384.51,706.38,10.35
+Guilford ,HD01_VD07,2015,"Estimate; Male: - Some college, no degree",12293,2064.85,1053.49,8.57
+United States,HD01_VD08,2015,Estimate; Male: - Associate's degree,828166,23211.4,11842.55,1.43
+North Carolina,HD01_VD08,2015,Estimate; Male: - Associate's degree,40537,4547.91,2320.36,5.72
+Durham ,HD01_VD08,2015,Estimate; Male: - Associate's degree,1732,859.06,438.3,25.31
+Forsyth ,HD01_VD08,2015,Estimate; Male: - Associate's degree,1356,757.79,386.63,28.51
+Guilford ,HD01_VD08,2015,Estimate; Male: - Associate's degree,2767,1301.11,663.83,23.99
+United States,HD01_VD09,2015,Estimate; Male: - Bachelor's degree,1373538,24495.83,12497.87,0.91
+North Carolina,HD01_VD09,2015,Estimate; Male: - Bachelor's degree,71136,5101.96,2603.04,3.66
+Durham ,HD01_VD09,2015,Estimate; Male: - Bachelor's degree,5611,1666.89,850.45,15.16
+Forsyth ,HD01_VD09,2015,Estimate; Male: - Bachelor's degree,4525,1435.74,732.52,16.19
+Guilford ,HD01_VD09,2015,Estimate; Male: - Bachelor's degree,7119,1873.02,955.62,13.42
+United States,HD01_VD10,2015,Estimate; Male: - Graduate or professional degree,703508,17024,8685.71,1.23
+North Carolina,HD01_VD10,2015,Estimate; Male: - Graduate or professional degree,27227,3542.3,1807.3,6.64
+Durham ,HD01_VD10,2015,Estimate; Male: - Graduate or professional degree,2002,899.57,458.96,22.93
+Forsyth ,HD01_VD10,2015,Estimate; Male: - Graduate or professional degree,1106,583.83,297.87,26.93
+Guilford ,HD01_VD10,2015,Estimate; Male: - Graduate or professional degree,2877,1234.38,629.79,21.89
+United States,HD01_VD11,2015,Estimate; Female:,13825644,18917.28,9651.67,0.07
+North Carolina,HD01_VD11,2015,Estimate; Female:,773253,4450.21,2270.52,0.29
+Durham ,HD01_VD11,2015,Estimate; Female:,41450,810.21,413.37,1
+Forsyth ,HD01_VD11,2015,Estimate; Female:,33882,638.64,325.84,0.96
+Guilford ,HD01_VD11,2015,Estimate; Female:,60353,878.13,448.03,0.74
+United States,HD01_VD12,2015,Estimate; Female: - Less than 9th grade,581684,13697.36,6988.45,1.2
+North Carolina,HD01_VD12,2015,Estimate; Female: - Less than 9th grade,28143,3208.68,1637.08,5.82
+Durham ,HD01_VD12,2015,Estimate; Female: - Less than 9th grade,1975,867.4,442.55,22.41
+Forsyth ,HD01_VD12,2015,Estimate; Female: - Less than 9th grade,792,457.53,233.43,29.47
+Guilford ,HD01_VD12,2015,Estimate; Female: - Less than 9th grade,1154,637.45,325.23,28.18
+United States,HD01_VD13,2015,"Estimate; Female: - 9th to 12th grade, no diploma",1359483,23804.77,12145.29,0.89
+North Carolina,HD01_VD13,2015,"Estimate; Female: - 9th to 12th grade, no diploma",80316,5522.55,2817.63,3.51
+Durham ,HD01_VD13,2015,"Estimate; Female: - 9th to 12th grade, no diploma",3200,1329.7,678.42,21.2
+Forsyth ,HD01_VD13,2015,"Estimate; Female: - 9th to 12th grade, no diploma",3249,1129.53,576.29,17.74
+Guilford ,HD01_VD13,2015,"Estimate; Female: - 9th to 12th grade, no diploma",6696,1896.85,967.78,14.45
+United States,HD01_VD14,2015,Estimate; Female: - Regular high school diploma,3458392,38170.55,19474.77,0.56
+North Carolina,HD01_VD14,2015,Estimate; Female: - Regular high school diploma,181714,7492.09,3822.49,2.1
+Durham ,HD01_VD14,2015,Estimate; Female: - Regular high school diploma,9516,1919.49,979.33,10.29
+Forsyth ,HD01_VD14,2015,Estimate; Female: - Regular high school diploma,7688,1643.06,838.3,10.9
+Guilford ,HD01_VD14,2015,Estimate; Female: - Regular high school diploma,11957,2150.64,1097.27,9.18
+United States,HD01_VD15,2015,Estimate; Female: - GED or alternative credential,507688,13130.21,6699.09,1.32
+North Carolina,HD01_VD15,2015,Estimate; Female: - GED or alternative credential,24639,2971.57,1516.11,6.15
+Durham ,HD01_VD15,2015,Estimate; Female: - GED or alternative credential,558,478.98,244.38,43.8
+Forsyth ,HD01_VD15,2015,Estimate; Female: - GED or alternative credential,1020,641.02,327.05,32.06
+Guilford ,HD01_VD15,2015,Estimate; Female: - GED or alternative credential,1473,577.87,294.83,20.02
+United States,HD01_VD16,2015,"Estimate; Female: - Some college, no degree",3546823,33686.98,17187.23,0.48
+North Carolina,HD01_VD16,2015,"Estimate; Female: - Some college, no degree",205342,7038.13,3590.88,1.75
+Durham ,HD01_VD16,2015,"Estimate; Female: - Some college, no degree",8465,1964.77,1002.43,11.84
+Forsyth ,HD01_VD16,2015,"Estimate; Female: - Some college, no degree",10125,1859.91,948.93,9.37
+Guilford ,HD01_VD16,2015,"Estimate; Female: - Some college, no degree",18689,2596.26,1324.62,7.09
+United States,HD01_VD17,2015,Estimate; Female: - Associate's degree,1273607,22500.09,11479.64,0.9
+North Carolina,HD01_VD17,2015,Estimate; Female: - Associate's degree,80792,5934.81,3027.96,3.75
+Durham ,HD01_VD17,2015,Estimate; Female: - Associate's degree,3374,999.66,510.03,15.12
+Forsyth ,HD01_VD17,2015,Estimate; Female: - Associate's degree,2863,1376.17,702.13,24.52
+Guilford ,HD01_VD17,2015,Estimate; Female: - Associate's degree,5736,1496.51,763.53,13.31
+United States,HD01_VD18,2015,Estimate; Female: - Bachelor's degree,1893375,30131.57,15373.25,0.81
+North Carolina,HD01_VD18,2015,Estimate; Female: - Bachelor's degree,109853,7950.81,4056.54,3.69
+Durham ,HD01_VD18,2015,Estimate; Female: - Bachelor's degree,8308,1977.87,1009.12,12.15
+Forsyth ,HD01_VD18,2015,Estimate; Female: - Bachelor's degree,4939,1142.64,582.98,11.8
+Guilford ,HD01_VD18,2015,Estimate; Female: - Bachelor's degree,8493,1705.02,869.91,10.24
+United States,HD01_VD19,2015,Estimate; Female: - Graduate or professional degree,1204592,25073.7,12792.7,1.06
+North Carolina,HD01_VD19,2015,Estimate; Female: - Graduate or professional degree,62454,4452.6,2271.73,3.64
+Durham ,HD01_VD19,2015,Estimate; Female: - Graduate or professional degree,6054,1597.79,815.2,13.47
+Forsyth ,HD01_VD19,2015,Estimate; Female: - Graduate or professional degree,3206,1117.62,570.21,17.79
+Guilford ,HD01_VD19,2015,Estimate; Female: - Graduate or professional degree,6155,1397.62,713.07,11.59
+United States,HD01_VD01,2016,Estimate; Total:,25944692,39602.72,20205.47,0.08
+North Carolina,HD01_VD01,2016,Estimate; Total:,1407993,8761.02,4469.91,0.32
+Durham ,HD01_VD01,2016,Estimate; Total:,74917,1050.89,536.17,0.72
+Forsyth ,HD01_VD01,2016,Estimate; Total:,60510,1243.91,634.65,1.05
+Guilford ,HD01_VD01,2016,Estimate; Total:,108725,1936.17,987.84,0.91
+United States,HD01_VD02,2016,Estimate; Male:,11937836,24044.26,12267.48,0.1
+North Carolina,HD01_VD02,2016,Estimate; Male:,627065,5208,2657.14,0.42
+Durham ,HD01_VD02,2016,Estimate; Male:,32527,595.74,303.95,0.93
+Forsyth ,HD01_VD02,2016,Estimate; Male:,26145,779.23,397.57,1.52
+Guilford ,HD01_VD02,2016,Estimate; Male:,46695,1488.17,759.27,1.63
+United States,HD01_VD03,2016,Estimate; Male: - Less than 9th grade,514953,13969.02,7127.05,1.38
+North Carolina,HD01_VD03,2016,Estimate; Male: - Less than 9th grade,25995,3238.47,1652.28,6.36
+Durham ,HD01_VD03,2016,Estimate; Male: - Less than 9th grade,782,636.26,324.62,41.51
+Forsyth ,HD01_VD03,2016,Estimate; Male: - Less than 9th grade,671,380.09,193.92,28.9
+Guilford ,HD01_VD03,2016,Estimate; Male: - Less than 9th grade,2049,955.57,487.54,23.79
+United States,HD01_VD04,2016,"Estimate; Male: - 9th to 12th grade, no diploma",1438107,24556.6,12528.88,0.87
+North Carolina,HD01_VD04,2016,"Estimate; Male: - 9th to 12th grade, no diploma",81108,5666.72,2891.18,3.56
+Durham ,HD01_VD04,2016,"Estimate; Male: - 9th to 12th grade, no diploma",2794,1164.09,593.92,21.26
+Forsyth ,HD01_VD04,2016,"Estimate; Male: - 9th to 12th grade, no diploma",2372,925.79,472.34,19.91
+Guilford ,HD01_VD04,2016,"Estimate; Male: - 9th to 12th grade, no diploma",5091,1565.62,798.79,15.69
+United States,HD01_VD05,2016,Estimate; Male: - Regular high school diploma,3415907,38893.79,19843.77,0.58
+North Carolina,HD01_VD05,2016,Estimate; Male: - Regular high school diploma,184444,8759.83,4469.3,2.42
+Durham ,HD01_VD05,2016,Estimate; Male: - Regular high school diploma,6060,1535.83,783.59,12.93
+Forsyth ,HD01_VD05,2016,Estimate; Male: - Regular high school diploma,8265,1575.15,803.65,9.72
+Guilford ,HD01_VD05,2016,Estimate; Male: - Regular high school diploma,14041,2300.77,1173.86,8.36
+United States,HD01_VD06,2016,Estimate; Male: - GED or alternative credential,718059,14582.64,7440.12,1.04
+North Carolina,HD01_VD06,2016,Estimate; Male: - GED or alternative credential,35269,4163.06,2124.01,6.02
+Durham ,HD01_VD06,2016,Estimate; Male: - GED or alternative credential,2083,872.17,444.98,21.36
+Forsyth ,HD01_VD06,2016,Estimate; Male: - GED or alternative credential,427,284.77,145.29,34.03
+Guilford ,HD01_VD06,2016,Estimate; Male: - GED or alternative credential,1479,929.36,474.16,32.06
+United States,HD01_VD07,2016,"Estimate; Male: - Some college, no degree",2831195,34256.51,17477.81,0.62
+North Carolina,HD01_VD07,2016,"Estimate; Male: - Some college, no degree",152025,8650.21,4413.37,2.9
+Durham ,HD01_VD07,2016,"Estimate; Male: - Some college, no degree",7778,2073.19,1057.75,13.6
+Forsyth ,HD01_VD07,2016,"Estimate; Male: - Some college, no degree",8158,1977.87,1009.12,12.37
+Guilford ,HD01_VD07,2016,"Estimate; Male: - Some college, no degree",12556,2733.28,1394.53,11.11
+United States,HD01_VD08,2016,Estimate; Male: - Associate's degree,846162,19783.49,10093.62,1.19
+North Carolina,HD01_VD08,2016,Estimate; Male: - Associate's degree,42627,4684.94,2390.28,5.61
+Durham ,HD01_VD08,2016,Estimate; Male: - Associate's degree,2993,1390.47,709.42,23.7
+Forsyth ,HD01_VD08,2016,Estimate; Male: - Associate's degree,1011,483.74,246.81,24.41
+Guilford ,HD01_VD08,2016,Estimate; Male: - Associate's degree,2327,1066.38,544.07,23.38
+United States,HD01_VD09,2016,Estimate; Male: - Bachelor's degree,1431291,28707.74,14646.81,1.02
+North Carolina,HD01_VD09,2016,Estimate; Male: - Bachelor's degree,73683,6045.62,3084.5,4.19
+Durham ,HD01_VD09,2016,Estimate; Male: - Bachelor's degree,6828,2064.85,1053.49,15.43
+Forsyth ,HD01_VD09,2016,Estimate; Male: - Bachelor's degree,4043,1364.26,696.05,17.22
+Guilford ,HD01_VD09,2016,Estimate; Male: - Bachelor's degree,6002,1652.6,843.16,14.05
+United States,HD01_VD10,2016,Estimate; Male: - Graduate or professional degree,742162,17419.57,8887.54,1.2
+North Carolina,HD01_VD10,2016,Estimate; Male: - Graduate or professional degree,31914,3865.19,1972.04,6.18
+Durham ,HD01_VD10,2016,Estimate; Male: - Graduate or professional degree,3209,1262.98,644.38,20.08
+Forsyth ,HD01_VD10,2016,Estimate; Male: - Graduate or professional degree,1198,673.19,343.46,28.67
+Guilford ,HD01_VD10,2016,Estimate; Male: - Graduate or professional degree,3150,1180.77,602.43,19.12
+United States,HD01_VD11,2016,Estimate; Female:,14006856,29726.47,15166.57,0.11
+North Carolina,HD01_VD11,2016,Estimate; Female:,780928,5912.17,3016.41,0.39
+Durham ,HD01_VD11,2016,Estimate; Female:,42390,719.66,367.17,0.87
+Forsyth ,HD01_VD11,2016,Estimate; Female:,34365,835.23,426.14,1.24
+Guilford ,HD01_VD11,2016,Estimate; Female:,62030,1061.62,541.64,0.87
+United States,HD01_VD12,2016,Estimate; Female: - Less than 9th grade,553598,15212.94,7761.7,1.4
+North Carolina,HD01_VD12,2016,Estimate; Female: - Less than 9th grade,29101,3320.68,1694.22,5.82
+Durham ,HD01_VD12,2016,Estimate; Female: - Less than 9th grade,737,560,285.71,38.77
+Forsyth ,HD01_VD12,2016,Estimate; Female: - Less than 9th grade,762,412.26,210.34,27.6
+Guilford ,HD01_VD12,2016,Estimate; Female: - Less than 9th grade,2553,1159.32,591.49,23.17
+United States,HD01_VD13,2016,"Estimate; Female: - 9th to 12th grade, no diploma",1320413,20932.09,10679.64,0.81
+North Carolina,HD01_VD13,2016,"Estimate; Female: - 9th to 12th grade, no diploma",79810,5502.3,2807.3,3.52
+Durham ,HD01_VD13,2016,"Estimate; Female: - 9th to 12th grade, no diploma",5402,1838.47,937.99,17.36
+Forsyth ,HD01_VD13,2016,"Estimate; Female: - 9th to 12th grade, no diploma",2619,1159.32,591.49,22.58
+Guilford ,HD01_VD13,2016,"Estimate; Female: - 9th to 12th grade, no diploma",4645,1196.26,610.34,13.14
+United States,HD01_VD14,2016,Estimate; Female: - Regular high school diploma,3482840,37421.11,19092.4,0.55
+North Carolina,HD01_VD14,2016,Estimate; Female: - Regular high school diploma,181574,8075.91,4120.36,2.27
+Durham ,HD01_VD14,2016,Estimate; Female: - Regular high school diploma,6517,1828.94,933.13,14.32
+Forsyth ,HD01_VD14,2016,Estimate; Female: - Regular high school diploma,7787,1815.83,926.44,11.9
+Guilford ,HD01_VD14,2016,Estimate; Female: - Regular high school diploma,13299,2490.21,1270.52,9.55
+United States,HD01_VD15,2016,Estimate; Female: - GED or alternative credential,496342,13424.51,6849.24,1.38
+North Carolina,HD01_VD15,2016,Estimate; Female: - GED or alternative credential,25507,2732.09,1393.92,5.46
+Durham ,HD01_VD15,2016,Estimate; Female: - GED or alternative credential,1848,876.94,447.42,24.21
+Forsyth ,HD01_VD15,2016,Estimate; Female: - GED or alternative credential,922,556.43,283.89,30.79
+Guilford ,HD01_VD15,2016,Estimate; Female: - GED or alternative credential,1812,1079.49,550.76,30.4
+United States,HD01_VD16,2016,"Estimate; Female: - Some college, no degree",3582760,36894.47,18823.71,0.53
+North Carolina,HD01_VD16,2016,"Estimate; Female: - Some college, no degree",204591,8907.57,4544.68,2.22
+Durham ,HD01_VD16,2016,"Estimate; Female: - Some college, no degree",7585,1909.96,974.47,12.85
+Forsyth ,HD01_VD16,2016,"Estimate; Female: - Some college, no degree",9638,1540.6,786.02,8.16
+Guilford ,HD01_VD16,2016,"Estimate; Female: - Some college, no degree",17257,2702.3,1378.72,7.99
+United States,HD01_VD17,2016,Estimate; Female: - Associate's degree,1329942,28275.23,14426.14,1.08
+North Carolina,HD01_VD17,2016,Estimate; Female: - Associate's degree,79933,5533.28,2823.1,3.53
+Durham ,HD01_VD17,2016,Estimate; Female: - Associate's degree,4074,1299.91,663.22,16.28
+Forsyth ,HD01_VD17,2016,Estimate; Female: - Associate's degree,2966,1044.94,533.13,17.97
+Guilford ,HD01_VD17,2016,Estimate; Female: - Associate's degree,5379,1736,885.71,16.47
+United States,HD01_VD18,2016,Estimate; Female: - Bachelor's degree,1964394,30337.7,15478.42,0.79
+North Carolina,HD01_VD18,2016,Estimate; Female: - Bachelor's degree,116256,7456.34,3804.26,3.27
+Durham ,HD01_VD18,2016,Estimate; Female: - Bachelor's degree,11204,2100.6,1071.73,9.57
+Forsyth ,HD01_VD18,2016,Estimate; Female: - Bachelor's degree,5910,1554.89,793.31,13.42
+Guilford ,HD01_VD18,2016,Estimate; Female: - Bachelor's degree,10810,2135.15,1089.36,10.08
+United States,HD01_VD19,2016,Estimate; Female: - Graduate or professional degree,1276567,24866.38,12686.93,0.99
+North Carolina,HD01_VD19,2016,Estimate; Female: - Graduate or professional degree,64156,5259.23,2683.28,4.18
+Durham ,HD01_VD19,2016,Estimate; Female: - Graduate or professional degree,5023,1710.98,872.95,17.38
+Forsyth ,HD01_VD19,2016,Estimate; Female: - Graduate or professional degree,3761,1193.87,609.12,16.2
+Guilford ,HD01_VD19,2016,Estimate; Female: - Graduate or professional degree,6275,1451.23,740.42,11.8
+United States,HD01_VD01,2017,Estimate; Total:,26472921,44434.21,22670.52,0.09
+North Carolina,HD01_VD01,2017,Estimate; Total:,1439450,8908.77,4545.29,0.32
+Durham ,HD01_VD01,2017,Estimate; Total:,74922,1739.57,887.54,1.18
+Forsyth ,HD01_VD01,2017,Estimate; Total:,62605,1318.98,672.95,1.07
+Guilford ,HD01_VD01,2017,Estimate; Total:,112675,1190.3,607.3,0.54
+United States,HD01_VD02,2017,Estimate; Male:,12197506,28743.49,14665.05,0.12
+North Carolina,HD01_VD02,2017,Estimate; Male:,643482,5912.17,3016.41,0.47
+Durham ,HD01_VD02,2017,Estimate; Male:,33581,890.04,454.1,1.35
+Forsyth ,HD01_VD02,2017,Estimate; Male:,27450,571.91,291.79,1.06
+Guilford ,HD01_VD02,2017,Estimate; Male:,49255,676.77,345.29,0.7
+United States,HD01_VD03,2017,Estimate; Male: - Less than 9th grade,504081,15346.38,7829.79,1.55
+North Carolina,HD01_VD03,2017,Estimate; Male: - Less than 9th grade,26224,3618.55,1846.2,7.04
+Durham ,HD01_VD03,2017,Estimate; Male: - Less than 9th grade,1748,803.06,409.72,23.44
+Forsyth ,HD01_VD03,2017,Estimate; Male: - Less than 9th grade,789,459.91,234.65,29.74
+Guilford ,HD01_VD03,2017,Estimate; Male: - Less than 9th grade,876,405.11,206.69,23.59
+United States,HD01_VD04,2017,"Estimate; Male: - 9th to 12th grade, no diploma",1393611,25702.81,13113.68,0.94
+North Carolina,HD01_VD04,2017,"Estimate; Male: - 9th to 12th grade, no diploma",78929,5849.02,2984.19,3.78
+Durham ,HD01_VD04,2017,"Estimate; Male: - 9th to 12th grade, no diploma",5105,1456,742.86,14.55
+Forsyth ,HD01_VD04,2017,"Estimate; Male: - 9th to 12th grade, no diploma",2800,1363.06,695.44,24.84
+Guilford ,HD01_VD04,2017,"Estimate; Male: - 9th to 12th grade, no diploma",6267,1743.15,889.36,14.19
+United States,HD01_VD05,2017,Estimate; Male: - Regular high school diploma,3600751,38049.02,19412.77,0.54
+North Carolina,HD01_VD05,2017,Estimate; Male: - Regular high school diploma,198304,7446.81,3799.39,1.92
+Durham ,HD01_VD05,2017,Estimate; Male: - Regular high school diploma,7218,1637.11,835.26,11.57
+Forsyth ,HD01_VD05,2017,Estimate; Male: - Regular high school diploma,8812,1724.09,879.64,9.98
+Guilford ,HD01_VD05,2017,Estimate; Male: - Regular high school diploma,13622,2112.51,1077.81,7.91
+United States,HD01_VD06,2017,Estimate; Male: - GED or alternative credential,712967,15805.11,8063.83,1.13
+North Carolina,HD01_VD06,2017,Estimate; Male: - GED or alternative credential,31823,3599.49,1836.47,5.77
+Durham ,HD01_VD06,2017,Estimate; Male: - GED or alternative credential,2248,1265.36,645.59,28.72
+Forsyth ,HD01_VD06,2017,Estimate; Male: - GED or alternative credential,816,501.62,255.93,31.36
+Guilford ,HD01_VD06,2017,Estimate; Male: - GED or alternative credential,1663,691.06,352.58,21.2
+United States,HD01_VD07,2017,"Estimate; Male: - Some college, no degree",2856150,41866.55,21360.48,0.75
+North Carolina,HD01_VD07,2017,"Estimate; Male: - Some college, no degree",157871,7569.53,3862.01,2.45
+Durham ,HD01_VD07,2017,"Estimate; Male: - Some college, no degree",8057,1888.51,963.53,11.96
+Forsyth ,HD01_VD07,2017,"Estimate; Male: - Some college, no degree",7479,1542.98,787.23,10.53
+Guilford ,HD01_VD07,2017,"Estimate; Male: - Some college, no degree",11772,2043.4,1042.55,8.86
+United States,HD01_VD08,2017,Estimate; Male: - Associate's degree,875766,23016,11742.86,1.34
+North Carolina,HD01_VD08,2017,Estimate; Male: - Associate's degree,41238,4440.68,2265.65,5.49
+Durham ,HD01_VD08,2017,Estimate; Male: - Associate's degree,852,545.7,278.42,32.68
+Forsyth ,HD01_VD08,2017,Estimate; Male: - Associate's degree,2009,905.53,462.01,23
+Guilford ,HD01_VD08,2017,Estimate; Male: - Associate's degree,4899,1788.43,912.46,18.63
+United States,HD01_VD09,2017,Estimate; Male: - Bachelor's degree,1484335,25968.51,13249.24,0.89
+North Carolina,HD01_VD09,2017,Estimate; Male: - Bachelor's degree,80900,5602.38,2858.36,3.53
+Durham ,HD01_VD09,2017,Estimate; Male: - Bachelor's degree,5733,1863.49,950.76,16.58
+Forsyth ,HD01_VD09,2017,Estimate; Male: - Bachelor's degree,3499,1176,600,17.15
+Guilford ,HD01_VD09,2017,Estimate; Male: - Bachelor's degree,7974,1930.21,984.8,12.35
+United States,HD01_VD10,2017,Estimate; Male: - Graduate or professional degree,769845,20615.15,10517.93,1.37
+North Carolina,HD01_VD10,2017,Estimate; Male: - Graduate or professional degree,28193,3283.74,1675.38,5.94
+Durham ,HD01_VD10,2017,Estimate; Male: - Graduate or professional degree,2620,1109.28,565.96,21.6
+Forsyth ,HD01_VD10,2017,Estimate; Male: - Graduate or professional degree,1246,635.06,324.01,26
+Guilford ,HD01_VD10,2017,Estimate; Male: - Graduate or professional degree,2182,910.3,464.44,21.29
+United States,HD01_VD11,2017,Estimate; Female:,14275415,30070.81,15342.25,0.11
+North Carolina,HD01_VD11,2017,Estimate; Female:,795968,5707.23,2911.85,0.37
+Durham ,HD01_VD11,2017,Estimate; Female:,41341,1130.72,576.9,1.4
+Forsyth ,HD01_VD11,2017,Estimate; Female:,35155,1042.55,531.91,1.51
+Guilford ,HD01_VD11,2017,Estimate; Female:,63420,800.68,408.51,0.64
+United States,HD01_VD12,2017,Estimate; Female: - Less than 9th grade,531597,14817.36,7559.88,1.42
+North Carolina,HD01_VD12,2017,Estimate; Female: - Less than 9th grade,30559,3290.89,1679.03,5.49
+Durham ,HD01_VD12,2017,Estimate; Female: - Less than 9th grade,1054,629.11,320.97,30.45
+Forsyth ,HD01_VD12,2017,Estimate; Female: - Less than 9th grade,1050,642.21,327.66,31.21
+Guilford ,HD01_VD12,2017,Estimate; Female: - Less than 9th grade,1173,639.83,326.44,27.83
+United States,HD01_VD13,2017,"Estimate; Female: - 9th to 12th grade, no diploma",1312738,25913.7,13221.28,1.01
+North Carolina,HD01_VD13,2017,"Estimate; Female: - 9th to 12th grade, no diploma",74116,5329.53,2719.15,3.67
+Durham ,HD01_VD13,2017,"Estimate; Female: - 9th to 12th grade, no diploma",3770,1576.34,804.26,21.33
+Forsyth ,HD01_VD13,2017,"Estimate; Female: - 9th to 12th grade, no diploma",2642,757.79,386.63,14.63
+Guilford ,HD01_VD13,2017,"Estimate; Female: - 9th to 12th grade, no diploma",4880,1538.21,784.8,16.08
+United States,HD01_VD14,2017,Estimate; Female: - Regular high school diploma,3570590,37381.79,19072.34,0.53
+North Carolina,HD01_VD14,2017,Estimate; Female: - Regular high school diploma,189125,8358.3,4264.44,2.25
+Durham ,HD01_VD14,2017,Estimate; Female: - Regular high school diploma,8274,2013.62,1027.36,12.42
+Forsyth ,HD01_VD14,2017,Estimate; Female: - Regular high school diploma,8685,1904,971.43,11.19
+Guilford ,HD01_VD14,2017,Estimate; Female: - Regular high school diploma,14991,2343.66,1195.74,7.98
+United States,HD01_VD15,2017,Estimate; Female: - GED or alternative credential,502501,14912.68,7608.51,1.51
+North Carolina,HD01_VD15,2017,Estimate; Female: - GED or alternative credential,24394,3634.04,1854.1,7.6
+Durham ,HD01_VD15,2017,Estimate; Female: - GED or alternative credential,1185,834.04,425.53,35.91
+Forsyth ,HD01_VD15,2017,Estimate; Female: - GED or alternative credential,638,306.21,156.23,24.49
+Guilford ,HD01_VD15,2017,Estimate; Female: - GED or alternative credential,1411,770.89,393.31,27.87
+United States,HD01_VD16,2017,"Estimate; Female: - Some college, no degree",3576735,40038.81,20427.96,0.57
+North Carolina,HD01_VD16,2017,"Estimate; Female: - Some college, no degree",203280,10334.98,5272.95,2.59
+Durham ,HD01_VD16,2017,"Estimate; Female: - Some college, no degree",10163,2348.43,1198.18,11.79
+Forsyth ,HD01_VD16,2017,"Estimate; Female: - Some college, no degree",9867,1967.15,1003.65,10.17
+Guilford ,HD01_VD16,2017,"Estimate; Female: - Some college, no degree",17199,2590.3,1321.58,7.68
+United States,HD01_VD17,2017,Estimate; Female: - Associate's degree,1378831,26153.19,13343.46,0.97
+North Carolina,HD01_VD17,2017,Estimate; Female: - Associate's degree,78929,6167.15,3146.51,3.99
+Durham ,HD01_VD17,2017,Estimate; Female: - Associate's degree,1880,844.77,431.01,22.93
+Forsyth ,HD01_VD17,2017,Estimate; Female: - Associate's degree,3279,1018.72,519.76,15.85
+Guilford ,HD01_VD17,2017,Estimate; Female: - Associate's degree,6989,2031.49,1036.47,14.83
+United States,HD01_VD18,2017,Estimate; Female: - Bachelor's degree,2047716,31267.06,15952.58,0.78
+North Carolina,HD01_VD18,2017,Estimate; Female: - Bachelor's degree,124220,6443.57,3287.54,2.65
+Durham ,HD01_VD18,2017,Estimate; Female: - Bachelor's degree,7747,1877.79,958.06,12.37
+Forsyth ,HD01_VD18,2017,Estimate; Female: - Bachelor's degree,6277,1620.43,826.75,13.17
+Guilford ,HD01_VD18,2017,Estimate; Female: - Bachelor's degree,11114,2336.51,1192.1,10.73
+United States,HD01_VD19,2017,Estimate; Female: - Graduate or professional degree,1354707,24656.68,12579.94,0.93
+North Carolina,HD01_VD19,2017,Estimate; Female: - Graduate or professional degree,71345,5235.4,2671.12,3.74
+Durham ,HD01_VD19,2017,Estimate; Female: - Graduate or professional degree,7268,1938.55,989.06,13.61
+Forsyth ,HD01_VD19,2017,Estimate; Female: - Graduate or professional degree,2717,1033.02,527.05,19.4
+Guilford ,HD01_VD19,2017,Estimate; Female: - Graduate or professional degree,5663,1738.38,886.93,15.66

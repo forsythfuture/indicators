@@ -1,0 +1,539 @@
+---
+title: "Post Secondary Education Completion"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+
+```
+
+This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
+
+```{r}
+# change to 'TRUE' to write out datasets to excel
+write_to_excel <- TRUE
+```
+
+The employment rate is the percentage of people age 16 and over who are working. The data comes from U.S. Census Bureau, American Fact Finder table S2301. 
+
+### Data cleaning
+
+This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
+```{r}
+edu<-1
+
+#ACS and more intuitive race/ethnic labels
+race_eth_label <- c("W","B","H")
+race_eth_acs <- c("H","B","I")
+
+
+for (year in c(2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007)){
+#for (year in c(2006)){
+
+
+yr2 <- substr(year,3,4)
+
+
+#get totals and gender from B15002
+  edu <- cw_acs_newvar(edu,"B15002_001","Pop",age1="25",year=year)
+  edu <- cw_acs_newvar(edu,"B15002_002","Pop",age1="25",MF="M",year=year)
+  edu <- cw_acs_newvar(edu,"B15002_019","Pop",age1="25",MF="F",year=year)
+  edu <- cw_acs_add_sumofvars(edu,c("B15002_014","B15002_015","B15002_016","B15002_017","B15002_018"),"Assoc_p",age1="25",MF="M",year=year)
+  edu <- cw_acs_add_sumofvars(edu,c("B15002_031","B15002_032","B15002_033","B15002_034","B15002_035"),"Assoc_p",age1="25",MF="F",year=year)
+  
+  edu <- cw_acs_add(edu,paste0("Assoc_p2599FA",yr2),paste0("Assoc_p2599MA",yr2),paste0("Assoc_p2599AA",yr2))
+  
+  edu <- cw_acs_proportion(edu,paste0("Assoc_p2599AA",yr2),paste0("Pop2599AA",yr2),paste0("Pct_Assoc_p2599AA",yr2))
+  edu <- cw_acs_proportion(edu,paste0("Assoc_p2599MA",yr2),paste0("Pop2599MA",yr2),paste0("Pct_Assoc_p2599MA",yr2))
+  edu <- cw_acs_proportion(edu,paste0("Assoc_p2599FA",yr2),paste0("Pop2599FA",yr2),paste0("Pct_Assoc_p2599FA",yr2))
+
+}
+
+for (year in c(2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007)){
+#race/ethnicity
+  
+#in 2008 a separate category for GED was added
+for (i in 1:3){
+  edu <- cw_acs_newvar(edu,paste0("B15002",race_eth_acs[i],"_001"),"Pop",age1="25",year=year,race_eth=race_eth_label[i])
+  
+  if(year>2007){
+  
+  edu <- cw_acs_add_sumofvars(edu,c(paste0("B15002",race_eth_acs[i],"_008"),paste0("B15002",race_eth_acs[i],"_009"),paste0("B15002",race_eth_acs[i],"_010"),paste0("B15002",race_eth_acs[i],"_017"),paste0("B15002",race_eth_acs[i],"_018"),paste0("B15002",race_eth_acs[i],"_019")),"Assoc_p",age1="25",race_eth=race_eth_label[i],year=year)
+  }else{
+    edu <- cw_acs_add_sumofvars(edu,c(paste0("B15002",race_eth_acs[i],"_007"),paste0("B15002",race_eth_acs[i],"_008"),paste0("B15002",race_eth_acs[i],"_009"),paste0("B15002",race_eth_acs[i],"_015"),paste0("B15002",race_eth_acs[i],"_016"),paste0("B15002",race_eth_acs[i],"_017")),"Assoc_p",age1="25",race_eth=race_eth_label[i],year=year)
+  }
+  edu <- cw_acs_proportion(edu,paste0("Assoc_p2599A",race_eth_label[i],yr2),paste0("Pop2599A",race_eth_label[i],yr2),paste0("Pct_Assoc_p2599A",race_eth_label[i],yr2))
+}
+} 
+  
+for (year in c(2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007)){
+#age
+edu <- cw_acs_add_sumofvars(edu,c("B15001_011","B15001_052"),"Pop",age1="25",age2="34",year=year)
+edu <- cw_acs_add_sumofvars(edu,c("B15001_019","B15001_060"),"Pop",age1="35",age2="44",year=year)
+edu <- cw_acs_add_sumofvars(edu,c("B15001_027","B15001_068"),"Pop",age1="45",age2="64",year=year)
+edu <- cw_acs_add_sumofvars(edu,c("B15001_035","B15001_076"),"Pop",age1="65",age2="99",year=year)
+
+edu <- cw_acs_add_sumofvars(edu,c("B15001_016","B15001_017","B15001_018","B15001_057","B15001_058","B15001_059"),"Assoc_p",age1="25",age2="34",year=year)
+edu <- cw_acs_add_sumofvars(edu,c("B15001_024","B15001_025","B15001_026","B15001_065","B15001_066","B15001_067"),"Assoc_p",age1="35",age2="44",year=year)
+edu <- cw_acs_add_sumofvars(edu,c("B15001_032","B15001_033","B15001_034","B15001_073","B15001_074","B15001_075"),"Assoc_p",age1="45",age2="64",year=year)
+edu <- cw_acs_add_sumofvars(edu,c("B15001_040","B15001_041","B15001_042","B15001_081","B15001_082","B15001_083"),"Assoc_p",age1="65",age2="99",year=year)
+
+edu <- cw_acs_proportion(edu,paste0("Assoc_p2534AA",yr2),paste0("Pop2534AA",yr2),paste0("Pct_Assoc_p2534AA",yr2))
+edu <- cw_acs_proportion(edu,paste0("Assoc_p3544AA",yr2),paste0("Pop3544AA",yr2),paste0("Pct_Assoc_p3544AA",yr2))
+edu <- cw_acs_proportion(edu,paste0("Assoc_p4564AA",yr2),paste0("Pop4564AA",yr2),paste0("Pct_Assoc_p4564AA",yr2))
+edu <- cw_acs_proportion(edu,paste0("Assoc_p6599AA",yr2),paste0("Pop6599AA",yr2),paste0("Pct_Assoc_p6599AA",yr2))
+
+}
+
+
+names <- colnames(edu)
+
+edu_made <- edu
+
+edu_made2 <- t(edu_made)
+
+write.csv(edu_made2, "edu_made2.csv")
+
+```
+
+```{r}
+# create list of geographic areas to keep
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+df <- read_csv('data/employment_all_years_counties.csv') %>%
+  # we only need rows representing the employment rate
+  # these rows have the phrase 'Employed;' or 'Employment/Population Ratio' in the description
+  # change the description so all rows have phrase 'Employment/Population Ratio'; which is the most recent phrase
+  mutate(description = str_replace(.$description, 'Employed; ', 'Employment/Population Ratio; ')) %>%
+  # only keep rows for the US, NC, Forsyth, Guilford, and Durham
+  filter(geo_description %in% geo_areas,
+         # only keep employment rate rows and total population counts
+         # totals are needed to derive percentages from artificially created groups (age bins)
+         str_detect(description, 'Employment[/]Population Ratio;|Total')) %>%
+  # the last section of the variable name (label) column is the same for estiamtes and totals
+  # this section needs to be extracted so that estimate and total data sets can be merged on it
+  mutate(var_name = str_extract(label, 'VC[0-9][0-9]$'))
+
+# make the total counts an additional column
+
+# create new dataset with just totals
+emp_total <- df %>%
+  # filter for only totals
+  filter(str_detect(description, 'Total'),
+         # remove 'PERCENT IMPUTED' rows because these do not reflect counts
+         !str_detect(description, 'PERCENT IMPUTED')) %>%
+  # only keep the variables that are needed to merge this dataset with the primary dataset
+  select(var_name, geo_description, estimate, moe, year) #DON'T NEED SE OR CV?
+
+# remove totals from primary data set and merge in newly created totals data set
+df <- df %>%
+  filter(!str_detect(description, 'Total')) %>%
+  left_join(emp_total, by = c('var_name', 'geo_description', 'year')) %>%
+  rename(estimate = estimate.x, moe = moe.x,
+         population = estimate.y, population_moe = moe.y)
+         
+```
+
+------
+
+### US, NC, and county comparisions
+
+#### Plot
+
+The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+df %>%
+  # only keep total employment rate
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over') %>%
+  ggplot(aes(year, estimate, color = geo_description)) +
+    geom_line(size = 1) +
+    labs(title = 'Employment rate',
+         color = 'Comparison Unit',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_bw()
+```
+
+#### Data
+
+Below is the raw data for employment rates by geographies.
+
+```{r}
+total_data <- df %>%
+  # only keep total employment rate
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over') %>%
+  select(geo_description, year, estimate, moe, se, cv)
+
+if (write_to_excel == TRUE) {
+  excel_data <- total_data %>%
+    # add type of column
+    mutate(type = 'Employment Rate',
+           subtype = 'Total Population')
+}
+
+# create table
+total_data %>%
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+```
+
+#### Z-scores
+
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
+
+```{r}
+year_comparison <- c(max(df$year), max(df$year)-1)
+
+df %>%
+  # only keep total employment rate
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
+         # only keep data for the most recent year
+         year %in% year_comparison) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
+```
+
+------
+
+### Forsyth County year-to-year trends
+
+#### Z-scores
+
+The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+
+```{r}
+df %>%
+  # only keep total employment rate
+  filter(description == 'Employment/Population Ratio; Estimate; Population 16 years and over',
+         # only keep data for the most recent year
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', 'year')
+```
+
+------
+
+### Employment rate by ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's employment rate by ethnicity and year. Many hispanic values are missing due to insufficient data.
+
+```{r fig.width=8,fig.height=10}
+ethnicity <- df %>%
+  # filter for race
+  ff_acs_ethnicity(description)
+
+ethnicity %>%
+  ggplot(aes(year, estimate, color = ethnicity)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Employment rate by ethnicity',
+         color = 'Ethnicity',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_bw()
+```
+
+#### Data
+
+The data for ethnicities is as follows.
+
+```{r}
+ethnicity_data <- ethnicity  %>%
+  select(geo_description, year, ethnicity, estimate, moe, se, cv)
+
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+  excel_data <- ethnicity_data %>%
+    # add type of column
+    mutate(type = 'Race and Ethnicity',
+           subtype = ethnicity) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-ethnicity) %>%
+    bind_rows(excel_data, .)
+}
+
+ethnicity_data %>% 
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+            colnames = c('Geographic area', 'Year', 'Ethnicity', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+  formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+```
+
+#### Z-scores
+
+Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
+
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+
+ethnicity %>%
+  filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore('estimate', 'se', c('year', 'geo_description', 'ethnicity'))  %>%
+  ff_acs_zscore_kable('Z-scores by year and ethnicity')
+```
+
+Below if a table of z-scores for ethnicities in all years within Forsyth County.
+
+```{r}
+ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
+```
+
+------
+
+### Forsyth County employment rate by age
+
+#### Plot
+
+The following plot examines Forsyth County's employment rate by age group.
+
+```{r fig.width=8,fig.height=10}
+# some age bins are artificially created; we will need to derive percentages for these bins
+
+# creat bins for age
+age <- df %>%
+  filter(# only keep age
+         str_detect(description, ' AGE - ')) %>%
+  # create new variable that is only the age
+  mutate(age = str_extract(description, 'AGE - .* years'),
+         age = str_extract(age, '[0-9].*'),
+         # create variable that is the number of people employed in each age bin
+         # this is needed to calculate the percentage of people employed in the artificially created age bins
+         # must divide estimate by 100 because it is a percentage, but listed as integers
+         pop_employed = population * (estimate/100),
+         # create function for calculating the moe of two products; will be used below
+         # reference: A compass for understaing and using american community survey data, October 2008, A-16
+         pop_employed_moe = sqrt((estimate/100)^2 * population_moe^2 + population^2 * (moe/100)^2)) %>%
+  # reclassify ages based on new categories
+  # mutate(age  = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" | .$age == "25 to 29 years", '16 to 29 years',
+                       #ifelse(.$age == "30 to 34 years" | .$age == "35 to 44 years" |
+                                #.$age == "25 to 44 years", '30 to 44 years', '45 years and over')))
+    mutate(age = ifelse(.$age == "16 to 19 years" | .$age == "20 to 24 years" , '16 to 24 years',
+                       ifelse(.$age == "25 to 29 years" | .$age == "30 to 34 years" | .$age == "35 to 44 years" |
+                                .$age == "25 to 44 years", '25 to 44 years', 
+                       ifelse(.$age == "45 to 54 years" | .$age == "55 to 64 years" | .$age == "55 to 64 years" |
+                                .$age == "60 to 64 years" | .$age == "55 to 59 years", '45 to 64 years','65 to 99 years'))))
+
+
+# The following section creates the employment rate and MOE of each artificially derived age bin
+
+age <- age %>%
+  # group by year, geography, and the newly created age bins
+  group_by(year, geo_description, age) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(sum_pop = sum(population),
+            sum_pop_emp = sum(pop_employed),
+            # deriving MOE from aggregagate count data using tidycensus package
+            sum_pop_moe = moe_sum(population_moe, population),
+            sum_pop_emp_moe = moe_sum(pop_employed_moe, pop_employed)) %>% 
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_employed = round( 100 * (sum_pop_emp / sum_pop), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_employed_moe = moe_prop(sum_pop_emp, sum_pop, sum_pop_emp_moe, sum_pop_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_employed_moe = round( perc_employed_moe *100, 2),
+         # derive standard error from margin of error
+         perc_employed_se = round(perc_employed_moe / 1.96, 2),
+         # derived cv from se
+         perc_employed_cv = round((perc_employed_se / perc_employed) * 100, 2)) %>%
+  # data was previously grouped by year and age; ungroup data so it is a normal dataframe
+  ungroup()
+
+# add Forsyth back as the geographic unit
+#age$geo_description <- geo_areas
+
+age %>%
+    ggplot(aes(year, perc_employed, color = age)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Employment rate by age group',
+         color = 'Age group',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
+    theme_bw()
+
+```
+
+#### Data
+
+Age data is below.
+
+```{r}
+age_data <- age %>%
+  # select needed variable, reorder to match primary excel data dataframe, and rename to match primary excel dataframe
+  select(geo_description, year, age, estimate = perc_employed, moe = perc_employed_moe, 
+         se = perc_employed_se, cv = perc_employed_cv)
+
+ # write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+  excel_data <- age_data %>%
+    # add type of column
+    mutate(type = 'Age Group',
+           subtype = age) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-age) %>%
+    bind_rows(excel_data, .)
+}
+  
+age_data %>%  
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', 'Age group', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group and geography in the past two years.
+
+```{r}
+# enter comparison years here
+age_years <- c(max(age$year), max(age$year)-1)
+
+age %>%
+  filter(year %in% age_years) %>%
+  ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'geo_description', 'age'))
+```
+
+Below is a table of z-scores for all years and ages within Forsyth County.
+
+```{r}
+age %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'age'))
+```
+
+------
+
+### Forsyth County employment rate by gender
+
+#### Plot
+
+The plot for employment rate by gender is below.
+
+```{r fig.width=8,fig.height=10}
+# only keep rows related to gender
+
+# gender rows have the following descriptions
+gender_descriptions <- c("Employment/Population Ratio; Estimate; Population 20 to 64 years - SEX - Male",
+                         "Employment/Population Ratio; Estimate; Population 20 to 64 years - SEX - Female",
+                         "Employment/Population Ratio; Estimate; SEX - Male",
+                         "Employment/Population Ratio; Estimate; SEX - Female")
+
+gender <- df %>%
+  filter(# only keep gender
+         description %in% gender_descriptions) %>%
+  # create new variable that is only the gender
+  # extract either the word Male or Female from the description
+  mutate(gender = str_extract(description, 'Male|Female'))
+
+gender %>%
+    ggplot(aes(year, estimate, color = gender)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+    facet_grid(rows = vars(geo_description)) +
+    labs(title = 'Employment rate by gender',
+         color = 'Gender',
+         y = 'Percent employed') +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_bw()
+
+```
+
+#### Data
+
+And here is the underlying data.
+
+```{r}
+gender_data <- gender %>%
+  select(geo_description, year, gender, estimate, moe, se, cv)
+
+# write out data set to excel only needed
+if (write_to_excel == TRUE) {
+  
+    excel_data <- gender_data %>%
+    # add type of column
+    mutate(type = 'Gender',
+           subtype = gender) %>%
+    # delete gender column since this is now in the subtype column
+    select(-gender) %>%
+    bind_rows(excel_data, .)
+}
+
+gender_data %>%
+  datatable(filter='top', extensions='Buttons', 
+            options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip',
+              colnames = c('Geographic area', 'Year', 'Gender', '% Employed', '95% MOE', 'St. Error', 'CV'))) %>%
+  # color cv numbers based on value
+    formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r}
+# enter comparison years here
+gender_years <- c(max(gender$year), max(gender$year)-1)
+
+gender %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'gender'))
+```
+
+And here are Forsyth County's z-scores for all years.
+
+```{r}
+gender %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
+```
+
+
+Write out excel workbook if needed.
+
+```{r}
+# estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+excel_data %>%
+  mutate_at(vars(estimate:se), funs(./100)) %>%
+  # write to excel
+  ff_write_to_excel(., write_to_excel, 'employment.xlsx')
+```
