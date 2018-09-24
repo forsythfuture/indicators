@@ -10,7 +10,7 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- FALSE
+for_analyst <- TRUE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
@@ -69,6 +69,11 @@ df %>%
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
     theme_minimal()
 ```
+
+#### Interpretation
+
+* In 2017, Forsyth County had the highest poverty rate among comparison geographic units. But, the difference between Forsyth and Durham counties is not statistically significant.
+* Forsyth County's poverty rates have consistently dropped since 2012. The differences in poverty rates between 2017 and 2012, 2013, and 2014 are statistically significant. 
 
 #### Data
 
@@ -154,13 +159,20 @@ ethnicity %>%
 ethnicity %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(ethnicity, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=ethnicity)) +
   geom_bar(position = "dodge", stat='identity') +
   labs(title = paste0('Poverty rate by ethnicity', ' in ', max(ethnicity$year)),
-       fill = 'Geography',
-         y = 'Percent employed') +
+       fill = 'Ethnicity',
+       y = 'Poverty rate (%)',
+       x = '') +
   theme_minimal()
 ```
+
+#### Interpretation
+
+* The African American poverty rate has fallen 10 percentage points since 2012.
+* THe White, non-Hispanic poverty rate has remained stable over the pst 10 years. Over this time period, no years have statistically significant differences from 2017.
+* Most of the Hispanic/Latinx values have high CV scores (over 12), so our confidence in Hispanic/Latinx estimates is weak.
 
 #### Data
 
@@ -252,13 +264,15 @@ age %>%
 age %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(age, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=age)) +
     geom_bar(position = "dodge", stat='identity') +
     labs(title = paste0('Poverty rate by age', ' in ', max(age$year)),
-         fill = 'Geography',
-           y = 'Poverty rate') +
+         fill = 'Age Group',
+           y = 'Poverty rate (%)') +
     theme_minimal()
 ```
+
+#### Interpretation
 
 #### Data
 

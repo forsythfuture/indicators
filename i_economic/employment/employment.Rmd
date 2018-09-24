@@ -102,6 +102,9 @@ df %>%
 
 #### Interpretation
 
+* The Forsyth County's employment rate lags behind Durham County's and Guilford County's rates. But, the difference between Forsyth County and Guilford County is not statistically significant.
+* Forsyth County's employment rate has increased the past three years, but this increase is not statistically significant.
+
 #### Data
 
 Below is the raw data for employment rates by geographies.
@@ -160,7 +163,7 @@ df %>%
 
 #### Plot
 
-The plots below show employment rate by ethnicity and year. Many hispanic values are missing due to insufficient data.
+The plots below show employment rate by ethnicity and year. Many Hispanic values are missing due to insufficient data.
 
 ```{r}
 ethnicity <- df %>%
@@ -187,15 +190,19 @@ ethnicity %>%
 ethnicity %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(ethnicity, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=ethnicity)) +
   geom_bar(position = "dodge", stat='identity') +
   labs(title = paste0('Employment rate by ethnicity', ' in ', max(ethnicity$year)),
-       fill = 'Geography',
-         y = 'Percent employed') +
+       fill = 'Ethnicity',
+       y = 'Employment Rate',
+       x = '') +
   theme_minimal()
 ```
 
 #### Interpretation
+
+* For most years, there is insufficient data to analyze the employment rate for Hispanic/Latinx residents in Forsyth County.
+* In Forsyth County, the 2017 difference between the White, non-Hispanic and African American rates is not statistically significant, but the 2016 difference is.
 
 #### Data
 
@@ -272,7 +279,7 @@ age <- df %>%
                        ifelse(.$age == "25 to 29 years" | .$age == "30 to 34 years" | .$age == "35 to 44 years" |
                                 .$age == "25 to 44 years", '25 to 44 years', 
                        ifelse(.$age == "45 to 54 years" | .$age == "55 to 64 years" | .$age == "55 to 64 years" |
-                                .$age == "60 to 64 years" | .$age == "55 to 59 years", '45 to 64 years','65 to 99 years'))))
+                                .$age == "60 to 64 years" | .$age == "55 to 59 years", '45 to 64 years','65 years and older'))))
 
 
 # The following section creates the employment rate and MOE of each artificially derived age bin
@@ -325,15 +332,19 @@ age %>%
 age %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(age, perc_employed, fill=geo_description)) +
+  ggplot(aes(geo_description, perc_employed, fill=age)) +
     geom_bar(position = "dodge", stat='identity') +
     labs(title = paste0('Employment rate by age', ' in ', max(age$year)),
-         fill = 'Geography',
-           y = 'Percent employed') +
+         fill = 'Age Group',
+          y = 'Employment Rate',
+         x = '') +
     theme_minimal()
 ```
 
 #### Interpretation
+
+* Employment rate differences by age are stable over time and geographic location.
+* Forsyth County's employment rate difference between 25 to 44 and 45 to 64 year old residents is statistically significant in 2016 and 2017.
 
 #### Data
 
@@ -421,15 +432,19 @@ gender %>%
 gender %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(gender, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=gender)) +
     geom_bar(position = "dodge", stat='identity') +
     labs(title = paste0('Employment rate by gender', ' in ', max(gender$year)),
-         fill = 'Geography',
-           y = 'Percent employed') +
+         fill = 'Gender',
+           y = 'Employment Rate',
+         x = '') +
     theme_minimal()
 ```
 
 #### Interpretation
+
+* Males consistently have a higher employment rate than females.
+* The Forsyth County difference between the male and female employment is statistically significant for all years except 2013.
 
 #### Data
 
@@ -475,7 +490,7 @@ gender %>%
 
 ### Tableau dataset
 
-This is the final dataset that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
+This is the final data set that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
 
 ```{r}
 # estimates are percentages displayed in tens (60.45)

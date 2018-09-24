@@ -10,7 +10,7 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- FALSE
+for_analyst <- TRUE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
@@ -87,6 +87,12 @@ df %>%
                        minor_breaks = NULL) +
     theme_minimal()
 ```
+
+
+#### Interpretation
+
+* Forsyth County's estimated median income has generally risen since 2012, but the differences between 2015, 2016, and 2017 are not statistically significant.
+* The 2017 difference between Forsyth County's median income and the median income of both North Carolina and Guilford County in 2017 is not statistically significant.
 
 #### Data
 
@@ -170,13 +176,19 @@ ethnicity %>%
 ethnicity %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(ethnicity, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=ethnicity)) +
   geom_bar(position = "dodge", stat='identity') +
   labs(title = paste0('Median income by ethnicity', ' in ', max(ethnicity$year)),
-       fill = 'Geography',
-         y = 'Median income') +
+       fill = 'Ethnicity',
+       y = 'Median income',
+       x = '') +
   theme_minimal()
 ```
+
+#### Interpretation
+
+* All ethnicities within Forsyth County have experienced a rise in median income since 2012.
+* The difference in median income between African Americans and Hispanic/Latinx is not statistically significant for any year except 2008.
 
 #### Data
 
@@ -256,13 +268,18 @@ age %>%
 age %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(age, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=age)) +
     geom_bar(position = "dodge", stat='identity') +
     labs(title = paste0('Median income by age', ' in ', max(age$year)),
-         fill = 'Geography',
-           y = 'Percent employed') +
+         fill = 'Age Group',
+         y = 'Median Income',
+         x = '') +
     theme_minimal()
 ```
+
+#### Interpretation
+
+* Within Forsyth County in 2017, the two age groups with the lowest median income saw a decrease in median income, while the two age groups with the highest median income experienced an increase. But, none of these differences are statistically significant.
 
 #### Data
 
@@ -346,15 +363,18 @@ gender %>%
 gender %>%
   # only keep most recent year
   filter(year == max(.$year)) %>%
-  ggplot(aes(gender, estimate, fill=geo_description)) +
+  ggplot(aes(geo_description, estimate, fill=gender)) +
     geom_bar(position = "dodge", stat='identity') +
     labs(title = paste0('Median income by gender', ' in ', max(gender$year)),
-         fill = 'Geography',
-           y = 'Percent employed') +
+         fill = 'Gender',
+         y = 'Median Income',
+         x = '') +
     theme_minimal()
 ```
 
 #### Interpretation
+
+* Within Forsyth County, both males and females experienced a general increase in median income since 2006. However, the difference for each gender between any given year and 2017 is not statistically significant.
 
 #### Data
 
@@ -400,7 +420,7 @@ gender %>%
 
 ### Tableau dataset
 
-This is the final dataset that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
+This is the final data set that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
 
 ```{r}
 # create table to Tableau data
