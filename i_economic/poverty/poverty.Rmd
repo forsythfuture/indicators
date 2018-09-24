@@ -32,7 +32,7 @@ library(tidycensus)
 source('../../functions/acs_load_funcs.R')
 ```
 
-The poverty rate reflects the percentage of the population with incomeThe data for poverty rates comes American Fact Finder table S1701. 
+The poverty rate reflects the percentage of the population in poverty. The data for poverty rates comes American Fact Finder table S1701. 
 
 ### Data cleaning
 
@@ -172,7 +172,7 @@ ethnicity %>%
 
 * The African American poverty rate has fallen 10 percentage points since 2012.
 * THe White, non-Hispanic poverty rate has remained stable over the pst 10 years. Over this time period, no years have statistically significant differences from 2017.
-* Most of the Hispanic/Latinx values have high CV scores (over 12), so our confidence in Hispanic/Latinx estimates is weak.
+* Most of the Hispanic/Latinx values have high CV scores (over 12).  Therefore, our confidence in Hispanic/Latinx estimates is weak.
 
 #### Data
 
@@ -268,11 +268,15 @@ age %>%
     geom_bar(position = "dodge", stat='identity') +
     labs(title = paste0('Poverty rate by age', ' in ', max(age$year)),
          fill = 'Age Group',
-           y = 'Poverty rate (%)') +
+         y = 'Poverty rate (%)',
+         x = '') +
     theme_minimal()
 ```
 
 #### Interpretation
+
+* The 2017 differences in poverty rates between Forsyth County and its comparison geographies are not statistically significant for any age group. 
+* Within Forsyth County, children under 5 are more likely to reside in homes living in poverty than any other age group. But, the difference between children under 5 and other age groups is only statistically significant for 35 to 64 year olds and 65 and older.
 
 #### Data
 
