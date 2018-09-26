@@ -10,7 +10,7 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- TRUE
+for_analyst <- FALSE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
@@ -142,7 +142,7 @@ df %>%
   filter(description %in% total_median_descriptions,
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
-  ff_acs_zscore_dt('estimate', 'se', 'year')
+  ff_acs_zscore_dt('estimate', 'se')
 ```
 
 ------

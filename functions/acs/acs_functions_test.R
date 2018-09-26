@@ -46,7 +46,9 @@ ff_acs_ratios <- function(num_estimate, num_moe, den_estimate, den_moe) {
   return(df)
   
 }
-
+estimate <- 'estimate'
+se <- 'se'
+var_names <- 'year'
 
 
 ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
@@ -92,7 +94,7 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
     # otherwise paste together variable names
     if (length(var_names) == 1) {
       
-      names_vec <- unique(data_frame[ , var_names])
+      names_vec <- unique(data_frame[ , var_names])[[1]]
       
     } else {
       
