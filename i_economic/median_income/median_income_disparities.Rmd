@@ -1,45 +1,35 @@
 ---
-title: "Median Income Disparities"
+title: "Median Income"
 output:
   html_document:
     toc: true
     toc_depth: 4
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
-# prevent printing or R code in the output
-knitr::opts_chunk$set(warning = FALSE,
-                      message = FALSE)
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE 
+                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
 ```
 
 ```{r import}
  # import functions and packages
 library(tidyverse)
 library(knitr)
-library(kableExtra)
 library(tidycensus)
+library(DT)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
-
-```
-
-This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
-
-```{r}
-# change to 'TRUE' to write out datasets to excel
-write_to_excel <- FALSE
-
-
-if (write_to_excel == TRUE) {
-  # install package to write to excel only if it is needed
-  library(openxlsx)
-  
-  # name of the excel file to save to (can be changed)
-  excel_file <- 'median_income_disparities.xlsx'
-  
-  # create workbook to save sheets to
-  wb <- createWorkbook()
-}
 ```
 
 Median income data comes American Fact Finder table S1903.
@@ -77,117 +67,215 @@ years <- seq(2006, 2017, 1)
 
 ### Median income disparities by race and ethnicity
 
-Disparities by ethnicity reflect ratios between white median income and african american or hispanic median income.
+Median income disparities by ethnicity were derived as follows:
+
+* **White to African American median income disparities:** White, non-Hispanic median income divided by African American median income.
+* **White to Hispanic/Latinx median income disparities**: White, non-Hispanic median income divided by Hispanic/Latinx median income.
+* **African American to Hispanic/Latinx disparities**: African American median income divided by Hispanic/Latinx median income.
  
 #### Create disparities by race and ethnicity dataset
 
 The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
 
 ```{r}
-# filter for ethnicity data
-ethnic_ratios <- df %>%
+ethnicity <- df %>%
   # filter for race
   ff_acs_ethnicity(description) %>%
   # calculate ratios
-  ff_ratios_race(years, geo_areas)
+  ff_disparities('ethnicity',
+                 c('African American', 'Hispanic/Latinx', 'White, non-Hispanic'),
+                 list(c(3,1), c(3,2), c(1,2)),
+                 years, geo_areas)
 ```
 
 #### Plot
 
-The plot below shows employment rate disparities by ethnicity and year. 
+The plots below show median income disparities by ethnicity and year. 
 
 ```{r}
-ethnic_ratios %>%
-  ggplot(aes(year, ratio, color = geo_description)) +
+ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
+  # add line break to description, which is the legend descrition
+  mutate(description = str_replace_all(description, ' to ', ' to\n' )) %>%
+  ggplot(aes(year, ratio, color = description)) +
     geom_line(size = 1) +
-    # create seperate plots for each ethnicity comparison
-    facet_wrap(vars(description), nrow=2) +
-    # create bold vertical line at 1
+    # create bold horizontal line at 1
     geom_hline(yintercept = 1) +
-    labs(title = 'Forsyth county median income ratios by ethnicity',
-         color = 'Comparison communities',
-         y = 'Ratio') +
-    scale_x_continuous(breaks = seq(min(ethnic_ratios$year), max(ethnic_ratios$year), 1),
+    labs(title = 'Forsyth county median income disprities by ethnicity',
+         color = 'Comparison',
+         y = 'Median income ratio') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
                        minor_breaks = NULL) +
     theme_minimal()
 ```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  # add line break to description, which is the legend descrition
+  mutate(description = str_replace_all(description, ' to ', ' to\n' )) %>%
+  ggplot(aes(geo_description, ratio, fill=description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  # create bold horizontal line at 1
+  geom_hline(yintercept = 1) +
+  labs(title = paste0('Median income disparity by ethnicity', ' in ', max(ethnicity$year)),
+       fill = 'Ethnicity',
+       y = 'Median income ratio',
+       x = '') +
+  theme_minimal()
+```
+
+#### Interpretation
+
+* Forsyth County's White to African American median income disparity is higher than other comparison geographies. But, the difference between Forsyth County and Guilford County is not statistically significant. 
+* and White to Hispanic/Latinx 
 
 #### Data
 
 The data for ethnicities is as follows.
 
-```{r}
-ethnic_ratios %>%
-  select(geo_description, year, description, ratio, moe, se, cv) %T>%
-  # write out data set to excel only needed
-  {if (write_to_excel == TRUE) {
-    addWorksheet(wb, "ethnicities") # create workbook
-    writeData(wb, "ethnicities", ., rowNames = FALSE) # write data to workbook
-  } else .} %>%
-  # add color to CVs
-  ff_cv_color() %>%
-  kable(caption = 'Median income disparities by ethnicity', escape=FALSE,
-        col.names = c('Geographic area', 'Year', 'Comparison ethnicities', 'Ratio', '95% MOE', 'St. Error', 'CV'))  %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F)
+```{r include = to_include}
+ethnicity_data <- ethnicity %>%
+  select(geo_description, year, description, ratio, moe, se, cv)
+
+# add ethnicity to Tableau dataset
+tableau_data <- ethnicity_data %>%
+  # add type of column
+  mutate(type = 'Race and Ethnicity',
+         subtype = description) %>%
+  # delete description column since this is now in the subtype column
+  select(-description)
+
+ff_data_dt(ethnicity_data,
+           c('Geographic area', 'Year', 'Comparison', 'Ratio', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
 
-Below are tables of z-scores for median income disparities by ethnicity comparisons and geographic area in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired years. For all years, enter `ethnicity_years <- years`.
+Below are tables of z scores for disparities within Forsyth County and in all years.
 
-**White to african american median income disparities**
+**White to African American median income disparities**
+```{r}
+ethnicity %>%
+  filter(geo_description == 'Forsyth',
+         description == 'White, non-Hispanic to African American ratio') %>%
+  ff_acs_zscore_dt('ratio', 'se', 'year')
+```
+
+**White to Hispanic/Latinx median income disparities**
+```{r}
+ethnicity %>%
+  filter(geo_description == 'Forsyth',
+         description == 'White, non-Hispanic to Hispanic/Latinx ratio') %>%
+  ff_acs_zscore_dt('ratio', 'se', 'year')
+```
+
+**African American to Hispanic/Latinx disparities**
+```{r}
+ethnicity %>%
+  filter(geo_description == 'Forsyth',
+         description == 'African American to Hispanic/Latinx ratio') %>%
+  ff_acs_zscore_dt('ratio', 'se', 'year')
+```
+
+### Median income disparities by gender
+
+Gender income disparities are calculated by dividing male median income by female median income.
+
+```{r}
+# Median income by gender is in table B20017. This table must be imported and cleaned.
+gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  # only include rows for working full time
+  filter(str_detect(description,  'Worked full-time')) %>%
+  # extract the gender of the row and place in a seperate columns
+  mutate(gender = str_extract(description, 'Male|Female'))
+```
+
+#### Create disparities by gender dataset
+
+The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
+
+```{r}
+gender <- gender %>%
+  # calculate ratios
+  ff_disparities('gender',
+                 c('Male', 'Female'),
+                 list(c(1, 2)),
+                 years, geo_areas)
+```
+
+#### Plot
+
+The plots below show median income disparities by gender for all comparison units and years. 
+
+```{r}
+gender %>%
+  ggplot(aes(year, ratio, color = geo_description)) +
+    geom_line(size = 1) +
+    # create bold horizontal line at 1
+    geom_hline(yintercept = 1) +
+    labs(title = 'Median income disprities by gender (male to female)',
+         color = 'Comparison',
+         y = 'Median income ratio') +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Interpretation
+
+#### Data
+
+The data for gender disparities is as follows.
+
+```{r include = to_include}
+gender_data <- gender %>%
+  select(geo_description, year, description, ratio, moe, se, cv)
+
+# add ethnicity to Tableau dataset
+tableau_data <- gender_data %>%
+  # add type of column
+  mutate(type = 'Gender',
+         subtype = description) %>%
+  # delete description column since this is now in the subtype column
+  select(-description) %>%
+  bind_rows(tableau_data, .)
+
+ff_data_dt(gender_data,
+           c('Geographic area', 'Year', 'Comparison', 'Ratio', '95% MOE', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+Here is a tables of z scores for gender disparities within all geographic units in the past two years.
+
 ```{r}
 # enter comparison years here
-ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
+gender_years <- c(max(gender$year), max(gender$year)-1)
 
-ethnic_ratios %>%
-  filter(year %in% ethnicity_years,
-         description == 'White to african american ratio') %>%
-  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
-  ff_acs_zscore_kable('White to african american median income disparity z-scores by year and geographic area')
+gender %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore_dt('ratio', 'se', c('geo_description', 'year'))
 ```
 
-**White to hispanic/latinx median income disparities**
+Below are tables of z scores for gender disparities within Forsyth County and in all years.
 
 ```{r}
-# enter comparison years here
-ethnicity_years <- c(max(ethnic_ratios$year), max(ethnic_ratios$year)-1)
-
-ethnic_ratios %>%
-  filter(year %in% ethnicity_years,
-         description == 'White to hispanic/latinx ratio') %>%
-  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
-  ff_acs_zscore_kable('White to hispanic/latinx disparities median income disparity z-scores by year and geographic area')
+gender %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('ratio', 'se', 'year')
 ```
 
-And here are the z-scores for all years with Forsyth County.
-
-**Forsyth County white to african american median income disparities**
 ```{r}
-ethnic_ratios %>%
-  filter(geo_description == 'Forsyth',
-         description == 'White to african american ratio') %>% 
-  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
-  ff_acs_zscore_kable('White to african american median income disparity z-scores for Forsyth County')
+x1 <- 2.004
+s1 <- 0.393
+x2 <- 1.4846
+s2 <- 0.2248
+
+num <- x1-x2
+den <- sqrt( s1^2 + s2^2 )
+num/den
 ```
-
-**Forsyth County white to hispanic/latinx median income disparities**
-
-```{r}
-ethnic_ratios %>%
-  filter(geo_description == 'Forsyth',
-         description == 'White to hispanic/latinx ratio') %>%
-  ff_acs_zscore('ratio', 'se', c('year', 'geo_description'))  %>%
-  ff_acs_zscore_kable('White to hispanic/latinx median income disparity z-scores for Forsyth County')
-```
-
-
-
-
-
-Write out excel workbook if needed.
-
-```{r}
-if (write_to_excel == TRUE) {
-  saveWorkbook(wb, excel_file, overwrite=T)
-} 

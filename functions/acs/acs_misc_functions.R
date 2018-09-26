@@ -171,55 +171,84 @@ ff_cv_color <- function(df) {
                                              ifelse(cv > 30, 'red', 'black'))))
 }
 
-ff_ratios_race <- function(df, years, geo_areas) {
+ff_disparities <- function(df, comparison_column, comparison_demographics, comparisons, years, geo_areas) {
   
   # input:
   #   df: a dataframe where there is a column called ethnicity with values of either:
   #         'African American', 'Hispanic/Latino', or 'White, non-Hispanic'
+  #   comparison_column: the column, as a string, that contains the description of the demographic to be compared
+  #   comparison_demographic: a vector of strings signifying which demographics to compare
+  #                           example: c('African american', 'White, non-hispanic')
+  #   comparisons: a list of vectors signifying which comparisons to make
+  #                 each element in the list is a different comparison
+  #                 for example: list(c(1,3), c(3,2)) says that we should compare the first string in comparison_demographic
+  #                              with the third string, and compare the third string with the second
   #   years: the years in the dataset
   #   geo_areas: the geographic areas in the dataset
   
-  # create different datasets for each race
-  # this is needed to calculate ratios by race
-  ethnicity_aa <- filter(df, ethnicity == 'African American')
-  ethnicity_hl <- filter(df, ethnicity == 'Hispanic/Latino')
-  ethnicity_wh <- filter(df, ethnicity == 'White, non-Hispanic')
+  ## create a seperate dataframe for each comparison demographic and add dataframe to list
   
-  # each dataset must have the same number of rows, if they do not there is a problem
-  # check to see if all the datasets do not have the same number of rows
-  if (!(nrow(ethnicity_aa) == nrow(ethnicity_hl) &
-        nrow(ethnicity_aa) == nrow(ethnicity_wh) &
-        nrow(ethnicity_hl) == nrow(ethnicity_wh))) {
+  # initialize list
+  comparison_df <- list()
+  
+  # iterate through each comparison demographic, filter for that demographic,
+  # and adding dataframe to a list with the demographic ias the list element's name
+  for (demo in comparison_demographics) {
+    comparison_df[[demo]] <- df[df[comparison_column] == demo,]
+  }
+  
+  # each dataframe in the list should have the same number of rows
+  # there is a problem if there are a different number of rows
+  # check to ensure each dataframe has the same number of rows
+  # process: 
+  #   sapply: find the number of rows for each dataframe
+  #   unique: only keep unique values for the number of rows
+  #           if all dataframes have the same number of rows then there will only be one unique value
+  #           if there is more than one unique value of row numbers, stop function and print message
+  if (length(unique(sapply(comparison_df, nrow))) != 1) {
     
-    stop('!!!!! There is a problem. All the racial comparison data sets do not have the same number of rows!!!!')
+    stop('There is a problem. The demographic dataframes do not have the same number of rows')
+    
+  }
+    
+  ## calculate ratios of each demographic that is being compared and place ratios in list
+  
+  # initialize list
+  demographic_ratios <- list()
+  
+  for (i in seq_along(comparisons)) {
+    
+    # identify which dataframe in comparison_df will be the numerator and which will be the denominator
+    numerator <- comparisons[[i]][1]
+    denominator <- comparisons[[i]][2]
+    
+    # create a description of the ratio being generated
+    # this will be added as a column to the ratio dataframe
+    ratio_description <- paste0(comparison_demographics[numerator], ' to ',
+                                comparison_demographics[denominator], ' ratio')
+    
+    
+    # calculate ratio and add to list                            
+    demographic_ratios[[i]] <- ff_acs_ratios(comparison_df[[numerator]][['estimate']], 
+                                             comparison_df[[numerator]][['moe']],
+                                             comparison_df[[denominator]][['estimate']], 
+                                             comparison_df[[denominator]][['moe']]) %>%
+      #add years, repeat each year once for each geographic area
+      mutate(year = rep(years, each=length(geo_areas)),
+             # add geographic areas; add each geographic area once for each year
+             geo_description = rep(geo_areas, times=length(years)),
+             # add description of comparison
+             description = ratio_description)
     
   }
   
-  # calculate ratio and moe of each racial comparison
-  aa_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
-                         ethnicity_aa$estimate, ethnicity_aa$moe) %>%
-    #add years, repeat each year once for each geographic area
-    mutate(year = rep(years, each=length(geo_areas)),
-           # add geographic areas; add each geographic area once for each year
-           geo_description = rep(geo_areas, times=length(years)),
-           # add description of comparison
-           description = 'White to african american ratio')
+  # combine all three ratio dataframes into one dataframe
   
-  hl_wh <- ff_acs_ratios(ethnicity_wh$estimate, ethnicity_wh$moe, 
-                         ethnicity_hl$estimate, ethnicity_hl$moe) %>%
-    #add years, repeat each year once for each geographic area
-    mutate(year = rep(years, each=length(geo_areas)),
-           # add geographic areas; add each geographic area once for each year
-           geo_description = rep(geo_areas, times=length(years)),
-           # add description of comparison
-           description = 'White to hispanic/latinx ratio')
-  
-  # combine both datasets into one
-  ethnic_ratios <- bind_rows(aa_wh, hl_wh) %>%
+  demographic_ratios <- bind_rows(demographic_ratios) %>%
     # reorder columns
     select(year, description, geo_description, everything())
   
-  return(ethnic_ratios)
+  return(demographic_ratios)
 }
 
 

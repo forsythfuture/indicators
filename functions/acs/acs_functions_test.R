@@ -88,8 +88,18 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
   
   if (!is.null(var_names)) {
     
-    # create vector of label names by pasting columns together
-    names_vec <- apply( data_frame[ , var_names], 1, paste, collapse = ": " )
+    # if there is only one variable name, then use this as the label
+    # otherwise paste together variable names
+    if (length(var_names) == 1) {
+      
+      names_vec <- unique(data_frame[ , var_names])
+      
+    } else {
+      
+      # create vector of label names by pasting columns together
+      names_vec <- apply( data_frame[ , var_names], 1, paste, collapse = ": " )
+      
+    }
     
     # shorted names so they appear clener and shorter in the matrix as column and row headers
     
