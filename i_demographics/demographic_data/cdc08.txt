@@ -1,0 +1,319 @@
+"Notes"	"County"	"County Code"	"Gender"	"Gender Code"	"Ethnicity"	"Ethnicity Code"	"Race"	"Race Code"	"Age Group"	"Age Group Code"	Population
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"< 1 year"	"1"	19
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"1-4 years"	"1-4"	80
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"5-9 years"	"5-9"	112
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"10-14 years"	"10-14"	89
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"15-19 years"	"15-19"	81
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"20-24 years"	"20-24"	61
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"25-29 years"	"25-29"	82
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"30-34 years"	"30-34"	91
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"35-39 years"	"35-39"	63
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"40-44 years"	"40-44"	31
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"45-49 years"	"45-49"	36
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"50-54 years"	"50-54"	18
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"55-59 years"	"55-59"	16
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"60-64 years "	"60-64"	6
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"65-69 years"	"65-69"	5
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"70-74 years"	"70-74"	3
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"80-84 years"	"80-84"	2
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"			795
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"< 1 year"	"1"	3
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"1-4 years"	"1-4"	12
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"5-9 years"	"5-9"	20
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"10-14 years"	"10-14"	16
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"15-19 years"	"15-19"	16
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"20-24 years"	"20-24"	12
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"25-29 years"	"25-29"	28
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"30-34 years"	"30-34"	18
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"35-39 years"	"35-39"	13
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"40-44 years"	"40-44"	13
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"45-49 years"	"45-49"	4
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"50-54 years"	"50-54"	5
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"55-59 years"	"55-59"	7
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"60-64 years "	"60-64"	3
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"65-69 years"	"65-69"	1
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"75-79 years"	"75-79"	2
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"			173
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"< 1 year"	"1"	26
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"1-4 years"	"1-4"	273
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"5-9 years"	"5-9"	341
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"10-14 years"	"10-14"	185
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"15-19 years"	"15-19"	188
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"20-24 years"	"20-24"	241
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"25-29 years"	"25-29"	260
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"30-34 years"	"30-34"	194
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"35-39 years"	"35-39"	189
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"40-44 years"	"40-44"	108
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"45-49 years"	"45-49"	96
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"50-54 years"	"50-54"	51
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"55-59 years"	"55-59"	32
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"60-64 years "	"60-64"	23
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"65-69 years"	"65-69"	11
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"70-74 years"	"70-74"	13
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"75-79 years"	"75-79"	4
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"80-84 years"	"80-84"	3
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"85+ years"	"85+"	4
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"			2242
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"< 1 year"	"1"	539
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"1-4 years"	"1-4"	1912
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"5-9 years"	"5-9"	1700
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"10-14 years"	"10-14"	1328
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"15-19 years"	"15-19"	1066
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"20-24 years"	"20-24"	1132
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"25-29 years"	"25-29"	1571
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"30-34 years"	"30-34"	1549
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"35-39 years"	"35-39"	1200
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"40-44 years"	"40-44"	763
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"45-49 years"	"45-49"	648
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"50-54 years"	"50-54"	388
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"55-59 years"	"55-59"	259
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"60-64 years "	"60-64"	163
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"65-69 years"	"65-69"	106
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"70-74 years"	"70-74"	60
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"75-79 years"	"75-79"	64
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"80-84 years"	"80-84"	29
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"85+ years"	"85+"	29
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"			14506
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Hispanic or Latino"	"2135-2"					17716
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"< 1 year"	"1"	7
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"1-4 years"	"1-4"	24
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"5-9 years"	"5-9"	35
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"10-14 years"	"10-14"	39
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"15-19 years"	"15-19"	40
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"20-24 years"	"20-24"	33
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"25-29 years"	"25-29"	52
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"30-34 years"	"30-34"	41
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"35-39 years"	"35-39"	61
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"40-44 years"	"40-44"	33
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"45-49 years"	"45-49"	39
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"50-54 years"	"50-54"	48
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"55-59 years"	"55-59"	37
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"60-64 years "	"60-64"	24
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"65-69 years"	"65-69"	19
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"70-74 years"	"70-74"	5
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"75-79 years"	"75-79"	8
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"80-84 years"	"80-84"	3
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"85+ years"	"85+"	5
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"			553
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"< 1 year"	"1"	46
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"1-4 years"	"1-4"	220
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"5-9 years"	"5-9"	301
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"10-14 years"	"10-14"	235
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"15-19 years"	"15-19"	217
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"20-24 years"	"20-24"	252
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"25-29 years"	"25-29"	310
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"30-34 years"	"30-34"	375
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"35-39 years"	"35-39"	330
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"40-44 years"	"40-44"	266
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"45-49 years"	"45-49"	238
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"50-54 years"	"50-54"	161
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"55-59 years"	"55-59"	173
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"60-64 years "	"60-64"	92
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"65-69 years"	"65-69"	69
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"70-74 years"	"70-74"	37
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"75-79 years"	"75-79"	33
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"80-84 years"	"80-84"	23
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"85+ years"	"85+"	13
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"			3391
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"< 1 year"	"1"	665
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"1-4 years"	"1-4"	2528
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"5-9 years"	"5-9"	3225
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"10-14 years"	"10-14"	3447
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"15-19 years"	"15-19"	4532
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"20-24 years"	"20-24"	4262
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"25-29 years"	"25-29"	3180
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"30-34 years"	"30-34"	3183
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"35-39 years"	"35-39"	3547
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"40-44 years"	"40-44"	3631
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"45-49 years"	"45-49"	3809
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"50-54 years"	"50-54"	3340
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"55-59 years"	"55-59"	2977
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"60-64 years "	"60-64"	2111
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"65-69 years"	"65-69"	1499
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"70-74 years"	"70-74"	1131
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"75-79 years"	"75-79"	889
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"80-84 years"	"80-84"	707
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"85+ years"	"85+"	573
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"			49236
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"< 1 year"	"1"	1071
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"1-4 years"	"1-4"	4202
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"5-9 years"	"5-9"	5682
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"10-14 years"	"10-14"	5591
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"15-19 years"	"15-19"	6415
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"20-24 years"	"20-24"	6394
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"25-29 years"	"25-29"	6296
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"30-34 years"	"30-34"	5912
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"35-39 years"	"35-39"	7136
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"40-44 years"	"40-44"	7637
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"45-49 years"	"45-49"	9042
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"50-54 years"	"50-54"	8772
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"55-59 years"	"55-59"	8068
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"60-64 years "	"60-64"	6936
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"65-69 years"	"65-69"	5343
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"70-74 years"	"70-74"	4325
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"75-79 years"	"75-79"	4069
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"80-84 years"	"80-84"	3531
+	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"85+ years"	"85+"	3318
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"			109740
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"	"Not Hispanic or Latino"	"2186-5"					162920
+"Total"	"Forsyth County, NC"	"37067"	"Female"	"F"							180636
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"< 1 year"	"1"	19
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"1-4 years"	"1-4"	84
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"5-9 years"	"5-9"	93
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"10-14 years"	"10-14"	98
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"15-19 years"	"15-19"	63
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"20-24 years"	"20-24"	96
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"25-29 years"	"25-29"	86
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"30-34 years"	"30-34"	104
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"35-39 years"	"35-39"	82
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"40-44 years"	"40-44"	65
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"45-49 years"	"45-49"	37
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"50-54 years"	"50-54"	16
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"55-59 years"	"55-59"	10
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"60-64 years "	"60-64"	5
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"65-69 years"	"65-69"	7
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"	"70-74 years"	"70-74"	1
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"American Indian or Alaska Native"	"1002-5"			866
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"< 1 year"	"1"	4
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"1-4 years"	"1-4"	22
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"5-9 years"	"5-9"	20
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"10-14 years"	"10-14"	10
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"15-19 years"	"15-19"	12
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"20-24 years"	"20-24"	30
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"25-29 years"	"25-29"	22
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"30-34 years"	"30-34"	30
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"35-39 years"	"35-39"	14
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"40-44 years"	"40-44"	14
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"45-49 years"	"45-49"	11
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"50-54 years"	"50-54"	7
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"55-59 years"	"55-59"	6
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"60-64 years "	"60-64"	1
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"65-69 years"	"65-69"	1
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"70-74 years"	"70-74"	1
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"	"80-84 years"	"80-84"	1
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Asian or Pacific Islander"	"A-PI"			206
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"< 1 year"	"1"	32
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"1-4 years"	"1-4"	282
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"5-9 years"	"5-9"	364
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"10-14 years"	"10-14"	237
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"15-19 years"	"15-19"	206
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"20-24 years"	"20-24"	213
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"25-29 years"	"25-29"	279
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"30-34 years"	"30-34"	291
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"35-39 years"	"35-39"	196
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"40-44 years"	"40-44"	119
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"45-49 years"	"45-49"	90
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"50-54 years"	"50-54"	65
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"55-59 years"	"55-59"	13
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"60-64 years "	"60-64"	14
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"65-69 years"	"65-69"	9
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"70-74 years"	"70-74"	6
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"75-79 years"	"75-79"	1
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"80-84 years"	"80-84"	3
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"	"85+ years"	"85+"	1
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"Black or African American"	"2054-5"			2421
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"< 1 year"	"1"	599
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"1-4 years"	"1-4"	1914
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"5-9 years"	"5-9"	1873
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"10-14 years"	"10-14"	1353
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"15-19 years"	"15-19"	1177
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"20-24 years"	"20-24"	1401
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"25-29 years"	"25-29"	1806
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"30-34 years"	"30-34"	1883
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"35-39 years"	"35-39"	1450
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"40-44 years"	"40-44"	1069
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"45-49 years"	"45-49"	717
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"50-54 years"	"50-54"	397
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"55-59 years"	"55-59"	298
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"60-64 years "	"60-64"	165
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"65-69 years"	"65-69"	97
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"70-74 years"	"70-74"	50
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"75-79 years"	"75-79"	37
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"80-84 years"	"80-84"	24
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"	"85+ years"	"85+"	18
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"	"White"	"2106-3"			16328
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Hispanic or Latino"	"2135-2"					19821
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"< 1 year"	"1"	9
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"1-4 years"	"1-4"	21
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"5-9 years"	"5-9"	24
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"10-14 years"	"10-14"	34
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"15-19 years"	"15-19"	40
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"20-24 years"	"20-24"	27
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"25-29 years"	"25-29"	46
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"30-34 years"	"30-34"	39
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"35-39 years"	"35-39"	58
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"40-44 years"	"40-44"	37
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"45-49 years"	"45-49"	37
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"50-54 years"	"50-54"	31
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"55-59 years"	"55-59"	45
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"60-64 years "	"60-64"	25
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"65-69 years"	"65-69"	16
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"70-74 years"	"70-74"	3
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"75-79 years"	"75-79"	4
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"80-84 years"	"80-84"	6
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"	"85+ years"	"85+"	2
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"American Indian or Alaska Native"	"1002-5"			504
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"< 1 year"	"1"	57
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"1-4 years"	"1-4"	287
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"5-9 years"	"5-9"	237
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"10-14 years"	"10-14"	221
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"15-19 years"	"15-19"	215
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"20-24 years"	"20-24"	206
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"25-29 years"	"25-29"	263
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"30-34 years"	"30-34"	304
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"35-39 years"	"35-39"	325
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"40-44 years"	"40-44"	250
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"45-49 years"	"45-49"	230
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"50-54 years"	"50-54"	159
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"55-59 years"	"55-59"	107
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"60-64 years "	"60-64"	77
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"65-69 years"	"65-69"	67
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"70-74 years"	"70-74"	31
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"75-79 years"	"75-79"	17
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"80-84 years"	"80-84"	12
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"	"85+ years"	"85+"	7
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Asian or Pacific Islander"	"A-PI"			3072
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"< 1 year"	"1"	713
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"1-4 years"	"1-4"	2712
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"5-9 years"	"5-9"	3295
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"10-14 years"	"10-14"	3565
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"15-19 years"	"15-19"	4292
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"20-24 years"	"20-24"	3309
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"25-29 years"	"25-29"	2338
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"30-34 years"	"30-34"	2320
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"35-39 years"	"35-39"	2764
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"40-44 years"	"40-44"	2939
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"45-49 years"	"45-49"	2903
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"50-54 years"	"50-54"	2758
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"55-59 years"	"55-59"	2328
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"60-64 years "	"60-64"	1668
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"65-69 years"	"65-69"	1177
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"70-74 years"	"70-74"	789
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"75-79 years"	"75-79"	492
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"80-84 years"	"80-84"	315
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"	"85+ years"	"85+"	204
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"Black or African American"	"2054-5"			40881
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"< 1 year"	"1"	1100
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"1-4 years"	"1-4"	4563
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"5-9 years"	"5-9"	5810
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"10-14 years"	"10-14"	6176
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"15-19 years"	"15-19"	6518
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"20-24 years"	"20-24"	5728
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"25-29 years"	"25-29"	5427
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"30-34 years"	"30-34"	5913
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"35-39 years"	"35-39"	6810
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"40-44 years"	"40-44"	7309
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"45-49 years"	"45-49"	8352
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"50-54 years"	"50-54"	8044
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"55-59 years"	"55-59"	7242
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"60-64 years "	"60-64"	6003
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"65-69 years"	"65-69"	4477
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"70-74 years"	"70-74"	3463
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"75-79 years"	"75-79"	2908
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"80-84 years"	"80-84"	2148
+	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"	"85+ years"	"85+"	1425
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"	"White"	"2106-3"			99416
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"	"Not Hispanic or Latino"	"2186-5"					143873
+"Total"	"Forsyth County, NC"	"37067"	"Male"	"M"							163694
+"Total"	"Forsyth County, NC"	"37067"									344330
+"Total"											344330

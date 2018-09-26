@@ -16,7 +16,8 @@ for_analyst <- TRUE
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
                       message = FALSE, # supress messages
                       # do not print out code blocks if for_analyst equals FALSE 
-                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
 
 # value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
 to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)                     
@@ -180,7 +181,7 @@ The data for ethnicities is as follows.
 
 ```{r include = to_include}
 ethnicity_data <- ethnicity %>%
-  select(geo_description, year, ethnicity, estimate, moe, se, cv) 
+  select(geo_description, year, ethnicity, estimate, moe, se, cv)
 
 # add to dataset formatted for Tableau
 tableau_data <- ethnicity_data %>%
@@ -214,6 +215,7 @@ The next table has ethnicity z-scores for all years within Forsyth County.
 ethnicity %>%
   filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
+
 ```
 
 ------

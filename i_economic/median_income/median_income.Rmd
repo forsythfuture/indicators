@@ -10,13 +10,14 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- FALSE
+for_analyst <- TRUE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
                       message = FALSE, # supress messages
                       # do not print out code blocks if for_analyst equals FALSE 
-                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
 
 # value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
 to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
@@ -142,7 +143,7 @@ df %>%
   filter(description %in% total_median_descriptions,
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
-  ff_acs_zscore_dt('estimate', 'se')
+  ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 
 ------
@@ -427,5 +428,5 @@ This is the final data set that can be imported into Tableau. Users can copy it 
 tableau_data %>%
   select(year, geo_description, type, subtype, estimate) %>%
   # create table
-  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Percent Employed'), for_tableau=TRUE)
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Median income'), for_tableau=TRUE)
 ```
