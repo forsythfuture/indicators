@@ -10,7 +10,7 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- TRUE
+for_analyst <- FALSE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
@@ -130,7 +130,9 @@ ethnicity %>%
 #### Interpretation
 
 * Forsyth County's White to African American median income disparity is higher than other comparison geographies. But, the difference between Forsyth County and Guilford County is not statistically significant. 
-* and White to Hispanic/Latinx 
+* Forsyth County also has the highest disparity between White and Hispanic/Latinx median incomes. However, the differences between Forsyth County and Guilford and Durham counties are not statistically significant.
+* Within Forsyth County, the White to African American disparity and White to Hispanic/Latinx disparity are similar. In fact, in no years is the difference statistically significant.
+* The White to African American disparity and White to Hispanic/Latinx disparity both increased in 2017 in Forsyth County. But, only the White to African American increase is statistically significant.
 
 #### Data
 
@@ -156,35 +158,17 @@ ff_data_dt(ethnicity_data,
 
 Below are tables of z scores for disparities within Forsyth County and in all years.
 
-**White to African American median income disparities**
-```{r}
+```{r include = to_include}
 ethnicity %>%
-  filter(geo_description == 'Forsyth',
-         description == 'White, non-Hispanic to African American ratio') %>%
-  ff_acs_zscore_dt('ratio', 'se', 'year')
-```
-
-**White to Hispanic/Latinx median income disparities**
-```{r}
-ethnicity %>%
-  filter(geo_description == 'Forsyth',
-         description == 'White, non-Hispanic to Hispanic/Latinx ratio') %>%
-  ff_acs_zscore_dt('ratio', 'se', 'year')
-```
-
-**African American to Hispanic/Latinx disparities**
-```{r}
-ethnicity %>%
-  filter(geo_description == 'Forsyth',
-         description == 'African American to Hispanic/Latinx ratio') %>%
-  ff_acs_zscore_dt('ratio', 'se', 'year')
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('ratio', 'se', c('year', 'description'))
 ```
 
 ### Median income disparities by gender
 
 Gender income disparities are calculated by dividing male median income by female median income.
 
-```{r}
+```{r include = to_include}
 # Median income by gender is in table B20017. This table must be imported and cleaned.
 gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
   filter(geo_description %in% geo_areas) %>%
@@ -227,6 +211,9 @@ gender %>%
 
 #### Interpretation
 
+* Forsyth County's gender income disparity was lower than the US and North Carolina average every year. This difference is statistically significant for all years except in 2009 and 2017.
+* Forsyth County has experienced an increase in gender income disparity over the past two years, but the increase is not statistically significant.
+
 #### Data
 
 The data for gender disparities is as follows.
@@ -252,30 +239,31 @@ ff_data_dt(gender_data,
 
 Here is a tables of z scores for gender disparities within all geographic units in the past two years.
 
-```{r}
+```{r include = to_include}
 # enter comparison years here
 gender_years <- c(max(gender$year), max(gender$year)-1)
 
 gender %>%
-  filter(year %in% gender_years) %>%
+  #filter(year %in% gender_years) %>%
   ff_acs_zscore_dt('ratio', 'se', c('geo_description', 'year'))
 ```
 
 Below are tables of z scores for gender disparities within Forsyth County and in all years.
 
-```{r}
+```{r include = to_include}
 gender %>%
   filter(geo_description == 'Forsyth') %>%
   ff_acs_zscore_dt('ratio', 'se', 'year')
 ```
 
-```{r}
-x1 <- 2.004
-s1 <- 0.393
-x2 <- 1.4846
-s2 <- 0.2248
+### Tableau dataset
 
-num <- x1-x2
-den <- sqrt( s1^2 + s2^2 )
-num/den
+This is the final data set that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
+
+```{r}
+# create table to Tableau data
+tableau_data %>%
+  select(year, geo_description, type, subtype, ratio) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Median income ratio'), for_tableau=TRUE)
 ```
