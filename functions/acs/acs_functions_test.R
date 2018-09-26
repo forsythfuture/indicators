@@ -101,7 +101,7 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
       
     }
     
-    # shorted names so they appear clener and shorter in the matrix as column and row headers
+    # shorted names so they appear cleaner and shorter in the matrix as column and row headers
     
     # replace any United States and North Carolina values with NC and US
     names_vec <- str_replace_all(names_vec, 'United States', 'US') %>%
@@ -114,7 +114,9 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
       str_replace_all(' years', '') %>%
       str_replace_all(' and over', '+') %>%
       # shorten age by converting 'to' to '-'
-      str_replace_all(' to ', '-')
+      str_replace_all(' to ', '-') %>%
+      # remove word 'ratio;
+      str_replace_all(' ratio', '')
       
     # add labels as column and row names
     colnames(z_score_mat) <- names_vec
