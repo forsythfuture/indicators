@@ -8,10 +8,10 @@ edu_made <- read.csv('edu_made.csv')
 
 #edu_made <- as.data.frame(edu_made)
 
-edu_made2 <- edu_made %>%
+edu_made_pct <- edu_made %>%
   filter(str_detect(NAME, "Pct_Assoc"))
 
-Forsyth <- edu_made2 %>%
+Forsyth <- edu_made_pct %>%
   select(1,5)
 
 Forsyth <- Forsyth %>% 
