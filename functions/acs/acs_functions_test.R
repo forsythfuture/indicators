@@ -46,10 +46,10 @@ ff_acs_ratios <- function(num_estimate, num_moe, den_estimate, den_moe) {
   return(df)
   
 }
-estimate <- 'estimate'
+estimate <- 'ratio'
 se <- 'se'
 var_names <- 'year'
-
+data_frame <- df
 
 ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
   
@@ -94,7 +94,17 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
     # otherwise paste together variable names
     if (length(var_names) == 1) {
       
-      names_vec <- unique(data_frame[ , var_names])[[1]]
+      # sometime isolating a column returns a data frame, and sometimes it returns a vector
+      # if a dataframe is returned, isolate first, and only, column as a vector
+      if (is.data.frame(unique(data_frame[ , var_names])) == TRUE) {
+        
+        names_vec <- unique(data_frame[ , var_names])[[1]]
+      
+      } else {
+
+        names_vec <- unique(data_frame[ , var_names])
+        
+      }
       
     } else {
       

@@ -10,7 +10,7 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- FALSE
+for_analyst <- TRUE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
@@ -244,7 +244,7 @@ Here is a tables of z scores for gender disparities within all geographic units 
 gender_years <- c(max(gender$year), max(gender$year)-1)
 
 gender %>%
-  #filter(year %in% gender_years) %>%
+  filter(year %in% gender_years) %>%
   ff_acs_zscore_dt('ratio', 'se', c('geo_description', 'year'))
 ```
 

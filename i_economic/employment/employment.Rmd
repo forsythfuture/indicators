@@ -5,9 +5,6 @@ output:
     toc: yes
     toc_depth: 4
     toc_float: yes
-  word_document:
-    toc: yes
-    toc_depth: '4'
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +31,6 @@ library(DT)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
-
 ```
 
 The employment rate is the percentage of people age 16 and over who are working. The data comes from U.S. Census Bureau, American Fact Finder table S2301. 
