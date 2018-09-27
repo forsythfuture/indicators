@@ -1,0 +1,233 @@
+---
+title: "Demographics"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../functions/acs_load_funcs.R')
+```
+
+Demographic data comes from [CDC Wonder Bridged-Race population estimates](https://wonder.cdc.gov/Bridged-Race-v2017.HTML).
+
+### Total county population
+
+```{r}
+# import dataset
+df <- read_csv('data/demographic_data.csv') %>%
+  # do not need rows with NA values for county; this is duplicative of rows with NAs for all values but county
+  filter(!is.na(county))
+
+# pull out total population
+total_pop <- df %>%
+  filter(notes == 'Total') %>%
+  # total population has NA values for all demographic variables
+  filter_at(vars(gender:age), all_vars(is.na(.))) %>%
+  # only keep non-NA columns
+  select(population, year) %>%
+  # add columns for tableau
+  mutate(type = 'Population',
+         subtype = 'Total Population')
+```
+
+```{r}
+ggplot(total_pop, aes(year, population)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly population') +
+    scale_x_continuous(breaks = seq(min(total_pop$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+### Population by race/ethnicity
+
+```{r}
+# need to filter for each race / ethnicity seperately
+wh <- df %>%
+  # this filter will keep non-hispanic whites with different counts for male and femal
+  filter(ethnicity == 'Not Hispanic or Latino',
+         race == 'White',
+         is.na(age)) %>%
+  # group by year and calculate total population by summing male and female
+  group_by(year) %>%
+  summarize(population = sum(population)) %>%
+  mutate(race = 'White, non-Hispanic')
+
+aa <- df %>%
+  # this filter will keep non-hispanic whites with different counts for male and female
+  filter(ethnicity == 'Not Hispanic or Latino',
+         race == 'Black or African American',
+         is.na(age)) %>%
+  # group by year and calculate total population by summing male and female
+  group_by(year) %>%
+  summarize(population = sum(population)) %>%
+  mutate(race = 'African American')
+
+hl <- df %>%  
+  filter(ethnicity == 'Hispanic or Latino',
+         is.na(age),
+         is.na(race)) %>%
+  # group by year and calculate total population by summing male and female
+  group_by(year) %>%
+  summarize(population = sum(population)) %>%
+  mutate(race = 'Hispanic/Latinx')
+
+# combine all three racial datasets into one
+ethnicity <- bind_rows(wh, aa, hl) %>%
+  # rename and add columns for Tableau dataset
+  rename(Subtype = race) %>%
+  mutate(Type = 'Race')
+```
+
+```{r}
+ggplot(ethnicity, aes(year, population, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly population by race/ethnicity',
+         color = 'Race / Ethnicity') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+### Population by gender
+
+```{r}
+# male and female numbers have NA values for all demographics except gender
+gender <- df %>%
+  filter_at(vars(ethnicity:age), all_vars(is.na(.))) %>%
+  filter(!is.na(gender)) %>%
+  select(year, population, gender) %>%
+  # rename and add columns for Tableau dataset
+  rename(Subtype = gender) %>%
+  mutate(Type = 'Gender')
+```
+
+```{r}
+ggplot(gender, aes(year, population, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly population by gender',
+         color = 'Gender') +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+### Population by age group
+
+```{r}
+# age groups do not have NA values in any row
+age <- df %>%
+  filter_at(vars(county:year), all_vars(!is.na(.))) %>%
+  # combine age groups as follows:
+  mutate(age = str_replace_all(age, '[<] 1 year|1-4 years', 'Under 5')) %>%
+  mutate(age = str_replace_all(age, '5-9 years|10-14 years', '5 to 14')) %>%
+  mutate(age = str_replace_all(age, '15-19 years', '15 to 19')) %>%
+  mutate(age = str_replace_all(age, '20-24 years|25-29 years', '20 to 29')) %>%
+  mutate(age = str_replace_all(age, '30-34 years|35-39 years|40-44 years|45-49 years', '30 to 49')) %>%
+  mutate(age = str_replace_all(age, '50-54 years|55-59 years|60-64 years', '50 to 64')) %>%
+  mutate(age = str_replace_all(age, '65-69 years|70-74 years|75-79 years|80-84 years', '65 to 84')) %>%
+  mutate(age = str_replace_all(age, '85[+] years', '85 and older')) %>%
+  # group by year and age group, and sum population
+  group_by(year, age) %>%
+  summarize(population = sum(population)) %>%
+  # rename and add columns for Tableau dataset
+  rename(Subtype = age) %>%
+  mutate(Type = 'Age')
+```
+
+```{r}
+ggplot(age, aes(year, population, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly population by age group',
+         color = 'Age') +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
+   # reorder legend values
+   scale_colour_discrete(breaks = c("Under 5", "5 to 14", "15 to 19", "20 to 29", "30 to 49", "50 to 64", "65 to 84", "85 and older")) +
+   theme_minimal()
+```
+
+### Population by race / ethnicity and gender
+
+```{r}
+# same cleaning procedure that was used for ethnicity, only difference is that we now also group by gender
+
+# need to filter for each race / ethnicity seperately
+wh_gender <- df %>%
+  # this filter will keep non-hispanic whites with different counts for male and femal
+  filter(ethnicity == 'Not Hispanic or Latino',
+         race == 'White',
+         is.na(age)) %>%
+  # group by year and calculate total population by summing male and female
+  group_by(year, gender) %>%
+  summarize(population = sum(population)) %>%
+  mutate(race = 'White, non-Hispanic')
+
+aa_gender <- df %>%
+  # this filter will keep non-hispanic whites with different counts for male and female
+  filter(ethnicity == 'Not Hispanic or Latino',
+         race == 'Black or African American',
+         is.na(age)) %>%
+  # group by year and calculate total population by summing male and female
+  group_by(year, gender) %>%
+  summarize(population = sum(population)) %>%
+  mutate(race = 'African American')
+
+hl_gender <- df %>%  
+  filter(ethnicity == 'Hispanic or Latino',
+         is.na(age),
+         is.na(race)) %>%
+  # group by year and calculate total population by summing male and female
+  group_by(year, gender) %>%
+  summarize(population = sum(population)) %>%
+  mutate(race = 'Hispanic/Latinx')
+
+# combine all three racial datasets into one
+ethnicity_gender <- bind_rows(wh_gender, aa_gender, hl_gender) %>%
+  # rename and add columns for Tableau dataset
+  rename(Subtype = gender) %>%
+  mutate(Type = 'Gender')
+
+```
+
+```{r}
+ggplot(ethnicity_gender, aes(year, population, color = race)) +
+    geom_line(size = 1) +
+    facet_grid(rows = vars(gender)) +
+    labs(title = 'Forsyth County yearly population by race/ethnicity and gender',
+         color = 'Race / Ethnicity') +
+    scale_x_continuous(breaks = seq(min(ethnicity_gender$year), max(ethnicity_gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_bw()
+```
+
+### Tableau dataset
+
+```{r}
+
+```
