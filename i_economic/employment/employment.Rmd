@@ -5,9 +5,6 @@ output:
     toc: yes
     toc_depth: 4
     toc_float: yes
-  word_document:
-    toc: yes
-    toc_depth: '4'
 ---
 
 ```{r setup, include=FALSE}
@@ -505,5 +502,5 @@ tableau_data %>%
   # reorder column and do not include unneded columns
   select(year, geo_description, type, subtype, estimate) %>%
   # create table
-  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Percent Employed'), for_tableau=TRUE)
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 ``` 
