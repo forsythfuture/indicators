@@ -1,5 +1,5 @@
 #Don't think this package is needed, but it was in the original script written by Christopher
-#install.packages("rgdal")
+install.packages("rgdal")
 
 #log file in case this gets too long for the window
 #Again, don't think this is necessary, was in original
@@ -16,7 +16,7 @@ census_api_key("3d94584bfd87fb43977be01dbddfc797af127c5c")
 counties <- c("Forsyth","Guilford","Durham")
 states <- "NC"
 year <- 2017
-acs_var<-"B01001_001"
+acs_var<-"B15002_001"
 varname<-"total"
 
 acs_getvar <- function(acs_var,varname,survey = "acs1",year = 2017,
@@ -206,6 +206,7 @@ import_acs <- function(acs_var,varname,survey = "acs1",year = 2011,
         
 }
 
+
 acs_newvar <- function(df,acs_var,varname,survey = "acs1",year = 2017,get_NC=1,get_US=1,
                        counties=c("Forsyth","Guilford","Durham"),
                        states="NC",
@@ -251,16 +252,12 @@ acs_newvar <- function(df,acs_var,varname,survey = "acs1",year = 2017,get_NC=1,g
         
         
         #merge to the base df
-        df_out <- merge(df,tmp, by=c('GEOID','NAME'),all.x=TRUE)
+        df_out <- full_join(df,tmp, by=c('GEOID','NAME'))
         
         
         
         return(df_out)
 }
-
-
-
-
 
 acs_subract <- function(df,var1,var2,varname,suffix="0099AA17"){
         #subtract two variables

@@ -21,6 +21,7 @@ library(DT)
 library(tidycensus)
 # load custom ACS functions
 source('../../functions/acs_load_funcs.R')
+
 # also load functions specifically created by Christopher for this indicator, not sure how to do that, but they are # here
 #source('../../i_education/post_secondary_completion/post_sec_functions.R')
 
@@ -40,6 +41,7 @@ This block imports the data, calculates the percentages and ses for each estimat
 
 
 ```{r}
+
 edu<-1
 
 #ACS and more intuitive race/ethnic labels
@@ -47,7 +49,7 @@ race_eth_label <- c("W","B","H")
 race_eth_acs <- c("H","B","I")
 
 
-for (year in c(2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007)){
+for (year in c(2011,2010,2009,2008,2007)){
 #for (year in c(2006)){
         
         
@@ -114,11 +116,11 @@ write.csv(edu_made, "edu_made.csv")
 ## Data Transformation/Wrangling
 ```{r}
 #Change column names to shortened version
-colnames(edu_made) <- c('name','US',"NC",'Durham','Forsyth','Guilford')
+colnames(edu_made) <- c('NAME','US',"NC",'Durham','Forsyth','Guilford')
 
 #filter out only rows containing percent data as that is all that is needed
 edu_made_pct <- edu_made %>%
-        filter(str_detect(name, "Pct_Assoc"))
+        filter(str_detect(NAME, "Pct_Assoc"))
 
 #Gather the geographies to make values for the new varialbe "geography" (in order to conduct z-score test more easily)
 tmp <- edu_made_pct %>%
@@ -126,17 +128,17 @@ tmp <- edu_made_pct %>%
 
 #Create 2 dataframes out of the original separating out the estimates and the ses 
 edu_made_se <- tmp %>%
-        filter(str_detect(name, "_se"))
+        filter(str_detect(NAME, "_se"))
 
 edu_made_est <- tmp %>%
-        filter(!str_detect(name, "_se"))
+        filter(!str_detect(NAME, "_se"))
 
 #Remove "_se" from name to enable merge & change variable name from estimate to se
-edu_made_se$name <- substr(edu_made_se$name,1,19)
+edu_made_se$NAME <- substr(edu_made_se$NAME,1,19)
 edu_made_se <- rename(edu_made_se, se = estimate)
 
 #Merge the two dataframes
-edu_attain <- merge(edu_made_est,edu_made_se,by = c("name","geography"))
+edu_attain <- merge(edu_made_est,edu_made_se,by = c("NAME","geography"))
 
 #Round percentages and calculate cv
 edu_attain <- edu_attain %>%
@@ -144,10 +146,10 @@ edu_attain <- edu_attain %>%
 
 #Pull out demographic information from name column, then change the values of those variables to a more descriptive one
 edu_attain <- edu_attain %>%
-        mutate(age = substr(name,12,15), 
-               gender = substr(name,16,17),
-               race_eth = substr(name,16,17),
-               year = substr(name,18,19))
+        mutate(age = substr(NAME,12,15), 
+               gender = substr(NAME,16,17),
+               race_eth = substr(NAME,16,17),
+               year = substr(NAME,18,19))
 
 edu_attain$gender <- ifelse(edu_attain$gender == "FA", "female", ifelse(edu_attain$gender == "MA", "male", "ALL"))
 
