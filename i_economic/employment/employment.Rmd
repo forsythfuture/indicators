@@ -16,8 +16,8 @@ for_analyst <- TRUE
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
                       message = FALSE, # supress messages
                       # do not print out code blocks if for_analyst equals FALSE
-                      echo = FALSE)
-                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+                      #echo = FALSE)
+                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
 
 # value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
 to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
@@ -239,7 +239,7 @@ ethnicity %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'ethnicity'))
 ```
 
-Below if a table of z-scores for ethnicities in all years within Forsyth County.
+Below is a table of z-scores for ethnicities in all years within Forsyth County.
 
 ```{r include = to_include}
 ethnicity %>%
