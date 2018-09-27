@@ -2,21 +2,25 @@
 title: "Employment Rate"
 output:
   html_document:
-    toc: true
+    toc: yes
     toc_depth: 4
-    toc_float: true
+    toc_float: yes
+  word_document:
+    toc: yes
+    toc_depth: '4'
 ---
 
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- FALSE
+for_analyst <- TRUE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
                       message = FALSE, # supress messages
-                      # do not print out code blocks if for_analyst equals FALSE 
-                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
 
 # value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
 to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
@@ -138,6 +142,7 @@ df %>%
          # only keep data for the most recent year
          year %in% year_comparison) %>%
   ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
+
 ```
 
 ------
@@ -500,5 +505,5 @@ tableau_data %>%
   # reorder column and do not include unneded columns
   select(year, geo_description, type, subtype, estimate) %>%
   # create table
-  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Percent Employed'), for_tableau=TRUE)
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 ``` 
