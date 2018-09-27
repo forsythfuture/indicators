@@ -51,8 +51,8 @@ total_pop <- df %>%
   # only keep non-NA columns
   select(population, year) %>%
   # add columns for tableau
-  mutate(type = 'Population',
-         subtype = 'Total Population')
+  mutate(Type = 'Population',
+         Subtype = 'Total Population')
 ```
 
 ```{r}
@@ -168,7 +168,8 @@ ggplot(age, aes(year, population, color = Subtype)) +
     scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
                        minor_breaks = NULL) +
    # reorder legend values
-   scale_colour_discrete(breaks = c("Under 5", "5 to 14", "15 to 19", "20 to 29", "30 to 49", "50 to 64", "65 to 84", "85 and older")) +
+   scale_colour_discrete(breaks = c("Under 5", "5 to 14", "15 to 19", "20 to 29", 
+                                    "30 to 49", "50 to 64", "65 to 84", "85 and older")) +
    theme_minimal()
 ```
 
@@ -211,23 +212,30 @@ hl_gender <- df %>%
 ethnicity_gender <- bind_rows(wh_gender, aa_gender, hl_gender) %>%
   # rename and add columns for Tableau dataset
   rename(Subtype = gender) %>%
-  mutate(Type = 'Gender')
+  # combine gender and ethnicity columns into one columns
+  unite(col='Subtype', c('Subtype', 'race'), sep = ' and ', remove=TRUE) %>%
+  mutate(Type = 'Race/Ethnicity and Gender')
+  
 
 ```
 
 ```{r}
-ggplot(ethnicity_gender, aes(year, population, color = race)) +
+ggplot(ethnicity_gender, aes(year, population, color = Subtype)) +
     geom_line(size = 1) +
-    facet_grid(rows = vars(gender)) +
     labs(title = 'Forsyth County yearly population by race/ethnicity and gender',
          color = 'Race / Ethnicity') +
     scale_x_continuous(breaks = seq(min(ethnicity_gender$year), max(ethnicity_gender$year), 1),
                        minor_breaks = NULL) +
-    theme_bw()
+    theme_minimal()
 ```
 
 ### Tableau dataset
 
 ```{r}
+# combine all datasets into one
+bind_rows(total_pop, ethnicity, gender, age, ethnicity_gender) %>%
+  # change column order
+  select(year, Type, Subtype, population) %>%
+  ff_data_dt(c('Year', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 
 ```

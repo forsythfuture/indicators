@@ -1,5 +1,5 @@
 ---
-title: "Median Income"
+title: "Median Income Disparities"
 output:
   html_document:
     toc: true
@@ -41,7 +41,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 ```{r}
 # create list of geographic areas to keep
 geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
+                'Durham', 'Forsyth', 'Guilford')
 
 df <- read_csv('data/median_income_all_years_counties.csv') %>%
   # only keep rows for the US, NC, Forsyth, Guilford, and Durham
@@ -176,11 +176,13 @@ gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
   filter(str_detect(description,  'Worked full-time')) %>%
   # extract the gender of the row and place in a seperate columns
   mutate(gender = str_extract(description, 'Male|Female'))
+
+gender_F <- gender %>% filter(geo_description == 'Forsyth')
 ```
 
 #### Create disparities by gender dataset
 
-The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
+The code block below calculates disparities by gender, along with the se, moe, and cv.
 
 ```{r}
 gender <- gender %>%

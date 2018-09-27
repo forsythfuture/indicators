@@ -171,6 +171,7 @@ ff_cv_color <- function(df) {
                                              ifelse(cv > 30, 'red', 'black'))))
 }
 
+
 ff_disparities <- function(df, comparison_column, comparison_demographics, comparisons, years, geo_areas) {
   
   # input:
