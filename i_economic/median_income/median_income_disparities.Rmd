@@ -1,5 +1,5 @@
 ---
-title: "Median Income"
+title: "Median Income Disparities"
 output:
   html_document:
     toc: true
@@ -10,13 +10,13 @@ output:
 ```{r setup, include=FALSE}
 # set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
 # or whether the file is for another, and some results and all code blocks are hidden
-for_analyst <- FALSE
+for_analyst <- TRUE
 
 # global options for code blocks
 knitr::opts_chunk$set(warning = FALSE, # supress warnings
                       message = FALSE, # supress messages
-                      # do not print out code blocks if for_analyst equals FALSE 
-                      echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
 
 # value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
 to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
@@ -41,7 +41,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 ```{r}
 # create list of geographic areas to keep
 geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
+                'Durham', 'Forsyth', 'Guilford')
 
 df <- read_csv('data/median_income_all_years_counties.csv') %>%
   # only keep rows for the US, NC, Forsyth, Guilford, and Durham
@@ -129,10 +129,8 @@ ethnicity %>%
 
 #### Interpretation
 
-* Forsyth County's White to African American median income disparity is higher than other comparison geographies. But, the difference between Forsyth County and Guilford County is not statistically significant. 
-* Forsyth County also has the highest disparity between White and Hispanic/Latinx median incomes. However, the differences between Forsyth County and Guilford and Durham counties are not statistically significant.
-* Within Forsyth County, the White to African American disparity and White to Hispanic/Latinx disparity are similar. In fact, in no years is the difference statistically significant.
-* The White to African American disparity and White to Hispanic/Latinx disparity both increased in 2017 in Forsyth County. But, only the White to African American increase is statistically significant.
+* Within Forsyth County, the White to African American disparity and White to Hispanic/Latinx disparity are similar. In fact, the difference is only statistically significant in 2008.
+* Forsyth County's White to African American rate has held steady through the years. The only years with a statistically significant difference from 2017 are 2009 and 2010.
 
 #### Data
 
@@ -176,11 +174,13 @@ gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
   filter(str_detect(description,  'Worked full-time')) %>%
   # extract the gender of the row and place in a seperate columns
   mutate(gender = str_extract(description, 'Male|Female'))
+
+gender_F <- gender %>% filter(geo_description == 'Forsyth')
 ```
 
 #### Create disparities by gender dataset
 
-The code block below calculates disparities by ethnicity, along with the se, moe, and cv.
+The code block below calculates disparities by gender, along with the se, moe, and cv.
 
 ```{r}
 gender <- gender %>%
@@ -211,8 +211,7 @@ gender %>%
 
 #### Interpretation
 
-* Forsyth County's gender income disparity was lower than the US and North Carolina average every year. This difference is statistically significant for all years except in 2009 and 2017.
-* Forsyth County has experienced an increase in gender income disparity over the past two years, but the increase is not statistically significant.
+* Forsyth County saw a statistically significant downturn in gender income disparity between 2015 and 2016. But, the difference between 2015 and 2017 is not statistically significant.
 
 #### Data
 
@@ -244,7 +243,7 @@ Here is a tables of z scores for gender disparities within all geographic units 
 gender_years <- c(max(gender$year), max(gender$year)-1)
 
 gender %>%
-  #filter(year %in% gender_years) %>%
+  filter(year %in% gender_years) %>%
   ff_acs_zscore_dt('ratio', 'se', c('geo_description', 'year'))
 ```
 
