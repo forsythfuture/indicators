@@ -1,0 +1,427 @@
+---
+title: "Post secondary Education Completion"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+# prevent printing or R code in the output
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+
+
+```
+
+This markdown file produces individual datasets that filter the data in various ways. If you want to write out the datasets into an excel file where each sheet is a different dataset, change the line of code below to `write_to_excel <- TRUE`.
+
+```{r}
+# change to 'TRUE' to write out datasets to excel
+write_to_excel <- TRUE
+```
+
+The post secondary completion rate is the percentage of people age 25 and over with an Associate's Degree or higher. The data comes from U.S. Census Bureau, American Fact Finder table ____. 
+
+## Data Import & Transformation/Wrangling
+
+```{r}
+post_sec <- read_csv('data/edu_made.csv')
+
+#Change column names to shortened version
+colnames(post_sec) <- c('NAME','US',"NC",'Durham','Forsyth','Guilford')
+
+#filter out only rows containing percent data as that is all that is needed
+post_sec_pct <- post_sec %>%
+        filter(str_detect(NAME, "Pct_Assoc"))
+
+#Gather the geographies to make values for the new variable "geography" (in order to conduct z-score test more easily)
+temp <- post_sec_pct %>%
+        gather('US',"NC",'Durham','Forsyth','Guilford', key = "geography", value = "estimate")
+
+#Create 2 dataframes out of the original separating out the estimates and the ses 
+post_sec_se <- temp %>%
+        filter(str_detect(NAME, "_SE"))
+
+post_sec_est <- temp %>%
+        filter(!str_detect(NAME, "_SE"))
+
+#Remove "_se" from name to enable merge & change variable name from estimate to se
+post_sec_se$NAME <- substr(post_sec_se$NAME,1,19)
+post_sec_se <- rename(post_sec_se, se = estimate)
+
+#Merge the two dataframes
+post_sec <- merge(post_sec_est,post_sec_se,by = c("NAME","geography"))
+
+#Round percentages and calculate cv
+post_sec <- post_sec %>%
+        mutate(estimate = 100*(round(estimate,3)), se = 100*(round(se,3)), cv = (round(100*(se/estimate),0)))
+
+#Pull out demographic information from name column, then change the values of those variables to a more descriptive one
+post_sec <- post_sec %>%
+        mutate(age = substr(NAME,12,15), 
+               gender = substr(NAME,16,17),
+               race_eth = substr(NAME,16,17),
+               year = substr(NAME,18,19))
+
+post_sec$gender <- ifelse(post_sec$gender == "FA", "female", ifelse(post_sec$gender == "MA", "male", "ALL"))
+
+post_sec$race_eth <- ifelse(post_sec$race_eth == "AW", "White, non-Hispanic", 
+                             ifelse(post_sec$race_eth == "AB", "African American",
+                                    ifelse(post_sec$race_eth == "AH", "Latinx", "ALL")))
+
+post_sec$year <- paste0("20",post_sec$year) 
+
+# Change year to numeric class
+post_sec$year <- as.numeric(post_sec$year)
+
+df <- post_sec
+```
+------
+
+### NC and county comparisions
+
+#### Plot
+
+The plot below shows the overall Associate degree rate of North Carolina, Forsyth, Guilford, and Durham counties.
+
+```{r}
+
+df %>%
+  # keep all ages, race/ethnicities and genders
+  filter(age=='2599',race_eth=='ALL',gender=='ALL', geography!='US') %>%
+  ggplot(aes(year, estimate, color = geography)) +
+    geom_line(size = 1) +
+    labs(title = 'Post secondary Completion',
+         color = 'Comparison Unit',
+         y = '% Pop 25 years & older with Associate Degree or Higher') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+#### Data
+
+Below is the raw data for Associate degree rate by geographies.
+
+```{r}
+total_data <- df %>%
+  # only keep total employment rate
+  filter(geography != 'US', age=='2599', race_eth=='ALL', gender=='ALL') %>%
+  select(geography, year, estimate, se, cv)
+
+# this represents the final dataset that will be sent to others for visualizations
+tableau_data <- total_data %>%
+    # add type of column
+    mutate(type = 'Associate Rate',
+           subtype = 'Total Population over 25')
+
+# create table
+ff_data_dt(total_data, c('Geography', 'Year', '% Assoc Degree', 'St. Error', 'CV'))
+```
+```
+
+#### Z-scores
+
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
+
+
+```{r}
+year_comparison <- c(max(df$year), max(df$year)-1)
+
+df %>%
+  # only keep total employment rate
+  filter(age=='2599'& race_eth=='ALL' & gender=='ALL',
+         # only keep data for the most recent year
+         year %in% year_comparison) %>%
+ ff_acs_zscore_dt("estimate", "se", var_names = c("geography","year"))
+```
+
+------
+
+### Forsyth County year-to-year trends
+
+#### Z-scores
+
+The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+
+```{r}
+df %>%
+  # only keep Forsyth County, all ages, all race/ethnicities and both genders
+  filter(geography=='Forsyth' & age=='2599'& race_eth=='ALL' & gender=='ALL') %>%
+  ff_acs_zscore_dt('estimate', 'se', 'year')
+```
+
+------
+
+### Associate's degree by ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's Associate's degree rate by ethnicity and year. 
+
+```{r fig.width=8,fig.height=10}
+
+ethnicity <- df %>%
+filter((geography=='Forsyth' & age=='2599'& race_eth=="White, non-Hispanic" & gender=='ALL')|(geography=='Forsyth' & age=='2599'& race_eth=='Latinx' & gender=='ALL')|(geography=='Forsyth' & age=='2599'& race_eth=='African American' & gender=='ALL'))
+
+ethnicity %>%
+  ggplot(aes(year, estimate, color = race_eth)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+    labs(title = 'Percent of Population 25 years and Older with an Associate degree or higher',
+         color = 'Ethnicity',
+         y = '% Pop 25 years & older with Associate Degree or Higher') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+
+```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity_bar <- df %>%
+filter((geography!='US' & age=='2599'& race_eth=="White, non-Hispanic" & gender=='ALL' & year == max(.$year))|(geography!='US' & age=='2599'& race_eth=='Latinx' & gender=='ALL' & year == max(.$year))|(geography!='US' & age=='2599'& race_eth=='African American' & gender=='ALL' & year == max(.$year)))
+
+ethnicity_bar %>% 
+  ggplot(aes(geography, estimate, fill=race_eth)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('Assoc degree+ rate by ethnicity', ' in ', max(ethnicity$year)),
+       fill = 'Ethnicity',
+       y = 'Assoc Rate',
+       x = '') +
+  theme_minimal()
+```
+#### Data
+
+The data for ethnicities is as follows.
+
+```{r}
+ethnicity_data <- ethnicity  %>%
+  select(geography, year, race_eth, estimate, se, cv)
+
+# add ethnicity information to final dataset
+tableau_data <- ethnicity_data %>%
+    # add type of column
+    mutate(type = 'Race and Ethnicity',
+           subtype = race_eth) %>%
+    # delete ethnicity column since this is now in the subtype column
+    select(-race_eth) %>%
+    bind_rows(tableau_data, .)
+
+ff_data_dt(ethnicity_data,
+           c('Geographic area', 'Year', 'Ethnicity', '% Assoc', 'St. Error', 'CV'))
+
+```
+
+#### Z-scores
+
+Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
+
+```{r}
+# enter comparison years here
+ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+
+ethnicity %>%
+  filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geography', 'race_eth'))  
+```
+
+Below is a table of z-scores for ethnicities in all years within Forsyth County.
+
+```{r}
+ethnicity %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'race_eth'))
+```
+
+------
+
+### Forsyth County Associate degree rate by age
+
+#### Plot
+
+The following plot examines Forsyth County's Assoc degree rate by age group.
+
+```{r fig.width=8,fig.height=10}
+
+age <- df %>%
+        filter((geography!='US' & age=='2534'& race_eth=='ALL' & gender=='ALL')|(geography!='US' & age=='3544'& race_eth=='ALL' & gender=='ALL')|(geography!='US' & age=='4564'& race_eth=='ALL' & gender=='ALL')|(geography!='US' & age=='6599'& race_eth=='ALL' & gender=='ALL'))
+        
+age %>%
+    filter(geography=='Forsyth') %>%
+    ggplot(aes(year, estimate, color = age)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+    labs(title = 'Associates Degree or higher rate by age group',
+         color = 'age group',
+         y = '% Pop 25 years & older with Associate Degree or Higher') +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+```{r}
+# bar chart of age with all geographies in the most recent year
+age %>%
+filter(year == max(.$year)) %>%
+  ggplot(aes(geography, estimate, fill=age)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Assoc degree+ rate by age', ' in ', max(age$year)),
+         fill = 'Age Group',
+          y = 'Assoc degree+ Rate',
+         x = '') +
+    theme_minimal()
+```
+
+#### Data
+
+age data is below.
+
+```{r}
+age_data <- age %>%
+  # select needed variable, reorder to match primary excel data dataframe, and rename to match primary excel dataframe
+  select(geography, year, age, estimate, se, cv)
+
+# add age data to final dataset
+tableau_data <- age_data %>%
+    # add type of column
+    mutate(type = 'Age Group',
+           subtype = age) %>%
+    # delete age column since this is now in the subtype column
+    select(-age) %>%
+    bind_rows(tableau_data, .)
+  
+age_data %>%
+  ff_data_dt(c('Geographic area', 'Year', 'Age group', '% Assoc Degree', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group and geography in the past two years.
+
+```{r}
+# enter comparison years here
+age_years <- c(max(age$year), max(age$year)-1)
+
+age %>%
+  filter(year %in% age_years) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geography', 'age'))
+```
+
+Below is a table of z-scores for all years and ages within Forsyth County.
+
+```{r}
+age %>%
+  filter(geography == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'age'))
+```
+
+------
+
+### Forsyth County Associate's degree rate by gender
+
+#### Plot
+
+The plot for Associate's degree rate by gender is below.
+
+```{r fig.width=8,fig.height=10}
+# only keep rows related to gender
+gender <- df %>%
+        filter((geography!= 'US' & age=='2599'& race_eth=='ALL' & gender=='female')|(geography!='US' & age=='2599'& race_eth=='ALL' & gender=='male'))
+
+gender %>%
+    filter(geography == 'Forsyth') %>%
+    ggplot(aes(year, estimate, color = gender)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+    labs(title = 'Associate Degree or Higher rate by gender',
+         color = 'gender',
+         y = '% Pop 25 years & older with Associate Degree or Higher') +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+```{r}
+# bar chart of gender with all geographies in the most recent year
+gender %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(geography, estimate, fill=gender)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Associate Degree or Higher rate by gender', ' in ', max(gender$year)),
+         fill = 'Gender',
+           y = 'Assoc degree+ Rate',
+         x = '') +
+    theme_minimal()
+```
+
+#### Data
+
+And here is the underlying data.
+
+```{r}
+gender_data <- gender %>%
+  select(geography, year, gender, estimate, se, cv)
+
+# add gender data to final dataset
+tableau_data <- gender_data %>%
+    # add type of column
+    mutate(type = 'Gender',
+           subtype = gender) %>%
+    # delete gender column since this is now in the subtype column
+    select(-gender) %>%
+    bind_rows(tableau_data, .)
+
+ff_data_dt(gender_data,
+           c('Geographic area', 'Year', 'Gender', '% Assoc', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r}
+# enter comparison years here
+gender_years <- c(max(gender$year), max(gender$year)-1)
+
+gender %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geography', 'gender'))
+```
+
+And here are Forsyth County's z-scores for all years.
+
+```{r}
+gender %>%
+  filter(geography=='Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'gender'))
+```
+
+
+Write out excel workbook if needed.
+
+```{r}
+# estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+tableau_data %>%
+  mutate_at(vars(estimate:se), funs(./100)) %>%
+  # reorder column and do not include unneeded columns
+  select(year, geography, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+```
