@@ -33,7 +33,7 @@ library(tidycensus)
 source('../../functions/acs_load_funcs.R')
 ```
 
-The poverty rate reflects the percentage of the population in poverty. The data for poverty rates comes American Fact Finder table S1701. 
+The poverty rate reflects the percentage of the population in poverty. The data for poverty rates comes American Fact Finder table S1701. For poverty counts of smaller age groups go to B17001.
 
 ### Data cleaning
 

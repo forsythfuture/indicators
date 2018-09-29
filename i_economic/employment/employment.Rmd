@@ -489,6 +489,8 @@ gender %>%
   ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
 ```
 
+-------
+
 ### Tableau dataset
 
 This is the final data set that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
