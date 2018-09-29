@@ -46,10 +46,66 @@ ff_acs_ratios <- function(num_estimate, num_moe, den_estimate, den_moe) {
   return(df)
   
 }
-estimate <- 'ratio'
-se <- 'se'
-var_names <- 'year'
-data_frame <- df
+
+
+ff_acs_perc <- function(num_estimate, num_moe, den_estimate, den_moe) {
+  
+  # This function calculates the percentages / proportiion, se, and 95% margins of error for the percentages
+  # The inputs are as follows:
+  #   num_estimate: The dataframe and column of the numerator in percentages
+  #   num_moe: The dataframe and column of the numerator's moe
+  #   den_estimate: The dataframe and column of the denominator in percentages
+  #   den_moe: The dataframe and column of the denominator's moe
+  #
+  # The formula comes from:
+  #    U.S. Census Bureau, A Compass for Understanding and Using ACS Survey Data, A-15
+  #
+  # The output is the same dataframe with the ratio and margin of error added to the dataframe
+  
+  # calculate the proportion 
+  prop  <- round( num_estimate / den_estimate, 4 )
+  
+  # calcualte standard errors of num and den, used to calcualte prop se
+  num_se <- num_moe / 1.96
+  den_se <- den_moe / 1.96
+  
+  # calculate proportion se
+  x <- num_se^2 - (prop^2 * den_se^2)
+  
+  # formula to use depends on whether x is positive
+  if (x < 0) {
+    
+    se <- sqrt(x) / den_estimate
+    
+  } else {
+    
+    x <- num_se^2 + (prop^2 * den_se^2)
+    
+    se <- sqrt(x) / den_estimate
+    
+  }
+  
+  # calculate MOE
+  # uses the tidycensus package
+  #moe <- round( moe_prop(num_estimate, den_estimate, num_moe, den_moe), 4 )
+  
+  # calcuate MOES
+  # note: since 95% confidence intervals are used, the se is multiplied by 1.96, not 1.645
+  moe <- se * 1.96
+  
+  # calculate cv
+  cv <- (se / prop) * 100
+  
+  # add ratio, MOE, se and cv to dataframe
+  df <- data.frame(prop = prop,
+                   moe = round( moe, 4 ),
+                   se = round( se, 4 ),
+                   cv = round( cv, 2))
+  
+  return(df)
+  
+}
+
 
 ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
   

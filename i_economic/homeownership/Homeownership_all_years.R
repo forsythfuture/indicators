@@ -58,5 +58,14 @@ for (i in seq_along(homeowner_zip)) {
   
 }
 
+# bind all datasets into a single dataset
+homeowner <- bind_rows(homeowner_list) %>%
+  # convert filenames to descriptive label for row
+  mutate(file = str_replace_all(file, '.*_aa.*', 'African American')) %>%
+  mutate(file = str_replace_all(file, '.*_age.*', 'age group')) %>%
+  mutate(file = str_replace_all(file, '.*_hl.*', 'Hispanic/Latinx')) %>%
+  mutate(file = str_replace_all(file, '.*_total.*', 'total')) %>%
+  mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
+  
 # write out data frame
-write_csv(df, 'i_economic/homeownership/data/homeownership_fc_all__years.csv')
+#write_csv(homeowner, 'i_economic/homeownership/data/homeownership_all_years.csv')
