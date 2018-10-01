@@ -222,8 +222,6 @@ ethnicity %>%
 
 ### Poverty by age
 
-#### Plot
-
 Age groups are in table B17001. The block below imports and cleans data from this table.
 
 
@@ -283,6 +281,10 @@ age <- ff_acs_perc(age$estimate_below, age$moe_below,
   select(geo_description, year, age, prop:cv) %>%
   rename(estimate = prop)
 ```
+
+#### Plot
+
+*The 5 to 17 year age group does not contain data for all years. This group was created by merging together other age groups, including one group of just five year olds. ACS does not show data for five year olds in 2008 due to the small sample size. Without data for this group, the 5 to 17 year old group could not be created.
 
 ```{r}
 age %>%
