@@ -183,6 +183,8 @@ df %>%
 
 #### Interpretation
 
+* Forsyth County's homeownership rate is higher than Durham County's and Guilford County's rate. The difference between Forsyth and Durham is statistically significant every year. The difference between Forsyth and Guilford is only statistically significant in 2016, 2013, and 2010.
+* The homeownership rate in Forsyth County has remained steady in recent years. There is no statistically significant difference in homeownership rates between 2017 and any year until 2009.
 
 #### Data
 
@@ -279,6 +281,9 @@ ethnicity %>%
 
 #### Interpretation
 
+* White, non-Hispanics have higher homeownership rates than other ethnicities/races.
+* Hispanic/Latinos have almost identical homeownership rates to African Americans. The only year with a statistically significant difference is 2009.
+
 #### Data
 
 The data for ethnicities is as follows.
@@ -356,6 +361,9 @@ age %>%
 ```
 
 #### Interpretation
+
+* Some age groups have high CV values due to the age group's small sample size. The 15 to 24 year old age group has CV values above 26 every year, and values above 30 most years. The 85 plus age group has CV values above 14 every year.
+* Within Forsyth County, the 15 to 24 year old age group has the lowest homeownership rate every year. But, the difference between 15 to 24 year olds and 25 to 34 year olds is not statistically significant in 2016 and 2017.
 
 #### Data
 
