@@ -66,7 +66,7 @@ other <- filter(df, file != 'age group') %>%
 # currently, total households and number of homeowners are on different rows (long form)
 # we need both on the same row, in difference columns, to calculate percentages
 
-# create seperate dataframes for total households and homeowners, 
+# create separate dataframes for total households and homeowners, 
 # then merge these dataframes to create percentiles
 other_total <- other %>%
   filter(description == 'Estimate; Total:')
@@ -117,7 +117,7 @@ owner_renter <- function(df, status) {
 }
 
 
-# create different datasets for ownres and renters
+# create different datasets for owners and renters
 owner <- read_csv('data/homeownership_all_years.csv') %>%
   owner_renter('Owner')
 
@@ -214,7 +214,7 @@ The table below shows z-scores of all comparison communities for the past two ye
 year_comparison <- c(max(df$year), max(df$year)-1)
 
 df %>%
-  # only keep total emplohousingyment rate
+  # only keep total homeownership rate
   filter(type == 'total population',
          # only keep data for the most recent year
          year %in% year_comparison) %>%
@@ -231,7 +231,7 @@ The plot above shows Forsyth County's yearly trend and the table below lists yea
 
 ```{r include = to_include}
 df %>%
-  # only keep total housing rate
+  # only keep total homeownership rate
   filter(type == 'total population',
          # only keep data for the most recent year
          geo_description == 'Forsyth') %>%
