@@ -15,9 +15,9 @@ census_api_key("3d94584bfd87fb43977be01dbddfc797af127c5c")
 
 counties <- c("Forsyth","Guilford","Durham")
 states <- "NC"
-year <- 2017
 acs_var<-"B15002_001"
 varname<-"total"
+year <- '2017'
 
 acs_getvar <- function(acs_var,varname,survey = "acs1",year = 2017,
                        get_NC=1,
@@ -108,7 +108,7 @@ acs_getvar <- function(acs_var,varname,survey = "acs1",year = 2017,
         
         
         #remove moe and variable name
-        df <- df[c('GEOID','NAME',varname_out,varname_out_SE)]
+        df <- df[c('NAME',varname_out,varname_out_SE)]
         
         #verify that you have the right variable
         varlist <- load_variables(year, survey, cache = TRUE)
@@ -168,7 +168,7 @@ import_acs <- function(acs_var,varname,survey = "acs1",year = 2011,
                 tmp <- tmp[-1,]
                 
                 #just the columns requested
-                tmp <- tmp[,c("GEO.id2","GEO.display.label",varname_estimate,varname_moe)]
+                tmp <- tmp[,c("GEO.display.label",varname_estimate,varname_moe)]
                 
                 
                 
@@ -179,7 +179,7 @@ import_acs <- function(acs_var,varname,survey = "acs1",year = 2011,
                 varname_out_SE <- paste0(varname,suffix,"_SE")
                 
                 #rename to be just like the output of acs_getvar
-                colnames(tmp) <- c("GEOID","NAME",varname_out,varname_out_SE) 
+                colnames(tmp) <- c("NAME",varname_out,varname_out_SE) 
                 
                 
                 #change the MOE to a SE and reformat variables as numeric
@@ -252,7 +252,7 @@ acs_newvar <- function(df,acs_var,varname,survey = "acs1",year = 2017,get_NC=1,g
         
         
         #merge to the base df
-        df_out <- full_join(df,tmp, by=c('GEOID','NAME'))
+        df_out <- full_join(df,tmp, by='NAME')
         
         
         
@@ -351,10 +351,10 @@ acs_add_sumofvars <- function(df,varlist,varname,
         
         
         #remove temporary variables
-        tmp <- tmp[c('GEOID','NAME',varname_out,varname_out_SE)]
+        tmp <- tmp[c('NAME',varname_out,varname_out_SE)]
         
         print(paste("The above variables were summed to create",varname_out))
-        df_out <- merge(df,tmp, by=c('GEOID','NAME'),all.x=TRUE)
+        df_out <- merge(df,tmp, by='NAME',all.x=TRUE)
 }
 
 
