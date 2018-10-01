@@ -172,7 +172,7 @@ ethnicity %>%
 #### Interpretation
 
 * The African American poverty rate has fallen 10 percentage points since 2012.
-* THe White, non-Hispanic poverty rate has remained stable over the pst 10 years. Over this time period, no years have statistically significant differences from 2017.
+* The White, non-Hispanic poverty rate has remained stable over the past 10 years. Over this time period, no years have statistically significant differences from 2017.
 * Most of the Hispanic/Latinx values have high CV scores (over 12).  Therefore, our confidence in Hispanic/Latinx estimates is weak.
 
 #### Data
@@ -224,33 +224,71 @@ ethnicity %>%
 
 #### Plot
 
-In 2015, the Census created additional age groups, such as under 5 and 5 to 17. Prior to 2015, however, the youngest age group was 18 and under. Therefore, yearly age comparisons only trace back to 2015.
+Age groups are in table B17001. The block below imports and cleans data from this table.
+
 
 ```{r}
-# list of the end of age rows, to filter on
+# create list of age descriptions that will be created
 age_descriptions <- c('Under 5 years',
                       '5 to 17 years',
                       '18 to 34 years',
                       '35 to 64 years',
                       '65 years and over')
+#5 to 17 years and 17 years
 
-# create regular expression to filter data set and only keep rows that have one of the 
-# age descriptions at the end of the row description
-age_re <- paste0(age_descriptions, collapse = '$|')
+age <- read_csv('data/poverty_age_groups.csv') %>%
+  # only keep selected NC counties, the state of NC, and US data
+  filter(geo_description %in% geo_areas) %>%
+  # extract age group and place age group name in its own columns
+  mutate(age = str_extract(description, '- [0-9].*|- Under.*'),
+         # remove '- ' from age group
+         age = str_replace(age, '- ', ''),
+         # exract whether row signifies above or below poverty and place in its own column
+         level = str_extract(description, 'below poverty|above poverty')) %>%
+  # filter out NA values for age group
+  filter(!is.na(age)) %>%
+  # create new age bins
+  mutate(age = str_replace_all(age, '^5 y.*|^6 t.*|^12.*|^15.*|^16.*', age_descriptions[2])) %>%
+  mutate(age = str_replace_all(age, '^18.*|^25.*', age_descriptions[3])) %>%
+  mutate(age = str_replace_all(age, '^35.*|^45.*|^55.*', age_descriptions[4])) %>%
+  mutate(age = str_replace_all(age, '^65.*|^75.*', age_descriptions[5])) %>%    
+  # we don't need information about sex, so group by year, above/below poverty, and age group and sum
+  group_by(geo_description, year, level, age) %>%
+  # calculate aggregate counts and aggregate count MOE for aggregate of males and females
+  summarize(estimate = sum(estimate),
+            moe = sqrt( sum(moe^2) ))
+    
+# create separate dataframe for the total number of people in each age group
+# calculate by adding number of people below poverty line to those above poverty line
+age_total <- age %>%
+  # group by year and age group
+  group_by(geo_description, year, age) %>%
+  # calculate aggregate counts and aggregate count MOE for each age group
+  summarize(estimate = sum(estimate),
+            moe = sqrt( sum(moe^2) ))
 
-age <- df %>%
-  # only keep variables for 2015 and later
-  filter(year >= 2015,
-         str_detect(description, age_re)) %>%
-  # create new column that extracts the age from the description column
-  mutate(age = str_extract(description, age_re))
-  
+# filter out those above poverty because we only need percentage below poverty
+age <- age %>%
+  filter(level == 'below poverty') %>%
+  # add age group totals to data frame; needed for creating percentages
+  left_join(age_total, by = c('geo_description', 'year', 'age'), suffix = c('_below', '_total'))
+
+# calculate percentages, along with MOE, se, and cv
+age <- ff_acs_perc(age$estimate_below, age$moe_below,
+                        age$estimate_total, age$moe_total) %>%
+  # combine with dataset used to create percentages
+  bind_cols(age, .) %>%
+  ungroup() %>%
+  # only keep needed years
+  select(geo_description, year, age, prop:cv) %>%
+  rename(estimate = prop)
+```
+
+```{r}
 age %>%
     filter(geo_description =='Forsyth') %>%
     ggplot(aes(year, estimate, color = age)) +
       geom_line(size = 1) +
-      # create a seperate plot for each geography
-      #facet_grid(rows = vars(geo_description)) +
       labs(title = 'Forsyth County poverty rate by age group',
            color = 'Age group',
            y = 'Poverty rate (%)') +
@@ -277,8 +315,8 @@ age %>%
 
 #### Interpretation
 
-* The 2017 differences in poverty rates between Forsyth County and its comparison geographies are not statistically significant for any age group. 
-* Within Forsyth County, children under 5 are more likely to reside in homes living in poverty than any other age group. But, the difference between children under 5 and other age groups is only statistically significant for 35 to 64 year olds and 65 and older.
+* Among all comparison geographies, Forsyth County had the highest poverty rate for children under five. But, only the US and Forsyth County difference is statistically significant.
+* Within Forsyth County, children under five experienced a 13% drop in poverty between 2013 and 2014. This drop was statistically significant, and the difference between 2013 and 2017 is also statistically significant.
 
 #### Data
 
@@ -311,7 +349,7 @@ age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
   filter(year %in% age_years) %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'age'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'age'))
 ```
 
 Here are the age comparisons for all years within Forsyth County.
@@ -319,7 +357,7 @@ Here are the age comparisons for all years within Forsyth County.
 ```{r include = to_include}
 age %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'age'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'age'))
 ```
 
 ### Tableau dataset
