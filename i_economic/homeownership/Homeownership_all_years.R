@@ -33,7 +33,7 @@ for (i in seq_along(homeowner_zip)) {
 }
 
 
-# this iterate creates the singel dataset
+# this iterate creates the single dataset
 
 # initialize list to store each seperate homeowner dataset
 homeowner_list <- list()
@@ -41,7 +41,7 @@ homeowner_list <- list()
 # folder to put raw data into; will be deleted
 data_path <- 'i_economic/homeownership/data/raw_data2'
 
-# this iterate creates the singel dataset
+# this iterate creates the single dataset
 for (i in seq_along(homeowner_zip)) {
   
   df <- ff_import_acs(homeowner_zip[i],
