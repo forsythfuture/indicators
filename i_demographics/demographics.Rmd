@@ -101,13 +101,32 @@ hl <- df %>%
 ethnicity <- bind_rows(wh, aa, hl) %>%
   # rename and add columns for Tableau dataset
   rename(Subtype = race) %>%
-  mutate(Type = 'Race')
+  mutate(Type = 'Race') %>%
+  # add total population, so racial percentile of population can be calcualted
+  mutate(total_pop = rep(total_pop$population, 3)) %>%
+  # calculate racial percentile of population
+  mutate(population_perc = population / total_pop)
 ```
+
+*Yearly population by ethnicity*
 
 ```{r}
 ggplot(ethnicity, aes(year, population, color = Subtype)) +
     geom_line(size = 1) +
     labs(title = 'Forsyth County yearly population by race/ethnicity',
+         color = 'Race / Ethnicity') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+*Percentile population by ethnicity*
+
+```{r}
+ggplot(ethnicity, aes(year, population_perc, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly percentile population by race/ethnicity',
+         y = 'Population percentiles',
          color = 'Race / Ethnicity') +
     scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
                        minor_breaks = NULL) +
@@ -124,13 +143,32 @@ gender <- df %>%
   select(year, population, gender) %>%
   # rename and add columns for Tableau dataset
   rename(Subtype = gender) %>%
-  mutate(Type = 'Gender')
+  mutate(Type = 'Gender') %>%
+  # add total population, so racial percentile of population can be calcualted
+  mutate(total_pop = rep(total_pop$population, each = 2)) %>%
+  # calculate racial percentile of population
+  mutate(population_perc = population / total_pop)
 ```
+
+*Yearly population by gender*
 
 ```{r}
 ggplot(gender, aes(year, population, color = Subtype)) +
     geom_line(size = 1) +
     labs(title = 'Forsyth County yearly population by gender',
+         color = 'Gender') +
+    scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+*Yearly percentile population by gender*
+
+```{r}
+ggplot(gender, aes(year, population_perc, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly percentile population by gender',
+         y = 'Population percentiles',
          color = 'Gender') +
     scale_x_continuous(breaks = seq(min(gender$year), max(gender$year), 1),
                        minor_breaks = NULL) +
@@ -157,14 +195,38 @@ age <- df %>%
   summarize(population = sum(population)) %>%
   # rename and add columns for Tableau dataset
   rename(Subtype = age) %>%
-  mutate(Type = 'Age')
+  mutate(Type = 'Age') %>%
+  # ungroup so we can add additional columsn to dataframe
+  ungroup() %>%
+  # add total population, so racial percentile of population can be calcualted
+  mutate(total_pop = rep(total_pop$population, each = length(unique(.$Subtype)))) %>%
+  # calculate racial percentile of population
+  mutate(population_perc = population / total_pop)
 ```
+
+*Yearly population by age*
 
 ```{r}
 ggplot(age, aes(year, population, color = Subtype)) +
     geom_line(size = 1) +
     labs(title = 'Forsyth County yearly population by age group',
          color = 'Age') +
+    scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
+                       minor_breaks = NULL) +
+   # reorder legend values
+   scale_colour_discrete(breaks = c("Under 5", "5 to 14", "15 to 19", "20 to 29", 
+                                    "30 to 49", "50 to 64", "65 to 84", "85 and older")) +
+   theme_minimal()
+```
+
+*Yearly percentile population by age*
+
+```{r}
+ggplot(age, aes(year, population_perc, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly population by age group',
+         color = 'Age',
+         y = 'Percentile Populations') +
     scale_x_continuous(breaks = seq(min(age$year), max(age$year), 1),
                        minor_breaks = NULL) +
    # reorder legend values
@@ -214,15 +276,33 @@ ethnicity_gender <- bind_rows(wh_gender, aa_gender, hl_gender) %>%
   rename(Subtype = gender) %>%
   # combine gender and ethnicity columns into one columns
   unite(col='Subtype', c('Subtype', 'race'), sep = ' and ', remove=TRUE) %>%
-  mutate(Type = 'Race/Ethnicity and Gender')
-  
-
+  mutate(Type = 'Race/Ethnicity and Gender') %>%
+  # add total population, so racial percentile of population can be calcualted
+  ungroup() %>%
+  mutate(total_pop = rep(total_pop$population, each = 2, times = 3)) %>%
+  # calculate racial percentile of population
+  mutate(population_perc = population / total_pop)
 ```
+
+*Yearly population by race / ethnicity and gender*
 
 ```{r}
 ggplot(ethnicity_gender, aes(year, population, color = Subtype)) +
     geom_line(size = 1) +
     labs(title = 'Forsyth County yearly population by race/ethnicity and gender',
+         color = 'Race / Ethnicity') +
+    scale_x_continuous(breaks = seq(min(ethnicity_gender$year), max(ethnicity_gender$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+*Yearly percentile population by race / ethnicity and gender*
+
+```{r}
+ggplot(ethnicity_gender, aes(year, population_perc, color = Subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County yearly percentile population by race/ethnicity and gender',
+         y = 'Percentile population',
          color = 'Race / Ethnicity') +
     scale_x_continuous(breaks = seq(min(ethnicity_gender$year), max(ethnicity_gender$year), 1),
                        minor_breaks = NULL) +
@@ -235,7 +315,9 @@ ggplot(ethnicity_gender, aes(year, population, color = Subtype)) +
 # combine all datasets into one
 bind_rows(total_pop, ethnicity, gender, age, ethnicity_gender) %>%
   # change column order
-  select(year, Type, Subtype, population) %>%
-  ff_data_dt(c('Year', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+  select(year, Type, Subtype, population, population_perc) %>%
+  # round percentages to four decimal places
+  mutate(population_perc = round(population_perc, 4)) %>%
+  ff_data_dt(c('Year', 'Type', 'Subtype', 'Estimate', 'Estimate_percent'), for_tableau=TRUE)
 
 ```
