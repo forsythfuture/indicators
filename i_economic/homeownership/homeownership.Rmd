@@ -34,6 +34,7 @@ source('../../functions/acs_load_funcs.R')
 ```
 
 Homeownership data comes from the following U.S. Census Bureau, American Fact Finder tables:
+
 * B25003 (total homeownership)
 * B25007 (homeownership by age)
 * B25003B (African American homeownership)
