@@ -1,0 +1,431 @@
+---
+title: "Homeownership rate"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+```
+
+Homeownership data comes from the following U.S. Census Bureau, American Fact Finder tables:
+
+* B25003 (total homeownership)
+* B25007 (homeownership by age)
+* B25003B (African American homeownership)
+* B25003I (Hispanic/Latinx homeownership)
+* B25003H (White, non-Hispanic homeownership)
+
+### Data cleaning
+
+This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
+
+```{r}
+# create list of geographic areas to keep
+geo_areas <- c('United States', 'North Carolina', 
+                'Forsyth', 'Guilford', 'Durham')
+
+# import dataset
+df <- read_csv('data/post_sec_all_years.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  select(-label)
+
+#remove pre-secondary education rows
+df <- df %>%
+        filter(!str_detect(description, 'Less than 9th grade'),(!str_detect(description,'9th to 12th grade')),(!str_detect(description,'High school graduate')),(!str_detect(description,'Some college')), (!str_detect(description,'Regular high school diploma')), (!str_detect(description,'GED or alternative credential'))) 
+
+
+# age group rows and the other rows have different format so they must be separated
+age <- filter(df, file == 'age group')
+gender <- filter(df, file == 'gender')
+total <- filter(df,file == 'total')
+white <- filter(df, file == 'White, non-Hispanic')
+
+aa <- filter(df,file == 'African American')
+aa_total <- filter(aa, str_detect(description, 'Estimate; Total:'))
+aa_male <- filter(aa, str_detect(description, 'Estimate; Male:'))
+aa_female <- filter(aa, str_detect(description, 'Estimate; Female:'))
+aa <- bind_cols(aa_male,aa_female)
+
+hispanic <- filter(df, file == 'Hispanic/Latino')
+  
+
+## calculate percentage of households with homes in other
+
+# currently, total households and number of homeowners are on different rows (long form)
+# we need both on the same row, in difference columns, to calculate percentages
+
+# create separate dataframes for total households and homeowners, 
+# then merge these dataframes to create percentiles
+other_total <- other %>%
+  filter(description == 'Estimate; Total:')
+other_home <- other %>%
+  filter(description != 'Estimate; Total:')
+
+# merge two datasets, so total households and homeowners are on the same row
+# variable name suffixes are '_t' for total households and '_o' for owner
+other <- full_join(other_total, other_home, 
+                   by = c('geo_description', 'year', 'file' ),
+                   suffix = c('_t', '_o'))
+
+# calculate proportions and the se, moe, cv of proportions
+# bind to data frame with descriptions of rows
+other <- ff_acs_perc(other$estimate_o, other$moe_o, other$estimate_t, other$moe_t) %>%
+  bind_cols(other, .) %>%
+  # only keep needed columns
+  select(geo_description, year, file, prop:cv) %>%
+  rename(description = file)
+```
+
+```{r}
+## calculate percentage of households with homes by age group
+
+# homeownership percentages are created by dividing the number of homeowners by the number of owners and renters
+# we will create function that creates a dataset of just owners or renters
+# then, we can combine the datasets and calculate percentages
+
+owner_renter <- function(df, status) {
+  df %>%
+    # only keep values in the needed geographic areas
+    filter(geo_description %in% geo_areas,
+           # only keep rows for age groups, since other demographics are in previous section
+           file == 'age group') %>%
+    # remove all rows with descriptions representing renters;
+    # only keep rows signifying homeownership
+    filter(!str_detect(description, 
+                       ifelse(status == 'Owner', 'Renter', 'Owner'))) %>%
+    # remove rows that are the total for renters and owners ("Estimate; Total:")
+    filter(description != "Estimate; Total:") %>%
+    # for age, there is an overall total and a total for all ages and owners
+    # remove total for all ages and owners
+    filter(!(description == paste0('Estimate; ', status, ' occupied:') & file == 'age group')) %>%
+    # change description to only show age group
+    mutate(description = str_extract_all(description, ' Householder.*')) %>%
+    # delete word household
+    mutate(description = str_replace_all(description, 'Householder ', ''))
+}
+
+
+# create different datasets for owners and renters
+owner <- read_csv('data/homeownership_all_years.csv') %>%
+  owner_renter('Owner')
+
+renter <- read_csv('data/homeownership_all_years.csv') %>%
+  owner_renter('Renter')
+
+# merge owner and renter datasets on year, geography, and description (age)
+# variable name suffixes are '_o' for owner and '_r' for renter
+df <- full_join(owner, renter, 
+                by= c('geo_description', 'year', 'description'), suffix = c("_o", "_r")) %>%
+  # create an estimate of the total population for each row by adding the owners and renters
+  # this will be used to derive the percentage of homeowners
+  mutate(estimate_total = estimate_o + estimate_r,
+         # calculate margin of error for the total population in each row
+         # use function in tidycensus
+         moe_total = sqrt( moe_o^2 + moe_r^2 ))
+
+# calculate the proportion of homeowners, along with meo, se, and cv
+df <- ff_acs_perc(df$estimate_o, df$moe_o, df$estimate_total, df$moe_total) %>%
+  bind_cols(df) %>%
+  select(geo_description, year, description, prop:cv)
+
+# combine age and other demographic datasets
+df <- bind_rows(other, df)
+
+# create type and subtype columns
+df <- df %>%
+  # Type is age group if there are two numbers at the beginning of the description
+  mutate(type = ifelse(str_detect(description, '[0-9][0-9]'), 'age group',
+                       # type is race/ethnicity if description is one of the racial categories
+                       ifelse(str_detect(description, 
+                                          'African American|Hispanic[/]Latinx|White, non-Hispanic'),
+                                          'race/ethnicity', 
+                              # otherwise, type is the total population category
+                              'total population'))) %>%
+  # change column names for conformity with other datasets
+  rename(subtype = description, estimate = prop) %>%
+  # reorder columns
+  select(geo_description, year, type, subtype, estimate, moe, se, cv)
+```
+
+------
+
+### US, NC, and county comparisions
+
+#### Plot
+
+The plot below shows the overall homeownership rates for the US, North Carolina, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+df %>%
+  # only keep total employment rate
+  filter(type == 'total population') %>%
+  ggplot(aes(year, estimate, color = geo_description)) +
+    geom_line(size = 1) +
+    labs(title = 'Homeownership rate',
+         color = 'Comparison Unit',
+         y = 'Homeownership') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+#### Interpretation
+
+* Forsyth County's homeownership rate is higher than Durham County's and Guilford County's rate. The difference between Forsyth and Durham is statistically significant every year. The difference between Forsyth and Guilford is only statistically significant in 2016, 2013, and 2010.
+* The homeownership rate in Forsyth County has remained steady in recent years. There is no statistically significant difference in homeownership rates between 2017 and any year until 2009.
+
+#### Data
+
+Below is the raw data for homeownership rates by geographies.
+
+```{r include = to_include}
+# this represents the final dataset that will be sent to others for visualizations
+tableau_data <- df %>%
+  # only keep total employment rate
+  filter(type == 'total population') %>%
+  # remove moe, se, and cv
+  select(-moe:-cv)
+
+# create table
+df %>%
+  # only keep total housing rate
+  filter(type == 'total population') %>%
+  select(-type, -subtype) %>%
+  ff_data_dt(c('Geographic area', 'Year', '% Homeowners', '95% MOE', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`. 
+
+```{r include = to_include}
+year_comparison <- c(max(df$year), max(df$year)-1)
+
+df %>%
+  # only keep total homeownership rate
+  filter(type == 'total population',
+         # only keep data for the most recent year
+         year %in% year_comparison) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
+```
+
+------
+
+### Forsyth County year-to-year trends
+
+#### Z-scores
+
+The plot above shows Forsyth County's yearly trend and the table below lists yearly z-scores.
+
+```{r include = to_include}
+df %>%
+  # only keep total homeownership rate
+  filter(type == 'total population',
+         # only keep data for the most recent year
+         geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', 'year')
+```
+
+
+------
+
+### Homeownership rates by ethnicity
+
+#### Plot
+
+The plots below show homeownership rate by ethnicity and year.
+
+```{r}
+ethnicity <- df %>%
+  # filter for race
+  filter(type == 'race/ethnicity')
+
+# line plot of ethnicity with Forsyth and all years
+ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
+  ggplot(aes(year, estimate, color = subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County homeownership rates by ethnicity',
+         color = 'Ethnicity',
+         y = 'Homeownership rate (%)') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(geo_description, estimate, fill=subtype)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('Homeownership rates by ethnicity', ' in ', max(ethnicity$year)),
+       fill = 'Ethnicity',
+       y = 'Homeownership Rate',
+       x = '') +
+  theme_minimal()
+```
+
+#### Interpretation
+
+* White, non-Hispanics have higher homeownership rates than other ethnicities/races.
+* Hispanic/Latinos have almost identical homeownership rates to African Americans. The only year with a statistically significant difference is 2009.
+
+#### Data
+
+The data for ethnicities is as follows.
+
+```{r include = to_include}
+# add ethnicity information t ofinal datasets
+tableau_data <- ethnicity %>%
+    select(-moe:-cv) %>%
+    bind_rows(tableau_data, .)
+
+ff_data_dt(ethnicity,
+           c('Geographic area', 'Year', 'Type', 'Ethnicity', 
+             '% Homeowners', '95% MOE', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+Below is a table of z-scores for ethnicities in the past two years. To generate z-scores for other years, replace `c(max(ethnicity$year), max(ethnicity$year)+1)` in `ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)+1)` with the desired year.
+
+```{r include = to_include}
+# enter comparison years here
+ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+
+ethnicity %>%
+  filter(year %in% ethnicity_years) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'subtype'))
+```
+
+Below is a table of z-scores for ethnicities in all years within Forsyth County.
+
+```{r include = to_include}
+ethnicity %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'subtype'))
+```
+
+
+------
+
+### Homeownership rate by age
+
+#### Plot
+
+The following plots examines the employment rate by age group.
+
+```{r}
+
+age <- filter(df, type == 'age group')
+# line plot of age with Forsyth and all years
+age %>%
+  filter(geo_description=='Forsyth') %>%
+  ggplot(aes(year, estimate, color = subtype)) +
+    geom_line(size = 1) +
+    labs(title = 'Forsyth County homeownership rate by age group',
+         color = 'Age group',
+         y = 'Homeownership rate (%)') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+```{r}
+# bar chart of age with all geographies in the most recent year
+age %>%
+  # only keep most recent year
+  filter(year == max(.$year)) %>%
+  ggplot(aes(geo_description, estimate, fill=subtype)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Homeownership rate by age', ' in ', max(age$year)),
+         fill = 'Age Group',
+          y = 'Homeownership rate (%)',
+         x = '') +
+    theme_minimal()
+```
+
+#### Interpretation
+
+* Some age groups have high CV values due to the age group's small sample size. The 15 to 24 year old age group has CV values above 26 every year, and values above 30 most years. The 85 plus age group has CV values above 14 every year.
+* Within Forsyth County, the 15 to 24 year old age group has the lowest homeownership rate every year. But, the difference between 15 to 24 year olds and 25 to 34 year olds is not statistically significant in 2016 and 2017.
+
+#### Data
+
+Age data is below.
+
+```{r include = to_include}
+# add age data to final dataset
+tableau_data <- age %>%
+    select(-moe:-cv) %>%
+    bind_rows(tableau_data, .)
+  
+age %>%
+  ff_data_dt(c('Geographic area', 'Year', 'Type', 'Age Group', 
+               '% Homeowners', '95% MOE', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group and geography in the past two years.
+
+```{r include = to_include}
+# enter comparison years here
+age_years <- c(max(age$year), max(age$year)-1)
+
+age %>%
+  filter(year %in% age_years) %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'subtype'))
+```
+
+Below is a table of z-scores for all years and ages within Forsyth County.
+
+```{r include = to_include}
+age %>%
+  filter(geo_description == 'Forsyth') %>%
+  ff_acs_zscore_dt('estimate', 'moe', c('year', 'subtype'))
+```
+
+-------
+
+### Tableau dataset
+
+This is the final data set that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
+
+```{r}
+# estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+tableau_data %>%
+  select(year, geo_description, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+``` 
