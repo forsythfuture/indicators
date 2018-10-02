@@ -113,6 +113,10 @@ df %>%
     theme_minimal()
 
 ```
+#### Interpretation
+
+* In Forsyth County, the post secondary education completion rate has steadily increased and every year since 2012 has seen a statistically significant increase year over year. 
+* Forsyth County's post secondary completion rate is generally statistically signifcant from all other comparison communities every year with the exception of Guilford County beginning in 2013.
 
 #### Data
 
@@ -140,7 +144,7 @@ The table below shows z-scores of all comparison communities for the past two ye
 
 
 ```{r}
-year_comparison <- c(max(df$year), max(df$year)-1)
+year_comparison <- c(2006:2017)
 
 df %>%
   # only keep total employment rate
@@ -206,6 +210,12 @@ ethnicity_bar %>%
        x = '') +
   theme_minimal()
 ```
+#### Interpretation
+
+* All race/ethnicities are statistically significant from each other every year. 
+* No statistical significance year over year in Hispanic rate Forsyth County's post secondary completion rate is generally statistically signifcant from all other comparison communities every year with the exception of Guilford County beginning in 2013.
+
+
 #### Data
 
 The data for ethnicities is as follows.
@@ -234,7 +244,7 @@ Below is a table of z-scores for ethnicities in the past two years. To generate 
 
 ```{r}
 # enter comparison years here
-ethnicity_years <- c(max(ethnicity$year), max(ethnicity$year)-1)
+ethnicity_years <- c(2006:2017)
 
 ethnicity %>%
   filter(year %in% ethnicity_years) %>%
@@ -316,7 +326,7 @@ The table below highlights z-scores for each age group and geography in the past
 
 ```{r}
 # enter comparison years here
-age_years <- c(max(age$year), max(age$year)-1)
+age_years <- c(2006:2017)
 
 age %>%
   filter(year %in% age_years) %>%
@@ -398,7 +408,7 @@ The table below highlights z-scores for each age group in the past two years.
 
 ```{r}
 # enter comparison years here
-gender_years <- c(max(gender$year), max(gender$year)-1)
+gender_years <- c(2006:2017)
 
 gender %>%
   filter(year %in% gender_years) %>%
