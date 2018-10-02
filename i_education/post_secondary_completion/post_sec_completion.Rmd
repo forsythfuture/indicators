@@ -131,7 +131,6 @@ tableau_data <- total_data %>%
 # create table
 ff_data_dt(total_data, c('Geography', 'Year', '% Assoc Degree', 'St. Error', 'CV'))
 ```
-```
 
 #### Z-scores
 
