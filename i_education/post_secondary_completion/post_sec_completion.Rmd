@@ -37,7 +37,7 @@ The post secondary completion rate is the percentage of people age 25 and over w
 ## Data Import & Transformation/Wrangling
 
 ```{r}
-post_sec <- read_csv('data/edu_made.csv')
+post_sec <- read_csv('data/raw_data/edu_made.csv')
 
 #Change column names to shortened version
 colnames(post_sec) <- c('NAME','US',"NC",'Durham','Forsyth','Guilford')
@@ -64,9 +64,11 @@ post_sec_se <- rename(post_sec_se, se = estimate)
 #Merge the two dataframes
 post_sec <- merge(post_sec_est,post_sec_se,by = c("NAME","geography"))
 
-#Round percentages and calculate cv
+#Change estimate and se to numeric class, round percentages and calculate cv
+post_sec$estimate <- as.numeric(post_sec$estimate)
+post_sec$se <- as.numeric(post_sec$se)
 post_sec <- post_sec %>%
-        mutate(estimate = 100*(round(estimate,3)), se = 100*(round(se,3)), cv = (round(100*(se/estimate),0)))
+       mutate(estimate = 100*(round(estimate,3)), se = 100*(round(se,3)), cv = (round(100*(se/estimate),0)))
 
 #Pull out demographic information from name column, then change the values of those variables to a more descriptive one
 post_sec <- post_sec %>%
@@ -100,7 +102,7 @@ The plot below shows the overall Associate degree rate of North Carolina, Forsyt
 
 df %>%
   # keep all ages, race/ethnicities and genders
-  filter(age=='2599',race_eth=='ALL',gender=='ALL', geography!='US') %>%
+  filter(age=='2599',race_eth=='ALL',gender=='ALL') %>%
   ggplot(aes(year, estimate, color = geography)) +
     geom_line(size = 1) +
     labs(title = 'Post secondary Completion',
@@ -119,7 +121,7 @@ Below is the raw data for Associate degree rate by geographies.
 ```{r}
 total_data <- df %>%
   # only keep total employment rate
-  filter(geography != 'US', age=='2599', race_eth=='ALL', gender=='ALL') %>%
+  filter(age=='2599', race_eth=='ALL', gender=='ALL') %>%
   select(geography, year, estimate, se, cv)
 
 # this represents the final dataset that will be sent to others for visualizations
@@ -193,7 +195,7 @@ ethnicity %>%
 ```{r}
 # bar chart of ethnicity with all geographies in the most recent year
 ethnicity_bar <- df %>%
-filter((geography!='US' & age=='2599'& race_eth=="White, non-Hispanic" & gender=='ALL' & year == max(.$year))|(geography!='US' & age=='2599'& race_eth=='Latinx' & gender=='ALL' & year == max(.$year))|(geography!='US' & age=='2599'& race_eth=='African American' & gender=='ALL' & year == max(.$year)))
+filter((age=='2599'& race_eth=="White, non-Hispanic" & gender=='ALL' & year == max(.$year))|(age=='2599'& race_eth=='Latinx' & gender=='ALL' & year == max(.$year))|(age=='2599'& race_eth=='African American' & gender=='ALL' & year == max(.$year)))
 
 ethnicity_bar %>% 
   ggplot(aes(geography, estimate, fill=race_eth)) +
@@ -257,7 +259,7 @@ The following plot examines Forsyth County's Assoc degree rate by age group.
 ```{r fig.width=8,fig.height=10}
 
 age <- df %>%
-        filter((geography!='US' & age=='2534'& race_eth=='ALL' & gender=='ALL')|(geography!='US' & age=='3544'& race_eth=='ALL' & gender=='ALL')|(geography!='US' & age=='4564'& race_eth=='ALL' & gender=='ALL')|(geography!='US' & age=='6599'& race_eth=='ALL' & gender=='ALL'))
+        filter((age=='2534'& race_eth=='ALL' & gender=='ALL')|(age=='3544'& race_eth=='ALL' & gender=='ALL')|(age=='4564'& race_eth=='ALL' & gender=='ALL')|(age=='6599'& race_eth=='ALL' & gender=='ALL'))
         
 age %>%
     filter(geography=='Forsyth') %>%
@@ -340,7 +342,7 @@ The plot for Associate's degree rate by gender is below.
 ```{r fig.width=8,fig.height=10}
 # only keep rows related to gender
 gender <- df %>%
-        filter((geography!= 'US' & age=='2599'& race_eth=='ALL' & gender=='female')|(geography!='US' & age=='2599'& race_eth=='ALL' & gender=='male'))
+        filter((age=='2599'& race_eth=='ALL' & gender=='female')|(age=='2599'& race_eth=='ALL' & gender=='male'))
 
 gender %>%
     filter(geography == 'Forsyth') %>%
