@@ -232,7 +232,6 @@ age_descriptions <- c('Under 5 years',
                       '18 to 34 years',
                       '35 to 64 years',
                       '65 years and over')
-#5 to 17 years and 17 years
 
 age <- read_csv('data/poverty_age_groups.csv') %>%
   # only keep selected NC counties, the state of NC, and US data

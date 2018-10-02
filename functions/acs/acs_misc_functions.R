@@ -307,12 +307,21 @@ ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
     
   } else {
     
-    # if the geographic description is a column then add 'County, NC' to counties
+    # if the table is for tableau, we need to add additional rows that represent Forsyth County totals,
+    # but change type from Comparison Community to Total
     
-    
-    datatable(df, filter='top', extensions='Buttons', rownames = FALSE,
-              colnames = col_names,
-              options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip'))
+    df %>%
+      # filter for rows with Forsyth County as the county, and where type starts with Comparison
+      filter(str_detect(geo_description, '^Forsyth'),
+             str_detect(type, '^Comparison')) %>%
+      # change type columns from Comparison to Total
+      mutate(type = 'Total') %>%
+      # bind these rows to the original dataframe
+      bind_rows(df) %>%
+      # create datatable
+      datatable(filter='top', extensions='Buttons', rownames = FALSE,
+                colnames = col_names,
+                options = list(scrollX = TRUE, scrollY = TRUE, dom = 'Bfrtip'))
     
   }
 }

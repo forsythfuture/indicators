@@ -29,7 +29,7 @@ for (i in seq_along(homeowner_zip)) {
 }
 
 
-# this creates the single dataset
+## this section creates the single dataset for export
 
 # initialize list to store each seperate homeowner dataset
 homeowner_list <- list()
@@ -59,9 +59,11 @@ homeowner <- bind_rows(homeowner_list) %>%
   # convert filenames to descriptive label for row
   mutate(file = str_replace_all(file, '.*_aa.*', 'African American')) %>%
   mutate(file = str_replace_all(file, '.*_age.*', 'age group')) %>%
-  mutate(file = str_replace_all(file, '.*_hl.*', 'Hispanic/Latinx')) %>%
+  mutate(file = str_replace_all(file, '.*_hl.*', 'Hispanic/Latino')) %>%
   mutate(file = str_replace_all(file, '.*_total.*', 'total')) %>%
   mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
-  
+
+# 'raw_data2' file should be empty and can be deleted
+
 # write out data frame
 #write_csv(homeowner, 'i_economic/homeownership/data/homeownership_all_years.csv')

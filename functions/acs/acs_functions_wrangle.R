@@ -36,7 +36,7 @@ ff_acs_ethnicity <- function(df, ethnicity_column) {
     mutate(ethnicity = str_extract(!! ethnicity_column, re_ethnicities)) %>%
     # convert ethnicity names to Forsyth Futures conventions
     mutate(ethnicity = ifelse(.$ethnicity == 'Black or African American', 'African American',
-                              ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic/Latinx',
+                              ifelse(.$ethnicity == 'Hispanic or Latino origin', 'Hispanic/Latino',
                                      ifelse(.$ethnicity == 'White alone, not Hispanic or Latino', 'White, non-Hispanic', 'Not sure'))))
   
   return(df)
