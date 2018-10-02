@@ -323,7 +323,7 @@ age %>%
   filter(geo_description == 'Forsyth') %>%
   # shorten age descriptions (take off the word 'year') so they apepar cleaner and shorter as column titles
   mutate(age = str_extract(age, '\\d\\d to \\d\\d|\\d\\d y')) %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'age'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'age'))
 ```
 
 ------
@@ -408,7 +408,7 @@ gender_years <- c(max(gender$year), max(gender$year)-1)
 
 gender %>%
   filter(year %in% gender_years) %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'gender'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'gender'))
 ```
 
 And here are Forsyth County's z-scores for all years.
@@ -416,7 +416,7 @@ And here are Forsyth County's z-scores for all years.
 ```{r include = to_include}
 gender %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'gender'))
 ```
 
 ### Tableau dataset
