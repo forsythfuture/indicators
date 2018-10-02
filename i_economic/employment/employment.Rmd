@@ -380,7 +380,7 @@ age_years <- c(max(age$year), max(age$year)-1)
 
 age %>%
   filter(year %in% age_years) %>%
-  ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'geo_description', 'age'))
+  ff_acs_zscore_dt('perc_employed', 'perc_employed_se', c('year', 'geo_description', 'age'))
 ```
 
 Below is a table of z-scores for all years and ages within Forsyth County.
@@ -388,7 +388,7 @@ Below is a table of z-scores for all years and ages within Forsyth County.
 ```{r include = to_include}
 age %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore_dt('perc_employed', 'perc_employed_moe', c('year', 'age'))
+  ff_acs_zscore_dt('perc_employed', 'perc_employed_se', c('year', 'age'))
 ```
 
 ------
@@ -470,7 +470,7 @@ ff_data_dt(gender_data,
 
 #### Z-scores
 
-The table below highlights z-scores for each age group in the past two years.
+The table below highlights z-scores for each gender in the past two years.
 
 ```{r include = to_include}
 # enter comparison years here
@@ -478,7 +478,7 @@ gender_years <- c(max(gender$year), max(gender$year)-1)
 
 gender %>%
   filter(year %in% gender_years) %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'geo_description', 'gender'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geo_description', 'gender'))
 ```
 
 And here are Forsyth County's z-scores for all years.
@@ -486,7 +486,7 @@ And here are Forsyth County's z-scores for all years.
 ```{r include = to_include}
 gender %>%
   filter(geo_description == 'Forsyth') %>%
-  ff_acs_zscore_dt('estimate', 'moe', c('year', 'gender'))
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'gender'))
 ```
 
 -------
