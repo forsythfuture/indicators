@@ -107,8 +107,8 @@ ff_clean_acs <- function(file_name, year) {
     mutate(se = round(moe / 1.96, 2),
            cv = round((se / estimate)*100, 2)) %>%
     # counties have the county name and then 'County, North Carolina'
-    # only keep the copunty name in the geographic description
-    separate(geo_description, into = c('geo_description', 'waste'), sep = 'County, ', fill='right') %>%
+    # convert 'North Carolina' to NC
+    mutate(geo_description = str_replace(geo_description, 'County, North Carolina', 'County, NC')) %>%
     # change order of columns
     select(geo_description, label, year, description, estimate, moe, se, cv)
     
@@ -178,7 +178,6 @@ ff_disparities <- function(df, comparison_column, comparison_demographics, compa
   #   df: a dataframe where there is a column called ethnicity with values of either:
   #         'African American', 'Hispanic/Latino', or 'White, non-Hispanic'
   #   comparison_column: the column, as a string, that contains the description of the demographic to be compared
-  #   comparison_demographic: a vector of strings signifying which demographics to compare
   #                           example: c('African american', 'White, non-hispanic')
   #   comparisons: a list of vectors signifying which comparisons to make
   #                 each element in the list is a different comparison
@@ -307,6 +306,9 @@ ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
         formatStyle('cv', color = styleInterval(c(12, 30), c('black', 'blue', 'red')))
     
   } else {
+    
+    # if the geographic description is a column then add 'County, NC' to counties
+    
     
     datatable(df, filter='top', extensions='Buttons', rownames = FALSE,
               colnames = col_names,

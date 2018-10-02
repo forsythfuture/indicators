@@ -5,7 +5,7 @@
 library(tidyverse)
 source('functions/acs_load_funcs.R')
 
-# note: to bring in multiple fiels you must first run the import function once
+# note: to bring in multiple files you must first run the import function once
 # to create raw files; then run the import function again, but putting raw data into
 # different folder and immediately deleting
 
@@ -19,21 +19,17 @@ homeowner_zip <- paste0('zip_files/', list.files('zip_files', pattern='homeowner
 
 ## iterate through each zip file, download and clean data, and place dataset in list
 
-
-
-# thi iterate creates the raw data files
+# this creates the raw data files
+# it does nothing but create the raw data files
 for (i in seq_along(homeowner_zip)) {
   
   ff_import_acs(homeowner_zip[i],
                 data_path, 
                 years = seq(2006, 2017, 1))
-  
-  homeowner_list[[i]] <- df
-  
 }
 
 
-# this iterate creates the single dataset
+# this creates the single dataset
 
 # initialize list to store each seperate homeowner dataset
 homeowner_list <- list()
