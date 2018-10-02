@@ -312,6 +312,8 @@ age %>%
          fill = 'Age Group',
          y = 'Poverty rate (%)',
          x = '') +
+    # change the order of age groups in legend so they appear youngest to oldest
+    scale_fill_discrete(breaks=age_descriptions) +
     theme_minimal()
 ```
 
