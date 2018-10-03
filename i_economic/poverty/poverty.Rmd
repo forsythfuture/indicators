@@ -89,7 +89,7 @@ total_data <- df %>%
 # create dataset formatted for Tableau
 tableau_data <- total_data %>%
   # add type of column
-  mutate(type = 'Poverty Rate',
+  mutate(type = 'Comparison Community',
          subtype = 'Total Population')
 
 # create table
@@ -166,12 +166,13 @@ ethnicity %>%
        fill = 'Ethnicity',
        y = 'Poverty rate (%)',
        x = '') +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
 #### Interpretation
 
-* The African American poverty rate has fallen 10 percentage points since 2012.
+* The African American poverty rate has fallen almost 10 percentage points since 2012.
 * The White, non-Hispanic poverty rate has remained stable over the past 10 years. Over this time period, no years have statistically significant differences from 2017.
 * Most of the Hispanic/Latinx values have high CV scores (over 12).  Therefore, our confidence in Hispanic/Latinx estimates is weak.
 
@@ -313,7 +314,8 @@ age %>%
          x = '') +
     # change the order of age groups in legend so they appear youngest to oldest
     scale_fill_discrete(breaks=age_descriptions) +
-    theme_minimal()
+    theme_minimal() +
+    theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
 #### Interpretation
