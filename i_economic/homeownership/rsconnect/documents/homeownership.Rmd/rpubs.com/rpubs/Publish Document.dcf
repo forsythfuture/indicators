@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/424898/ae389731192045e8a94369ac6149ea20
+bundleId: https://api.rpubs.com/api/v1/document/424898/ae389731192045e8a94369ac6149ea20
+url: http://rpubs.com/forsyth-futures/424898
+when: 1538517038.15404

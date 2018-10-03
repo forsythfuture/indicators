@@ -174,9 +174,10 @@ ff_acs_zscore <- function(data_frame, estimate, se, var_names = NULL) {
     # replace any United States and North Carolina values with NC and US
     names_vec <- str_replace_all(names_vec, 'United States', 'US') %>%
       str_replace_all('North Carolina', 'NC') %>%
+      str_replace_all(' County, NC', '') %>%
       # replace and ethnicities with abbreviation
       str_replace_all('African American', 'AA') %>%
-      str_replace_all('Hispanic/Latinx', 'HL') %>%
+      str_replace_all('Hispanic/Latino', 'HL') %>%
       str_replace_all('White, non-Hispanic', 'Wh') %>%
       # shorten age descriptions (take off the word 'year')
       str_replace_all(' years', '') %>%
