@@ -41,7 +41,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 
 ```{r}
 geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
+                'Forsyth County, NC', 'Guilford County, NC', 'Durham County, NC')
 
 df <- read_csv('data/poverty_all_years_counties.csv') %>%
   # only keep selected NC counties, the state of NC, and US data
@@ -124,7 +124,7 @@ df %>%
   # only keep total employment rate
   filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
          # only keep Forsyth
-         geo_description == 'Forsyth') %>%
+         geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 
@@ -142,7 +142,7 @@ ethnicity <- df %>%
   ff_acs_ethnicity(description)
 
 ethnicity %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
@@ -213,7 +213,7 @@ The next table has ethnicity z-scores for all years within Forsyth County.
 
 ```{r include = to_include}
 ethnicity %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
 
 ```
@@ -287,7 +287,7 @@ age <- ff_acs_perc(age$estimate_below, age$moe_below,
 
 ```{r}
 age %>%
-    filter(geo_description =='Forsyth') %>%
+    filter(geo_description =='Forsyth County, NC') %>%
     ggplot(aes(year, estimate, color = age)) +
       geom_line(size = 1) +
       labs(title = 'Forsyth County poverty rate by age group',
@@ -359,7 +359,7 @@ Here are the age comparisons for all years within Forsyth County.
 
 ```{r include = to_include}
 age %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'age'))
 ```
 
