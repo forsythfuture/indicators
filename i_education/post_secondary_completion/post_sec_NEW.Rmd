@@ -46,24 +46,32 @@ Homeownership data comes from the following U.S. Census Bureau, American Fact Fi
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-# create list of geographic areas to keep
-geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
-
 # import dataset
-df <- read_csv('data/post_sec_all_years.csv') %>%
-  filter(geo_description %in% geo_areas) %>%
-  select(-label)
+df <- post_sec_all_years
 
-#remove pre-secondary education rows
-df <- df %>%
-        filter(!str_detect(description, 'Less than 9th grade'),(!str_detect(description,'9th to 12th grade')),(!str_detect(description,'High school graduate')),(!str_detect(description,'Some college')), (!str_detect(description,'Regular high school diploma')), (!str_detect(description,'GED or alternative credential'))) 
+#remove pre-secondary education rows and change label value to a number
+df <- df %>% 
+        filter(!str_detect(description, 'Less than 9th grade'),(!str_detect(description,'9th to 12th grade')),(!str_detect(description,'High school graduate')),(!str_detect(description,'Some college')), (!str_detect(description,'Regular high school diploma')), (!str_detect(description,'GED or alternative credential'))) %>%
+        mutate(label = substr(label,8,9))
+
+df$label <- as.numeric(df$label)
 
 
 # age group rows and the other rows have different format so they must be separated
+
+#Calculate sum and SEs of total population 25 and over for each geography
+#total <- filter(df,file == 'total')
+#total <- total %>%
+ #       filter(label %in% 11:25 | label %in% 35:49) %>%
+  # group by year, geography, and the newly created age bins
+  #group_by(year, geo_description) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  #summarize(sum_pop = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+  #          sum_pop_moe = moe_sum(moe, estimate))
+
 age <- filter(df, file == 'age group')
-gender <- filter(df, file == 'gender')
-total <- filter(df,file == 'total')
 white <- filter(df, file == 'White, non-Hispanic')
 
 aa <- filter(df,file == 'African American')
@@ -73,8 +81,78 @@ aa_female <- filter(aa, str_detect(description, 'Estimate; Female:'))
 aa <- bind_cols(aa_male,aa_female)
 
 hispanic <- filter(df, file == 'Hispanic/Latino')
-  
 
+male <- filter(df, file == 'gender') %>%
+        filter(label %in% 14:18) %>% 
+# group by year, geography, and the newly created age bins
+  group_by(year, geo_description) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(estimate = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            moe = moe_sum(moe, estimate))
+male$gender <- 'male'
+
+female <- filter(df, file == 'gender') %>%
+        filter(label %in% 31:35) %>%
+        group_by(year, geo_description) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(estimate = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            moe = moe_sum(moe, estimate))
+female$gender <- 'female'
+
+gender <- bind_rows(male, female)
+
+gender_total <- filter(df, file == 'gender') %>%
+        filter(label==2 | label==19)  
+       
+gender_total$description <- ifelse(str_detect(gender_total$description, 'Estimate; Female:'), "female", "male")
+
+gender_total <- gender_total %>%
+        group_by(year, geo_description, description) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(sum_pop = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            sum_pop_moe = moe_sum(moe, estimate)) %>%
+        rename(gender = description)
+
+gender <- left_join(gender,gender_total, by = c('year','geo_description','gender'))
+
+gender <- gender %>%
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (estimate / sum_pop), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(estimate, sum_pop, moe, sum_pop_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe * 100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2))
+
+gender <- gender %>%
+        select(1,2,5,8:11)
+
+#Change column names to shortened version
+colnames(gender) <- c('year', 'geography', 'gender', 'estimate', 'moe', 'se', 'cv')
+
+
+
+  # data was previously grouped by year and age; ungroup data so it is a normal dataframe
+  #ungroup()
+pop_total <- filter(df, file == 'gender') %>%
+        filter(label==1) %>%  
+group_by(year, geo_description) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(sum_pop = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            sum_pop_moe = moe_sum(moe, estimate))
 ## calculate percentage of households with homes in other
 
 # currently, total households and number of homeowners are on different rows (long form)
