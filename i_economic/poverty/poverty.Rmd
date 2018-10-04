@@ -33,7 +33,10 @@ library(tidycensus)
 source('../../functions/acs_load_funcs.R')
 ```
 
-The poverty rate reflects the percentage of the population in poverty. The data for poverty rates comes American Fact Finder table S1701. For poverty counts of smaller age groups go to B17001.
+The poverty rate reflects the percentage of the population in poverty. Data comes from the following ACS tables:
+
+* S1701 (everything but age)
+* B17001 (age)
 
 ### Data cleaning
 
@@ -279,12 +282,14 @@ age <- ff_acs_perc(age$estimate_below, age$moe_below,
   ungroup() %>%
   # only keep needed years
   select(geo_description, year, age, prop:cv) %>%
-  rename(estimate = prop)
+  rename(estimate = prop) %>%
+  # multiply percentages by 100, so their format is the same as the format for other indicators
+  mutate(estimate = estimate * 100)
 ```
 
 #### Plot
 
-*The 5 to 17 year age group does not contain data for all years. This group was created by merging together other age groups, including one group of just five year olds. ACS does not show data for five year olds in 2008 due to the small sample size. Without data for this group, the 5 to 17 year old group could not be created.
+*The 5 to 17 year age group does not contain data for all years. This group was created by merging together other age groups, including one group of just five year olds. ACS does not show data for five year olds in 2008 due to the small sample size, and without data for this group the 5 to 17 year old group could not be created.*
 
 ```{r}
 age %>%
@@ -376,6 +381,9 @@ tableau_data %>%
   mutate_at(vars(estimate:se), funs(./100)) %>%
   # reorder column and do not include unneded columns
   select(year, geo_description, type, subtype, estimate) %>%
+  # removes rows containing demographic data for comparison communities 
+  # in all years except the latest year
+  ff_remove_comparisons() %>%
   # create table
   ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 ```
