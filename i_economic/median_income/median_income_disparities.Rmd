@@ -32,7 +32,10 @@ library(DT)
 source('../../functions/acs_load_funcs.R')
 ```
 
-Median income data comes American Fact Finder table S1903.
+Median income disparities data comes from the following ACS tables:
+
+* S1903 (racial disparities by household income)
+* B20017 (gender disparities by individual)
 
 ### Data cleaning
 

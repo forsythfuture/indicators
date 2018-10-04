@@ -453,11 +453,11 @@ This is the final data set that can be imported into Tableau. Users can copy it 
 
 ```{r}
 # create table to Tableau data
-#tableau_data %>%
-#  select(year, geo_description, type, subtype, estimate) %>%
+tableau_data %>%
+  select(year, geo_description, type, subtype, estimate) %>%
   # removes rows containing demographic data for comparison communities 
   # in all years except the latest year
-#  ff_remove_comparisons() %>%
+  ff_remove_comparisons() %>%
   # create table
-#  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 ```
