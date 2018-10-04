@@ -41,7 +41,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 ```{r}
 # create list of geographic areas to keep
 geo_areas <- c('United States', 'North Carolina', 
-                'Durham', 'Forsyth', 'Guilford')
+                'Durham County, NC', 'Forsyth County, NC', 'Guilford County, NC')
 
 df <- read_csv('data/median_income_all_years_counties.csv') %>%
   # only keep rows for the US, NC, Forsyth, Guilford, and Durham
@@ -83,7 +83,7 @@ ethnicity <- df %>%
   ff_acs_ethnicity(description) %>%
   # calculate ratios
   ff_disparities('ethnicity',
-                 c('African American', 'Hispanic/Latinx', 'White, non-Hispanic'),
+                 c('African American', 'Hispanic/Latino', 'White, non-Hispanic'),
                  list(c(3,1), c(3,2), c(1,2)),
                  years, geo_areas)
 ```
@@ -94,7 +94,7 @@ The plots below show median income disparities by ethnicity and year.
 
 ```{r}
 ethnicity %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   # add line break to description, which is the legend descrition
   mutate(description = str_replace_all(description, ' to ', ' to\n' )) %>%
   ggplot(aes(year, ratio, color = description)) +
@@ -158,7 +158,7 @@ Below are tables of z scores for disparities within Forsyth County and in all ye
 
 ```{r include = to_include}
 ethnicity %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('ratio', 'se', c('year', 'description'))
 ```
 
@@ -175,7 +175,7 @@ gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
   # extract the gender of the row and place in a seperate columns
   mutate(gender = str_extract(description, 'Male|Female'))
 
-gender_F <- gender %>% filter(geo_description == 'Forsyth')
+gender_F <- gender %>% filter(geo_description == 'Forsyth County, NC')
 ```
 
 #### Create disparities by gender dataset
@@ -251,7 +251,7 @@ Below are tables of z scores for gender disparities within Forsyth County and in
 
 ```{r include = to_include}
 gender %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('ratio', 'se', 'year')
 ```
 
@@ -264,5 +264,6 @@ This is the final data set that can be imported into Tableau. Users can copy it 
 tableau_data %>%
   select(year, geo_description, type, subtype, ratio) %>%
   # create table
+  ff_remove_comparisons() %>%
   ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 ```
