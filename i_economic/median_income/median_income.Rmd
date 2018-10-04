@@ -33,7 +33,12 @@ library(DT)
 source('../../functions/acs_load_funcs.R')
 ```
 
-Median income data comes American Fact Finder table S1903 
+Median income data comes from the following ACS tables:
+
+* S1903 (household income for everything except gender)
+* B20017 (individual income by gender)
+
+**All median income amounts and corresponding standard errors and margins of error were adjusted to 2006 dollars.**
 
 ### Data cleaning
 
@@ -42,7 +47,7 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 ```{r}
 # create list of geographic areas to keep
 geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
+                'Forsyth County, NC', 'Guilford County, NC', 'Durham County, NC')
 
 df <- read_csv('data/median_income_all_years_counties.csv') %>%
   # only keep rows for the US, NC, Forsyth, Guilford, and Durham
@@ -58,7 +63,16 @@ df <- read_csv('data/median_income_all_years_counties.csv') %>%
          !str_detect(description, 'Total'),
          # starting in 2017, total number of people and percent is in data; remove these so we only have median incomes
          !str_detect(description, '^Number;'),
-         !str_detect(description, '^Percent'))
+         !str_detect(description, '^Percent')) %>%
+  # adjust income to income in 2006 inflation adjusted dollars
+  ff_inflation_adjust(estimate, se, 2006) %>%
+  # delete columns with non-adjusted data, and replace them with columns of adjusted data
+  select(-estimate: -cv) %>%
+  # rename adjusted columns to match naming in original columns
+  rename(estimate = estimate_adj,
+         moe = moe_adj,
+         se = se_adj,
+         cv = cv_adj)
 ```
 
 ------
@@ -92,7 +106,7 @@ df %>%
 
 #### Interpretation
 
-* Forsyth County's estimated median income has generally risen since 2012, but the differences between 2015, 2016, and 2017 are not statistically significant.
+* Forsyth County's estimated median income has generally risen since 2012, but only the difference between 2012 and 2017 is statistically significant.
 * The 2017 difference between Forsyth County's median income and the median income of both North Carolina and Guilford County in 2017 is not statistically significant.
 
 #### Data
@@ -108,7 +122,7 @@ total_data <- df %>%
 # this represents the final dataset that will be sent to others for visualizations
 tableau_data <- total_data %>%
   # add type of column
-  mutate(type = 'Median Income',
+  mutate(type = 'Comparison Community',
          subtype = 'Total Population')
 
 ff_data_dt(total_data,
@@ -142,7 +156,7 @@ df %>%
   # only keep total employment rate
   filter(description %in% total_median_descriptions,
          # only keep data for the most recent year
-         geo_description == 'Forsyth') %>%
+         geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 
@@ -160,7 +174,7 @@ ethnicity <- df %>%
   ff_acs_ethnicity(description)
 
 ethnicity %>%
-  filter(geo_description=='Forsyth') %>%
+  filter(geo_description=='Forsyth County, NC') %>%
   ggplot(aes(year, estimate, color = ethnicity)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
@@ -183,12 +197,13 @@ ethnicity %>%
        fill = 'Ethnicity',
        y = 'Median income',
        x = '') +
-  theme_minimal()
+  theme_minimal() +
+  theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
 #### Interpretation
 
-* All ethnicities within Forsyth County have experienced a rise in median income since 2012.
+* For whites, no years have a statistically significant difference from 2017.
 * The difference in median income between African Americans and Hispanic/Latinx is not statistically significant for any year except 2008.
 
 #### Data
@@ -229,7 +244,7 @@ A table of z-scores for Forsyth County in all years is below.
 
 ```{r include = to_include}
 ethnicity %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'ethnicity'))
 ```
 
@@ -239,7 +254,7 @@ ethnicity %>%
 
 #### Plot
 
-The following plot examines Median income by age group.
+The following plot examines median income by age group.
 
 ```{r}
 age <- df %>%
@@ -252,7 +267,7 @@ age <- df %>%
   
   
 age %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ggplot(aes(year, estimate, color = age)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
@@ -275,7 +290,8 @@ age %>%
          fill = 'Age Group',
          y = 'Median Income',
          x = '') +
-    theme_minimal()
+    theme_minimal() +
+  theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
 #### Interpretation
@@ -320,7 +336,7 @@ Here are z-scores for all years within Forsyth County.
 
 ```{r include = to_include}
 age %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   # shorten age descriptions (take off the word 'year') so they apepar cleaner and shorter as column titles
   mutate(age = str_extract(age, '\\d\\d to \\d\\d|\\d\\d y')) %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'age'))
@@ -338,7 +354,16 @@ gender <- read_csv('data/median_income_gender_all_years_counties.csv') %>%
   # only include rows for working full time
   filter(str_detect(description,  'Worked full-time')) %>%
   # extract the gender of the row and place in a seperate columns
-  mutate(gender = str_extract(description, 'Male|Female'))
+  mutate(gender = str_extract(description, 'Male|Female')) %>%
+  # adjust income to income in 2006 inflation adjusted dollars
+  ff_inflation_adjust(estimate, se, 2006) %>%
+  # delete columns with non-adjusted data, and replace them with columns of adjusted data
+  select(-estimate: -cv) %>%
+  # rename adjusted columns to match naming in original columns
+  rename(estimate = estimate_adj,
+         moe = moe_adj,
+         se = se_adj,
+         cv = cv_adj)
 ```
 
 #### Plot
@@ -347,7 +372,7 @@ The plot for median income by gender is below.
 
 ```{r}
 gender %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
     ggplot(aes(year, estimate, color = gender)) +
       geom_line(size=1) +
       # create a seperate plot for each geography
@@ -370,12 +395,15 @@ gender %>%
          fill = 'Gender',
          y = 'Median Income',
          x = '') +
-    theme_minimal()
+    theme_minimal() +
+  theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
 #### Interpretation
 
-* Within Forsyth County, both males and females experienced a general increase in median income since 2006. However, the difference for each gender between any given year and 2017 is not statistically significant.
+* Female median income has remained relatively flat over the past ten years. No years have a statistically significant difference from 2017.
+* Conversely, male median incomes have dropped. However, 2008 is the only year with a statistically significant difference from 2017.
+
 
 #### Data
 
@@ -415,7 +443,7 @@ And here are Forsyth County's z-scores for all years.
 
 ```{r include = to_include}
 gender %>%
-  filter(geo_description == 'Forsyth') %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   ff_acs_zscore_dt('estimate', 'se', c('year', 'gender'))
 ```
 
@@ -427,6 +455,9 @@ This is the final data set that can be imported into Tableau. Users can copy it 
 # create table to Tableau data
 tableau_data %>%
   select(year, geo_description, type, subtype, estimate) %>%
+  # removes rows containing demographic data for comparison communities 
+  # in all years except the latest year
+  ff_remove_comparisons() %>%
   # create table
   ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
 ```

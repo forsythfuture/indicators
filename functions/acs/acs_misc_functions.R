@@ -317,7 +317,7 @@ ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
       # change type columns from Comparison to Total
       mutate(type = 'Total') %>%
       # bind these rows to the original dataframe
-      bind_rows(df) %>%
+      bind_rows(df)  %>%
       # create datatable
       datatable(filter='top', extensions='Buttons', rownames = FALSE,
                 colnames = col_names,
@@ -325,6 +325,83 @@ ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
     
   }
 }
+
+
+ff_inflation_adjust <- function(df, wages_col, se_col, year_adjust) {
+  
+  library(xts)
+  library(lubridate)
+  #########################################################################
+  # This function takes as input a dataframe that contains dollar amounts
+  # that must be adjusted for inflation and returns the same dataframe, 
+  # but with an additional column for inflation ajusted dollar amounts
+  #
+  # Input:
+  #   df: name of dataframe that contains dollar amounts
+  #   wages_col: column name of column in dataframe containing dollar amounts
+  #              entered as object name (no quotes), not string 
+  #              (example: as wages and not "wages")
+  #   se_col: column that contains standard error
+  #   year_adjust: adjust all dollar amounts to this year
+  #
+  # Output:
+  #   The same dataframe, but with an additional column called 'estimate_adj'
+  #
+  #   !!!! Important Note: the column that contains years must be called 'year'
+  #
+  # Reference: US Census Bureau, A Compass for Understanding and Using ACS Data, 
+  #             October 2008, A-22 
+  #
+  #########################################################################
+  
+  wages_col <- enquo(wages_col)
+  se_col <- enquo(se_col)
+  
+  # import CPI All items index data
+  monthly_cpi <- read.table("http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt",
+                            skip = 53, header = TRUE)
+  
+  # extract year and place in its own column
+  monthly_cpi$year <- year(monthly_cpi$DATE)
+  
+  # calculate mean CPI for the year
+  yearly_cpi <- monthly_cpi %>% 
+    group_by(year) %>% 
+    summarize(cpi = mean(VALUE))
+  
+  # calculate inflation rate compared to adjustment year
+  yearly_cpi$adj_factor <- yearly_cpi$cpi[yearly_cpi$year == year_adjust]/yearly_cpi$cpi
+  
+  # combine inflation adjusted wages to wages dataset
+  df <- left_join(df, yearly_cpi, by = 'year') %>%
+    # adjust income in the given year for inflation since the base year
+    # multiply the wage amount in the current year by the adjustment factor
+    mutate(estimate_adj = round( !! wages_col * adj_factor, 0 )) %>%
+    # recalculate adjusted se, moe , and cv
+    mutate(se_adj = round( !! se_col / adj_factor), 0 ) %>%
+    mutate(moe_adj = round( se_adj*1.96, 0),
+           cv_adj = round( (se_adj / estimate_adj)*100, 2 )) %>%
+    # remove unneeded columns
+    select(-cpi, -adj_factor)
+  
+  return(df)
+}
+
+
+ff_remove_comparisons <- function(df) {
+  
+  ###################################################################
+  # This function removes rows containing demographic data
+  # for comparison communities in all years except the latest year
+  ##################################################################
+  
+  df %>%   
+    filter(!(type != 'Comparison Community' & 
+             year != max(.$year) & 
+             geo_description != 'Forsyth County, NC'))
+  
+}
+
 
 ff_write_to_excel <- function(excel_data, excel_file) {
   
