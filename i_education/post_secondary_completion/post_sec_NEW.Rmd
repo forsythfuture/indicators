@@ -46,75 +46,11 @@ Homeownership data comes from the following U.S. Census Bureau, American Fact Fi
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-# import dataset
-df <- post_sec_all_years
-
-#remove pre-secondary education rows and change label value to a number
-#df <- df %>% 
- 
-#       filter(str_detect(description, 'Associate|Bachelor|Graduate'))
-
-  
-        #mutate(label = substr(label,8,9))
-
-#df$label <- as.numeric(df$label)
-
-
-# age group rows and the other rows have different format so they must be separated
-
-#Calculate sum and SEs of total population 25 and over for each geography
-#total <- filter(df,file == 'total')
-#total <- total %>%
- #       filter(label %in% 11:25 | label %in% 35:49) %>%
-  # group by year, geography, and the newly created age bins
-  #group_by(year, geo_description) %>%
-  # find the total population and total employed population in artificially derived age bins
-  # must find total populations and total employed so percentages can be reconstructed
-  #summarize(sum_pop = sum(estimate),
-            # deriving MOE from aggregagate count data using tidycensus package
-  #          sum_pop_moe = moe_sum(moe, estimate))
-
-
-
-
-
-
-
-  # data was previously grouped by year and age; ungroup data so it is a normal dataframe
-  #ungroup()
-pop_total <- filter(df, file == 'gender') %>%
-        filter(label==1) %>%  
-group_by(year, geo_description) %>%
-  # find the total population and total employed population in artificially derived age bins
-  # must find total populations and total employed so percentages can be reconstructed
-  summarize(sum_pop = sum(estimate),
-            # deriving MOE from aggregagate count data using tidycensus package
-            sum_pop_moe = moe_sum(moe, estimate))
-## calculate percentage of households with homes in other
-
-# currently, total households and number of homeowners are on different rows (long form)
-# we need both on the same row, in difference columns, to calculate percentages
-
-# create separate dataframes for total households and homeowners, 
-# then merge these dataframes to create percentiles
-other_total <- other %>%
-  filter(description == 'Estimate; Total:')
-other_home <- other %>%
-  filter(description != 'Estimate; Total:')
-
-# merge two datasets, so total households and homeowners are on the same row
-# variable name suffixes are '_t' for total households and '_o' for owner
-other <- full_join(other_total, other_home, 
-                   by = c('geo_description', 'year', 'file' ),
-                   suffix = c('_t', '_o'))
-
-# calculate proportions and the se, moe, cv of proportions
-# bind to data frame with descriptions of rows
-other <- ff_acs_perc(other$estimate_o, other$moe_o, other$estimate_t, other$moe_t) %>%
-  bind_cols(other, .) %>%
-  # only keep needed columns
-  select(geo_description, year, file, prop:cv) %>%
-  rename(description = file)
+# import dataset & rename counties
+df <- post_sec_all_years %>%
+mutate(geo_description = str_replace(geo_description, 'Forsyth', 'Forsyth County, NC'))%>%
+  mutate(geo_description = str_replace(geo_description, 'Durham', 'Durham County, NC'))%>%
+  mutate(geo_description = str_replace(geo_description, 'Guilford', 'Guilford County, NC'))
 ```
 
 ```{r}
@@ -146,7 +82,7 @@ assoc_f2534 <- assoc_f2534 %>%
                  f2534_assoc_moe = moe_sum(moe, estimate))
 
 assoc_2534 <- left_join(assoc_m2534,assoc_f2534, by = c('year','geo_description'))
-assoc_2534$age <- "25 to 34"
+assoc_2534$age <- "25 to 34 years"
 
 assoc_2534 <- assoc_2534 %>%
   # find the total population and total employed population in artificially derived age bins
@@ -183,7 +119,7 @@ age_2534$file <- 'age group'
 
 ```{r}
 age <- filter(df, file == 'age group')
-#Males 25 - 34
+#Males 35 - 44
 assoc_m3544 <- filter(age, str_detect(description, 'Estimate; Male:'))%>%
         filter(str_detect(description, '35 to 44'))
 
@@ -210,7 +146,7 @@ assoc_f3544 <- assoc_f3544 %>%
                  f3544_assoc_moe = moe_sum(moe, estimate))
 
 assoc_3544 <- left_join(assoc_m3544,assoc_f3544, by = c('year','geo_description'))
-assoc_3544$age <- "34 to 44"
+assoc_3544$age <- "35 to 44 years"
 
 assoc_3544 <- assoc_3544 %>%
   # find the total population and total employed population in artificially derived age bins
@@ -273,7 +209,7 @@ assoc_f4564 <- assoc_f4564 %>%
                  f4564_assoc_moe = moe_sum(moe, estimate))
 
 assoc_4564 <- left_join(assoc_m4564,assoc_f4564, by = c('year','geo_description'))
-assoc_4564$age <- "45 to 64"
+assoc_4564$age <- "45 to 64 years"
 
 assoc_4564 <- assoc_4564 %>%
   # find the total population and total employed population in artificially derived age bins
