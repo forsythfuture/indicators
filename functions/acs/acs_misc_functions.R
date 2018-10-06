@@ -312,7 +312,7 @@ ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
     
     df %>%
       # filter for rows with Forsyth County as the county, and where type starts with Comparison
-      filter(str_detect(geo_description, '^Forsyth'),
+      filter(str_detect(geography, '^Forsyth'),
              str_detect(type, '^Comparison')) %>%
       # change type columns from Comparison to Total
       mutate(type = 'Total') %>%
