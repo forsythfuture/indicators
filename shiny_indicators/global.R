@@ -242,6 +242,8 @@ ff_acs_zscore_kable <- function(data_frame, estimate, se, var_names = NULL, tabl
     mutate(Compare = colnames(.),
            # bold column of column / row names
            Compare = cell_spec(Compare, bold = T)) %>%
+    # only keep rows of Forsyth County
+    filter(str_detect(Compare, 'Forsyth')) %>%
     # make the comparison column (column and row names) the first column
     select(Compare, everything()) %>%
     # create kable table
