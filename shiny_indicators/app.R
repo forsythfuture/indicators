@@ -16,6 +16,18 @@ data_source <- c('ACS tables:',
                  '-B2017', 
                  '-B3049')
 
+# Enter interpretation of data. Each line below represents a single line in the app
+# HTML tags can be used to format text:
+# Examples:
+#   italics: <i>text</i>
+#   bold: <b>text</b>
+#   line break: <br>
+
+interpretation <- c('<i>Race and Ethnicity</i>',
+                    'This is some text. asdfasdfdsafdsaafsgfjhjhgfjhfgjhgjhgjhgfhjfgjhgf<br>',
+                    '<i>Gender</i>',
+                    'Here is more text. sfadfsdafdsafdsafadsfdasfdsfdsafadsfadsfdsafgjhjfhgjhgjhfgjhgf')
+
 ################### End section to edit ############################
 
 # load all custom functions
@@ -84,12 +96,16 @@ ui <- dashboardPage(
         tabPanel("Plots", 
                  plotlyOutput("plot_line"),
                  tags$hr(),
-                 plotlyOutput("plot_bar")),
+                 plotlyOutput("plot_bar"),
+                 # interpretations
+                 htmlOutput("interpretations")
+                 ),
         tabPanel("Z Scores",
                  checkboxGroupInput('year_check', 'Years:', unique_year, selected = max(unique_year), inline = TRUE),
                  checkboxGroupInput('geo_check', 'Geography:', unique_geo, selected = 'Forsyth County, NC', inline = TRUE),
                  uiOutput("ui_demo_check"),
-                 tableOutput('table_zscore')),
+                 tableOutput('table_zscore')
+                 ),
         tabPanel("Raw Data",
                  dataTableOutput('table_raw_data'))
       )
@@ -140,6 +156,15 @@ server <- function(input, output, session) {
     
     plotly_plots(df_demo(), input$demographic, 'bar')
     
+  })
+  
+  # output interpretations
+  output$interpretations <- renderUI({
+    
+    # '&nbsp;' dds additional spaces to indent line
+    interp_title <- '<br><b>Interpretation</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+    interps <- paste(interpretation, collapse='<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+    HTML(paste0(interp_title, interps))
   })
   
   output$ui_demo_check <- renderUI({
