@@ -1,21 +1,23 @@
 ########################################################################################################
 # # Import ACS data.
 #
+# Note: This is for working with Tidycensus package.
+#
 # The following functions import data into ACS using teh census API and tidycensus package.
-# The only function that needs to be run in R scripts is 'ff_import_acs' (the final function)
+# The only function that needs to be run in R scripts is 'ff_import_tidycensus' (the final function)
 # The general framework is as follows:
 #     tidycensus essentially only allows users to import one geographic unit, one year, and one table
 #     at a time. These three tasks are broken down into three different functions: 
 #     
 #       ff_import_tables returns all tables for a specific geographic unit and year
 #    
-#       ff_import_years calls ff_inport_tables and returns the tables created by ff_import_tables for 
+#       ff_import_years calls ff_import_tables and returns the tables created by ff_import_tables for 
 #       a series of years
 #
-#       ff_import_acs then calls ff_import_years and returns all tables for multiple counties for all
+#       ff_import_tidycensus then calls ff_import_years and returns all tables for multiple counties for all
 #       the years created by ff_import_years
 #
-# The final result is that ff_import_acs can be used to return tables for multiple years and geographic units
+# The final result is that ff_import_tidycensus can be used to return tables for multiple years and geographic units
 #
 # Important Note: All data imports with a 95% confidence level of the MOE
 # This differs from ACS fact finder, which shows the 90% confidence level
@@ -165,7 +167,7 @@ ff_import_years <- function(geography, table_number, state=NULL, county=NULL,
 
 
 
-ff_import_acs <- function(geography, table_number, state=NULL, county=NULL, 
+ff_import_tidycensus <- function(geography, table_number, state=NULL, county=NULL, 
                           year_start, year_end, acs_data = 'acs_acs1') {
   
   # This function returns a table for multiple geographic units (county and state combinations)

@@ -46,45 +46,416 @@ Homeownership data comes from the following U.S. Census Bureau, American Fact Fi
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-# import dataset
-df <- post_sec_all_years
+# import dataset & rename counties
+df <- post_sec_all_years %>%
+mutate(geo_description = str_replace(geo_description, 'Forsyth', 'Forsyth County, NC'))%>%
+  mutate(geo_description = str_replace(geo_description, 'Durham', 'Durham County, NC'))%>%
+  mutate(geo_description = str_replace(geo_description, 'Guilford', 'Guilford County, NC'))
+```
 
-#remove pre-secondary education rows and change label value to a number
-df <- df %>% 
-        filter(!str_detect(description, 'Less than 9th grade'),(!str_detect(description,'9th to 12th grade')),(!str_detect(description,'High school graduate')),(!str_detect(description,'Some college')), (!str_detect(description,'Regular high school diploma')), (!str_detect(description,'GED or alternative credential'))) %>%
-        mutate(label = substr(label,8,9))
+```{r}
+age <- filter(df, file == 'age group')
+#Males 25 - 34
+assoc_m2534 <- filter(age, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, '25 to 34'))
 
-df$label <- as.numeric(df$label)
+total_m2534 <- filter(assoc_m2534, str_detect(label, 'HD01_VD11'))
 
+assoc_m2534 <- assoc_m2534 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(m2534_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 m2534_assoc_moe = moe_sum(moe, estimate))
 
-# age group rows and the other rows have different format so they must be separated
+#Females 25 - 34
+assoc_f2534 <- filter(age, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, '25 to 34'))
 
-#Calculate sum and SEs of total population 25 and over for each geography
-#total <- filter(df,file == 'total')
-#total <- total %>%
- #       filter(label %in% 11:25 | label %in% 35:49) %>%
-  # group by year, geography, and the newly created age bins
-  #group_by(year, geo_description) %>%
+total_f2534 <- filter(assoc_f2534, str_detect(label, 'HD01_VD52'))
+
+assoc_f2534 <- assoc_f2534 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(f2534_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 f2534_assoc_moe = moe_sum(moe, estimate))
+
+assoc_2534 <- left_join(assoc_m2534,assoc_f2534, by = c('year','geo_description'))
+assoc_2534$age <- "25 to 34 years"
+
+assoc_2534 <- assoc_2534 %>%
   # find the total population and total employed population in artificially derived age bins
   # must find total populations and total employed so percentages can be reconstructed
-  #summarize(sum_pop = sum(estimate),
-            # deriving MOE from aggregagate count data using tidycensus package
-  #          sum_pop_moe = moe_sum(moe, estimate))
+  mutate(sum_2534_assoc =  m2534_assoc + f2534_assoc,
+        sum_2534_assoc_moe = sqrt(f2534_assoc_moe^2 + m2534_assoc_moe^2 ))
+      
+total_2534 <- left_join(total_m2534,total_f2534, by = c('year','geo_description'), suffix = c("_m", "_f")) 
+total_2534 <- total_2534 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_2534_total =  estimate_m + estimate_f,
+        sum_2534_total_moe = sqrt(moe_m^2 + moe_f^2 ))
 
+age_2534 <- left_join(assoc_2534,total_2534, by = c('year','geo_description'))
+
+age_2534 <- age_2534 %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_2534_assoc / sum_2534_total), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_2534_assoc, sum_2534_total, sum_2534_assoc_moe, sum_2534_total_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,7,26:29)
+age_2534$file <- 'age group'
+```
+
+
+```{r}
 age <- filter(df, file == 'age group')
-white <- filter(df, file == 'White, non-Hispanic')
+#Males 35 - 44
+assoc_m3544 <- filter(age, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, '35 to 44'))
+
+total_m3544 <- filter(assoc_m3544, str_detect(label, 'HD01_VD19'))
+
+assoc_m3544 <- assoc_m3544 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(m3544_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 m3544_assoc_moe = moe_sum(moe, estimate))
+
+#Females 25 - 34
+assoc_f3544 <- filter(age, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, '35 to 44'))
+
+total_f3544 <- filter(assoc_f3544, str_detect(label, 'HD01_VD60'))
+
+assoc_f3544 <- assoc_f3544 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(f3544_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 f3544_assoc_moe = moe_sum(moe, estimate))
+
+assoc_3544 <- left_join(assoc_m3544,assoc_f3544, by = c('year','geo_description'))
+assoc_3544$age <- "35 to 44 years"
+
+assoc_3544 <- assoc_3544 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_3544_assoc =  m3544_assoc + f3544_assoc,
+        sum_3544_assoc_moe = sqrt(f3544_assoc_moe^2 + m3544_assoc_moe^2 ))
+      
+total_3544 <- left_join(total_m3544,total_f3544, by = c('year','geo_description'), suffix = c("_m", "_f")) 
+total_3544 <- total_3544 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_3544_total =  estimate_m + estimate_f,
+        sum_3544_total_moe = sqrt(moe_m^2 + moe_f^2 ))
+
+age_3544 <- left_join(assoc_3544,total_3544, by = c('year','geo_description'))
+
+age_3544 <- age_3544 %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_3544_assoc / sum_3544_total), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_3544_assoc, sum_3544_total, sum_3544_assoc_moe, sum_3544_total_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,7,26:29)
+age_3544$file <- 'age group'
+```
+
+```{r}
+age <- filter(df, file == 'age group')
+#Males 45 - 64
+assoc_m4564 <- filter(age, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, '45 to 64'))
+
+total_m4564 <- filter(assoc_m4564, str_detect(label, 'HD01_VD27'))
+
+assoc_m4564 <- assoc_m4564 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(m4564_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 m4564_assoc_moe = moe_sum(moe, estimate))
+
+#Females 25 - 34
+assoc_f4564 <- filter(age, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, '45 to 64'))
+
+total_f4564 <- filter(assoc_f4564, str_detect(label, 'HD01_VD68'))
+
+assoc_f4564 <- assoc_f4564 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(f4564_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 f4564_assoc_moe = moe_sum(moe, estimate))
+
+assoc_4564 <- left_join(assoc_m4564,assoc_f4564, by = c('year','geo_description'))
+assoc_4564$age <- "45 to 64 years"
+
+assoc_4564 <- assoc_4564 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_4564_assoc =  m4564_assoc + f4564_assoc,
+        sum_4564_assoc_moe = sqrt(f4564_assoc_moe^2 + m4564_assoc_moe^2 ))
+      
+total_4564 <- left_join(total_m4564,total_f4564, by = c('year','geo_description'), suffix = c("_m", "_f")) 
+total_4564 <- total_4564 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_4564_total =  estimate_m + estimate_f,
+        sum_4564_total_moe = sqrt(moe_m^2 + moe_f^2 ))
+
+age_4564 <- left_join(assoc_4564,total_4564, by = c('year','geo_description'))
+
+age_4564 <- age_4564 %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_4564_assoc / sum_4564_total), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_4564_assoc, sum_4564_total, sum_4564_assoc_moe, sum_4564_total_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,7,26:29)
+age_4564$file <- 'age group'
+```
+
+
+```{r}
+age <- filter(df, file == 'age group')
+#Males 65
+assoc_m6599 <- filter(age, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, '65 years'))
+
+total_m6599 <- filter(assoc_m6599, str_detect(label, 'HD01_VD35'))
+
+assoc_m6599 <- assoc_m6599 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(m6599_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 m6599_assoc_moe = moe_sum(moe, estimate))
+
+#Females 25 - 34
+assoc_f6599 <- filter(age, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, '65 years'))
+
+total_f6599 <- filter(assoc_f6599, str_detect(label, 'HD01_VD76'))
+
+assoc_f6599 <- assoc_f6599 %>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(f6599_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 f6599_assoc_moe = moe_sum(moe, estimate))
+
+assoc_6599 <- left_join(assoc_m6599,assoc_f6599, by = c('year','geo_description'))
+assoc_6599$age <- "65 years and older"
+
+assoc_6599 <- assoc_6599 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_6599_assoc =  m6599_assoc + f6599_assoc,
+        sum_6599_assoc_moe = sqrt(f6599_assoc_moe^2 + m6599_assoc_moe^2 ))
+      
+total_6599 <- left_join(total_m6599,total_f6599, by = c('year','geo_description'), suffix = c("_m", "_f")) 
+total_6599 <- total_6599 %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_6599_total =  estimate_m + estimate_f,
+        sum_6599_total_moe = sqrt(moe_m^2 + moe_f^2 ))
+
+age_6599 <- left_join(assoc_6599,total_6599, by = c('year','geo_description'))
+
+age_6599 <- age_6599 %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_6599_assoc / sum_6599_total), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_6599_assoc, sum_6599_total, sum_6599_assoc_moe, sum_6599_total_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,7,26:29)
+age_6599$file <- 'age group'
+```
+
+
+```{r}
 
 aa <- filter(df,file == 'African American')
 aa_total <- filter(aa, str_detect(description, 'Estimate; Total:'))
-aa_male <- filter(aa, str_detect(description, 'Estimate; Male:'))
-aa_female <- filter(aa, str_detect(description, 'Estimate; Female:'))
-aa <- bind_cols(aa_male,aa_female)
+aa_male <- filter(aa, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(bm_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 bm_assoc_moe = moe_sum(moe, estimate))
+aa_female <- filter(aa, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(bf_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 bf_assoc_moe = moe_sum(moe, estimate))
+        
+aa_all <- left_join(aa_male,aa_female, by = c('year','geo_description'))
 
+aa_all <- aa_all %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_b_assoc = bf_assoc + bm_assoc,
+        sum_b_assoc_moe = sqrt(bf_assoc_moe^2 + bm_assoc_moe^2 ))
+      
+aa_all <- left_join(aa_all,aa_total, by = c('year','geo_description'))   
+
+aa_prop <- aa_all %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_b_assoc / estimate), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_b_assoc, estimate, sum_b_assoc_moe, moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,15:19)
+  # data was previously grouped by year and age; ungroup data so it is a normal dataframe
+
+```
+
+```{r}
 hispanic <- filter(df, file == 'Hispanic/Latino')
+hispanic_total <- filter(hispanic, str_detect(description, 'Estimate; Total:'))
+hispanic_male <- filter(hispanic, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(hm_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 hm_assoc_moe = moe_sum(moe, estimate))
+hispanic_female <- filter(hispanic, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(hf_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 hf_assoc_moe = moe_sum(moe, estimate))
+        
+hispanic_all <- left_join(hispanic_male,hispanic_female, by = c('year','geo_description'))
+
+hispanic_all <- hispanic_all %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_h_assoc = hf_assoc + hm_assoc,
+        sum_h_assoc_moe = sqrt(hf_assoc_moe^2 + hm_assoc_moe^2 ))
+      
+hispanic_all <- left_join(hispanic_all,hispanic_total, by = c('year','geo_description'))   
+
+hispanic_prop <- hispanic_all %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_h_assoc / estimate), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_h_assoc, estimate, sum_h_assoc_moe, moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,15:19)
+```
+
+```{r}
+white <- filter(df, file == 'White, non-Hispanic')
+white_total <- filter(white, str_detect(description, 'Estimate; Total:'))
+white_male <- filter(white, str_detect(description, 'Estimate; Male:'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(wm_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 wm_assoc_moe = moe_sum(moe, estimate))
+white_female <- filter(white, str_detect(description, 'Estimate; Female:'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Graduate'))%>%
+        group_by(year, geo_description) %>%
+                summarize(wf_assoc = sum(estimate),
+                 # deriving MOE from aggregagate count data using tidycensus package
+                 wf_assoc_moe = moe_sum(moe, estimate))
+        
+white_all <- left_join(white_male,white_female, by = c('year','geo_description'))
+
+white_all <- white_all %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_w_assoc = wf_assoc + wm_assoc,
+        sum_w_assoc_moe = sqrt(wf_assoc_moe^2 + wm_assoc_moe^2 ))
+      
+white_all <- left_join(white_all,white_total, by = c('year','geo_description'))   
+
+white_prop <- white_all %>%         
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_w_assoc / estimate), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_w_assoc, estimate, sum_w_assoc_moe, moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe *100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2)) %>%
+        select(1,2,15:19)
+```
+
+
+
+Gender
+```{r}
+
+female <- filter(df, file == 'gender') %>%
+        filter(str_detect(description, 'Female'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Master|Professional|Doctorate'))%>%
+        group_by(year, geo_description) %>%
+        # find the total population and total employed population in artificially derived age bins
+        # must find total populations and total employed so percentages can be reconstructed
+        summarize(estimate = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            moe = moe_sum(moe, estimate))
+female$gender <- 'female'
 
 male <- filter(df, file == 'gender') %>%
-        filter(label %in% 14:18) %>% 
-# group by year, geography, and the newly created age bins
+        filter(!str_detect(description, 'Female'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Master|Professional|Doctorate'))%>%
   group_by(year, geo_description) %>%
   # find the total population and total employed population in artificially derived age bins
   # must find total populations and total employed so percentages can be reconstructed
@@ -93,20 +464,10 @@ male <- filter(df, file == 'gender') %>%
             moe = moe_sum(moe, estimate))
 male$gender <- 'male'
 
-female <- filter(df, file == 'gender') %>%
-        filter(label %in% 31:35) %>%
-        group_by(year, geo_description) %>%
-  # find the total population and total employed population in artificially derived age bins
-  # must find total populations and total employed so percentages can be reconstructed
-  summarize(estimate = sum(estimate),
-            # deriving MOE from aggregagate count data using tidycensus package
-            moe = moe_sum(moe, estimate))
-female$gender <- 'female'
-
 gender <- bind_rows(male, female)
 
 gender_total <- filter(df, file == 'gender') %>%
-        filter(label==2 | label==19)  
+        filter(label=='HD01_VD19' | label=='HD01_VD02')  
        
 gender_total$description <- ifelse(str_detect(gender_total$description, 'Estimate; Female:'), "female", "male")
 
@@ -141,44 +502,75 @@ gender <- gender %>%
 #Change column names to shortened version
 colnames(gender) <- c('year', 'geography', 'gender', 'estimate', 'moe', 'se', 'cv')
 
+```
 
+Total
+```{r}
+f_assoc <- filter(df, file == 'gender') %>%
+        filter(str_detect(description, 'Female'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Master|Professional|Doctorate'))%>%
+        group_by(year, geo_description) %>%
+        # find the total population and total employed population in artificially derived age bins
+        # must find total populations and total employed so percentages can be reconstructed
+        summarize(estimate = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            moe = moe_sum(moe, estimate))
+f_assoc$gender <- 'female'
 
-  # data was previously grouped by year and age; ungroup data so it is a normal dataframe
-  #ungroup()
-pop_total <- filter(df, file == 'gender') %>%
-        filter(label==1) %>%  
-group_by(year, geo_description) %>%
+m_assoc <- filter(df, file == 'gender') %>%
+        filter(!str_detect(description, 'Female'))%>%
+        filter(str_detect(description, 'Associate|Bachelor|Master|Professional|Doctorate'))%>%
+  group_by(year, geo_description) %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  summarize(estimate = sum(estimate),
+            # deriving MOE from aggregagate count data using tidycensus package
+            moe = moe_sum(moe, estimate))
+m_assoc$gender <- 'male'
+
+assoc_mf <- left_join(m_assoc, f_assoc, by = c('year','geo_description'), suffix = c('_m','_f'))
+
+assoc_mf <- assoc_mf %>%
+  # find the total population and total employed population in artificially derived age bins
+  # must find total populations and total employed so percentages can be reconstructed
+  mutate(sum_assoc = estimate_m + estimate_f,
+        sum_assoc_moe = sqrt(moe_m^2 + moe_f^2 ))
+      
+pop25_total <- filter(df, file == 'gender') %>%
+        filter(label=='HD01_VD19' | label=='HD01_VD02')  
+       
+pop25_total <- pop25_total %>%
+        group_by(year, geo_description) %>%
   # find the total population and total employed population in artificially derived age bins
   # must find total populations and total employed so percentages can be reconstructed
   summarize(sum_pop = sum(estimate),
             # deriving MOE from aggregagate count data using tidycensus package
             sum_pop_moe = moe_sum(moe, estimate))
-## calculate percentage of households with homes in other
 
-# currently, total households and number of homeowners are on different rows (long form)
-# we need both on the same row, in difference columns, to calculate percentages
+assoc_all <- left_join(assoc_mf,pop25_total, by = c('year','geo_description'))   
 
-# create separate dataframes for total households and homeowners, 
-# then merge these dataframes to create percentiles
-other_total <- other %>%
-  filter(description == 'Estimate; Total:')
-other_home <- other %>%
-  filter(description != 'Estimate; Total:')
+assoc_all <- assoc_all %>%
+  # calculate the derived proportion of the employment rate for each age bin
+  # multiple estimate by 100 so it is in same percentile format as original data
+  # round to two decimal places
+  mutate(perc_assoc = round( 100 * (sum_assoc / sum_pop), 2),
+         # calculate MOE from derived proportion using tidycensus
+         perc_assoc_moe = moe_prop(sum_assoc, sum_pop, sum_assoc_moe, sum_pop_moe),
+         # multiply by 100 and round to 2 decimals for consistend formatting
+         perc_assoc_moe = round(perc_assoc_moe * 100, 2),
+         # derive standard error from margin of error
+         perc_assoc_se = round(perc_assoc_moe / 1.96, 2),
+         # derived cv from se
+         perc_assoc_cv = round((perc_assoc_se / perc_assoc) * 100, 2))
 
-# merge two datasets, so total households and homeowners are on the same row
-# variable name suffixes are '_t' for total households and '_o' for owner
-other <- full_join(other_total, other_home, 
-                   by = c('geo_description', 'year', 'file' ),
-                   suffix = c('_t', '_o'))
+assoc_all <- assoc_all %>%
+        select(1,2,13:16)
 
-# calculate proportions and the se, moe, cv of proportions
-# bind to data frame with descriptions of rows
-other <- ff_acs_perc(other$estimate_o, other$moe_o, other$estimate_t, other$moe_t) %>%
-  bind_cols(other, .) %>%
-  # only keep needed columns
-  select(geo_description, year, file, prop:cv) %>%
-  rename(description = file)
+#Change column names to shortened version
+colnames(assoc_all) <- c('year', 'geography', 'estimate', 'moe', 'se', 'cv')
+
 ```
+
 
 ```{r}
 ## calculate percentage of households with homes by age group
