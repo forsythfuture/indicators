@@ -40,8 +40,25 @@ The poverty rate reflects the percentage of the population in poverty. The data 
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth County, NC', 'Durham County, NC', 'Guilford County, NC')
+# create list of geographic areas to keep
+geo_areas <- c('Forsyth County, NC')
+
+# import dataset
+df <- read_csv('data/family_structure_all_years.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  select(-label)
+aa <- filter(df,file == 'African American')
+aa_total <- filter(aa, str_detect(description, 'Estimate; Total:'))
+aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+aa_male_below <-filter(aa, description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+aa_female_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+aa_female_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
+aa_male_below <-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+percentage_aa_married_below<-
+
+
 df2 <- df %>%
   # only keep selected NC counties, the state of NC, and US data
   filter(geo_description %in% geo_areas,
@@ -53,7 +70,8 @@ df1 <- df %>%
          # only need rows showing the percent below poverty level, don't need count data
          str_detect(description, 'Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder,'))
 df <-rbind(df1,df2)
-
+rm(df1,df2)
+UnitedStates<-filter(df, geo_descr=='United States')
 ```
 
 ------

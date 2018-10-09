@@ -10,30 +10,58 @@ source('functions/acs/acs_misc_functions.R')
 # folder to put raw data into
 data_path <- 'i_demographics/data/raw_data'
 
-# full path and file name of zip file
-zip_file <- 'zip_files/family_structure_total.zip'
+family_structure_zip <- paste0('zip_files/', list.files('zip_files', pattern='family_structure_'))
 
-# import and clean employment data
+## iterate through each zip file, download and clean data, and place dataset in list
 
-df<- ff_import_acs(zip_file,
-                    data_path, 
-                    years = seq(2006, 2017, 1))
+# this creates the raw data files
+# it does nothing but create the raw data files
+for (i in seq_along(family_structure_zip)) {
+  
+  ff_import_acs(family_structure_zip[i],
+                data_path, 
+                years = seq(2006, 2017, 1))
+}
+
+
+## this section creates the single dataset for export
+
+# initialize list to store each seperate post sec dataset
+family_structure_list <- list()
+
+# folder to put raw data into; will be deleted
+data_path <- 'i_demographics/data/raw_data2'
+
+# this iterate creates the single dataset
+for (i in seq_along(family_structure_zip)) {
+  
+  df <- ff_import_acs(family_structure_zip[i],
+                      data_path, 
+                      years = seq(2006, 2017, 1))
+  
+  # add filename as a column
+  df$file <- family_structure_zip[i]
+  
+  family_structure_list[[i]] <- df
+  
+  # remove all files from folder
+  file.remove(paste0(data_path, '/', list.files(data_path)))
+  
+}
+
+# bind all datasets into a single dataset
+family_structure <- bind_rows(family_structure_list) %>%
+  # convert filenames to descriptive label for row
+  mutate(file = str_replace_all(file, '.*_aa.*', 'African American')) %>%
+  mutate(file = str_replace_all(file, '.*_hl.*', 'Hispanic/Latino')) %>%
+  mutate(file = str_replace_all(file, '.*_total.*', 'total')) %>%
+  mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
+
+# 'raw_data2' file should be empty and can be deleted
 
 # write out data frame
-write_csv(df, 'i_demographics/data/family_structure_hl_years_counties.csv')
-write_csv(df, 'i_economic/poverty/data/poverty_age_groups.csv')
-### age data is in a different table
+write_csv(family_structure, 'i_demographics/data/family_structure_all_years.csv')
 
-# folder to put raw data into
-data_path <- 'i_economic/poverty/data/raw_data2'
 
-# full path and file name of zip file
-zip_file <- 'zip_files/poverty_by_age.zip'
 
-# import and clean employment data
-df <- ff_import_acs(zip_file,
-                    data_path, 
-                    years = seq(2006, 2017, 1))
 
-# write out data frame
-#write_csv(df, 'i_economic/poverty/data/poverty_age_groups.csv')

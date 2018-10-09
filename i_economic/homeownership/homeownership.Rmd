@@ -64,7 +64,7 @@ other <- filter(df, file != 'age group') %>%
 ## calculate percentage of households with homes in other
 
 # currently, total households and number of homeowners are on different rows (long form)
-# we need both on the same row, in difference columns, to calculate percentages
+# we need both on the same row, in different columns, to calculate percentages
 
 # create separate dataframes for total households and homeowners, 
 # then merge these dataframes to create percentiles
