@@ -1,5 +1,5 @@
 ---
-title: "Poverty Rates"
+title: "Family Structure"
 output:
   html_document:
     toc: true
@@ -41,13 +41,19 @@ This code block imports and cleans the data. It filters out unneeded NC counties
 
 ```{r}
 geo_areas <- c('United States', 'North Carolina', 
-                'Forsyth', 'Guilford', 'Durham')
-
-df <- read_csv('data/poverty_all_years_counties.csv') %>%
+                'Forsyth County, NC', 'Durham County, NC', 'Guilford County, NC')
+df2 <- df %>%
   # only keep selected NC counties, the state of NC, and US data
   filter(geo_description %in% geo_areas,
          # only need rows showing the percent below poverty level, don't need count data
-         str_detect(description, '^Percent'))
+         str_detect(description, 'Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder,'))
+df1 <- df %>%
+  # only keep selected NC counties, the state of NC, and US data
+  filter(geo_description %in% geo_areas,
+         # only need rows showing the percent below poverty level, don't need count data
+         str_detect(description, 'Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder,'))
+df <-rbind(df1,df2)
+
 ```
 
 ------
@@ -59,12 +65,12 @@ df <- read_csv('data/poverty_all_years_counties.csv') %>%
 The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
 
 ```{r}
-df %>%
+df
   # only keep total poverty rate
-  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
+ # filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')
   ggplot(aes(year, estimate, color = geo_description)) +
     geom_line(size = 1) +
-    labs(title = 'Poverty rate by geographic area',
+    labs(title = 'Family Structure by geographic area',
          color = 'Comparison Unit',
          y = 'Poverty rate (%)') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1)) +
