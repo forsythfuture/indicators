@@ -1,0 +1,12 @@
+name: test_indicator
+title: test_indicator
+username:
+account: exploringdata
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 498697
+bundleId: 1628415
+url: https://exploringdata.shinyapps.io/test_indicator/
+when: 1538947901.82528
+asMultiple: FALSE
+asStatic: FALSE
