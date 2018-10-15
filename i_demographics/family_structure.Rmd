@@ -56,22 +56,125 @@ aa_female_above<-filter(aa,description=='Estimate; Income in the past 12 months 
 aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
 aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
 aa_male_below <-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-percentage_aa_married_below<-
-
-
-df2 <- df %>%
-  # only keep selected NC counties, the state of NC, and US data
-  filter(geo_description %in% geo_areas,
-         # only need rows showing the percent below poverty level, don't need count data
-         str_detect(description, 'Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder,'))
-df1 <- df %>%
-  # only keep selected NC counties, the state of NC, and US data
-  filter(geo_description %in% geo_areas,
-         # only need rows showing the percent below poverty level, don't need count data
-         str_detect(description, 'Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder,'))
-df <-rbind(df1,df2)
-rm(df1,df2)
-UnitedStates<-filter(df, geo_descr=='United States')
+#########################################################################################################
+percentage<-left_join(aa_male_above,aa_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+aa_male_above<-cbind(aa_male_above,percent)
+#########################################################################################################
+percentage<-left_join(aa_male_below,aa_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+aa_male_below<-cbind(aa_male_below,percent)
+#########################################################################################################
+percentage<-left_join(aa_female_below,aa_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+aa_female_below<-cbind(aa_female_below,percent)
+#########################################################################################################
+percentage<-left_join(aa_female_above,aa_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+aa_female_above<-cbind(aa_female_above,percent)
+#########################################################################################################
+percentage<-left_join(aa_married_above,aa_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+aa_married_above<-cbind(aa_married_above,percent)
+#########################################################################################################
+percentage<-left_join(aa_married_below,aa_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+aa_married_below<-cbind(aa_married_below,percent)
+#########################################################################################################
+#######################################WHITE#############################################################
+df <- read_csv('data/family_structure_all_years.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  select(-label)
+white <- filter(df,file == 'White, non-Hispanic')
+white_total <- filter(white, str_detect(description, 'Estimate; Total:'))
+white_married_below<-filter(white,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+white_male_below <-filter(white, description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+white_female_below<-filter(white,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+white_female_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+white_male_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+white_married_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
+white_male_below <-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+#########################################################################################################
+percentage<-left_join(white_male_above,white_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+white_male_above<-cbind(white_male_above,percent)
+#########################################################################################################
+percentage<-left_join(white_male_below,white_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+white_male_below<-cbind(white_male_below,percent)
+#########################################################################################################
+percentage<-left_join(white_female_below,white_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+white_female_below<-cbind(white_female_below,percent)
+#########################################################################################################
+percentage<-left_join(white_female_above,white_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+white_female_above<-cbind(white_female_above,percent)
+#########################################################################################################
+percentage<-left_join(white_married_above,white_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+white_married_above<-cbind(white_married_above,percent)
+#########################################################################################################
+percentage<-left_join(white_married_below,white_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+white_married_below<-cbind(white_married_below,percent)
+#########################################################################################################
+###############################################HISPANIC#############################################################################################################################################################
+df <- read_csv('data/family_structure_all_years.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  select(-label)
+hl <- filter(df,file == 'Hispanic/Latino')
+hl_total <- filter(hl, str_detect(description, 'Estimate; Total:'))
+hl_married_below<-filter(hl,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+hl_male_below <-filter(hl, description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+hl_female_below<-filter(hl,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+hl_female_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+hl_male_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+hl_married_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
+hl_male_below <-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+#########################################################################################################
+percentage<-left_join(hl_male_above,hl_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+hl_male_above<-cbind(hl_male_above,percent)
+#########################################################################################################
+percentage<-left_join(hl_male_below,hl_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+hl_male_below<-cbind(hl_male_below,percent)
+#########################################################################################################
+percentage<-left_join(hl_female_below,hl_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+hl_female_below<-cbind(hl_female_below,percent)
+#########################################################################################################
+percentage<-left_join(hl_female_above,hl_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+hl_female_above<-cbind(hl_female_above,percent)
+#########################################################################################################
+percentage<-left_join(hl_married_above,hl_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+hl_married_above<-cbind(hl_married_above,percent)
+#########################################################################################################
+percentage<-left_join(hl_married_below,hl_total, by="year", COPY=FALSE)
+percent<-percentage[,4]/percentage[,11]
+percent<-rename(percent, percentage = estimate.x)
+hl_married_below<-cbind(hl_married_below,percent)
+#########################################################################################################
 ```
 
 ------
