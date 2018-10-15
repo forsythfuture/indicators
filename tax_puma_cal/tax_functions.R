@@ -7,13 +7,100 @@
 
 library(tidyverse)
 
-taxable_income <- seq(5000, 130000, by = 1000)
-status <- rep(c('single', 'married'), times = length(taxable_income)/2)
-year <- rep(2015, length(taxable_income))
-children <- rep(c(0,1,2,3,4,5), times = length(taxable_income)/5)[1:length(taxable_income)]
-id <- seq(1, length(taxable_income))
+# eitc_rate <- read_csv('tax_puma_cal/eitc_clean.csv')
+# marginal_rates <- rates_clean(read_csv('tax_puma_cal/fed_rates_raw.csv'))
+# std_deduct_table <- read_csv('tax_puma_cal/std_deduction.csv')
+# personal_exempt_table <- read_csv('tax_puma_cal/personal_exemption.csv')
+# 
+# taxable_income <- seq(0, 500000, by = 1000)
+# status <- append(rep(c('single', 'married'), times = length(taxable_income)/2), 'single')
+# year <- rep(2017, length(taxable_income))
+# children <- rep(c(0,1,2,3,4,5), times = length(taxable_income)/5)[1:length(taxable_income)]
+# id <- seq(1, length(taxable_income))
 
-a <- child_tax_credit(id, taxable_income, status, children)
+a <- total_taxes(id, year, status, children, taxable_income,
+                 std_deduct_table, personal_exempt_table,
+                 marginal_rates, eitc_rate)
+
+b <- taxes_due_year(id, taxable_income, year, status, marginal_rates)
+
+earned_income <- eitc(id, taxable_income, status, children, year, eitc_rate)
+
+total_taxes <- function(id, year, status, children, taxable_income,
+                        std_deduct_table, personal_exempt_table,
+                        marginal_rates, eitc_rate) {
+  
+  # This function calculates total taxes due by implementing functions 
+  # that calculate individual taxes and deductions
+  
+  # check to ensure all statuses are either single, married or hoh
+  # stop function and display error message if not
+  ifelse(!(unique(status) %in% c('single', 'married', 'hoh')),
+         stop('Status must be either: single, married, or hoh.'), 'Taxpayer status good')
+  
+  # calculate individual taxes and join into single dataframe
+  df <- data.frame(id = id,
+                   year = year,
+                   status = status,
+                   children = children,
+                   taxable_income = taxable_income) %>%
+    # calculate standard deduction and personal exemptions
+    left_join(deduction_exemption(id, taxable_income, status, children, year, 
+                                  std_deduct_table, personal_exempt_table), by = 'id') %>%
+    # subtract standard deduction and personal exemption from taxable income (agi)
+    mutate(agi = taxable_income - std_deduction - personal_exemption) %>%
+    # if taxable income is negative, convert to 0
+    mutate(agi = pmax(agi, 0)) %>%
+    # calculate taxes due on age
+    left_join(taxes_due_year(id, .$agi, year, status, marginal_rates), by = 'id') %>%
+    # calculate child tax credit
+    left_join(child_tax_credit(id, .$taxable_income, status, children), by = 'id') %>%
+    # subtract child tax credit from tax liability
+    mutate(tax_liability = tax_liability - child_credit) %>%
+    # child tax credit is not refunded, so negative value is zero
+    mutate(tax_liability = pmax(tax_liability, 0)) %>%
+    # caclulate EITC
+    left_join(eitc(id, .$taxable_income, status, children, year, eitc_rate), by = 'id') %>%
+    # subtract EITC from tax liability
+    # Eitc is refunded if negative, so keep negative values
+    mutate(tax_liability = tax_liability - eitc) %>%
+    select(id, tax_liability)
+  
+}
+
+deduction_exemption <- function(id, taxable_income, status, children, year, 
+                                std_deduct_table, personal_exempt_table) {
+  
+  # This function calculates the standard deduction and personal exemption for taxpayers
+  # Input:
+  #   taxable_income: vector of taxable incomes
+  #   status & year : vector ost atus and year, in same order as taxable income
+  #   std_deduct_table: table of standard deductions by year and status, in long form
+  #                     must include columns titles 'year', 'status', and 'std_deduction'
+  #   personal_exempt_table: table of personal exemptions by year;
+  #                     must include columns titles 'year' and 'personal_exemption'
+  
+  # create dataframe of year, status, and income
+  df <- data.frame(id = id,
+                   year = year,
+                   status = status,
+                   children = children,
+                   taxable_income = taxable_income) %>%
+    # merge table of standard deductions onto income dataframe
+    left_join(std_deduct_table, by = c('year', 'status')) %>%
+    # merge table of personal exemptions onto income dataframe
+    left_join(personal_exempt_table, by = 'year') %>%
+    # amount of standard deduction will be the amount in the table, no other calculations needed
+    # calculate personal exemption: 
+    #     if married value is 2 (one for  each spouse) plus number of children times exemption;
+    #     otherwise, value is 1 (for single person) plus number of children time exemption
+    mutate(personal_exemption = ifelse(status == 'married', (children + 2) * personal_exemption, 
+                                (children + 1) * personal_exemption)) %>%
+    select(id, std_deduction, personal_exemption)
+  
+  return(df)
+  
+}
 
 child_tax_credit <- function(id, taxable_income, status, children) {
   
@@ -23,39 +110,30 @@ child_tax_credit <- function(id, taxable_income, status, children) {
   
   married_threshhold <- 110000
   single_threshhold <- 75000 # also hoh threshhold
-
-  # check to ensure all statuses are either single, married or hoh
-  # stop function and display error message if not
-  ifelse(!(unique(status) %in% c('single', 'married', 'hoh')),
-         stop('Status must be either: single, married, or hoh.'), 'Taxpayer status good')
   
   # merge all values into dataframe
   df <- data.frame(id = id, taxable_income = taxable_income,
                    status = status, children = children)
-  
-  # limits where credit phases out
-  single_hoh_phaseout <- 75000
-  married_phaseout <- 110000
-  
-  # calculate credit
-  df$credit <- children * 1000
     
   # if person gets full credit, signify with 0 to show that adjustment is not applicable
   # if threshold drawdown does apply, signify with 1
   # we will then multiply this number by adjustment value to ensure that those who adjustment
   # does not apply get full credit
   df <- df %>%
-    mutate(gets_adj = ifelse(status == 'single' & taxable_income < !!single_hoh_phaseout, 0,
-                        ifelse(status == 'married' & taxable_income < !!married_phaseout, 0, 1))) %>%
+    mutate(gets_adj = ifelse(status == 'single' & taxable_income < !!single_threshhold, 0,
+                        ifelse(status == 'married' & taxable_income < !!married_threshhold, 0, 1))) %>%
     # adjust credit based on income and filing status
     mutate(adj_credit = ifelse(status == 'single',
-                               df$credit - ( (taxable_income-!!single_hoh_phaseout)*0.05 ),
+                               ( (taxable_income-!!single_threshhold)*0.05 ),
                             ifelse(status == 'married',
-                                   credit - ( (taxable_income-!!married_phaseout) * 0.05), 999999)) * gets_adj) %>%
+                                ( (taxable_income-!!married_threshhold) * 0.05), 999999)) * gets_adj) %>%
    # if adjustment is negative then there is no credit because person makes too much money
    # otherwise, credit is number of children times 1000 minus adjustment
-   mutate(credit_amount = ifelse(adj_credit < 0, 0,
-                                 credit - adj_credit))
+   mutate(child_credit = ifelse(adj_credit < 0, 0,
+                               (children * 1000) - adj_credit)) %>%
+   # if negative, raise to 0
+   mutate(child_credit = pmax(child_credit, 0)) %>% 
+    select(id, child_credit)
   
   return(df)
   
@@ -74,11 +152,6 @@ eitc <- function(id, taxable_income, status, children, year, eitc_rate) {
   #   year: vector of years
   #   eitc_rate: table of etic rates in long-form
   
-  # check to ensure all statuses are either single, married or hoh
-  # stop function and display error message if not
-  ifelse(!(unique(status) %in% c('single', 'married', 'hoh')),
-         stop('Status must be either: single, married, or hoh.'), 'Taxpayer status good')
-  
   # merge all values into dataframe
   df <- data.frame(id = id, taxable_income = taxable_income,
                    status = status, children = children, year = year)
@@ -93,21 +166,23 @@ eitc <- function(id, taxable_income, status, children, year, eitc_rate) {
     
   # start with year
   for(yr in unique(df$year)) {
+    
+    #print(yr)
   
     # filing status
     for (filing_status in unique(df$status)) {
-      
+     # print(filing_status)
       # then loop through number of children (0, 1, 2, and 3)
       # will be no more than three children due to correction above
       for(num_child in seq(0,3)) {
-        
+        #print(num_child)
         # filter eitc rate table for year, status, and number of children
         # will result in one row
         eitc_single <- eitc_rate %>%
           filter(year == yr,
                  children == num_child,
                  status == filing_status)
-        
+        #print(eitc_single)
         # create separate objects for eitc items
         phase_in_ends <- eitc_single$phase_in_ends[[1]]
         phase_in_rate <- eitc_single$phase_in_rate[[1]]
@@ -148,7 +223,7 @@ eitc <- function(id, taxable_income, status, children, year, eitc_rate) {
   
 }
 
-taxes_due_year <- function(id, taxable_income, year, status, marginal_rates_file) {
+taxes_due_year <- function(id, taxable_income, year, status, marginal_rates) {
 
   # This program calcuates taxes due based on taxable income
   # It uses the function 'taxes_due' to calculate taxes
@@ -161,15 +236,6 @@ taxes_due_year <- function(id, taxable_income, year, status, marginal_rates_file
   #   status: character vector of status
   #           either 'single', 'married', or 'hoh' (head of household)
   #   marginal_rates_file: file name to table of rates
-
-  # check to ensure all statuses are either single, married or hoh
-  # stop function and display error message if not
-  ifelse(!(unique(status) %in% c('single', 'married', 'hoh')),
-    stop('Status must be either: single, married, or hoh.'), 'Taxpayer status good')
-    
-  # import and clean marginal rates table
-  marginal_rates <- read_csv(marginal_rates_file) %>%
-    rates_clean()
   
   # create vector of unique years, to loop through
   unique_years <- unique(year)
@@ -183,7 +249,7 @@ taxes_due_year <- function(id, taxable_income, year, status, marginal_rates_file
   # initialize dataframe to store all year's results
   df_full <- data.frame()
   
-  # calcualte taxes for each year of data
+  # calculate taxes for each year of data
   for(yr in unique_years) {
     
     df_year <- df %>%
@@ -199,6 +265,9 @@ taxes_due_year <- function(id, taxable_income, year, status, marginal_rates_file
     df_full <- bind_rows(df_full, df_year)
     
   }
+  
+  # only return id and tax liability
+  #df_full <- df_full %>% select(id, tax_liability)
   
   return(df_full)
   
@@ -279,7 +348,7 @@ taxes_due <- function(id, taxable_income, year, status, marginal_rates) {
 
 rates_clean <- function(table_rates) {
   
-  # this function takes ina table of rates and cleans / puts in long form
+  # this function takes in table of rates and cleans / puts in long form
   
   table_rates %>%
     # convert to wide where each status is a different row
