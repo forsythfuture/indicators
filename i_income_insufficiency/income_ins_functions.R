@@ -128,26 +128,3 @@ ff_inflation_adj_table <- function(year_adjust) {
   
   return(yearly_cpi)
 }
-
-import_test_pums <- function() {
-  
-  # this function imports Forsyth County PUMS data for 2016 for testing functions
-  
-  # import these PUMS variables
-  house_vars <- c('RT', 'TYPE', 'SERIALNO', 'PUMA', 'ST')
-  
-  pop_vars <- c('SERIALNO', 'RELP', 'PINCP', 'WAGP', 'SEMP', 'INTP', 'OIP', 'PAP',
-                'RETP', 'SSP', 'SSIP', 'AGEP', 'ESR', 'SEX', 'WKW', 'WKHP')
-  
-  # population and household files
-  house_file <- 'palma_data/ss14husb.csv'
-  pop_file <- 'palma_data/ss14pusb.csv'
-  
-  fread(house_file, select = house_vars)[
-    PUMA %in% 1801 & # filter for Forsyth
-      RT == 'H' & TYPE == 1 # filter for only housing units
-    ][, "RT":=NULL][ # remove these columns
-      # merge with population dataset
-      fread(pop_file, select = pop_vars), 
-      nomatch=0L, on = 'SERIALNO']
-}
