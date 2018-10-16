@@ -7,6 +7,29 @@
 library(tidyverse)
 library(DBI)
 
+num_children <- function(df, age_limit) {
+  
+  # This function calculates the number of persons in a tax unit
+  # at or below a given age
+  #
+  # Input: 
+  #       df: dataframe with PUMS data grouped by household and tax unit
+  #       age_limit: a vector of age limits
+  # Output: vector of number of persons below age limit in household
+  #         To be used ats output in mutate function
+  
+  df %>%
+    # replace age number with number signifying whether person is below limit
+    # 1 if person is below, 0 otherwise
+    mutate(AGEP = ifelse(AGEP <= age_limit, 1, 0)) %>%
+    #group_by(SERIALNO, tax_unit) %>%
+    # sum number this column per tax unit
+    # result is number of children below age threshhold
+    summarize(num_under = sum(AGEP)) %>%
+    select(SERIALNO, tax_unit, num_under) %>%
+    rename()
+}
+
 # connect to PUMS database
 con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 
@@ -98,16 +121,18 @@ family <- pop %>%
   filter(RELP == 1) %>%
   select(!!cols_spouse) %>%
   rename(age_spouse = AGEP, e00200s = taxable_income) %>%
-  left_join(ref, by = c('SERIALNO', 'tax_unit')) %>%
+  left_join(ref, ., by = c('SERIALNO', 'tax_unit')) %>%
   select(-RELP)  %>%
+  # NA values for spouse information (age, income) represents not having a spouse
+  # these can be change to zero
+  mutate_at(vars(age_spouse:e00200s), funs(replace_na(., 0))) %>%
   # compute filing unit income
   mutate(e00200 = e00200p + e00200s,
          # social security (SSP) is entered at the filing unit level
          # sum each spouse's social security
          SSP = SSP.x + SSP.y) %>%
-  # remove spouse-level social security
-  select(-SSP.x, -SSP.y, -tax_unit, -fips) %>%
-  ungroup()
+  ungroup() %>%
+  select(-SSP.x, -SSP.y, -tax_unit, -fips)
 
 # children still in their parent's household often file their own tax returns,
 # but their parents claim them as a dependent; therefore the child does
@@ -167,30 +192,12 @@ full <- pop %>%
   ungroup() %>%
   mutate(SERIALNO = SERIALNO * 10000) %>%
   select(-RELP, -tax_unit, -fips) %>%
-  bind_rows(., family, child)
-  
+  bind_rows(., family, child) %>%
+  # rename to convert to TAXSIM names
+  rename(RECID = SERIALNO) %>%
+  # add year
+  mutate(FLPDYR = 2016)
   
 ####################### Functions #############################
 
-num_children <- function(df, age_limit) {
-  
-  # This function calculates the number of persons in a tax unit
-  # at or below a given age
-  #
-  # Input: 
-  #       df: dataframe with PUMS data grouped by household and tax unit
-  #       age_limit: a vector of age limits
-  # Output: vector of number of persons below age limit in household
-  #         To be used ats output in mutate function
-  
-  df %>%
-    # replace age number with number signifying whether person is below limit
-    # 1 if person is below, 0 otherwise
-    mutate(AGEP = ifelse(AGEP <= age_limit, 1, 0)) %>%
-    #group_by(SERIALNO, tax_unit) %>%
-    # sum number this column per tax unit
-    # result is number of children below age threshhold
-    summarize(num_under = sum(AGEP)) %>%
-    select(SERIALNO, tax_unit, num_under) %>%
-    rename()
-}
+
