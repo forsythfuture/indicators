@@ -29,7 +29,7 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
     # Create population variables
     pop_vars <- c('SERIALNO', 'AGEP')
     
-    # create function to agjust for age based on equivalence scale
+    # create function to adjust for age based on equivalence scale
     equivalence_scale <- function(num_adults, num_children) {
       
       ifelse(# if num adults is one or two, and no children
@@ -246,4 +246,20 @@ palma_years <- function(state = NA, area_code = NA, years, data_directory) {
     gc()
   }
   return(df)
+}
+
+
+equivalence_scale <- function(num_adults, num_children) {
+  
+  # create function to adjust for age based on equivalence scale
+  
+  ifelse(# if num adults is one or two, and no children
+    num_adults <= 2 & num_children == 0, num_adults^0.5,
+    ifelse(# if single parent
+      num_adults == 1 & num_children >= 1,
+      (num_adults + 0.8 * 1 + 0.5 * (num_children-1))^0.7,
+      # other families
+      (num_adults + 0.5 * num_children)^0.7
+    )
+  )
 }
