@@ -46,12 +46,12 @@ pop_taxes <- function(con, year) {
   # connect to database table
   population <- tbl(con, table_name)
   
-  # import these PUMS variables
   pop_vars <- c('SERIALNO', # serial number grouped by household 
                 'SPORDER', # order of person in household
                 'ST', # state (needed to calculate state income taxes)
                 'PUMA', # Public use micro area
-                'RELP', # relationship to reference person
+                # relationship to reference person; variable name changed in 2010
+                ifelse(year < 2010, 'REL', 'RELP'),
                 'AGEP', # age
                 'WAGP', # wages or salary income
                 'SEMP', # self employment income
@@ -62,7 +62,34 @@ pop_taxes <- function(con, year) {
   pop <- population %>%
     select(!!pop_vars) %>%
     # need to collect now because cannot transform NA without collecting
-    collect %>%
+    collect()
+  
+  # prior to 2010, RELP column is called REL
+  # prior to 2009, coding of relationships is different
+  # from 2008 and forward, 0-4 are in the same tax unit
+  # prior to 2008, 0-2 are in the same tax unit
+  if (year < 2010) {
+    
+    # rename column
+    pop <- rename(pop, RELP = REL)
+     
+    # recode values 
+    if (year < 2008) {
+      
+      # if value is 3 or 4, change to 15
+      # the end result is that there will be no 3 or 4 relationship values
+      # and similair tax units will be 0-2
+      # as a result, we can filter for individual tax units for all years by
+      # filtering for 0-4
+      pop <- pop %>%
+        mutate(RELP = ifelse(RELP %in% c(3, 4), 15, RELP))
+      
+    }
+      
+  }
+  
+  
+  pop <- pop %>%
     # replace income NA values with 0
     mutate_at(vars(WAGP, SEMP, SSP), funs(replace_na(., 0))) %>%
     mutate(taxable_income = WAGP + SEMP) %>%
