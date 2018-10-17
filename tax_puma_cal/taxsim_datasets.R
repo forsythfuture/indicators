@@ -16,7 +16,7 @@ con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 for (yr in seq(2006, 2016)) {
   
   # create file name of output based on year
-  file_name <- paste0('taxes_', as.charater(yr), '.csv')
+  file_name <- paste0('taxes_', as.character(yr), '.csv')
   
   pop_taxes(con, yr) %>%
     write_csv(., file_name)
