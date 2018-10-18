@@ -162,7 +162,7 @@ pop_taxes <- function(con, year) {
            # sum each spouse's social security
            SSP = SSP.x + SSP.y) %>%
     ungroup() %>%
-    select(-SSP.x, -SSP.y, -tax_unit, -fips)
+    select(-SSP.x, -SSP.y, -tax_unit)
   
   # children still in their parent's household often file their own tax returns,
   # but their parents claim them as a dependent; therefore the child does
@@ -189,12 +189,12 @@ pop_taxes <- function(con, year) {
            ) %>%
     # the child ID numbers must be separate from the parents for TAXSIM
     # but, we need to link them back up after running the TAXSIM program
-    # we can do this by adding four zeroes to the end of the ID, 
+    # we can do this by adding three zeros to the end of the ID, 
     # then removing them after running the program
     # but, must ungroup because we are transforming grouping variable (SERIALNO)
     ungroup() %>%
     mutate(SERIALNO = SERIALNO * 1000) %>%
-    select(-RELP, -tax_unit, -fips)
+    select(-RELP, -tax_unit)
   
   # people in household, but not in the tax unit (not spoue or child) are assumed to file single
   # we will create this dataset and then bind with child and family datasets
@@ -216,17 +216,22 @@ pop_taxes <- function(con, year) {
     ) %>%
     # the ID numbers must be separate from the household for TAXSIM
     # but, we need to link them back up after running the TAXSIM program
-    # we can do this by adding five zeroes to the end of the ID, 
+    # we can do this by adding six zeroes to the end of the ID, 
     # then removing them after running the program
     # but, must ungroup because we are transforming grouping variable (SERIALNO)
     ungroup() %>%
-    mutate(SERIALNO = SERIALNO * 10000) %>%
-    select(-RELP, -tax_unit, -fips) %>%
+    mutate(SERIALNO = SERIALNO * 100000) %>%
+    select(-RELP, -tax_unit) %>%
     bind_rows(., family, child) %>%
     # rename to convert to TAXSIM names
     rename(RECID = SERIALNO) %>%
     # add year
-    mutate(FLPDYR = year)
+    mutate(FLPDYR = year) %>%
+    # add columns of zeros for empty columns
+    bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 15))) %>%
+    # reorder columns to match required order for online tax system
+    select(RECID, FLPDYR, fips, MARS, age_head, age_spouse, XTOT, V1, n24, EIC, e00200p, e00200s,
+           V2:V8, SSP, V8:V15)
   
   return(full)
 
