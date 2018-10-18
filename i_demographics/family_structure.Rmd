@@ -49,10 +49,19 @@ df <- read_csv('data/family_structure_all_years.csv') %>%
   select(-label)
 aa <- filter(df,file == 'African American')
 aa_total <- filter(aa, str_detect(description, 'Estimate; Total:'))
-aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
-aa_male_below <-filter(aa, description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-aa_female_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
-aa_female_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
+
+
+aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+
+
+aa_male_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years')
+
+aa_female_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+
+aa_female_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'| description =='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+
 aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
 aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
 aa_male_below <-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
@@ -178,6 +187,21 @@ hl_married_below<-cbind(hl_married_below,percent)
 ```
 
 ------
+```{r}
+############################################MOE#############################################################
+#MOE Function
+#t=total estimate
+#n=Owner MOE
+#p=Proportion Owner
+#tm=Total MOE
+Proportion_MOE <- function(tm,t,n,p){
+  MOE<- (sqrt(n^2-p^2*tm))/t
+  return(MOE)
+}
+#################################################################################################################
+MOE_Renter=Proportion_MOE(aa_total[,4], Total[,4], Renter[,5],Renter[,11])
+test=Proportion_MOE(aa_total[,4],aa_total[,5], aa_female_above[,4], aa_female_above[,9])
+```
 
 ### US, NC, and county comparisions
 
