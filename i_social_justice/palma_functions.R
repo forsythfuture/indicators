@@ -11,6 +11,8 @@
 
 
 palma_single <- function(state = NA, area_code = NA, year, data_directory) {
+    
+    ######## Old !!!!!!!!!!!!!!!!!! ################
   
     ### This function returns a list, where each item in the list is a vector if household
     ### incomes based on replicate weights
@@ -149,7 +151,7 @@ palma_single <- function(state = NA, area_code = NA, year, data_directory) {
           # find Palma of vector
           palma_cal()
 
-        # append vector of incomes to appropriate list
+        # append vector of palmas to appropriate list
         # sort when appending to avoid excess copying
         palma_vec <- append(palma_vec, rep_weights)
                     
@@ -192,7 +194,7 @@ palma_cal <- function (income_vec) {
   
 }
 
-replicate_weights <- function(palma_vec) {
+palma_st_error <- function(palma_vec) {
   
   # This function takes as input a vector of Palma values; one value for each weight
   # its output is the standard error of the Palma
@@ -211,6 +213,8 @@ replicate_weights <- function(palma_vec) {
 }
 
 palma_years <- function(state = NA, area_code = NA, years, data_directory) {
+  
+  ######## Old !!!!!!!!!!!!!!!!!! ################
   
   # This function creates the Palma for multiple years by using the function
   # that creates the Palma for a single year
@@ -262,4 +266,75 @@ equivalence_scale <- function(num_adults, num_children) {
       (num_adults + 0.5 * num_children)^0.7
     )
   )
+}
+
+house_incomes <- function(con, year) {
+  
+  # This function returns a dataframe of household incomes for the given year
+  # it returns income for the entire US
+  
+  # create table names
+  yr <-str_extract(as.character(year), '[0-9][0-9]$')
+  house_table <- paste0('h_', yr)
+  pop_table <- paste0('p_', yr)
+  
+  # establish connection to tables
+  housing <- tbl(con, house_table)
+  population <- tbl(con, pop_table)
+  
+  # import these PUMS variables
+  house_vars <- c('TYPE', 'SERIALNO', 'PUMA', 'ST', 'HINCP')
+  pop_vars <- c('SERIALNO', 'AGEP') # population variables
+  
+  # import population data
+  population <- population %>%
+    select(!!pop_vars)
+  
+  
+  house <- housing %>%
+    select(!!house_vars) %>%
+    filter(ST == 37,
+           #PUMA %in% c(1801, 1802, 1803),
+           TYPE == 1, # housing units only
+           (!is.na(HINCP) & HINCP >= 0)) %>% # positive household income
+    select(-TYPE) %>%
+    # merge with population data
+    left_join(population, by = 'SERIALNO') %>%
+    # convert age to either adult or femal
+    mutate(AGEP = ifelse(AGEP >= 18, 'adult', 'child'))
+  
+  # find number of adults and children for each family
+  # will be merge with the primary dataset
+  adults <- house %>%
+    filter(AGEP == 'adult') %>%
+    group_by(SERIALNO) %>%
+    # count number of adults per household
+    summarise(number_adults = n())
+  
+  child <- house %>%
+    filter(AGEP == 'child') %>%
+    group_by(SERIALNO) %>%
+    # count number of children per household
+    summarise(number_child = n())
+  
+  # merge primary dataset and number of adults and children
+  house <- house %>%
+    left_join(adults, by = 'SERIALNO') %>%
+    left_join(child, by = 'SERIALNO') %>%
+    collect() %>%
+    # replace NA values in numbers of aduls and children to 0
+    mutate_at(vars(c('number_adults', 'number_child')), funs(replace_na(., 0))) %>%
+    mutate(income = HINCP / equivalence_scale(number_adults, number_child),
+           # convert income to integer to save RAM
+           income = as.integer(income)) %>%
+    select(SERIALNO, PUMA, ST, income) %>%
+    # dataframe has one row for each person in the household;
+    # but since only household variables were kept, all rows for the same family will be duplicates
+    # remove duplicates, which will leave one row per household
+    distinct() %>%
+    # convert to datatable
+    as.data.table()
+  
+  return(house)
+  
 }
