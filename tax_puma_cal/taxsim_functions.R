@@ -8,6 +8,9 @@
 library(tidyverse)
 library(DBI)
 
+con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
+year <- 2016
+
 num_children <- function(df, age_limit) {
   
   # This function calculates the number of persons in a tax unit
@@ -23,7 +26,6 @@ num_children <- function(df, age_limit) {
     # replace age number with number signifying whether person is below limit
     # 1 if person is below, 0 otherwise
     mutate(AGEP = ifelse(AGEP <= age_limit, 1, 0)) %>%
-    #group_by(SERIALNO, tax_unit) %>%
     # sum number this column per tax unit
     # result is number of children below age threshhold
     summarize(num_under = sum(AGEP)) %>%
@@ -127,7 +129,8 @@ pop_taxes <- function(con, year) {
     # by adding filing status to number of dependent exemptions
     mutate(XTOT = MARS + dep_exemptions) %>%
     # only keep needed variables
-    select(SERIALNO, tax_unit, fips, RELP, AGEP, taxable_income, SSP, EIC:XTOT)
+    select(SERIALNO, SPORDER, tax_unit, fips, RELP, AGEP, taxable_income, SSP, EIC:XTOT) %>%
+    ungroup()
 
   
   # To run the data through TAXSIM, each spouse's income and age must
@@ -161,7 +164,6 @@ pop_taxes <- function(con, year) {
            # social security (SSP) is entered at the filing unit level
            # sum each spouse's social security
            SSP = SSP.x + SSP.y) %>%
-    ungroup() %>%
     select(-SSP.x, -SSP.y, -tax_unit)
   
   # children still in their parent's household often file their own tax returns,
@@ -189,18 +191,18 @@ pop_taxes <- function(con, year) {
            ) %>%
     # the child ID numbers must be separate from the parents for TAXSIM
     # but, we need to link them back up after running the TAXSIM program
-    # we can do this by adding three zeros to the end of the ID, 
+    # we can do this by converting the SPORDER to a decimal and adding to serialno, 
     # then removing them after running the program
-    # but, must ungroup because we are transforming grouping variable (SERIALNO)
-    ungroup() %>%
-    mutate(SERIALNO = SERIALNO * 1000) %>%
+    mutate(SERIALNO = SERIALNO + (SPORDER / 100)) %>%
     select(-RELP, -tax_unit)
   
   # people in household, but not in the tax unit (not spoue or child) are assumed to file single
   # we will create this dataset and then bind with child and family datasets
   full <- pop %>%
     # people in tax unit 100 are in a family, so those not in this unit are singles
-    filter(tax_unit != 100) %>%
+    filter(tax_unit != 100,
+           # must have income above 1000, or single filer probably is not filing
+           taxable_income > 1000) %>%
     # variable transformations are the same as those for child
     #
     # cannot take exemptions, and do not qualify for EITC and child tax credit
@@ -216,11 +218,11 @@ pop_taxes <- function(con, year) {
     ) %>%
     # the ID numbers must be separate from the household for TAXSIM
     # but, we need to link them back up after running the TAXSIM program
-    # we can do this by adding six zeroes to the end of the ID, 
+    # we can do this by adding a decimal of SPORDER to the end of the ID, 
     # then removing them after running the program
     # but, must ungroup because we are transforming grouping variable (SERIALNO)
     ungroup() %>%
-    mutate(SERIALNO = SERIALNO * 100000) %>%
+    mutate(SERIALNO = SERIALNO + (SPORDER / 100)) %>%
     select(-RELP, -tax_unit) %>%
     bind_rows(., family, child) %>%
     # rename to convert to TAXSIM names
@@ -232,7 +234,7 @@ pop_taxes <- function(con, year) {
     # reorder columns to match required order for online tax system
     select(RECID, FLPDYR, fips, MARS, age_head, age_spouse, XTOT, V1, n24, EIC, e00200p, e00200s,
            V2:V8, SSP, V8:V15)
-  
+ 
   return(full)
 
 }
