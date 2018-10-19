@@ -2,6 +2,7 @@
 #
 # This file contains functions to calculate the Palma
 #
+#
 # The functions are divided into various processes:
 #   - calculate palma for one year
 #   - calcualte Palma for weights
