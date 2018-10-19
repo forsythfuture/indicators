@@ -42,7 +42,7 @@ for (i in seq_along(file_path)) {
   
   print(file_path)
   
-  a <- read_csv(file_path[i], col_names = FALSE) %>%
+  a <- read_csv(file_path[12], col_names = FALSE) %>%
     filter(X3 == 37) %>%
     mutate(X3 = 34) %>%
     # replafce any NA values with 0
@@ -53,3 +53,8 @@ for (i in seq_along(file_path)) {
     write_csv(., paste0('tax_puma_cal/nc_to_taxsim/', list_files[i]), col_names = FALSE)
   
 }
+
+a$X1 <- as.integer(str_replace_all(as.character(a$X1), '^2017', ''))
+
+a <- a[a$X7 <= 15,]
+write_csv(a, paste0('tax_puma_cal/nc_to_taxsim/', list_files[12]), col_names = FALSE)
