@@ -6,8 +6,12 @@
 ###########################################################################
 
 library(tidyverse)
+library(tidyverse)
+library(DBI)
+library(data.table)
 
-# import functions
+source('i_social_justice/palma_functions.R')
+source('functions/puma_functions.R')
 source('tax_puma_cal/taxsim_functions.R')
 
 # connect to PUMS database
@@ -22,10 +26,24 @@ for (yr in seq(2006, 2017)) {
   # create file name of output based on year
   file_name <- paste0('taxes_', as.character(yr), '.csv')
   
-  pop_taxes(con, yr) %>%
-    write_csv(., file_name, col_names = FALSE)
-  
+  a <- pop_taxes(con, yr) #%>%
+    #write_csv(., file_name, col_names = FALSE)
+  b <- house_incomes(con, 2017, state = 37, area_code = 1801)
 }
+
+c <- full_join(a, b, by = 'SERIALNO')
+
+c <- select(a, RECID, fips) %>%
+  group_by(RECID) %>%
+  summarize(fips = mean(fips)) %>%
+  rename(SERIALNO = RECID) %>%
+  # in 2017, serial IDs have leading '2017'; remove this
+  mutate(SERIALNO = as.character(SERIALNO),
+         SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
+         SERIALNO = as.integer(SERIALNO))
+
+d <- full_join(house, c, by = 'SERIALNO')
+
 
 # the top part has the wrong states
 # for now we only need NC, so filter for NC and change state code

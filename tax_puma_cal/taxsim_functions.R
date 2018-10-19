@@ -8,8 +8,8 @@
 library(tidyverse)
 library(DBI)
 
-con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
-year <- 2016
+#con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
+#year <- 2016
 
 num_children <- function(df, age_limit) {
   
@@ -64,6 +64,8 @@ pop_taxes <- function(con, year) {
   pop <- population %>%
     select(!!pop_vars) %>%
     # need to collect now because cannot transform NA without collecting
+    filter(ST == 37,
+           PUMA == 1801) %>%
     collect()
   
   # prior to 2010, RELP column is called REL
@@ -189,11 +191,6 @@ pop_taxes <- function(con, year) {
            e00200s = 0, # zero since filing single
            MARS = 1 # children filing single
            ) %>%
-    # the child ID numbers must be separate from the parents for TAXSIM
-    # but, we need to link them back up after running the TAXSIM program
-    # we can do this by converting the SPORDER to a decimal and adding to serialno, 
-    # then removing them after running the program
-    mutate(SERIALNO = SERIALNO + (SPORDER / 100)) %>%
     select(-RELP, -tax_unit)
   
   # people in household, but not in the tax unit (not spoue or child) are assumed to file single
@@ -216,24 +213,24 @@ pop_taxes <- function(con, year) {
            e00200s = 0, # zero since filing single
            MARS = 1 # filing single
     ) %>%
-    # the ID numbers must be separate from the household for TAXSIM
-    # but, we need to link them back up after running the TAXSIM program
-    # we can do this by adding a decimal of SPORDER to the end of the ID, 
-    # then removing them after running the program
-    # but, must ungroup because we are transforming grouping variable (SERIALNO)
     ungroup() %>%
-    mutate(SERIALNO = SERIALNO + (SPORDER / 100)) %>%
     select(-RELP, -tax_unit) %>%
     bind_rows(., family, child) %>%
     # rename to convert to TAXSIM names
-    rename(RECID = SERIALNO) %>%
+    #rename(RECID = SERIALNO) %>%
     # add year
     mutate(FLPDYR = year) %>%
     # add columns of zeros for empty columns
     bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 15))) %>%
     # reorder columns to match required order for online tax system
-    select(RECID, FLPDYR, fips, MARS, age_head, age_spouse, XTOT, V1, n24, EIC, e00200p, e00200s,
-           V2:V8, SSP, V8:V15)
+    select(SERIALNO, FLPDYR, fips, MARS, age_head, age_spouse, XTOT, V1, n24, EIC, e00200p, e00200s,
+           V2:V8, SSP, V8:V15) %>%
+    # convert NC fips code to its IRS code
+    mutate(fips = 34) %>%
+    # in 2017, serial IDs have leading '2017'; remove this
+    mutate(SERIALNO = as.character(SERIALNO),
+           SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
+           SERIALNO = as.integer(SERIALNO))
  
   return(full)
 
