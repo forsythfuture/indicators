@@ -2,95 +2,71 @@ library(tidyverse)
 library(DBI)
 library(data.table)
 
-source('i_social_justice/palma_functions.R')
 
+source('i_social_justice/palma_functions.R')
+source('functions/puma_functions.R')
+
+by_county = TRUE
 
 # connect to PUMS database
 con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 
-household_incomes <- house_incomes(con, 2016)
+household_incomes <- house_incomes(con, 2016, state = 37, area_code = NA)
 
-#household_incomes <- household_incomes %>%
-#  filter(ST == 37 & PUMA %in% c(1801, 1802, 1803))
-
-# start incorporating replciate weights
-
-# replicate weight variables
-house_weights <- c('WGTP', paste0('wgtp', seq(1, 80))) 
-
-# create connection with housing replicate weights
-weights_tbl <- tbl(con, "h_16") %>%
-  filter(#PUMA %in% c(1801, 1802, 1803), # Winston Salem
-         ST == 37 # North Carolina (need both puma and state)
-         ) %>%
-  select(SERIALNO, !!house_weights)
-
-# initialize list to store palma values
-# each item in list will contain dataframe of Palma values for all grouped
-# geographies and one replicate weight
-palmas <- list()
-
-# iterate through each replicate weight
-for (weight in house_weights) {
+groupings <- function(household_incomes, level, year) {
   
-  # bring into memory dataframe with serialno and just one weight column
-  wgt <- weights_tbl %>%
-    select(SERIALNO, !!weight) %>%
-    collect() %>%
-    # convert to data table
-    as.data.table()
+  # this function determines what groupings to use in calculating Palma
+  # Input:
+  #     household_incomes: dataframe of household incomes created by house_incomes
+  #     levels: 'US', 'state', 'county', 'puma'
   
-  # this provides dataframe for entire US with income, weights, and geography
-  # it can then be filtered by geography
-  household_incomes_wgt <- wgt[household_incomes, on = 'SERIALNO']
+  # convert level to lowercase
+  level <- str_to_lower(level)
   
-  # change name of column so that it is the same of each iteration
-  setnames(household_incomes_wgt, weight, 'wgt')
-  
-  palmas[[weight]] <- household_incomes_wgt[
-    # filter out replicate weight values less than 1
-    wgt > 0][
-    # add additional rows based on the number of replicate weights
-    rep(seq(.N), wgt), !"wgt"][
-    # order based on income
-    order(income, PUMA)][
-    # calculate palma for each group
-    # use 'get' to convert string to object name
-    ,.(palma_cal(income)), by = 'PUMA']
+  # replace PUMA codes with county names if true
+  if (level %in% c('county', 'counties')) {
+    
+    # dataframe of all NC puma codes and county names
+    # codes are different starting in 2012, so ensure we are pulling in the right year
+    if (year > 2011) {
+      
+      nc_codes <- puma_area_code(letters, 'puma_counties.csv') %>% 
+        distinct(PUMA, .keep_all = TRUE) %>%
+        # only keep first word of county
+        # needed because names become columns later
+        mutate(cntyname = word(cntyname, 1))
+      
+    } else {
+      
+      nc_codes <- puma_area_code(letters, 'puma_counties.csv', puma12 = FALSE) %>% 
+        distinct(PUMA, .keep_all = TRUE) %>%
+        # only keep first word of county
+        # needed because names become columns later
+        mutate(cntyname = word(cntyname, 1))
+      
+    }
+    
+    # add county name to income dataframe
+    incomes <- household_incomes %>%
+      left_join(nc_codes, by = 'PUMA') %>%
+      rename(group = cntyname)
 
+  } else if (level %in% c('united states', 'us')) {
+    
+    incomes$group <- 'US'
+    
+  } else if (level %in% c('state', 'states')) {
+    
+    incomes$group <- incomes$ST
+    
+  } else if (level %in% c('puma', 'pums')) {
+    
+    income$group <- income$PUMA
+    
+  }
+  
+  return(income)
+  
 }
 
-# create list of column names for dataframe taht contains all Palmas
-col_names <- append('PUMA', house_weights)
-
-# currently, each weight is in a different dataframe
-# combine them all into one dataframe where each column is a replicate weight and each row is a geography
-palmas_full <- reduce(palmas, left_join, by = 'PUMA')
-# rename variables
-colnames(palmas_full) <- col_names
-# transpose so that rows are weights and columsn are geographies
-palmas_t <- as.data.frame(t(palmas_full))
-# the first row is the PUMA numeber; save as object and remove
-pumas <- palmas_t[1,]
-palmas_t <- palmas_t[2:nrow(palmas_t),]
-
-# This sequence does the following:
-#   calculate st error of palmas
-#   convert list of standard errors to dataframe with PUMAs included
-#   bind standard error dataframe to dataframe containing palma values
-#
-# calculate standard error
-palma_complete <- sapply(palmas_t,  function(x) palma_st_error(as.vector(x))) %>%
-  # bind with dataframe containing PUMAs
-  bind_rows(pumas) %>%
-  # transpose so that each row is a PUMA and each column is a SE
-  t() %>%
-  # convert back to dataframe
-  as.data.frame() %>%
-  # rename columns
-  rename(se = V1, PUMA = V2) %>%
-  # bind to dataframe containing PUMA values
-  left_join(palmas_full, ., by = 'PUMA') %>%
-  # remove replicate weight values
-  select(PUMA, WGTP, se) %>%
-  rename(palma = WGTP)
+codes <- puma_area_code(letters, 'puma_counties.csv')
