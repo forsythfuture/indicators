@@ -9,7 +9,8 @@
 #   _ calculate the palma for mutliple years
 #
 ########################################################
-
+library(DBI)
+library(tidyverse)
 
 palma_single <- function(state = NA, area_code = NA, year, data_directory) {
     
@@ -269,12 +270,17 @@ equivalence_scale <- function(num_adults, num_children) {
   )
 }
 
+year <- 2016
+con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
+state <- 37
+area_code <- NA
+
 house_incomes <- function(con, year, state = NA, area_code = NA) {
   
   # This function returns a dataframe of household incomes for the given year
-  # it returns income for the entire US
-  # for all states enter: seq(1, 100)
-  # for all PUMAs enter seq(1, 10000)
+
+  # create file name for tax liability file
+  #tax_file <- read_csv(paste0('tax_puma_cal/nc_tax_complete/nc_tax_complete', year, '.csv'))
   
   # vector that will return all states when filtered
   all_states <- seq(1, 100)
@@ -342,8 +348,12 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
     # but since only household variables were kept, all rows for the same family will be duplicates
     # remove duplicates, which will leave one row per household
     distinct() %>%
+    # in 2017, serial IDs have leading '2017'; remove this
+    mutate(SERIALNO = as.character(SERIALNO),
+           SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
+           SERIALNO = as.integer(SERIALNO)) #%>%
     # convert to datatable
-    as.data.table()
+    #as.data.table()
   
   return(house)
   
@@ -439,6 +449,9 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
     left_join(palmas_full, ., by = 'group') %>%
     # remove replicate weight values
     select(group, WGTP, se) %>%
+    # add year and level variables
+    mutate(year = year,
+           level = level) %>%
     rename(palma = WGTP)
   
   return(palma_complete)
