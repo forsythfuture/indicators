@@ -48,10 +48,12 @@ df <- read_csv('data/family_structure_all_years.csv') %>%
   filter(geo_description %in% geo_areas) %>%
   select(-label)
 aa <- filter(df,file == 'African American')
+#########################################################################################################
+
 aa_total <- filter(aa, str_detect(description, 'Estimate; Total:'))
 
-
-aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+##############################################BELOW######################################################
+aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
 
 
 aa_male_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years')
@@ -59,12 +61,16 @@ aa_male_below<-filter(aa,description=='Estimate; Income in the past 12 months be
 aa_female_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
 
 
+##############################################ABOVE######################################################
+
 aa_female_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'| description =='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
 
 
-aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
-aa_male_below <-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:')
+
+
+aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
+
 #########################################################################################################
 percentage<-left_join(aa_male_above,aa_total, by="year", COPY=FALSE)
 percent<-percentage[,4]/percentage[,11]
@@ -96,19 +102,34 @@ percent<-percentage[,4]/percentage[,11]
 percent<-rename(percent, percentage = estimate.x)
 aa_married_below<-cbind(aa_married_below,percent)
 #########################################################################################################
+
+
 #######################################WHITE#############################################################
 df <- read_csv('data/family_structure_all_years.csv') %>%
   filter(geo_description %in% geo_areas) %>%
   select(-label)
 white <- filter(df,file == 'White, non-Hispanic')
+#########################################################################################################
+
 white_total <- filter(white, str_detect(description, 'Estimate; Total:'))
-white_married_below<-filter(white,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
-white_male_below <-filter(white, description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-white_female_below<-filter(white,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
-white_female_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
-white_male_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-white_married_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
-white_male_below <-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+
+##############################################BELOW######################################################
+white_married_below<-filter(white,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+
+
+white_male_below<-filter(white,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years')
+
+white_female_below<-filter(white,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+##############################################ABOVE######################################################
+
+white_female_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'| description =='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+
+white_male_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:')
+
+
+white_married_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
 #########################################################################################################
 percentage<-left_join(white_male_above,white_total, by="year", COPY=FALSE)
 percent<-percentage[,4]/percentage[,11]
@@ -145,14 +166,28 @@ df <- read_csv('data/family_structure_all_years.csv') %>%
   filter(geo_description %in% geo_areas) %>%
   select(-label)
 hl <- filter(df,file == 'Hispanic/Latino')
+
+#########################################################################################################
+
 hl_total <- filter(hl, str_detect(description, 'Estimate; Total:'))
-hl_married_below<-filter(hl,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
-hl_male_below <-filter(hl, description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-hl_female_below<-filter(hl,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
-hl_female_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:')
-hl_male_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
-hl_married_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:')
-hl_male_below <-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:')
+
+##############################################BELOW######################################################
+hl_married_below<-filter(hl,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
+
+
+hl_male_below<-filter(hl,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years')
+
+hl_female_below<-filter(hl,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+##############################################ABOVE######################################################
+
+hl_female_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years'| description =='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+
+hl_male_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:')
+
+
+hl_married_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
 #########################################################################################################
 percentage<-left_join(hl_male_above,hl_total, by="year", COPY=FALSE)
 percent<-percentage[,4]/percentage[,11]
@@ -198,9 +233,31 @@ Proportion_MOE <- function(tm,t,n,p){
   MOE<- (sqrt(n^2-p^2*tm))/t
   return(MOE)
 }
-#################################################################################################################
-MOE_Renter=Proportion_MOE(aa_total[,4], Total[,4], Renter[,5],Renter[,11])
-test=Proportion_MOE(aa_total[,4],aa_total[,5], aa_female_above[,4], aa_female_above[,9])
+##########################################################################################################
+aa_female_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_female_above[,4], aa_female_above[,9])
+aa_female_above_moe<-rename(aa_female_above_moe, moe_percentage=estimate )
+aa_female_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5], aa_female_below[,4],aa_female_below[,9])
+aa_male_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_male_above[,4], aa_male_above[,9])
+aa_male_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5], aa_male_below[,4],aa_male_below[,9])
+aa_married_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_married_above[,4],aa_married_above[,9])
+aa_married_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5],aa_married_below[,4],aa_married_below[,9])
+
+##########################################################################################################
+white_female_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_female_above[,4], white_female_above[,9])
+white_female_below_moe<-Proportion_MOE(white_total[,4], white_total[,5], white_female_below[,4],white_female_below[,9])
+white_male_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_male_above[,4], white_male_above[,9])
+white_male_below_moe<-Proportion_MOE(white_total[,4], white_total[,5], white_male_below[,4],white_male_below[,9])
+white_married_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_married_above[,4],white_married_above[,9])
+white_married_below_moe<-Proportion_MOE(white_total[,4], white_total[,5],white_married_below[,4],white_married_below[,9])
+##########################################################################################################
+hl_female_above_moe<-Proportion_MOE(hl_total[,4],hl_total[,5], hl_female_above[,4], hl_female_above[,9])
+hl_female_below_moe<-Proportion_MOE(hl_total[,4], hl_total[,5], hl_female_below[,4],hl_female_below[,9])
+hl_male_above_moe<-Proportion_MOE(hl_total[,4],hl_total[,5], hl_male_above[,4], hl_male_above[,9])
+hl_male_below_moe<-Proportion_MOE(hl_total[,4], hl_total[,5], hl_male_below[,4],hl_male_below[,9])
+hl_married_above_moe<-Proportion_MOE(hl_total[,4],hl_total[,5], hl_married_above[,4],hl_married_above[,9])
+hl_married_below_moe<-Proportion_MOE(hl_total[,4], hl_total[,5],hl_married_below[,4],hl_married_below[,9])
+##########################################################################################################
+
 ```
 
 ### US, NC, and county comparisions
