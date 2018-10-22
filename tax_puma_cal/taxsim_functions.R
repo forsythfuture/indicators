@@ -64,8 +64,7 @@ pop_taxes <- function(con, year) {
   pop <- population %>%
     select(!!pop_vars) %>%
     # need to collect now because cannot transform NA without collecting
-    filter(ST == 37,
-           PUMA == 1801) %>%
+    filter(ST == 37) %>%
     collect()
   
   # prior to 2010, RELP column is called REL
@@ -109,29 +108,26 @@ pop_taxes <- function(con, year) {
     # identify number of children below certain ages within tax groups
     # this allows us to calculate exemptions, EITC, and child tax credit
     #
-    # tax units get exemptions for dependents for all children 22 and under
-    left_join(num_children(., 22), by = c('SERIALNO', 'tax_unit')) %>%
-    rename(dep_exemptions = num_under,
-           fips = ST # rename states to TAXSIM requirement while we are renaming things
-           ) %>%
-    # EITC qualifying child must be under 22, and limit is three
-    # since this is the same age limit as dependent children, we can just use it
-    # but we need to cap the number of children at three
-    mutate(EIC = ifelse(dep_exemptions > 3, 3, dep_exemptions)) %>%
+    # tax units get exemptions for dependents for all children 19 and under
+    left_join(num_children(., 19), by = c('SERIALNO', 'tax_unit')) %>%
+    rename(dep_exemptions = num_under) %>%
+    # EITC qualifying child must be under 19
+    mutate(eitc_children = dep_exemptions) %>%
     # tax units get child tax credit, and amount depends on number of children 16 or younger
     left_join(num_children(., 16), by = c('SERIALNO', 'tax_unit')) %>%
-    rename(n24 = num_under) %>%
+    rename(child_credit = num_under) %>%
+    # tax units get dependent care credit for children 12 and under
+    # left_join(num_children(., 12), by = c('SERIALNO', 'tax_unit')) %>%
+    # rename(dep_care = num_under) %>%
     # calculate tax unit filing status (single or married filing jointly)
     # all married couples are assumed to file jointly
     # in REL column 1 signifies spouse to reference person, so if there is a 1
     # in the tax unit we assume that unit is married filing jointly (number 2 in taxsim)
     # otherwise, unit is single (1 in taxsim)
-    mutate(MARS = ifelse(1 %in% RELP, 2, 1)) %>%
-    # since 2 signifies joint and 1 single, we can calculate total exemptions 
-    # by adding filing status to number of dependent exemptions
-    mutate(XTOT = MARS + dep_exemptions) %>%
+    mutate(status = ifelse(1 %in% RELP, 2, 1)) %>%
     # only keep needed variables
-    select(SERIALNO, SPORDER, tax_unit, fips, RELP, AGEP, taxable_income, SSP, EIC:XTOT) %>%
+    select(SERIALNO, SPORDER, tax_unit, ST, RELP, AGEP, 
+           taxable_income, status, SSP, dep_exemptions:child_credit) %>%
     ungroup()
 
   
@@ -148,21 +144,21 @@ pop_taxes <- function(con, year) {
   ref <- pop %>%
     filter(RELP == 0) %>%
     # rename reference person variables to match TAXSIM
-    rename(age_head = AGEP, e00200p = taxable_income)
+    rename(primary_income = taxable_income)
   
   # merge with dataset for second spouse
   family <- pop %>%
     # RELP of 1 signifies the spouse
     filter(RELP == 1) %>%
     select(!!cols_spouse) %>%
-    rename(age_spouse = AGEP, e00200s = taxable_income) %>%
+    rename(AGES = AGEP, spouse_income = taxable_income) %>%
     left_join(ref, ., by = c('SERIALNO', 'tax_unit')) %>%
     select(-RELP)  %>%
     # NA values for spouse information (age, income) represents not having a spouse
     # these can be change to zero
-    mutate_at(vars(age_spouse:e00200s), funs(replace_na(., 0))) %>%
+    mutate_at(vars(AGES:spouse_income), funs(replace_na(., 0))) %>%
     # compute filing unit income
-    mutate(e00200 = e00200p + e00200s,
+    mutate(unit_income = primary_income + spouse_income,
            # social security (SSP) is entered at the filing unit level
            # sum each spouse's social security
            SSP = SSP.x + SSP.y) %>%
@@ -174,7 +170,7 @@ pop_taxes <- function(con, year) {
   #
   # create dataset for children
   
-  # children are those whithin household and 22 and under
+  # children are those whithin household and 19 and under
   child <- pop %>%
     filter(RELP %in% c(2, 3, 4),   # children have status of 2, 3, or 4
            tax_unit == 100, # ensures filer is in household with parents
@@ -182,14 +178,19 @@ pop_taxes <- function(con, year) {
            ) %>%
     # children cannot take exemptions, and do not qualify for EITC and child tax credit
     # multuply column by 0 to convert to 0
-    mutate_at(vars(EIC, n24, XTOT), funs(. * 0)) %>%
+    mutate_at(vars(eitc_children, child_credit, dep_exemptions), funs(. * 0)) %>%
     # change column names to meet TAXSIM requirements
-    rename(age_head = AGEP, e00200 = taxable_income) %>%
+    rename(unit_income = taxable_income) %>%
     # create variables for ages and incomes of other people, and set to 0 for most
-    mutate(age_spouse = 0,
-           e00200p = e00200, # set to unit taxable income
-           e00200s = 0, # zero since filing single
-           MARS = 1 # children filing single
+    mutate(AGES = 0,
+           primary_income = unit_income, # set to unit taxable income
+           spouse_income = 0, # zero since filing single
+           status = 1, # children filing single
+           # all child columns should be zero
+           eitc_children = 0,
+           child_credit = 0,
+           # cannot take exemption if claimed by parent
+           dep_exemptions = 0
            ) %>%
     select(-RELP, -tax_unit)
   
@@ -204,29 +205,32 @@ pop_taxes <- function(con, year) {
     #
     # cannot take exemptions, and do not qualify for EITC and child tax credit
     # multuply column by 0 to convert to 0
-    mutate_at(vars(EIC, n24, XTOT), funs(. * 0)) %>%
+    mutate_at(vars(eitc_children, child_credit, dep_exemptions), funs(. * 0)) %>%
     # change column names to meet TAXSIM requirements
-    rename(age_head = AGEP, e00200 = taxable_income) %>%
+    rename(unit_income = taxable_income) %>%
     # create variables for ages and incomes of other people, and set to 0 for most
-    mutate(age_spouse = 0,
-           e00200p = e00200, # set to unit taxable income
-           e00200s = 0, # zero since filing single
-           MARS = 1 # filing single
+    mutate(AGES = 0,
+           primary_income = unit_income, # set to unit taxable income
+           spouse_income = 0, # zero since filing single
+           status = 1, # children filing single
+           # all child columns should be zero
+           eitc_children = 0,
+           child_credit = 0,
+           # get exemption for themselves
+           dep_exemptions = 0
     ) %>%
-    ungroup() %>%
     select(-RELP, -tax_unit) %>%
     bind_rows(., family, child) %>%
-    # rename to convert to TAXSIM names
-    #rename(RECID = SERIALNO) %>%
     # add year
-    mutate(FLPDYR = year) %>%
+    mutate(year = year,
+           # convert NC fips code to its IRS code
+           ST = 34,
+           dep_care = 0) %>%
     # add columns of zeros for empty columns
-    bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 15))) %>%
+    bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 14))) %>%
     # reorder columns to match required order for online tax system
-    select(SERIALNO, FLPDYR, fips, MARS, age_head, age_spouse, XTOT, V1, n24, EIC, e00200p, e00200s,
-           V2:V8, SSP, V8:V15) %>%
-    # convert NC fips code to its IRS code
-    mutate(fips = 34) %>%
+    select(SERIALNO, year, ST, status, AGEP, AGES, dep_exemptions, dep_care, child_credit, 
+           eitc_children, primary_income, spouse_income, V1:V7, SSP, V8:V14) %>%
     # in 2017, serial IDs have leading '2017'; remove this
     mutate(SERIALNO = as.character(SERIALNO),
            SERIALNO = str_replace_all(SERIALNO, '^2017', ''),

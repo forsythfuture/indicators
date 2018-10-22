@@ -196,17 +196,18 @@ palma_cal <- function (income_vec) {
   
 }
 
-palma_st_error <- function(palma_vec) {
+palma_st_error <- function(palmas_full) {
   
-  # This function takes as input a vector of Palma values; one value for each weight
+  # This function takes as input a dataframe of Palma values; each column is a different weght and each row
+  # is a different geographic unit
   # its output is the standard error of the Palma
   # reference: 
   #   Public Use Microdata Sample (PUMS), Accuracy of the Data (2016), Census Bureau, p. 16
   
   # squared difference
-  sq_diff <- (palma_vec - palma_vec[1])^2 %>%
-      # sum of squared differences
-      sum()
+  sq_diff <- lapply(palmas_full[3:length(palmas_full)], function(x) (palmas_full[2] - x)^2) %>%
+    as.data.frame() %>%
+    rowSums()
     
   # multiply by 4/80 and take square root
   sq_diff <- sqrt((4/80)*sq_diff)
@@ -269,11 +270,6 @@ equivalence_scale <- function(num_adults, num_children) {
     )
   )
 }
-
-year <- 2016
-con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
-state <- 37
-area_code <- NA
 
 house_incomes <- function(con, year, state = NA, area_code = NA) {
   
@@ -349,11 +345,11 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
     # remove duplicates, which will leave one row per household
     distinct() %>%
     # in 2017, serial IDs have leading '2017'; remove this
-    mutate(SERIALNO = as.character(SERIALNO),
-           SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
-           SERIALNO = as.integer(SERIALNO)) #%>%
+    #mutate(SERIALNO = as.character(SERIALNO),
+    #       SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
+    #       SERIALNO = as.integer(SERIALNO)) %>%
     # convert to datatable
-    #as.data.table()
+    as.data.table()
   
   return(house)
   
@@ -367,15 +363,22 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   household_incomes <- house_incomes(con, year, state = state, area_code = area_code)
   
   # create groupings that are needed to calculate Palma
-  household_incomes <- grpupings(household_incomes, level, year)
+  household_incomes <- groupings(household_incomes, level, year)
   
   # start incorporating replciate weights
   
+  # replciate weight variable names are lower case until 2017 and upper case starting in 2017
+  weight_names <- ifelse(year >= 2017, 'WGTP', 'wgtp')
   # replicate weight variables
-  house_weights <- c('WGTP', paste0('wgtp', seq(1, 80))) 
+  house_weights <- c(weight_names, paste0('WGTP', seq(1, 80)))
+  
+  # create housing table name based on year
+  tbl_name <- as.character(year) %>%
+    str_extract(., '[0-9][0-9]$') %>%
+    paste0('h_', .)
   
   # create connection with housing replicate weights
-  weights_tbl <- tbl(con, "h_16") %>%
+  weights_tbl <- tbl(con, tbl_name) %>%
     filter(#PUMA %in% c(1801, 1802, 1803), # Winston Salem
       ST == 37 # North Carolina (need both puma and state)
     ) %>%
@@ -416,6 +419,8 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
     
   }
   
+  rm(wgt)
+  
   # create list of column names for dataframe that contains all Palmas
   col_names <- append('group', house_weights)
   
@@ -425,36 +430,43 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   # rename variables
   colnames(palmas_full) <- col_names
   # transpose so that rows are weights and columsn are geographies
-  palmas_t <- as.data.frame(t(palmas_full))
-  # the first row is the PUMA numeber; save as object and remove
-  pumas <- palmas_t[1,]
-  palmas_t <- palmas_t[2:nrow(palmas_t),]
+  #palmas_t <- as.data.frame(t(palmas_full))
+  # the first row is the PUMA number or county; save as object and remove
+  #pumas <- palmas_t[1,]
+  #palmas_t <- palmas_t[2:nrow(palmas_t),]
   
   # This sequence does the following:
   #   calculate st error of palmas
   #   convert list of standard errors to dataframe with PUMAs included
   #   bind standard error dataframe to dataframe containing palma values
   #
-  # calculate standard error
-  palma_complete <- sapply(palmas_t,  function(x) palma_st_error(as.vector(x))) %>%
-    # bind with dataframe containing PUMAs
-    bind_rows(pumas) %>%
-    # transpose so that each row is a PUMA and each column is a SE
-    t() %>%
-    # convert back to dataframe
-    as.data.frame() %>%
-    # rename columns
-    rename(se = V1, group = V2) %>%
-    # bind to dataframe containing PUMA values
-    left_join(palmas_full, ., by = 'group') %>%
-    # remove replicate weight values
-    select(group, WGTP, se) %>%
-    # add year and level variables
-    mutate(year = year,
-           level = level) %>%
-    rename(palma = WGTP)
+  # create dataframe
+  palmas_complete <- data.frame(geography = palmas_full$group,
+                                level = level,
+                                year = year,
+                                palma = palmas_full$WGTP,
+                                se = palma_st_error(palmas_full))
+  # se <- palma_st_error(palmas_full)
+  # 
+  # palma_complete <- sapply(palmas_t,  function(x) palma_st_error(as.vector(x))) %>%
+  #   # bind with dataframe containing PUMAs
+  #   bind_rows(pumas) %>%
+  #   # transpose so that each row is a PUMA and each column is a SE
+  #   t() %>%
+  #   # convert back to dataframe
+  #   as.data.frame() %>%
+  #   # rename columns
+  #   rename(se = V1, group = V2) %>%
+  #   # bind to dataframe containing PUMA values
+  #   left_join(palmas_full, ., by = 'group') %>%
+  #   # remove replicate weight values
+  #   select(group, WGTP, se) %>%
+  #   # add year and level variables
+  #   mutate(year = year,
+  #          level = level) %>%
+  #   rename(palma = WGTP)
   
-  return(palma_complete)
+  return(palmas_complete)
   
 }
 
