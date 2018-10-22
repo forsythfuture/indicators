@@ -271,10 +271,11 @@ equivalence_scale <- function(num_adults, num_children) {
   )
 }
 
+
 house_incomes <- function(con, year, state = NA, area_code = NA) {
   
   # This function returns a dataframe of household incomes for the given year
-
+  
   # create file name for tax liability file
   #tax_file <- read_csv(paste0('tax_puma_cal/nc_tax_complete/nc_tax_complete', year, '.csv'))
   
@@ -304,11 +305,11 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
   house <- housing %>%
     select(!!house_vars) %>%
     filter(# state and PUMA filter
-           # if state or PUMA is na, use vector containing all states and pumas for filtering
-           if (!is.na(!!state)) ST %in% !!state else ST %in% !!all_states,
-           if (!is.na(!!area_code)) PUMA %in% !!area_code else PUMA %in% !!all_pumas,
-           TYPE == 1, # housing units only
-           (!is.na(HINCP) & HINCP >= 0)) %>% # positive household income
+      # if state or PUMA is na, use vector containing all states and pumas for filtering
+      if (!is.na(!!state)) ST %in% !!state else ST %in% !!all_states,
+      if (!is.na(!!area_code)) PUMA %in% !!area_code else PUMA %in% !!all_pumas,
+      TYPE == 1, # housing units only
+      (!is.na(HINCP) & HINCP >= 0)) %>% # positive household income
     select(-TYPE) %>%
     # merge with population data
     left_join(population, by = 'SERIALNO') %>%
@@ -354,7 +355,6 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
   return(house)
   
 }
-
 
 
 palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
