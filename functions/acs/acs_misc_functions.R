@@ -327,7 +327,7 @@ ff_data_dt <- function(df, col_names, for_tableau=FALSE) {
 }
 
 
-ff_inflation_adjust <- function(df, wages_col, se_col, year_adjust) {
+ff_inflation_adjust <- function(df, wages_col, se_col, year_adjust, error = FALSE) {
   
   library(xts)
   library(lubridate)
@@ -343,6 +343,7 @@ ff_inflation_adjust <- function(df, wages_col, se_col, year_adjust) {
   #              (example: as wages and not "wages")
   #   se_col: column that contains standard error
   #   year_adjust: adjust all dollar amounts to this year
+  #   errors: whether dataset contains standard errors that also need to be adjusted
   #
   # Output:
   #   The same dataframe, but with an additional column called 'estimate_adj'
@@ -355,7 +356,10 @@ ff_inflation_adjust <- function(df, wages_col, se_col, year_adjust) {
   #########################################################################
   
   wages_col <- enquo(wages_col)
-  se_col <- enquo(se_col)
+  
+  if (error == TRUE) {
+    se_col <- enquo(se_col)
+  }
   
   # import CPI All items index data
   monthly_cpi <- read.table("http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt",
@@ -376,14 +380,18 @@ ff_inflation_adjust <- function(df, wages_col, se_col, year_adjust) {
   df <- left_join(df, yearly_cpi, by = 'year') %>%
     # adjust income in the given year for inflation since the base year
     # multiply the wage amount in the current year by the adjustment factor
-    mutate(estimate_adj = round( !! wages_col * adj_factor, 0 )) %>%
-    # recalculate adjusted se, moe , and cv
-    mutate(se_adj = round( !! se_col / adj_factor), 0 ) %>%
-    mutate(moe_adj = round( se_adj*1.96, 0),
-           cv_adj = round( (se_adj / estimate_adj)*100, 2 )) %>%
-    # remove unneeded columns
-    select(-cpi, -adj_factor)
+    mutate(estimate_adj = round( !! wages_col * adj_factor, 0 ))
+    # recalculate adjusted se, moe , and cv only if needed
+  if (error == TRUE) {
+    df <- df %>%
+      mutate(se_adj = round( !! se_col / adj_factor), 0 ) %>%
+      mutate(moe_adj = round( se_adj*1.96, 0),
+             cv_adj = round( (se_adj / estimate_adj)*100, 2 ))
+  }
   
+  df <- df %>%
+    select(-cpi, -adj_factor)
+   
   return(df)
 }
 
