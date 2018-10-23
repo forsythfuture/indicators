@@ -15,10 +15,12 @@ state_palma <- data.frame()
 
 # iterate through each year, calculating Palma
 for (yr in seq(2006, 2017)) {
+  
+  print(yr)
 
   state_palma_yr <- palmas_complete(con = con, 
                                      year = yr, 
-                                     level = 'county', 
+                                     level = 'state', 
                                      state = 37, 
                                      area_code = NA)
   
@@ -30,6 +32,8 @@ for (yr in seq(2006, 2017)) {
 
 }
 
+<<<<<<< HEAD
+=======
 ### Create dataset to be used in analysis; place data in format to be used with shiny app
 
 ## change puma code with puma name
@@ -90,6 +94,7 @@ palma <- left_join(palma, codes, by = c('geo_description' = 'PUMA12name')) %>%
 
 write_csv(palma, 'i_social_justice/data/palma_shiny.csv')
 
+>>>>>>> 496b929b610ea9fb322c4885c3ec4850dc3b60ed
 ### palmas for all PUMAS in NC in all years ###
 
 # # initiate list to store all Palmas

@@ -370,7 +370,7 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   # replciate weight variable names are lower case until 2017 and upper case starting in 2017
   weight_names <- ifelse(year >= 2017, 'WGTP', 'wgtp')
   # replicate weight variables
-  house_weights <- c(weight_names, paste0('WGTP', seq(1, 80)))
+  house_weights <- c('WGTP', paste0(weight_names, seq(1, 80)))
   
   # create housing table name based on year
   tbl_name <- as.character(year) %>%
