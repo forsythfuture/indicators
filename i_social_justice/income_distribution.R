@@ -16,7 +16,7 @@ source('functions/puma_functions.R')
 con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 state <- 37
 area_code = c(1801, 1802, 1803)
-year <- 2016
+year <- 2017
 
 # vector that will return all states when filtered
 all_states <- seq(1, 100)
@@ -50,15 +50,33 @@ income <- income %>%
 # use weights to repeat rows
 income <- income[rep(seq(.N), WGTP), !"WGTP"]
 
-# create histogram
-income %>%
+# create transformations
+income <- income %>%
   filter(HINCP >= 500) %>%
   as.tibble() %>%
-  mutate(PUMA = as.factor(PUMA)) %>%
+  mutate(PUMA = as.factor(PUMA),
+         PUMA = fct_recode(PUMA, `North Winston-Salem` = "1801", 
+                           `South Winston-Salem` = "1802",
+                           `Kernersville and Clemmons` = '1803'))
+
+income %>%
   ggplot(aes(HINCP, colour = PUMA, fill = PUMA)) +
-    geom_density(alpha = 0.1) +
-  scale_x_continuous(trans = 'log', 
-                     breaks = c(1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000),
-                     labels = scales::comma) +
+  stat_ecdf(pad = FALSE) +
+  scale_y_continuous('Percentage of population under income level',
+                     labels = scales::percent) +
+  scale_x_continuous('Income',
+                     trans = 'log', labels = scales::comma) +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = 'Distribution of incomes by PUMA in 2016',
+    color = 'Area')
+
+# create kde
+income %>%
+  ggplot(aes(HINCP, colour = PUMA, fill = PUMA)) +
+    geom_density(alpha = 0.1, adjust = 2) +
+  scale_x_continuous('Income',
+                     trans = 'log', labels = scales::comma) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = 'Distribution of incomes by PUMA in 2017')
