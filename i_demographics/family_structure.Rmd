@@ -235,13 +235,24 @@ Proportion_MOE <- function(tm,t,n,p){
 }
 ##########################################################################################################
 aa_female_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_female_above[,4], aa_female_above[,9])
-aa_female_above_moe<-rename(aa_female_above_moe, moe_percentage=estimate )
+aa_female_above_moe<-rename(aa_female_above_moe, moe_percentage= estimate)
+aa_female_above<-cbind(aa_female_above,aa_female_above_moe)
+############################################################################################################
 aa_female_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5], aa_female_below[,4],aa_female_below[,9])
+aa_female_below_moe<-rename(aa_female_below_moe, moe_percentage=estimate )
+aa_female_below<-cbind(aa_female_below,aa_female_below_moe)
+############################################################################################################
 aa_male_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_male_above[,4], aa_male_above[,9])
+aa_male_above_moe<-rename(aa_male_above_moe, moe_percentage= estimate)
+aa_male_above<-cbind(aa_male_above,aa_male_above_moe)
+############################################################################################################
 aa_male_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5], aa_male_below[,4],aa_male_below[,9])
+aa_male_below_moe<-rename(aa_male_below_moe, moe_percentage=estimate )
+aa_male_below<-cbind(aa_male_below,aa_male_below_moe)
+############################################################################################################
 aa_married_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_married_above[,4],aa_married_above[,9])
+##########################################################################################################
 aa_married_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5],aa_married_below[,4],aa_married_below[,9])
-
 ##########################################################################################################
 white_female_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_female_above[,4], white_female_above[,9])
 white_female_below_moe<-Proportion_MOE(white_total[,4], white_total[,5], white_female_below[,4],white_female_below[,9])
