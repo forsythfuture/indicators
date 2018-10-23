@@ -15,10 +15,12 @@ state_palma <- data.frame()
 
 # iterate through each year, calculating Palma
 for (yr in seq(2006, 2017)) {
+  
+  print(yr)
 
   state_palma_yr <- palmas_complete(con = con, 
                                      year = yr, 
-                                     level = 'county', 
+                                     level = 'state', 
                                      state = 37, 
                                      area_code = NA)
   
@@ -32,39 +34,39 @@ for (yr in seq(2006, 2017)) {
 
 ### palmas for all PUMAS in NC in all years ###
 
-# initiate list to store all Palmas
-puma_palma <- data.frame()
-
-# iterate through each year, calculating Palma
-for (yr in seq(2017, 2017)) {
-  
-  puma_palma_yr <- palmas_complete(con = con, 
-                                     year = yr, 
-                                     level = 'puma', 
-                                     state = 37, 
-                                     area_code = NA)
-  
-  puma_palma <- bind_rows(puma_palma, puma_palma_yr)
-  
-  # file name to write out
-  write_file <- paste0('i_social_justice/puma_palmas_code', as.character(yr), '.csv')
-  write_csv(puma_palma, write_file)
-  
-}
-
-
-
-county <- bind_rows(
-  read_csv('i_social_justice/puma_palmas2006.csv'),
-  read_csv('i_social_justice/puma_palmas2016.csv'),
-  read_csv('i_social_justice/puma_palmas2017.csv'))
-area_code <- bind_rows(
-  read_csv('i_social_justice/puma_palmas_code2016.csv'),
-  read_csv('i_social_justice/puma_palmas_code2017.csv')) %>%
-  mutate(geography = as.character(geography))
-
-a <- bind_rows(county, area_code) 
-
-
-a %>%
-  write_csv(., 'i_social_justice/data/palma_county_puma.csv')
+# # initiate list to store all Palmas
+# puma_palma <- data.frame()
+# 
+# # iterate through each year, calculating Palma
+# for (yr in seq(2017, 2017)) {
+#   
+#   puma_palma_yr <- palmas_complete(con = con, 
+#                                      year = yr, 
+#                                      level = 'puma', 
+#                                      state = 37, 
+#                                      area_code = NA)
+#   
+#   puma_palma <- bind_rows(puma_palma, puma_palma_yr)
+#   
+#   # file name to write out
+#   write_file <- paste0('i_social_justice/puma_palmas_code', as.character(yr), '.csv')
+#   write_csv(puma_palma, write_file)
+#   
+# }
+# 
+# 
+# 
+# county <- bind_rows(
+#   read_csv('i_social_justice/puma_palmas2006.csv'),
+#   read_csv('i_social_justice/puma_palmas2016.csv'),
+#   read_csv('i_social_justice/puma_palmas2017.csv'))
+# area_code <- bind_rows(
+#   read_csv('i_social_justice/puma_palmas_code2016.csv'),
+#   read_csv('i_social_justice/puma_palmas_code2017.csv')) %>%
+#   mutate(geography = as.character(geography))
+# 
+# a <- bind_rows(county, area_code) 
+# 
+# 
+# a %>%
+#   write_csv(., 'i_social_justice/data/palma_county_puma.csv')
