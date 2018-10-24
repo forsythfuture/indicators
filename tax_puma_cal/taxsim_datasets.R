@@ -44,49 +44,25 @@ for (yr in seq(2006, 2016)) {
 ### take estimated tax liability from taxsim output and distill into estimate household tax liability
 
 # create list of all tax output files
-file_names <- list.files(taxsim_dir, full.names = TRUE)
+file_names <- list.files('tax_puma_cal/nc_from_taxsim_online', full.names = TRUE)
 
 # import all files into a list
-tax_liab_list <- lapply(file_names, read_delim, delim = ' ')
+tax_liab <- lapply(file_names, read_delim, delim = ' ') %>%
+  # currently each year is in a separerate list element
+  # combine all years into a single datarame
+  # this is possible because there is a year column
+  bind_rows() %>%
+  # calculate total tax liability, which is the sum of
+  # federal income, state income, and payroll taxes (FICA)
+  mutate(total_taxes = fiitax + siitax + fica) %>%
+  # group by year and serial number to calculate household taxes
+  group_by(taxsim_id, year) %>%
+  summarize(tax_liability = sum(total_taxes)) %>%
+  ungroup() %>%
+  # change name of taxsim_id to SERIALNO so that it matches PUMA terminology
+  rename(SERIALNO = taxsim_id) %>%
+  # sort by year and serial no
+  arrange(year, SERIALNO)
 
-# bind all dataframes into one that contains all years
-tax_l
-
-# iterate through each year from 2006 to 2017, and 
-# calculate total household taxes liability
-for (yr in seq(2006, 2017)) {
-  
-  
-}
-
-taxes_from_taxsim <- read_delim('tax_puma_cal/nc_from_taxsim_online/tax_from_taxsim_online_2017.txt', delim = ' ') %>%
-  mutate(tax_liability = fiitax + siitax + fica) 
-
-taxes_from_taxsim_complete <- taxes_from_taxsim %>%
-  group_by(taxsim_id) %>%
-  summarize(total_taxes = sum(tax_liability)) %>%
-  mutate(taxsim_id = as.numeric(taxsim_id))
-
-table_name <- 'h_17'
-households <- tbl(con, table_name)
-households <- households %>%
-  select(SERIALNO, HINCP, ST) %>%
-  # need to collect now because cannot transform NA without collecting
-  filter(ST == 37) %>%
-  collect() %>%
-  mutate(SERIALNO = as.numeric(SERIALNO))
-
-total <- full_join(households, taxes_from_taxsim_complete, by = c('SERIALNO' = 'taxsim_id'))
-
-all_na <- filter(total, !(is.na(HINCP) & is.na(total_taxes)))
-
-taxes_to_taxsim_complete <- taxes_to_taxsim %>%
-  mutate(total_income = primary_income + spouse_income) %>%
-  group_by(SERIALNO) %>%
-  summarize(family_income = sum(total_income)) %>%
-  mutate(SERIALNO = as.numeric(SERIALNO))
-
-taxes_full <- left_join(taxes_from_taxsim_complete, taxes_to_taxsim_complete, by = c('taxsim_id' = 'SERIALNO'))
-
-ggplot(total, aes(HINCP, total_taxes)) +
-  geom_point()
+# write out tax liabilities
+#write_csv(tax_liab, 'tax_puma_cal/nc_tax_liabilities.csv')
