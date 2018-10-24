@@ -230,11 +230,7 @@ pop_taxes <- function(con, year) {
     bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 14))) %>%
     # reorder columns to match required order for online tax system
     select(SERIALNO, year, ST, status, AGEP, AGES, dep_exemptions, dep_care, child_credit, 
-           eitc_children, primary_income, spouse_income, V1:V7, SSP, V8:V14) %>%
-    # in 2017, serial IDs have leading '2017'; remove this
-    mutate(SERIALNO = as.character(SERIALNO),
-           SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
-           SERIALNO = as.integer(SERIALNO))
+           eitc_children, primary_income, spouse_income, V1:V7, SSP, V8:V14)
  
   return(full)
 

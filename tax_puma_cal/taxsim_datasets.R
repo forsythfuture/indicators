@@ -6,46 +6,42 @@
 ###########################################################################
 
 library(tidyverse)
-library(tidyverse)
 library(DBI)
 library(data.table)
 
-source('i_social_justice/palma_functions.R')
 source('functions/puma_functions.R')
 source('tax_puma_cal/taxsim_functions.R')
 
 # connect to PUMS database
 con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
-year <- 2017
 
 # iterate through each year and create dataset for TAXSIM; then save dataset as csv file
 
-for (yr in seq(2006, 2017)) {
+for (yr in seq(2006, 2016)) {
   
   print(yr)
   
   # create file name of output based on year
-  file_name <- paste0('taxes_', as.character(yr), '.csv')
+  file_name <- paste0('tax_puma_cal/nc_to_taxsim_online/taxes_to_taxsim_', as.character(yr), '.csv')
   
-  yr <- 2017
-  
-  a <- pop_taxes(con, yr) #%>%
-  
-  
-  c <- a %>% group_by(SERIALNO) %>% summarize(income = sum(e00200p))
-  
-  write_csv(a, 'test_2017.csv', col_names = FALSE)
-  from_taxsim/
-    #write_csv(., file_name, col_names = FALSE)
-  b <- house_incomes(con, 2017, state = 37, area_code = 1801)
+ # calculate taxable income and write out results
+  taxes_to_taxsim <- pop_taxes(con, yr) #%>%
+    #write_csv(file_name, col_names = FALSE)
+
 }
 
-b <- house_incomes(con, 2017, state = 37, area_code = 1801)
+taxes_from_taxsim <- read_delim('tax_puma_cal/nc_from_taxsim_online/tax_from_taxsim_online_2017.txt', delim = ' ') %>%
+  mutate(tax_liability = fiitax + siitax + fica) 
 
-tax <- read_delim('tax_puma_cal/nc_from_taxsim/calculated_2017.txt', 
-                   delim = ' ') %>%
-  mutate(taxes = fiitax + siitax + fica) %>%
+taxes_from_taxsim_complete <- taxes_from_taxsim%>%
   group_by(taxsim_id) %>%
-  summarize(total_taxes = sum(taxes))
+  summarize(total_taxes = sum(tax_liability)) %>%
+  mutate(taxsim_id = as.numeric(taxsim_id))
 
-c <- full_join(b, tax, by - )
+taxes_to_taxsim_complete <- taxes_to_taxsim %>%
+  mutate(total_income = primary_income + spouse_income) %>%
+  group_by(SERIALNO) %>%
+  summarize(family_income = sum(total_income)) %>%
+  mutate(SERIALNO = as.numeric(SERIALNO))
+
+taxes_full <- left_join(taxes_from_taxsim_complete, taxes_to_taxsim_complete, by = c('taxsim_id' = 'SERIALNO'))
