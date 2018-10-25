@@ -57,6 +57,7 @@ pop_taxes <- function(con, year) {
                 'AGEP', # age
                 'WAGP', # wages or salary income
                 'SEMP', # self employment income
+                'INTP', # interest income
                 'SSP' # social security income
                 )
   
@@ -94,7 +95,7 @@ pop_taxes <- function(con, year) {
   
   pop <- pop %>%
     # replace income NA values with 0
-    mutate_at(vars(WAGP, SEMP, SSP), funs(replace_na(., 0))) %>%
+    mutate_at(vars(WAGP, INTP, SEMP, SSP), funs(replace_na(., 0))) %>%
     mutate(taxable_income = WAGP + SEMP) %>%
     # create tax units
     # relationship statuses of 0, 1, 2, 3 and 4 represent a tax unit (wife / husband and daugher / son)
@@ -127,7 +128,7 @@ pop_taxes <- function(con, year) {
     mutate(status = ifelse(1 %in% RELP, 2, 1)) %>%
     # only keep needed variables
     select(SERIALNO, SPORDER, tax_unit, ST, RELP, AGEP, 
-           taxable_income, status, SSP, dep_exemptions:child_credit) %>%
+           taxable_income, status, INTP, SSP, dep_exemptions:child_credit) %>%
     ungroup()
 
   
@@ -138,7 +139,7 @@ pop_taxes <- function(con, year) {
   # then merge the datasets
   
   # column needed for dataset with spouse
-  cols_spouse <- c('SERIALNO', 'tax_unit', 'AGEP', 'SSP', 'taxable_income')
+  cols_spouse <- c('SERIALNO', 'tax_unit', 'AGEP', 'SSP', 'taxable_income', 'INTP')
   
   # data set for reference person (first spouse)
   ref <- pop %>%
@@ -161,7 +162,8 @@ pop_taxes <- function(con, year) {
     mutate(unit_income = primary_income + spouse_income,
            # social security (SSP) is entered at the filing unit level
            # sum each spouse's social security
-           SSP = SSP.x + SSP.y) %>%
+           SSP = SSP.x + SSP.y,
+           INTP = INTP.x + INTP.y) %>%
     select(-SSP.x, -SSP.y, -tax_unit)
   
   # children still in their parent's household often file their own tax returns,
@@ -227,10 +229,10 @@ pop_taxes <- function(con, year) {
            ST = 34,
            dep_care = 0) %>%
     # add columns of zeros for empty columns
-    bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 14))) %>%
+    bind_cols(as.data.frame(matrix(data = 0, nrow = nrow(.), ncol = 13))) %>%
     # reorder columns to match required order for online tax system
     select(SERIALNO, year, ST, status, AGEP, AGES, dep_exemptions, dep_care, child_credit, 
-           eitc_children, primary_income, spouse_income, V1:V7, SSP, V8:V14)
+           eitc_children, primary_income, spouse_income, V1, INTP, V2:V6, SSP, V7:V13)
  
   return(full)
 
