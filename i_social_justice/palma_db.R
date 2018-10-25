@@ -10,22 +10,21 @@ con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 
 housing <- tbl(con, 'h_17') %>%
   select(SERIALNO, HINCP, FINCP) %>%
-  filter(SERIALNO == 2017000358111) %>%
+  filter(SERIALNO == 2017000183945) %>%
   collect()
 
-housing <- housing %>% select(SERIALNO, HINCP, FINCP)
 
 population <- tbl(con, 'p_17') %>%
   select(SERIALNO, INTP, OIP, PAP, RETP, SEMP, SSIP, SSP, WAGP, PINCP) %>%
-  filter(SERIALNO == 2017000358111) %>%
+  filter(SERIALNO == 2017000183945) %>%
   collect()
 
+df <- house_incomes(con, year = 2017, state = 37, area_code = c(1801))
 
 df_zero <- filter(df, tax_liability == 0) %>%
   arrange(desc(HINCP))
 
-
-df <- house_incomes(con, year = 2017, state = 37, area_code = c(1801))
+head(df_zero$SERIALNO)
 
 # initiate list to store all Palmas
 state_palma <- data.frame()
