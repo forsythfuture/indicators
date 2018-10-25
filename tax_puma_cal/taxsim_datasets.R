@@ -19,7 +19,7 @@ con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 
 ### iterate through each year and create dataset for TAXSIM; then save dataset as csv file
 
-for (yr in seq(2006, 2016)) {
+for (yr in seq(2006, 2017)) {
   
   print(yr)
   

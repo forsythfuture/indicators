@@ -8,7 +8,24 @@ source('functions/puma_functions.R')
 # connect to PUMS database
 con <- dbConnect(RSQLite::SQLite(), "puma_data/pums_db.db")
 
-### palmas for all counties in NC in all years ###
+housing <- tbl(con, 'h_17') %>%
+  select(SERIALNO, HINCP, FINCP) %>%
+  filter(SERIALNO == 2017000358111) %>%
+  collect()
+
+housing <- housing %>% select(SERIALNO, HINCP, FINCP)
+
+population <- tbl(con, 'p_17') %>%
+  select(SERIALNO, INTP, OIP, PAP, RETP, SEMP, SSIP, SSP, WAGP, PINCP) %>%
+  filter(SERIALNO == 2017000358111) %>%
+  collect()
+
+
+df_zero <- filter(df, tax_liability == 0) %>%
+  arrange(desc(HINCP))
+
+
+df <- house_incomes(con, year = 2017, state = 37, area_code = c(1801))
 
 # initiate list to store all Palmas
 state_palma <- data.frame()
@@ -31,6 +48,11 @@ for (yr in seq(2006, 2017)) {
   write_csv(state_palma, write_file)
 
 }
+
+num_in_taxes <- filter(taxes, SERIALNO %in% df_zero$SERIALNO)
+tax_to_taxsim <- read_csv('tax_puma_cal/nc_to_taxsim_online/taxes_to_taxsim_2017.csv', col_names = FALSE) %>%
+  filter(X1 %in% df_zero$SERIALNO)
+write_csv(tax_to_taxsim, 'to_taxsim_test.csv', col_names = FALSE)
 
 
 
@@ -93,42 +115,3 @@ palma <- left_join(palma, codes, by = c('geo_description' = 'PUMA12name')) %>%
   filter(cntyname %in% c('North Carolina', 'Forsyth', 'Guilford', 'Durham'))
 
 write_csv(palma, 'i_social_justice/data/palma_shiny.csv')
-
-### palmas for all PUMAS in NC in all years ###
-
-# # initiate list to store all Palmas
-# puma_palma <- data.frame()
-# 
-# # iterate through each year, calculating Palma
-# for (yr in seq(2017, 2017)) {
-#   
-#   puma_palma_yr <- palmas_complete(con = con, 
-#                                      year = yr, 
-#                                      level = 'puma', 
-#                                      state = 37, 
-#                                      area_code = NA)
-#   
-#   puma_palma <- bind_rows(puma_palma, puma_palma_yr)
-#   
-#   # file name to write out
-#   write_file <- paste0('i_social_justice/puma_palmas_code', as.character(yr), '.csv')
-#   write_csv(puma_palma, write_file)
-#   
-# }
-# 
-# 
-# 
-# county <- bind_rows(
-#   read_csv('i_social_justice/puma_palmas2006.csv'),
-#   read_csv('i_social_justice/puma_palmas2016.csv'),
-#   read_csv('i_social_justice/puma_palmas2017.csv'))
-# area_code <- bind_rows(
-#   read_csv('i_social_justice/puma_palmas_code2016.csv'),
-#   read_csv('i_social_justice/puma_palmas_code2017.csv')) %>%
-#   mutate(geography = as.character(geography))
-# 
-# a <- bind_rows(county, area_code) 
-# 
-# 
-# a %>%
-#   write_csv(., 'i_social_justice/data/palma_county_puma.csv')

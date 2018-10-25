@@ -12,173 +12,6 @@
 library(DBI)
 library(tidyverse)
 
-palma_single <- function(state = NA, area_code = NA, year, data_directory) {
-    
-    ######## Old !!!!!!!!!!!!!!!!!! ################
-  
-    ### This function returns a list, where each item in the list is a vector if household
-    ### incomes based on replicate weights
-  
-    # inputs:
-    #   state: state FIPS code
-    #   puma: vector of PUMA area codes
-    #         area codes can be created from counties with the function puma_area_code()
-    
-    filter_geo <- paste0('ST %in% state & PUMA %in% area_code')
-
-    # Create housing variables
-    house_vars <- c('RT', 'TYPE', 'SERIALNO', 'PUMA', 'ST', 'ADJINC', 'HINCP')
-    house_weights <- c('WGTP', paste0('wgtp', seq(1, 80))) 
-    
-    # Create population variables
-    pop_vars <- c('SERIALNO', 'AGEP')
-    
-    # create function to adjust for age based on equivalence scale
-    equivalence_scale <- function(num_adults, num_children) {
-      
-      ifelse(# if num adults is one or two, and no children
-        num_adults <= 2 & num_children == 0, num_adults^0.5,
-        ifelse(# if single parent
-          num_adults == 1 & num_children >= 1,
-          (num_adults + 0.8 * 1 + 0.5 * (num_children-1))^0.7,
-          # other families
-          (num_adults + 0.5 * num_children)^0.7
-        )
-      )
-    }
-    
-    # initialize vector where each element will store one Palma of weighted vector of incomes
-    palma_vec <- c()
-    
-    # create first part of file name and directory
-    house_file <- paste0(data_directory, '/ss', year, 'hus')
-    pop_file <- paste0(data_directory, '/ss', year, 'pus')
-    
-    # initiate list to hold each letter database
-    house = list()
-    
-    for (letter in c('a', 'b')) {
-      print(paste0('starting letter: ', letter))
-      ### import data ###
-      
-        if (is.na(state)) {
-          print('full data')
-          house[[letter]] <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
-              RT == 'H' & TYPE == 1 & # filter for only housing units
-              !is.na(HINCP) & HINCP >= 0][, # filter for positive household incomes
-              c("RT","TYPE"):=NULL][ # remove these columns
-              # merge with population dataset
-              fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
-                    nomatch=0L, on = 'SERIALNO'][, 
-              AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
-          
-      } else {
-        print('filtered data')
-        house[[letter]] <- fread(paste0(house_file, letter, '.csv'), select = c(house_vars, house_weights))[
-          eval(parse(text = filter_geo)) & # filter for PUMA within state
-          RT == 'H' & TYPE == 1 & # filter for only housing units
-          !is.na(HINCP) & HINCP >= 0 # filter for positive household incomes
-          ][, c("RT","TYPE"):=NULL][ # remove these columns
-            # merge with population dataset
-            fread(paste0(pop_file, letter, '.csv'), select = pop_vars), 
-                  nomatch=0L, on = 'SERIALNO'][, 
-            AGEP := ifelse(AGEP >= 18, 'adult', 'child')] # convert age to either adult or child
-      }
-      
-      # if no households were returned based on the geographic filter,
-      # move on to next lettered dataset
-      if (nrow(house[[letter]]) == 0) {
-        house <- house[-length(house)]
-        print('deleted empyt list')
-        next
-      } else {
-        print(nrow(house[[letter]]))
-      }
-      
-      print('data loaded')
-      
-      # find number of adults and children for each family
-      # will be merge with the primary dataset
-      adults <- house[[letter]][AGEP == 'adult', .N, by = 'SERIALNO'][,
-                        .(SERIALNO = SERIALNO, adults = N)] # rename variables
-      child <- house[[letter]][AGEP == 'child', .N, by = 'SERIALNO'][,
-                       .(SERIALNO = SERIALNO, child = N)] # rename variables
-            
-      # merge main housing, adults, child
-      house[[letter]] <- merge(
-        # outer join housing and adults
-        merge(house[[letter]], adults, by = 'SERIALNO', all = TRUE),
-        # outer join merged housing / adults with child
-        child, by = 'SERIALNO', all = TRUE)[, 
-        # replace missing values with 0 for number of children and adults
-        child := ifelse(is.na(child), 0, child)][,
-        adults := ifelse(is.na(adults), 0, adults)][,
-        # divide income by equivalency scale
-        income := HINCP / equivalence_scale(adults, child)][,
-        # remove unneeded columns
-        !c('adults', 'child', 'AGEP', 'HINCP', 'ADJINC')] %>%
-        # filter out duplicate values
-        unique()
-      
-      rm(adults)
-      rm(child)
-      gc()
-    }
-    
-    # bind a and b data.tables
-    house <- rbindlist(house)
-    
-      print('starting replicate weights')
-      # iterate through each replicate weight, creating vector of household incomes
-      for (weight in house_weights) {
-        
-        print(weight)
-        
-        # create data frame of incomes and weights
-        # data frame is needed because for each replicate weight, values 0 or less are removed
-        rep_weights <- data.table(income = house[, income],
-                                  wgt = house[, ..weight])
-        
-        # change name of second column
-        setnames(rep_weights, 2, 'wgt')
-
-        rep_weights <- rep_weights[
-                                  # filter out replicate weight values less than 1
-                                  wgt > 0]
-
-        # convert data frame to vector of household incomes
-        rep_weights <- rep.int(rep_weights[, income], rep_weights[, wgt]) %>%
-          # sort vector of incomes
-          sort() %>%
-          # find Palma of vector
-          palma_cal()
-
-        # append vector of palmas to appropriate list
-        # sort when appending to avoid excess copying
-        palma_vec <- append(palma_vec, rep_weights)
-                    
-        
-        # delete weight variable in primary data frame to save RAM
-        house <- house[, -..weight]
-        
-        rm(rep_weights)
-        gc()
-
-      }
-      
-      rm(house)
-      gc()
-    
-    # calculate standard error based on a vector of replicate weights
-    st_error <- replicate_weights(palma_vec)
-
-    # enter data into single data frame with one row
-    # this data frame can be appended to data frames from other years and geographies
-    df <- data.frame(Palma = palma_vec[1],
-                     se = st_error)
-    
-    return(df)
-}
 
 palma_cal <- function (income_vec) {
   
@@ -215,46 +48,6 @@ palma_st_error <- function(palmas_full) {
   return(sq_diff)
 }
 
-palma_years <- function(state = NA, area_code = NA, years, data_directory) {
-  
-  ######## Old !!!!!!!!!!!!!!!!!! ################
-  
-  # This function creates the Palma for multiple years by using the function
-  # that creates the Palma for a single year
-  # Note: years must be a vector of the final two digits of the year as characters
-  #       example: c('09', '10', '11')
-  
-  # initialize dataframe to store each year's results
-  df <- data.frame(year = character(),
-                   Palma = double(),
-                   se = double())
-  
-  # loop through each year and calculate Palma
-  for (year in years) {
-    
-    # print update on year
-    print(year)
-    
-    # extract single year's results and place in dataframe
-    palma_df <- palma_single(state = state, area_code = area_code, year, data_directory)
-    
-    # add year number to single year dataframe
-    palma_df$year <- year
-    
-    # bind individual year's results to data frame storing all years
-    df <- df %>%
-      bind_rows(palma_df)
-    
-    rm(palma_df)
-    
-    # write out results to csv file for each yearly iteration
-    write_csv(df, paste0('palma_', year, '.csv'))
-    
-    gc()
-  }
-  return(df)
-}
-
 
 equivalence_scale <- function(num_adults, num_children) {
   
@@ -275,14 +68,15 @@ equivalence_scale <- function(num_adults, num_children) {
 house_incomes <- function(con, year, state = NA, area_code = NA) {
   
   # This function returns a dataframe of household incomes for the given year
+  # taxes are subtracted from income
   
-  # create file name for tax liability file
-  #tax_file <- read_csv(paste0('tax_puma_cal/nc_tax_complete/nc_tax_complete', year, '.csv'))
-  
-  # vector that will return all states when filtered
-  all_states <- seq(1, 100)
-  # vector to return all PUMAs
-  all_pumas <- seq(1, 10000)
+  # import household tax liabilities for the given year
+  taxes <- read_csv('tax_puma_cal/nc_tax_liabilities.csv',
+                    # need to set column types because first column does nto read well
+                    col_type = 'nin') %>%
+    filter(year == !!year) %>%
+    # convert tax liability to integer to save ram
+    mutate(tax_liability = as.integer(tax_liability))
   
   # create table names
   yr <-str_extract(as.character(year), '[0-9][0-9]$')
@@ -295,21 +89,21 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
   
   # import these PUMS variables
   house_vars <- c('TYPE', 'SERIALNO', 'PUMA', 'ST', 'HINCP')
-  pop_vars <- c('SERIALNO', 'AGEP') # population variables
+  pop_vars <- c('SERIALNO', 'ST', 'AGEP') # population variables
   
   # import population data
   population <- population %>%
-    select(!!pop_vars)
-  
+    select(!!pop_vars) %>%
+    filter(if (!is.na(!!state)) ST == !!state) %>%
+    select(-ST)
   
   house <- housing %>%
     select(!!house_vars) %>%
-    filter(# state and PUMA filter
-      # if state or PUMA is na, use vector containing all states and pumas for filtering
-      if (!is.na(!!state)) ST %in% !!state else ST %in% !!all_states,
-      if (!is.na(!!area_code)) PUMA %in% !!area_code else PUMA %in% !!all_pumas,
-      TYPE == 1, # housing units only
-      (!is.na(HINCP) & HINCP >= 0)) %>% # positive household income
+    # filter for state
+    # we cannot filter for PUMA now because cannot use %in% operator until collected
+    filter(if (!is.na(!!state)) ST == !!state,
+           TYPE == 1, # housing units only
+           (!is.na(HINCP) & HINCP >= 0)) %>% # positive household income
     select(-TYPE) %>%
     # merge with population data
     left_join(population, by = 'SERIALNO') %>%
@@ -335,20 +129,29 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
     left_join(adults, by = 'SERIALNO') %>%
     left_join(child, by = 'SERIALNO') %>%
     collect() %>%
+    # filter for PUMA
+    filter(if (all(!is.na(!!area_code))) PUMA %in% !!area_code) %>%
+    # convert SERIALNO to same data format as SERIALNO in taxes
+    mutate(SERIALNO = as.numeric(SERIALNO)) %>%
+    # add taxes
+    left_join(., taxes, by = 'SERIALNO') %>%
+    # calcualte income net of taxes
+    mutate(post_tax_income = HINCP - tax_liability,
+           # if negative, make a small number so program works
+           #post_tax_income = ifelse(.$post_tax_income < 0, 0.01, .$post_tax_income),
+           # convert income to integer to save RAM
+           post_tax_income = as.integer(post_tax_income)) %>%
     # replace NA values in numbers of aduls and children to 0
     mutate_at(vars(c('number_adults', 'number_child')), funs(replace_na(., 0))) %>%
-    mutate(income = HINCP / equivalence_scale(number_adults, number_child),
+    mutate(family_adj_income = post_tax_income / equivalence_scale(number_adults, number_child),
            # convert income to integer to save RAM
-           income = as.integer(income)) %>%
-    select(SERIALNO, PUMA, ST, income) %>%
+           family_adj_income = as.integer(family_adj_income)) %>%
+    select(SERIALNO, PUMA, ST, HINCP, post_tax_income, family_adj_income, tax_liability, 
+           number_adults, number_child) %>%
     # dataframe has one row for each person in the household;
     # but since only household variables were kept, all rows for the same family will be duplicates
     # remove duplicates, which will leave one row per household
     distinct() %>%
-    # in 2017, serial IDs have leading '2017'; remove this
-    #mutate(SERIALNO = as.character(SERIALNO),
-    #       SERIALNO = str_replace_all(SERIALNO, '^2017', ''),
-    #       SERIALNO = as.integer(SERIALNO)) %>%
     # convert to datatable
     as.data.table()
   
@@ -379,9 +182,7 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   
   # create connection with housing replicate weights
   weights_tbl <- tbl(con, tbl_name) %>%
-    filter(#PUMA %in% c(1801, 1802, 1803), # Winston Salem
-      ST == 37 # North Carolina (need both puma and state)
-    ) %>%
+    filter(ST == !!state) %>%
     select(SERIALNO, !!house_weights)
   
   # initialize list to store palma values
@@ -399,7 +200,7 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
       # convert to data table
       as.data.table()
     
-    # this provides dataframe for entire US with income, weights, and geography
+    # this provides dataframe with income, weights, and geography
     # it can then be filtered by geography
     household_incomes_wgt <- wgt[household_incomes, on = 'SERIALNO']
     
@@ -429,42 +230,13 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   palmas_full <- reduce(palmas, left_join, by = 'group')
   # rename variables
   colnames(palmas_full) <- col_names
-  # transpose so that rows are weights and columsn are geographies
-  #palmas_t <- as.data.frame(t(palmas_full))
-  # the first row is the PUMA number or county; save as object and remove
-  #pumas <- palmas_t[1,]
-  #palmas_t <- palmas_t[2:nrow(palmas_t),]
-  
-  # This sequence does the following:
-  #   calculate st error of palmas
-  #   convert list of standard errors to dataframe with PUMAs included
-  #   bind standard error dataframe to dataframe containing palma values
-  #
+
   # create dataframe
   palmas_complete <- data.frame(geography = palmas_full$group,
                                 level = level,
                                 year = year,
                                 palma = palmas_full$WGTP,
                                 se = palma_st_error(palmas_full))
-  # se <- palma_st_error(palmas_full)
-  # 
-  # palma_complete <- sapply(palmas_t,  function(x) palma_st_error(as.vector(x))) %>%
-  #   # bind with dataframe containing PUMAs
-  #   bind_rows(pumas) %>%
-  #   # transpose so that each row is a PUMA and each column is a SE
-  #   t() %>%
-  #   # convert back to dataframe
-  #   as.data.frame() %>%
-  #   # rename columns
-  #   rename(se = V1, group = V2) %>%
-  #   # bind to dataframe containing PUMA values
-  #   left_join(palmas_full, ., by = 'group') %>%
-  #   # remove replicate weight values
-  #   select(group, WGTP, se) %>%
-  #   # add year and level variables
-  #   mutate(year = year,
-  #          level = level) %>%
-  #   rename(palma = WGTP)
   
   return(palmas_complete)
   
