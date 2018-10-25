@@ -233,6 +233,24 @@ Proportion_MOE <- function(tm,t,n,p){
   MOE<- (sqrt(n^2-p^2*tm))/t
   return(MOE)
 }
+
+# create vector of categories for each dataset
+# the category name is the name of the dataframe
+categories <- c('aa_total', 'aa_female_above', 'aa_female_below', 'aa_male_above', 'aa_male_below',
+                'aa_married_above', 'aa_married_below', 'white_female_above', 'white_female_below',
+                'white_male_above', 'white_male_below', 'white_married_above', 'white_married_below',
+                'hl_female_above', 'hl_female_below', 'hl_male_above', 'hl_male_below', 'hl_married_above',
+                'hl_married_below')
+
+
+
+# combine all datasets into one
+df <- bind_rows(aa_total, aa_female_above, aa_female_below, aa_male_above, aa_male_below,
+                aa_married_above, aa_married_below, white_female_above, white_female_below,
+                white_male_above, white_male_below, white_married_above, white_married_below,
+                hl_female_above, hl_female_below, hl_male_above, hl_male_below, hl_married_above,
+                hl_married_below)
+
 ##########################################################################################################
 aa_female_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_female_above[,4], aa_female_above[,9])
 aa_female_above_moe<-rename(aa_female_above_moe, moe_percentage= estimate)
