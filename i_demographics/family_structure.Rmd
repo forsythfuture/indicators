@@ -70,39 +70,55 @@ aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at
 
 
 aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
-
+##########################################################
+se_function<-function(moe){
+  se<-moe/1.96
+  return(se)
+}
+cv_function<-function(se,estimate){
+  cv<-(se/estimate)*100
+  return(cv)
+}
+##########################################################
+location<-rep("Forsyth County", each=11)
+year<-aa_married_above[,2]
+description<-rep("Married-couple family with related children of the householder under 18 years", each=11)
+estimate<-aa_married_above[,4]+aa_married_below[,4]
+percentage<-estimate[,1]/aa_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(aa_total[,4],aa_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('African American',each=11)
+aa_married<-cbind(location,year,description,percentage,moe,se,cv,race)
+###############################################
+location<-rep("Forsyth County", each=11)
+year<-aa_female_above[,2]
+description<-rep("Female householder, no wife present: with related children of the householder under 18 years", each=11)
+estimate<-aa_female_above[,4]+aa_female_below[,4]
+percentage<-estimate[,1]/aa_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(aa_total[,4],aa_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('African American',each=11)
+aa_female<-cbind(location,year,description,percentage,moe,se,cv,race)
 #########################################################################################################
-percentage<-left_join(aa_male_above,aa_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-aa_male_above<-cbind(aa_male_above,percent)
+location<-rep("Forsyth County", each=11)
+year<-aa_male_above[,2]
+description<-rep("Male householder, no wife present: with related children of the householder under 18 years", each=11)
+estimate<-aa_male_above[,4]+aa_male_below[,4]
+percentage<-estimate[,1]/aa_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(aa_total[,4],aa_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('African American',each=11)
+aa_male<-cbind(location,year,description,percentage,moe,se,cv,race)
 #########################################################################################################
-percentage<-left_join(aa_male_below,aa_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-aa_male_below<-cbind(aa_male_below,percent)
-#########################################################################################################
-percentage<-left_join(aa_female_below,aa_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-aa_female_below<-cbind(aa_female_below,percent)
-#########################################################################################################
-percentage<-left_join(aa_female_above,aa_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-aa_female_above<-cbind(aa_female_above,percent)
-#########################################################################################################
-percentage<-left_join(aa_married_above,aa_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-aa_married_above<-cbind(aa_married_above,percent)
-#########################################################################################################
-percentage<-left_join(aa_married_below,aa_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-aa_married_below<-cbind(aa_married_below,percent)
-#########################################################################################################
-
 
 #######################################WHITE#############################################################
 df <- read_csv('data/family_structure_all_years.csv') %>%
@@ -131,37 +147,46 @@ white_male_above<-filter(white,description=='Estimate; Income in the past 12 mon
 
 white_married_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
 #########################################################################################################
-percentage<-left_join(white_male_above,white_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-white_male_above<-cbind(white_male_above,percent)
+##########################################################
+location<-rep("Forsyth County", each=12)
+year<-white_married_above[,2]
+description<-rep("Married-couple family with related children of the householder under 18 years", each=12)
+estimate<-white_married_above[,4]+white_married_below[,4]
+percentage<-estimate[,1]/white_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(white_total[,4],white_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('White',each=12)
+white_married<-cbind(location,year,description,percentage,moe,se,cv,race)
+###############################################
+location<-rep("Forsyth County", each=12)
+year<-white_female_above[,2]
+description<-rep("Female householder, no wife present: with related children of the householder under 18 years", each=12)
+estimate<-white_female_above[,4]+white_female_below[,4]
+percentage<-estimate[,1]/white_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(white_total[,4],white_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('White',each=12)
+white_female<-cbind(location,year,description,percentage,moe,se,cv,race)
 #########################################################################################################
-percentage<-left_join(white_male_below,white_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-white_male_below<-cbind(white_male_below,percent)
-#########################################################################################################
-percentage<-left_join(white_female_below,white_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-white_female_below<-cbind(white_female_below,percent)
-#########################################################################################################
-percentage<-left_join(white_female_above,white_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-white_female_above<-cbind(white_female_above,percent)
-#########################################################################################################
-percentage<-left_join(white_married_above,white_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-white_married_above<-cbind(white_married_above,percent)
-#########################################################################################################
-percentage<-left_join(white_married_below,white_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-white_married_below<-cbind(white_married_below,percent)
-#########################################################################################################
-###############################################HISPANIC#############################################################################################################################################################
+location<-rep("Forsyth County", each=12)
+year<-white_male_above[,2]
+description<-rep("Male householder, no wife present: with related children of the householder under 18 years", each=12)
+estimate<-white_male_above[,4]+white_male_below[,4]
+percentage<-estimate[,1]/white_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(white_total[,4],white_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('White',each=12)
+white_male<-cbind(location,year,description,percentage,moe,se,cv,race)
+###############################################HISPANIC###########################################################################
 df <- read_csv('data/family_structure_all_years.csv') %>%
   filter(geo_description %in% geo_areas) %>%
   select(-label)
@@ -188,123 +213,50 @@ hl_male_above<-filter(hl,description=='Estimate; Income in the past 12 months at
 
 
 hl_married_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
+##########################################################
+location<-rep("Forsyth County", each=2)
+year<-hl_married_above[,2]
+description<-rep("Married-couple family with related children of the householder under 18 years", each=2)
+estimate<-hl_married_above[,4]+hl_married_below[,4]
+percentage<-estimate[,1]/hl_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(hl_total[,4],hl_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('White',each=2)
+hl_married<-cbind(location,year,description,percentage,moe,se,cv,race)
+###############################################
+location<-rep("Forsyth County", each=2)
+year<-hl_female_above[,2]
+description<-rep("Female householder, no husband present: with related children of the householder under 18 years", each=2)
+estimate<-hl_female_above[,4]+hl_female_below[,4]
+percentage<-estimate[,1]/hl_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(hl_total[,4],hl_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('White',each=2)
+hl_female<-cbind(location,year,description,percentage,moe,se,cv,race)
 #########################################################################################################
-percentage<-left_join(hl_male_above,hl_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-hl_male_above<-cbind(hl_male_above,percent)
-#########################################################################################################
-percentage<-left_join(hl_male_below,hl_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-hl_male_below<-cbind(hl_male_below,percent)
-#########################################################################################################
-percentage<-left_join(hl_female_below,hl_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-hl_female_below<-cbind(hl_female_below,percent)
-#########################################################################################################
-percentage<-left_join(hl_female_above,hl_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-hl_female_above<-cbind(hl_female_above,percent)
-#########################################################################################################
-percentage<-left_join(hl_married_above,hl_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-hl_married_above<-cbind(hl_married_above,percent)
-#########################################################################################################
-percentage<-left_join(hl_married_below,hl_total, by="year", COPY=FALSE)
-percent<-percentage[,4]/percentage[,11]
-percent<-rename(percent, percentage = estimate.x)
-hl_married_below<-cbind(hl_married_below,percent)
+location<-rep("Forsyth County", each=2)
+year<-hl_male_above[,2]
+description<-rep("Male householder, no wife present: with related children of the householder under 18 years", each=2)
+estimate<-hl_male_above[,4]+hl_male_below[,4]
+percentage<-estimate[,1]/hl_total[,4]
+percentage<-rename(percentage, percentage = estimate)
+moe<-Proportion_MOE(hl_total[,4],hl_total[,5], estimate,percentage)
+moe<-rename(moe, moe = estimate)
+se<-se_function(moe[,1])
+cv<-cv_function(se,estimate[,1])
+race<-rep('White',each=2)
+hl_male<-cbind(location,year,description,percentage,moe,se,cv,race)
 #########################################################################################################
 ```
 
 ------
 ```{r}
-############################################MOE#############################################################
-#MOE Function
-#t=total estimate
-#n=Owner MOE
-#p=Proportion Owner
-#tm=Total MOE
-Proportion_MOE <- function(tm,t,n,p){
-  MOE<- (sqrt(n^2-p^2*tm))/t
-  return(MOE)
-}
-##########################################################################################################
-aa_female_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_female_above[,4], aa_female_above[,9])
-aa_female_above_moe<-rename(aa_female_above_moe, moe_percentage= estimate)
-aa_female_above<-cbind(aa_female_above,aa_female_above_moe)
-############################################################################################################
-aa_female_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5], aa_female_below[,4],aa_female_below[,9])
-aa_female_below_moe<-rename(aa_female_below_moe, moe_percentage=estimate )
-aa_female_below<-cbind(aa_female_below,aa_female_below_moe)
-############################################################################################################
-aa_male_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_male_above[,4], aa_male_above[,9])
-aa_male_above_moe<-rename(aa_male_above_moe, moe_percentage= estimate)
-aa_male_above<-cbind(aa_male_above,aa_male_above_moe)
-############################################################################################################
-aa_male_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5], aa_male_below[,4],aa_male_below[,9])
-aa_male_below_moe<-rename(aa_male_below_moe, moe_percentage=estimate )
-aa_male_below<-cbind(aa_male_below,aa_male_below_moe)
-############################################################################################################
-aa_married_above_moe<-Proportion_MOE(aa_total[,4],aa_total[,5], aa_married_above[,4],aa_married_above[,9])
-aa_married_above_moe<-rename(aa_married_above_moe, moe_percentage= estimate)
-aa_married_above<-cbind(aa_married_above,aa_married_above_moe)
-##########################################################################################################
-aa_married_below_moe<-Proportion_MOE(aa_total[,4], aa_total[,5],aa_married_below[,4],aa_married_below[,9])
-aa_married_below_moe<-rename(aa_married_below_moe, moe_percentage= estimate)
-aa_married_below<-cbind(aa_married_below,aa_married_below_moe)
-##########################################################################################################
-white_female_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_female_above[,4], white_female_above[,9])
-white_female_above_moe<-rename(white_female_above_moe, moe_percentage= estimate)
-white_female_above<-cbind(white_female_above,white_female_above_moe)
-##########################################################################################################
-white_female_below_moe<-Proportion_MOE(white_total[,4], white_total[,5], white_female_below[,4],white_female_below[,9])
-white_female_below_moe<-rename(white_female_below_moe, moe_percentage= estimate)
-white_female_below<-cbind(white_female_below,white_female_below_moe)
-##########################################################################################################
-white_male_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_male_above[,4], white_male_above[,9])
-white_male_above_moe<-rename(white_male_above_moe, moe_percentage= estimate)
-white_male_above<-cbind(white_male_above,white_male_above_moe)
-##########################################################################################################
-white_male_below_moe<-Proportion_MOE(white_total[,4], white_total[,5], white_male_below[,4],white_male_below[,9])
-white_male_below_moe<-rename(white_male_below_moe, moe_percentage= estimate)
-white_male_below<-cbind(white_male_below,white_male_below_moe)
-##########################################################################################################
-white_married_above_moe<-Proportion_MOE(white_total[,4],white_total[,5], white_married_above[,4],white_married_above[,9])
-white_married_above_moe<-rename(white_married_above_moe, moe_percentage= estimate)
-white_married_above<-cbind(white_married_above,white_married_above_moe)
-##########################################################################################################
-white_married_below_moe<-Proportion_MOE(white_total[,4], white_total[,5],white_married_below[,4],white_married_below[,9])
-white_married_below_moe<-rename(white_married_below_moe, moe_percentage= estimate)
-white_married_below<-cbind(white_married_below,white_married_below_moe)
-##########################################################################################################
-hl_female_above_moe<-Proportion_MOE(hl_total[,4],hl_total[,5], hl_female_above[,4], hl_female_above[,9])
-hl_female_above_moe<-rename(hl_female_above_moe, moe_percentage= estimate)
-hl_female_above<-cbind(hl_female_above,hl_female_above_moe)
-##########################################################################################################
-hl_female_below_moe<-Proportion_MOE(hl_total[,4], hl_total[,5], hl_female_below[,4],hl_female_below[,9])
-hl_female_below_moe<-rename(hl_female_below_moe, moe_percentage= estimate)
-hl_female_below<-cbind(hl_female_below,hl_female_below_moe)
-##########################################################################################################
-hl_male_above_moe<-Proportion_MOE(hl_total[,4],hl_total[,5], hl_male_above[,4], hl_male_above[,9])
-hl_male_above_moe<-rename(hl_male_above_moe, moe_percentage= estimate)
-hl_male_above<-cbind(hl_male_above,hl_male_above_moe)
-##########################################################################################################
-hl_male_below_moe<-Proportion_MOE(hl_total[,4], hl_total[,5], hl_male_below[,4],hl_male_below[,9])
-hl_male_below_moe<-rename(hl_male_below_moe, moe_percentage= estimate)
-hl_male_below<-cbind(hl_male_below,hl_male_below_moe)
-##########################################################################################################
-hl_married_above_moe<-Proportion_MOE(hl_total[,4],hl_total[,5], hl_married_above[,4],hl_married_above[,9])
-hl_married_above_moe<-rename(hl_married_above_moe, moe_percentage= estimate)
-hl_married_above<-cbind(hl_married_above,hl_married_above_moe)
-##########################################################################################################
-hl_married_below_moe<-Proportion_MOE(hl_total[,4], hl_total[,5],hl_married_below[,4],hl_married_below[,9])
-hl_married_below_moe<-rename(hl_married_below_moe, moe_percentage= estimate)
-hl_married_below<-cbind(hl_married_below,hl_married_below_moe)
 
 ```
 
