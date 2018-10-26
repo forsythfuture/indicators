@@ -128,26 +128,30 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
   house <- house %>%
     left_join(adults, by = 'SERIALNO') %>%
     left_join(child, by = 'SERIALNO') %>%
-    collect() %>%
-    # filter for PUMA
-    filter(if (all(!is.na(!!area_code))) PUMA %in% !!area_code) %>%
+    collect()
+  
+  # filter for PUMA only if needed
+  if (all(!is.na(area_code))) {
+    
+    house <- house %>%
+      filter(PUMA %in% !!area_code)
+    
+  }
+  house <- house %>%
     # convert SERIALNO to same data format as SERIALNO in taxes
     mutate(SERIALNO = as.numeric(SERIALNO)) %>%
     # add taxes
     left_join(., taxes, by = 'SERIALNO') %>%
     # calcualte income net of taxes
-    mutate(post_tax_income = HINCP - tax_liability,
+    mutate(income = HINCP - tax_liability,
            # if negative, make a small number so program works
            #post_tax_income = ifelse(.$post_tax_income < 0, 0.01, .$post_tax_income),
            # convert income to integer to save RAM
-           post_tax_income = as.integer(post_tax_income)) %>%
+           income = as.integer(income)) %>%
     # replace NA values in numbers of aduls and children to 0
     mutate_at(vars(c('number_adults', 'number_child')), funs(replace_na(., 0))) %>%
-    mutate(family_adj_income = post_tax_income / equivalence_scale(number_adults, number_child),
-           # convert income to integer to save RAM
-           family_adj_income = as.integer(family_adj_income)) %>%
-    select(SERIALNO, PUMA, ST, HINCP, post_tax_income, family_adj_income, tax_liability, 
-           number_adults, number_child) %>%
+    mutate(income = as.integer( income / equivalence_scale(number_adults, number_child) )) %>%
+    select(SERIALNO, PUMA, ST, income) %>%
     # dataframe has one row for each person in the household;
     # but since only household variables were kept, all rows for the same family will be duplicates
     # remove duplicates, which will leave one row per household
@@ -162,8 +166,11 @@ house_incomes <- function(con, year, state = NA, area_code = NA) {
 
 palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   
+  #### create palma from household incomes
+  
   # run function to pull in household incomes
-  household_incomes <- house_incomes(con, year, state = state, area_code = area_code)
+  household_incomes <- house_incomes(con, year, state = state, area_code = area_code) %>%
+    filter(!is.na(income))
   
   # create groupings that are needed to calculate Palma
   household_incomes <- groupings(household_incomes, level, year)
@@ -232,13 +239,40 @@ palmas_complete <- function(con, year, level, state = NA, area_code = NA) {
   colnames(palmas_full) <- col_names
 
   # create dataframe
-  palmas_complete <- data.frame(geography = palmas_full$group,
-                                level = level,
-                                year = year,
-                                palma = palmas_full$WGTP,
-                                se = palma_st_error(palmas_full))
+  complete <- data.frame(geography = palmas_full$group,
+                         level = level,
+                         year = year,
+                         palma = palmas_full$WGTP,
+                         se = palma_st_error(palmas_full))
   
-  return(palmas_complete)
+  print(head(complete))
+  
+  return(complete)
+  
+}
+
+palma_complete_years <- function(con, years, level, state = NA, area_code = NA) {
+  
+  # this function uses the palma_complete function to calculate the Palma for multiple years
+  
+  # initiate list to store all Palmas
+  palma_full <- data.frame()
+  
+  for (yr in years) {
+    
+    print(yr)
+    print(level)
+    
+    palma_full <- palmas_complete(con = con, 
+                                year = yr, 
+                                level = level, 
+                                state = state, 
+                                area_code = area_code) %>%
+      bind_rows(palma_full, .)
+    
+  }
+  
+  return(palma_full)
   
 }
 
