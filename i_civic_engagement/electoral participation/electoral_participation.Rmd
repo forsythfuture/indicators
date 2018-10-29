@@ -1,0 +1,172 @@
+---
+title: "Electoral Participation"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+```
+
+
+```{r}
+# create list of geographic areas to keep
+# geo_areas <- c('United States', 'North Carolina', 
+               # 'Forsyth', 'Guilford', 'Durham')
+
+df <- read_csv('data/fc_votes2016.csv')%>%
+        select(1,5,4,20,19,24,12,17)%>%
+        mutate(GENDER = ifelse(GENDER=='F', 'Female', ifelse(GENDER=='M', 'Male','Unspecified')))%>%
+        mutate(ETHNICITY = ifelse(GENDER=='NL', 'non-Latino', ifelse(ETHNICITY=='HL', 'Hispanic/Latino','Unspecified')))%>%
+        mutate(RACE = ifelse(RACE=='B', 'African American', ifelse(RACE=='W', 'White, non_hispanic', ifelse(RACE=='I', 'American Indian', ifelse(RACE=='M', 'Multi Racial', ifelse(RACE=='O', 'Other', ifelse(RACE=='A', 'Asian', 'Unspecified')))))))%>%
+        rename(AGE = 'AGE AT YEAR END')
+
+
+gender <- df %>%
+        group_by(GENDER)%>%
+        summarize(count = n())%>%
+        mutate(estimate = count/nrow(df)*100, type = 'gender')%>%
+        rename('subtype' = GENDER)
+        
+ethnicity <- df %>%
+        group_by(ETHNICITY)%>%
+        summarize(count = n())%>%
+        mutate(estimate = count/nrow(df)*100, type = 'race')%>%
+        rename('subtype' = ETHNICITY)%>%
+        filter(subtype=='Hispanic/Latino')
+
+race <- df %>%
+        filter(ETHNICITY != 'Hispanic/Latino')%>%
+        group_by(RACE)%>%
+        summarize(count = n())%>%
+        mutate(estimate = count/nrow(df)*100, type = 'race')%>%
+        rename('subtype' = RACE)
+
+age <- df %>%
+        mutate(Age = ifelse(AGE <= 25, '18 to 25', ifelse(AGE > 25 & AGE <= 29, '26 to 29', ifelse(AGE > 29 & AGE <= 39, '30 to 39', ifelse((AGE > 39 & AGE <= 49), '40 to 49', ifelse(AGE > 49 & AGE <= 64, '50 to 64', ifelse(AGE > 64 & AGE <= 84, '65 to 84', '85 years and older' )))))))%>%
+        group_by(Age)%>%
+        summarize(count = n())%>%
+        mutate(estimate = count/nrow(df)*100, type = 'age')%>%
+        rename('subtype' = Age)
+
+precinct <- df %>%
+        group_by(PRECINCT)%>%
+        summarize(count = n())%>%
+        mutate(estimate = count/nrow(df)*100, type = 'precinct')%>%
+        rename('subtype' = PRECINCT)
+        
+precinct$subtype <- as.character(precinct$subtype)
+
+ward <- df %>%
+        group_by(WARD)%>%
+        summarize(count = n())%>%
+        mutate(estimate = count/nrow(df)*100, type = 'ward')%>%
+        rename('subtype' = WARD)
+                                                                                              
+
+tableau_data <- bind_rows(gender,ethnicity,race,age,precinct,ward)%>%
+        mutate(geography = 'Forsyth County, NC', year = '2016')
+
+```
+
+------
+
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+tableau_data %>%
+  filter(type=='race')%>%
+  # only keep most recent year
+  ggplot(aes(geography, estimate, fill=subtype)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('Voter participation rate by ethnicity in 2016'),
+       fill = 'Race/Ethnicity',
+       y = 'Voter Participation Rate',
+       x = '') +
+  theme_minimal()
+```
+
+
+
+```{r}
+# bar chart of age with all geographies in the most recent year
+tableau_data %>%
+  # only keep most recent year
+  filter(type == 'age') %>%
+  ggplot(aes(geography, estimate, fill=subtype)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Voter participation rate by age in 2016'),
+         fill = 'Age Group',
+          y = 'Voter participation rate',
+         x = '') +
+    theme_minimal()
+```
+
+
+
+```{r}
+tableau_data %>%
+  # only keep most recent year
+  filter(type == 'gender') %>%
+  ggplot(aes(geography, estimate, fill=subtype)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Voter participation rate by gender in 2016'),
+         fill = 'Gender',
+           y = 'Voter Participation Rate ',
+         x = '') +
+    theme_minimal()
+```
+
+```{r}
+tableau_data %>%
+  # only keep most recent year
+  filter(type == 'ward', subtype != 'NA', subtype != '5') %>%
+  ggplot(aes(geography, estimate, fill=subtype)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Voter participation rate by ward in 2016'),
+         fill = 'Ward',
+           y = 'Voter Participation Rate ',
+         x = '') +
+    theme_minimal()
+```
+
+
+### Tableau dataset
+
+This is the final data set that can be imported into Tableau. Users can copy it into an excel file or download a csv file.
+
+```{r}
+# estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+tableau_data %>%
+  mutate_at(vars(estimate), funs(./100)) %>%
+  # reorder column and do not include unneded columns
+  select(year, geography, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+``` 
