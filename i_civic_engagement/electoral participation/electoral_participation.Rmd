@@ -35,13 +35,8 @@ source('../../functions/acs_load_funcs.R')
 
 
 ```{r}
-# create list of geographic areas to keep
-# geo_areas <- c('United States', 'North Carolina', 
-               # 'Forsyth', 'Guilford', 'Durham')
 
-
-
-df <- voter_history%>%
+df <- voter_history %>%
         #select(1,5,4,20,19,24,12,17)%>%
         mutate(gender = ifelse(gender=='F', 'Female', ifelse(gender=='M', 'Male','Unspecified')))%>%
         mutate(ethnicity = ifelse(gender=='NL', 'non-Latino', ifelse(ethnicity=='HL', 'Hispanic/Latino','Unspecified')))%>%
@@ -49,16 +44,21 @@ df <- voter_history%>%
         rename(age = 'age')%>%
         filter(election.name == '11/04/2008 GENERAL'| election.name =='05/04/2010 PRIMARY' | election.name == '11/02/2010 GENERAL'|election.name == '05/08/2012 PRIMARY'|election.name == '11/06/2012 GENERAL'| election.name == '05/06/2014 PRIMARY'| election.name == '11/04/2014 GENERAL'|election.name == '03/15/2016 PRIMARY'|election.name == '11/08/2016 GENERAL')
 
+election <- df %>%
+        group_by(election.name)%>%
+        summarize(count = n())%>%
+        mutate(type = 'total', subtype = 'total')
+
 gender <- df %>%
         group_by(election.name, gender)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'gender')%>%
+        mutate(type = 'gender')%>%
         rename('subtype' = gender)
         
 ethnicity <- df %>%
         group_by(election.name, ethnicity)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'race')%>%
+        mutate(type = 'race')%>%
         rename('subtype' = ethnicity)%>%
         filter(subtype=='Hispanic/Latino')
 
@@ -66,35 +66,27 @@ race <- df %>%
         filter(ethnicity != 'Hispanic/Latino')%>%
         group_by(election.name, race)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'race')%>%
+        mutate(type = 'race')%>%
         rename('subtype' = race)
 
 party <- df %>%
         group_by(election.name, party)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'party')%>%
+        mutate(type = 'party')%>%
         rename('subtype' = party)
 
 age <- df %>%
         mutate(age = ifelse(age <= 25 | age == 118, '18 to 25', ifelse(age > 25 & age <= 29, '26 to 29', ifelse(age > 29 & age <= 39, '30 to 39', ifelse((age > 39 & age <= 49), '40 to 49', ifelse(age > 49 & age <= 64, '50 to 64', ifelse(age > 64 & age <= 84, '65 to 84', ifelse(age > 84 & age <= 99, '85 to 99', 'NA' ))))))))%>%
         group_by(election.name,age)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'age')%>%
+        mutate(type = 'age')%>%
         mutate(year = str_sub(election.name,7,10))%>%
         rename('subtype' = age)
-
-write_csv(age,"age.csv")
-
-age_count <- df %>%
-        group_by(age)%>%
-        summarise(count = n())
-
-write_csv(age_count,"data/age_count.csv")
 
 precinct <- df %>%
         group_by(election.name,precinct)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'precinct')%>%
+        mutate(type = 'precinct')%>%
         rename('subtype' = precinct)
         
 precinct$subtype <- as.character(precinct$subtype)
@@ -102,18 +94,38 @@ precinct$subtype <- as.character(precinct$subtype)
 ward <- df %>%
         group_by(election.name, ward)%>%
         summarize(count = n())%>%
-        mutate(estimate = count/nrow(df)*100, type = 'ward')%>%
+        mutate(type = 'ward')%>%
         rename('subtype' = ward)
                                                                                               
 
-tableau_data <- bind_rows(gender,ethnicity,race, party)%>%
+voted <- bind_rows(election, gender,ethnicity, race, party, age, precinct, ward)%>%
         mutate(geography = 'Forsyth County, NC', year = str_sub(election.name,7,10))
 
+voted <- voted %>%
+        mutate(subtype = replace(subtype, str_detect(subtype, "White"), "White, non-Hispanic")) %>%
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/04/2008 GENERAL"), "2008/11/04 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "03/15/2016 PRIMARY"), "2016/03/15 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "05/04/2010 PRIMARY"), "2010/05/04 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "05/06/2014 PRIMARY"), "2014/05/06 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "05/08/2012 PRIMARY"), "2012/05/08 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/02/2010 GENERAL"), "2010/11/02 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/04/2014 GENERAL"), "2014/11/04 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/06/2012 GENERAL"), "2012/11/06 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/08/2016 GENERAL"), "2016/11/08 GENERAL"))
+
+reg_voters <- reg_voters %>%
+        mutate(subtype = replace(subtype, str_detect(subtype, "White"), "White, non-Hispanic")) %>%
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/04/2008 GENERAL"), "2008/11/04 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "03/15/2016 PRIMARY"), "2016/03/15 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "05/04/2010 PRIMARY"), "2010/05/04 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "05/06/2014 PRIMARY"), "2014/05/06 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "05/08/2012 PRIMARY"), "2012/05/08 PRIMARY"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/02/2010 GENERAL"), "2010/11/02 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/04/2014 GENERAL"), "2014/11/04 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/06/2012 GENERAL"), "2012/11/06 GENERAL"))%>% 
+        mutate(election.name = replace(election.name, str_detect(election.name, "11/08/2016 GENERAL"), "2016/11/08 GENERAL"))
+
 write_csv(tableau_data,'data/tableau_data.csv')
-
-class(tableau_data)
-
-tableau_data <- as.data.frame(tableau_data)
 
 ```
 
@@ -133,6 +145,7 @@ all %>%
        x = '') +
   theme_minimal()
 ```
+
 ```{r}
 all %>%
   filter(type=='race')%>%
@@ -145,8 +158,21 @@ all %>%
        x = '') +
   theme_minimal()
 ```
-```
 
+
+```{r}
+# bar chart of race/ethnicity with all geographies in the most recent year
+tableau_data %>%
+  # only keep most recent year
+  filter(type == 'race') %>%
+  ggplot(aes(geography, estimate, fill=subtype)) +
+    geom_bar(position = "dodge", stat='identity') +
+    labs(title = paste0('Voter participation rate by race/ethnicity in 2016'),
+         fill = 'Race/Ethnicity',
+          y = 'Voter participation rate',
+         x = '') +
+    theme_minimal()
+```
 
 
 ```{r}

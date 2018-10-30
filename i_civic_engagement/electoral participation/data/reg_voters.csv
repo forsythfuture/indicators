@@ -1,0 +1,100 @@
+election.name,subtype,type,geography,year,reg_voters
+2008/11/04 GENERAL,total,total,"Forsyth County, NC",2008,222147
+2010/05/04 PRIMARY,total,total,"Forsyth County, NC",2010,224716
+2010/11/02 GENERAL,total,total,"Forsyth County, NC",2010,227125
+2012/05/08 PRIMARY,total,total,"Forsyth County, NC",2012,233761
+2012/11/06 GENERAL,total,total,"Forsyth County, NC",2012,247033
+2014/05/06 PRIMARY,total,total,"Forsyth County, NC",2014,240979
+2014/11/04 GENERAL,total,total,"Forsyth County, NC",2014,246713
+2016/03/15 PRIMARY,total,total,"Forsyth County, NC",2016,239851
+2016/11/08 GENERAL,total,total,"Forsyth County, NC",2016,256163
+11/04/2008 GENERAL,African American,race,"Forsyth County, NC",2008,60179
+05/04/2010 PRIMARY,African American,race,"Forsyth County, NC",2010,61077
+11/02/2010 GENERAL,African American,race,"Forsyth County, NC",2010,61601
+05/08/2012 PRIMARY,African American,race,"Forsyth County, NC",2012,63674
+11/06/2012 GENERAL,African American,race,"Forsyth County, NC",2012,68731
+05/06/2014 PRIMARY,African American,race,"Forsyth County, NC",2014,67122
+11/04/2014 GENERAL,African American,race,"Forsyth County, NC",2014,68918
+03/15/2016 PRIMARY,African American,race,"Forsyth County, NC",2016,66690
+11/08/2016 GENERAL,African American,race,"Forsyth County, NC",2016,70785
+11/04/2008 GENERAL,American Indian,race,"Forsyth County, NC",2008,358
+05/04/2010 PRIMARY,American Indian,race,"Forsyth County, NC",2010,380
+11/02/2010 GENERAL,American Indian,race,"Forsyth County, NC",2010,403
+05/08/2012 PRIMARY,American Indian,race,"Forsyth County, NC",2012,408
+11/06/2012 GENERAL,American Indian,race,"Forsyth County, NC",2012,470
+05/06/2014 PRIMARY,American Indian,race,"Forsyth County, NC",2014,454
+11/04/2014 GENERAL,American Indian,race,"Forsyth County, NC",2014,489
+03/15/2016 PRIMARY,American Indian,race,"Forsyth County, NC",2016,467
+11/08/2016 GENERAL,American Indian,race,"Forsyth County, NC",2016,526
+11/04/2008 GENERAL,DEM,party,"Forsyth County, NC",2008,102829
+05/04/2010 PRIMARY,DEM,party,"Forsyth County, NC",2010,103208
+11/02/2010 GENERAL,DEM,party,"Forsyth County, NC",2010,103344
+05/08/2012 PRIMARY,DEM,party,"Forsyth County, NC",2012,103904
+11/06/2012 GENERAL,DEM,party,"Forsyth County, NC",2012,109991
+05/06/2014 PRIMARY,DEM,party,"Forsyth County, NC",2014,105654
+11/04/2014 GENERAL,DEM,party,"Forsyth County, NC",2014,106336
+03/15/2016 PRIMARY,DEM,party,"Forsyth County, NC",2016,101209
+11/08/2016 GENERAL,DEM,party,"Forsyth County, NC",2016,106765
+11/04/2008 GENERAL,Female,gender,"Forsyth County, NC",2008,122636
+05/04/2010 PRIMARY,Female,gender,"Forsyth County, NC",2010,123898
+11/02/2010 GENERAL,Female,gender,"Forsyth County, NC",2010,125180
+05/08/2012 PRIMARY,Female,gender,"Forsyth County, NC",2012,128811
+11/06/2012 GENERAL,Female,gender,"Forsyth County, NC",2012,135133
+05/06/2014 PRIMARY,Female,gender,"Forsyth County, NC",2014,131821
+11/04/2014 GENERAL,Female,gender,"Forsyth County, NC",2014,134095
+03/15/2016 PRIMARY,Female,gender,"Forsyth County, NC",2016,130613
+11/08/2016 GENERAL,Female,gender,"Forsyth County, NC",2016,137410
+11/04/2008 GENERAL,Hispanic/Latino,race,"Forsyth County, NC",2008,2602
+05/04/2010 PRIMARY,Hispanic/Latino,race,"Forsyth County, NC",2010,3075
+11/02/2010 GENERAL,Hispanic/Latino,race,"Forsyth County, NC",2010,3282
+05/08/2012 PRIMARY,Hispanic/Latino,race,"Forsyth County, NC",2012,3972
+11/06/2012 GENERAL,Hispanic/Latino,race,"Forsyth County, NC",2012,4915
+05/06/2014 PRIMARY,Hispanic/Latino,race,"Forsyth County, NC",2014,5364
+11/04/2014 GENERAL,Hispanic/Latino,race,"Forsyth County, NC",2014,5784
+03/15/2016 PRIMARY,Hispanic/Latino,race,"Forsyth County, NC",2016,6333
+11/08/2016 GENERAL,Hispanic/Latino,race,"Forsyth County, NC",2016,7675
+11/04/2008 GENERAL,LIB,party,"Forsyth County, NC",2008,106
+05/04/2010 PRIMARY,LIB,party,"Forsyth County, NC",2010,275
+11/02/2010 GENERAL,LIB,party,"Forsyth County, NC",2010,337
+05/08/2012 PRIMARY,LIB,party,"Forsyth County, NC",2012,525
+11/06/2012 GENERAL,LIB,party,"Forsyth County, NC",2012,727
+05/06/2014 PRIMARY,LIB,party,"Forsyth County, NC",2014,841
+11/04/2014 GENERAL,LIB,party,"Forsyth County, NC",2014,902
+03/15/2016 PRIMARY,LIB,party,"Forsyth County, NC",2016,997
+11/08/2016 GENERAL,LIB,party,"Forsyth County, NC",2016,1170
+11/04/2008 GENERAL,Male,gender,"Forsyth County, NC",2008,97689
+05/04/2010 PRIMARY,Male,gender,"Forsyth County, NC",2010,98905
+11/02/2010 GENERAL,Male,gender,"Forsyth County, NC",2010,99998
+05/08/2012 PRIMARY,Male,gender,"Forsyth County, NC",2012,102851
+11/06/2012 GENERAL,Male,gender,"Forsyth County, NC",2012,108877
+05/06/2014 PRIMARY,Male,gender,"Forsyth County, NC",2014,106268
+11/04/2014 GENERAL,Male,gender,"Forsyth County, NC",2014,108364
+03/15/2016 PRIMARY,Male,gender,"Forsyth County, NC",2016,105220
+11/08/2016 GENERAL,Male,gender,"Forsyth County, NC",2016,111462
+11/04/2008 GENERAL,REP,party,"Forsyth County, NC",2008,74542
+05/04/2010 PRIMARY,REP,party,"Forsyth County, NC",2010,74265
+11/02/2010 GENERAL,REP,party,"Forsyth County, NC",2010,74848
+05/08/2012 PRIMARY,REP,party,"Forsyth County, NC",2012,76252
+11/06/2012 GENERAL,REP,party,"Forsyth County, NC",2012,78804
+05/06/2014 PRIMARY,REP,party,"Forsyth County, NC",2014,76026
+11/04/2014 GENERAL,REP,party,"Forsyth County, NC",2014,76460
+03/15/2016 PRIMARY,REP,party,"Forsyth County, NC",2016,74521
+11/08/2016 GENERAL,REP,party,"Forsyth County, NC",2016,77076
+11/04/2008 GENERAL,UNA,party,"Forsyth County, NC",2008,44670
+05/04/2010 PRIMARY,UNA,party,"Forsyth County, NC",2010,46968
+11/02/2010 GENERAL,UNA,party,"Forsyth County, NC",2010,48596
+05/08/2012 PRIMARY,UNA,party,"Forsyth County, NC",2012,53080
+11/06/2012 GENERAL,UNA,party,"Forsyth County, NC",2012,57511
+05/06/2014 PRIMARY,UNA,party,"Forsyth County, NC",2014,58458
+11/04/2014 GENERAL,UNA,party,"Forsyth County, NC",2014,63015
+03/15/2016 PRIMARY,UNA,party,"Forsyth County, NC",2016,63124
+11/08/2016 GENERAL,UNA,party,"Forsyth County, NC",2016,71152
+11/04/2008 GENERAL,"White, non_hispanic",race,"Forsyth County, NC",2008,153027
+05/04/2010 PRIMARY,"White, non_hispanic",race,"Forsyth County, NC",2010,154057
+11/02/2010 GENERAL,"White, non_hispanic",race,"Forsyth County, NC",2010,155603
+05/08/2012 PRIMARY,"White, non_hispanic",race,"Forsyth County, NC",2012,158852
+11/06/2012 GENERAL,"White, non_hispanic",race,"Forsyth County, NC",2012,164817
+05/06/2014 PRIMARY,"White, non_hispanic",race,"Forsyth County, NC",2014,160181
+11/04/2014 GENERAL,"White, non_hispanic",race,"Forsyth County, NC",2014,162162
+03/15/2016 PRIMARY,"White, non_hispanic",race,"Forsyth County, NC",2016,157582
+11/08/2016 GENERAL,"White, non_hispanic",race,"Forsyth County, NC",2016,164857
