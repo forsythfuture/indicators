@@ -84,11 +84,15 @@ location<-rep("Forsyth County", each=11)
 year<-aa_married_above[,2]
 description<-rep("Married-couple family with related children of the householder under 18 years", each=11)
 estimate<-aa_married_above[,4]+aa_married_below[,4]
+above=aa_married_above[,5]
+below=aa_married_below[,5]
 percentage<-estimate[,1]/aa_total[,4]
 percentage<-rename(percentage, percentage = estimate)
-moe<-Proportion_MOE(aa_total[,4],aa_total[,5], estimate,percentage)
-moe<-rename(moe, moe = estimate)
-se<-se_function(moe[,1])
+moe_married<-moe_function(above,below)
+moe_above<-moe_function(above)
+moe<-moe_proportion(moe_married[,1],aa_total[,5], percentage[,1], aa_total[,4])
+#rename(moe, moe = estimate)
+se<-se_function(moe_married[,1])
 cv<-cv_function(se,estimate[,1])
 race<-rep('African American',each=11)
 aa_married<-cbind(location,year,description,percentage,moe,se,cv,race)
