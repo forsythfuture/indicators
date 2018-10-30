@@ -1,0 +1,32 @@
+" ","Total GEOG-102","Puma# 01800, North Carolina","Puma# 01900, North Carolina"
+"Total RECODE3",241191,135668,105523
+"Citizen",241191,135668,105523
+" ", , , 
+"Total RECODE1",241191,135668,105523
+"Not Spanish/Hispanic/Latino",234517,131151,103366
+"Hispanic/Latino",6674,4517,2157
+" ", , , 
+"Total RECODE4",241191,135668,105523
+"White, non_Hispanic",171104,79002,92102
+"African American",61881,51446,10435
+"American Indian",606,446,160
+"Asian",2568,1782,786
+"Other",3186,1837,1349
+"Multi Racial",1846,1155,691
+" ", , , 
+"Total SEX",241191,135668,105523
+"Male",112432,61268,51164
+"Female",128759,74400,54359
+" ", , , 
+"Total RECODE2",241191,135668,105523
+"18 to 25",36080,25876,10204
+"26 to 29",13511,8895,4616
+"30 to 39",41548,21062,20486
+"40 to 49",44975,22184,22791
+"50 to 64",63063,31287,31776
+"65 to 84",36647,22450,14197
+"85 to 99",5367,3914,1453
+Universe: ((AGEP between 18 and 99)) AND (CIT in (1,2,3,4)) AND (((ST = 37 AND PUMA in (01800,01900))))
+Weight used: PWGTP
+DataSet(s) selected: 2008
+Source: ACS Public Use Microdata Sample

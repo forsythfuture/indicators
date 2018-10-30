@@ -1,0 +1,241 @@
+measure,year,county,group,total,rate,passed,not_passed
+3rd Grade Reading Score,2014,Durham,ALL,2551,48.8,1245,1306
+3rd Grade Reading Score,2014,Durham,African American,1150,39.7,457,693
+3rd Grade Reading Score,2014,Durham,eds,1732,35.2,610,1122
+3rd Grade Reading Score,2014,Durham,female,1265,52,658,607
+3rd Grade Reading Score,2014,Durham,Hispanic/Latino,766,37.7,289,477
+3rd Grade Reading Score,2014,Durham,male,1286,45.6,586,700
+3rd Grade Reading Score,2014,Durham,not_eds,819,77.5,635,184
+3rd Grade Reading Score,2014,Durham,"White, non-Hispanic",483,82.2,397,86
+3rd Grade Reading Score,2014,Forsyth,ALL,4013,58,2328,1685
+3rd Grade Reading Score,2014,Forsyth,African American,1141,43.4,495,646
+3rd Grade Reading Score,2014,Forsyth,eds,2438,42.5,1036,1402
+3rd Grade Reading Score,2014,Forsyth,female,1930,61.1,1179,751
+3rd Grade Reading Score,2014,Forsyth,Hispanic/Latino,992,37.6,373,619
+3rd Grade Reading Score,2014,Forsyth,male,2083,55.2,1150,933
+3rd Grade Reading Score,2014,Forsyth,not_eds,1575,82.2,1295,280
+3rd Grade Reading Score,2014,Forsyth,"White, non-Hispanic",1631,78.4,1279,352
+3rd Grade Reading Score,2014,Guilford,ALL,5475,56.3,3082,2393
+3rd Grade Reading Score,2014,Guilford,African American,2284,43.5,994,1290
+3rd Grade Reading Score,2014,Guilford,eds,3462,43.6,1509,1953
+3rd Grade Reading Score,2014,Guilford,female,2741,60.5,1658,1083
+3rd Grade Reading Score,2014,Guilford,Hispanic/Latino,849,43.1,366,483
+3rd Grade Reading Score,2014,Guilford,male,2734,52.2,1427,1307
+3rd Grade Reading Score,2014,Guilford,not_eds,2013,78.3,1576,437
+3rd Grade Reading Score,2014,Guilford,"White, non-Hispanic",1829,77.3,1414,415
+3rd Grade Reading Score,2015,Durham,ALL,2571,45.4,1167,1404
+3rd Grade Reading Score,2015,Durham,African American,1163,36.3,422,741
+3rd Grade Reading Score,2015,Durham,eds,1595,32,510,1085
+3rd Grade Reading Score,2015,Durham,female,1264,49.5,626,638
+3rd Grade Reading Score,2015,Durham,Hispanic/Latino,809,34.6,280,529
+3rd Grade Reading Score,2015,Durham,male,1307,41.3,540,767
+3rd Grade Reading Score,2015,Durham,not_eds,976,67.1,655,321
+3rd Grade Reading Score,2015,Durham,"White, non-Hispanic",474,81.4,386,88
+3rd Grade Reading Score,2015,Forsyth,ALL,4152,56,2325,1827
+3rd Grade Reading Score,2015,Forsyth,African American,1166,43.6,508,658
+3rd Grade Reading Score,2015,Forsyth,eds,2701,41.5,1121,1580
+3rd Grade Reading Score,2015,Forsyth,female,2032,59.5,1209,823
+3rd Grade Reading Score,2015,Forsyth,Hispanic/Latino,1133,35.3,400,733
+3rd Grade Reading Score,2015,Forsyth,male,2120,52.6,1115,1005
+3rd Grade Reading Score,2015,Forsyth,not_eds,1451,82.9,1203,248
+3rd Grade Reading Score,2015,Forsyth,"White, non-Hispanic",1571,77.5,1218,353
+3rd Grade Reading Score,2015,Guilford,ALL,5455,53.8,2935,2520
+3rd Grade Reading Score,2015,Guilford,African American,2320,42.6,988,1332
+3rd Grade Reading Score,2015,Guilford,eds,2994,41.1,1231,1763
+3rd Grade Reading Score,2015,Guilford,female,2696,57.7,1556,1140
+3rd Grade Reading Score,2015,Guilford,Hispanic/Latino,907,41.1,373,534
+3rd Grade Reading Score,2015,Guilford,male,2759,49.9,1377,1382
+3rd Grade Reading Score,2015,Guilford,not_eds,2461,69.1,1701,760
+3rd Grade Reading Score,2015,Guilford,"White, non-Hispanic",1701,74.3,1264,437
+3rd Grade Reading Score,2016,Durham,ALL,2672,45.7,1221,1451
+3rd Grade Reading Score,2016,Durham,African American,1150,37.5,431,719
+3rd Grade Reading Score,2016,Durham,eds,1889,33.2,627,1262
+3rd Grade Reading Score,2016,Durham,female,1313,49.2,646,667
+3rd Grade Reading Score,2016,Durham,Hispanic/Latino,879,33.7,296,583
+3rd Grade Reading Score,2016,Durham,male,1359,42.2,573,786
+3rd Grade Reading Score,2016,Durham,not_eds,783,75.7,593,190
+3rd Grade Reading Score,2016,Durham,"White, non-Hispanic",479,80.2,384,95
+3rd Grade Reading Score,2016,Forsyth,ALL,4289,51.9,2226,2063
+3rd Grade Reading Score,2016,Forsyth,African American,1219,37.7,460,759
+3rd Grade Reading Score,2016,Forsyth,eds,2279,37,843,1436
+3rd Grade Reading Score,2016,Forsyth,female,2019,54.6,1102,917
+3rd Grade Reading Score,2016,Forsyth,Hispanic/Latino,1245,32.1,400,845
+3rd Grade Reading Score,2016,Forsyth,male,2270,49.5,1124,1146
+3rd Grade Reading Score,2016,Forsyth,not_eds,2010,68.9,1385,625
+3rd Grade Reading Score,2016,Forsyth,"White, non-Hispanic",1524,76.7,1169,355
+3rd Grade Reading Score,2016,Guilford,ALL,5451,53.9,2938,2513
+3rd Grade Reading Score,2016,Guilford,African American,2245,41.7,936,1309
+3rd Grade Reading Score,2016,Guilford,eds,2802,41.1,1152,1650
+3rd Grade Reading Score,2016,Guilford,female,2604,56.7,1476,1128
+3rd Grade Reading Score,2016,Guilford,Hispanic/Latino,972,40.1,390,582
+3rd Grade Reading Score,2016,Guilford,male,2847,51.4,1463,1384
+3rd Grade Reading Score,2016,Guilford,not_eds,2649,67.5,1788,861
+3rd Grade Reading Score,2016,Guilford,"White, non-Hispanic",1666,77.1,1284,382
+3rd Grade Reading Score,2017,Durham,ALL,2698,44.6,1203,1495
+3rd Grade Reading Score,2017,Durham,African American,1186,36.5,433,753
+3rd Grade Reading Score,2017,Durham,eds,1732,33.1,573,1159
+3rd Grade Reading Score,2017,Durham,female,1292,48.5,627,665
+3rd Grade Reading Score,2017,Durham,Hispanic/Latino,886,33.7,299,587
+3rd Grade Reading Score,2017,Durham,male,1406,40.9,575,831
+3rd Grade Reading Score,2017,Durham,not_eds,966,65,628,338
+3rd Grade Reading Score,2017,Durham,"White, non-Hispanic",480,80.4,386,94
+3rd Grade Reading Score,2017,Forsyth,ALL,4368,52.8,2306,2062
+3rd Grade Reading Score,2017,Forsyth,African American,1292,38.2,494,798
+3rd Grade Reading Score,2017,Forsyth,eds,2321,36.8,854,1467
+3rd Grade Reading Score,2017,Forsyth,female,2134,56.8,1212,922
+3rd Grade Reading Score,2017,Forsyth,Hispanic/Latino,1160,32.8,380,780
+3rd Grade Reading Score,2017,Forsyth,male,2234,49,1095,1139
+3rd Grade Reading Score,2017,Forsyth,not_eds,2047,71,1453,594
+3rd Grade Reading Score,2017,Forsyth,"White, non-Hispanic",1636,76.5,1252,384
+3rd Grade Reading Score,2017,Guilford,ALL,5605,53.4,2993,2612
+3rd Grade Reading Score,2017,Guilford,African American,2333,40.6,947,1386
+3rd Grade Reading Score,2017,Guilford,eds,3010,40.1,1207,1803
+3rd Grade Reading Score,2017,Guilford,female,2739,56.6,1550,1189
+3rd Grade Reading Score,2017,Guilford,Hispanic/Latino,976,42.6,416,560
+3rd Grade Reading Score,2017,Guilford,male,2866,50.3,1442,1424
+3rd Grade Reading Score,2017,Guilford,not_eds,2595,68.8,1785,810
+3rd Grade Reading Score,2017,Guilford,"White, non-Hispanic",1666,74.5,1241,425
+3rd Grade Reading Score,2018,Durham,ALL,2579,43.3,1117,1462
+3rd Grade Reading Score,2018,Durham,African American,1155,36,416,739
+3rd Grade Reading Score,2018,Durham,eds,1460,30.8,450,1010
+3rd Grade Reading Score,2018,Durham,female,1276,45.6,582,694
+3rd Grade Reading Score,2018,Durham,Hispanic/Latino,855,32.2,275,580
+3rd Grade Reading Score,2018,Durham,male,1303,41.1,536,767
+3rd Grade Reading Score,2018,Durham,not_eds,1119,59.7,668,451
+3rd Grade Reading Score,2018,Durham,"White, non-Hispanic",457,78.3,358,99
+3rd Grade Reading Score,2018,Forsyth,ALL,4352,51.6,2246,2106
+3rd Grade Reading Score,2018,Forsyth,African American,1235,37.5,463,772
+3rd Grade Reading Score,2018,Forsyth,eds,2191,36.6,802,1389
+3rd Grade Reading Score,2018,Forsyth,female,2124,55.9,1187,937
+3rd Grade Reading Score,2018,Forsyth,Hispanic/Latino,1207,33.9,409,798
+3rd Grade Reading Score,2018,Forsyth,male,2228,47.5,1058,1170
+3rd Grade Reading Score,2018,Forsyth,not_eds,2161,66.8,1444,717
+3rd Grade Reading Score,2018,Forsyth,"White, non-Hispanic",1597,73.8,1179,418
+3rd Grade Reading Score,2018,Guilford,ALL,5599,51.4,2878,2721
+3rd Grade Reading Score,2018,Guilford,African American,2345,39.8,933,1412
+3rd Grade Reading Score,2018,Guilford,eds,2934,37.8,1109,1825
+3rd Grade Reading Score,2018,Guilford,female,2769,55.1,1526,1243
+3rd Grade Reading Score,2018,Guilford,Hispanic/Latino,963,38.1,367,596
+3rd Grade Reading Score,2018,Guilford,male,2830,47.8,1353,1477
+3rd Grade Reading Score,2018,Guilford,not_eds,2665,66.4,1770,895
+3rd Grade Reading Score,2018,Guilford,"White, non-Hispanic",1678,73.5,1233,445
+8th Grade Math Score,2014,Durham,ALL,2429,28.4,690,1739
+8th Grade Math Score,2014,Durham,African American,1315,18.6,245,1070
+8th Grade Math Score,2014,Durham,eds,1581,18.5,292,1289
+8th Grade Math Score,2014,Durham,female,1138,29.5,336,802
+8th Grade Math Score,2014,Durham,Hispanic/Latino,570,23.7,135,435
+8th Grade Math Score,2014,Durham,male,1291,27.4,354,937
+8th Grade Math Score,2014,Durham,not_eds,848,46.9,398,450
+8th Grade Math Score,2014,Durham,"White, non-Hispanic",409,59.7,244,165
+8th Grade Math Score,2014,Forsyth,ALL,4220,37.7,1591,2629
+8th Grade Math Score,2014,Forsyth,African American,1225,19.7,241,984
+8th Grade Math Score,2014,Forsyth,eds,2214,19.4,430,1784
+8th Grade Math Score,2014,Forsyth,female,2032,37.6,764,1268
+8th Grade Math Score,2014,Forsyth,Hispanic/Latino,873,20.5,179,694
+8th Grade Math Score,2014,Forsyth,male,2188,37.7,825,1363
+8th Grade Math Score,2014,Forsyth,not_eds,2006,57.8,1159,847
+8th Grade Math Score,2014,Forsyth,"White, non-Hispanic",1847,55.9,1032,815
+8th Grade Math Score,2014,Guilford,ALL,5768,40.6,2342,3426
+8th Grade Math Score,2014,Guilford,African American,2441,21.3,520,1921
+8th Grade Math Score,2014,Guilford,eds,3292,24.5,807,2485
+8th Grade Math Score,2014,Guilford,female,2867,41.7,1196,1671
+8th Grade Math Score,2014,Guilford,Hispanic/Latino,624,31.7,198,426
+8th Grade Math Score,2014,Guilford,male,2901,39.6,1149,1752
+8th Grade Math Score,2014,Guilford,not_eds,2476,62,1535,941
+8th Grade Math Score,2014,Guilford,"White, non-Hispanic",2152,62.5,1345,807
+8th Grade Math Score,2015,Durham,ALL,2425,36,873,1552
+8th Grade Math Score,2015,Durham,African American,1294,26.4,342,952
+8th Grade Math Score,2015,Durham,eds,1551,22.7,352,1199
+8th Grade Math Score,2015,Durham,female,1191,39.3,468,723
+8th Grade Math Score,2015,Durham,Hispanic/Latino,615,27.8,171,444
+8th Grade Math Score,2015,Durham,male,1234,32.9,406,828
+8th Grade Math Score,2015,Durham,not_eds,874,59.7,522,352
+8th Grade Math Score,2015,Durham,"White, non-Hispanic",395,71.4,282,113
+8th Grade Math Score,2015,Forsyth,ALL,4119,38.7,1594,2525
+8th Grade Math Score,2015,Forsyth,African American,1206,18,217,989
+8th Grade Math Score,2015,Forsyth,eds,2269,20.7,470,1799
+8th Grade Math Score,2015,Forsyth,female,1989,39.6,788,1201
+8th Grade Math Score,2015,Forsyth,Hispanic/Latino,899,25.6,230,669
+8th Grade Math Score,2015,Forsyth,male,2130,37.8,805,1325
+8th Grade Math Score,2015,Forsyth,not_eds,1850,60.7,1123,727
+8th Grade Math Score,2015,Forsyth,"White, non-Hispanic",1741,58,1010,731
+8th Grade Math Score,2015,Guilford,ALL,5537,41.5,2298,3239
+8th Grade Math Score,2015,Guilford,African American,2241,24.7,554,1687
+8th Grade Math Score,2015,Guilford,eds,2745,24.9,684,2061
+8th Grade Math Score,2015,Guilford,female,2706,41.2,1115,1591
+8th Grade Math Score,2015,Guilford,Hispanic/Latino,679,29.2,198,481
+8th Grade Math Score,2015,Guilford,male,2831,41.8,1183,1648
+8th Grade Math Score,2015,Guilford,not_eds,2792,57.8,1614,1178
+8th Grade Math Score,2015,Guilford,"White, non-Hispanic",2018,61.9,1249,769
+8th Grade Math Score,2016,Durham,ALL,2422,31.7,768,1654
+8th Grade Math Score,2016,Durham,African American,1266,22.3,282,984
+8th Grade Math Score,2016,Durham,eds,1514,19.4,294,1220
+8th Grade Math Score,2016,Durham,female,1221,35.1,429,792
+8th Grade Math Score,2016,Durham,Hispanic/Latino,617,25.3,156,461
+8th Grade Math Score,2016,Durham,male,1201,28.3,340,861
+8th Grade Math Score,2016,Durham,not_eds,908,52.2,474,434
+8th Grade Math Score,2016,Durham,"White, non-Hispanic",417,65.2,272,145
+8th Grade Math Score,2016,Forsyth,ALL,4054,37.1,1504,2550
+8th Grade Math Score,2016,Forsyth,African American,1159,19.8,229,930
+8th Grade Math Score,2016,Forsyth,eds,1874,19.1,358,1516
+8th Grade Math Score,2016,Forsyth,female,2003,38.2,765,1238
+8th Grade Math Score,2016,Forsyth,Hispanic/Latino,975,20.4,199,776
+8th Grade Math Score,2016,Forsyth,male,2051,36.1,740,1311
+8th Grade Math Score,2016,Forsyth,not_eds,2180,52.7,1149,1031
+8th Grade Math Score,2016,Forsyth,"White, non-Hispanic",1634,57.8,944,690
+8th Grade Math Score,2016,Guilford,ALL,5361,42.2,2262,3099
+8th Grade Math Score,2016,Guilford,African American,2178,24.7,538,1640
+8th Grade Math Score,2016,Guilford,eds,2556,25.6,654,1902
+8th Grade Math Score,2016,Guilford,female,2627,44.8,1177,1450
+8th Grade Math Score,2016,Guilford,Hispanic/Latino,711,33.6,239,472
+8th Grade Math Score,2016,Guilford,male,2734,39.8,1088,1646
+8th Grade Math Score,2016,Guilford,not_eds,2805,57.3,1607,1198
+8th Grade Math Score,2016,Guilford,"White, non-Hispanic",1879,63.6,1195,684
+8th Grade Math Score,2017,Durham,ALL,2305,33.3,768,1537
+8th Grade Math Score,2017,Durham,African American,1114,22.1,246,868
+8th Grade Math Score,2017,Durham,eds,1420,17.7,251,1169
+8th Grade Math Score,2017,Durham,female,1202,34.9,419,783
+8th Grade Math Score,2017,Durham,Hispanic/Latino,626,22.8,143,483
+8th Grade Math Score,2017,Durham,male,1103,31.6,349,754
+8th Grade Math Score,2017,Durham,not_eds,885,58.3,516,369
+8th Grade Math Score,2017,Durham,"White, non-Hispanic",417,70.5,294,123
+8th Grade Math Score,2017,Forsyth,ALL,4172,40,1669,2503
+8th Grade Math Score,2017,Forsyth,African American,1196,19.3,231,965
+8th Grade Math Score,2017,Forsyth,eds,2030,21.2,430,1600
+8th Grade Math Score,2017,Forsyth,female,2067,41.3,854,1213
+8th Grade Math Score,2017,Forsyth,Hispanic/Latino,1085,24.7,268,817
+8th Grade Math Score,2017,Forsyth,male,2105,38.7,815,1290
+8th Grade Math Score,2017,Forsyth,not_eds,2142,57.7,1236,906
+8th Grade Math Score,2017,Forsyth,"White, non-Hispanic",1601,63.7,1020,581
+8th Grade Math Score,2017,Guilford,ALL,5429,41.7,2264,3165
+8th Grade Math Score,2017,Guilford,African American,2172,24.7,536,1636
+8th Grade Math Score,2017,Guilford,eds,2589,23.9,619,1970
+8th Grade Math Score,2017,Guilford,female,2618,43.5,1139,1479
+8th Grade Math Score,2017,Guilford,Hispanic/Latino,764,33,252,512
+8th Grade Math Score,2017,Guilford,male,2811,40,1124,1687
+8th Grade Math Score,2017,Guilford,not_eds,2840,57.9,1644,1196
+8th Grade Math Score,2017,Guilford,"White, non-Hispanic",1878,62.5,1174,704
+8th Grade Math Score,2018,Durham,ALL,2102,36.3,763,1339
+8th Grade Math Score,2018,Durham,African American,981,26.4,259,722
+8th Grade Math Score,2018,Durham,eds,1289,21.8,281,1008
+8th Grade Math Score,2018,Durham,female,1023,38.3,392,631
+8th Grade Math Score,2018,Durham,Hispanic/Latino,634,26.7,169,465
+8th Grade Math Score,2018,Durham,male,1079,34.3,370,709
+8th Grade Math Score,2018,Durham,not_eds,813,59.2,481,332
+8th Grade Math Score,2018,Durham,"White, non-Hispanic",349,75.4,263,86
+8th Grade Math Score,2018,Forsyth,ALL,3803,41.7,1586,2217
+8th Grade Math Score,2018,Forsyth,African American,1041,22.4,233,808
+8th Grade Math Score,2018,Forsyth,eds,1727,22.6,390,1337
+8th Grade Math Score,2018,Forsyth,female,1844,42.8,789,1055
+8th Grade Math Score,2018,Forsyth,Hispanic/Latino,1028,26.9,277,751
+8th Grade Math Score,2018,Forsyth,male,1959,40.7,797,1162
+8th Grade Math Score,2018,Forsyth,not_eds,2076,57.6,1196,880
+8th Grade Math Score,2018,Forsyth,"White, non-Hispanic",1450,64.3,932,518
+8th Grade Math Score,2018,Guilford,ALL,5038,44.6,2247,2791
+8th Grade Math Score,2018,Guilford,African American,1980,26,515,1465
+8th Grade Math Score,2018,Guilford,eds,2285,27.2,622,1663
+8th Grade Math Score,2018,Guilford,female,2458,47.2,1160,1298
+8th Grade Math Score,2018,Guilford,Hispanic/Latino,781,36.4,284,497
+8th Grade Math Score,2018,Guilford,male,2580,42.1,1086,1494
+8th Grade Math Score,2018,Guilford,not_eds,2753,59,1624,1129
+8th Grade Math Score,2018,Guilford,"White, non-Hispanic",1697,66.4,1127,570

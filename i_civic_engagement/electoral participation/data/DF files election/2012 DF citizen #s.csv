@@ -1,0 +1,32 @@
+" ","  Total GEOG-101","  Winston-Salem City (North) PUMA, North Carolina","  Winston-Salem City (South) PUMA, North Carolina","  Forsyth County (Outside Winston-Salem City)--Kernersville Town & Clemmons Village PUMA, North Carolina"
+"Total RECODE3",252194,78683,80890,92621
+"Citizens",252194,78683,80890,92621
+" ", , , , 
+"Total RECODE2",252194,78683,80890,92621
+"Not Spanish/Hispanic/Latino",241152,72878,78288,89986
+"Hispanic/Latino",11042,5805,2602,2635
+" ", , , , 
+"Total RECODE4",252194,78683,80890,92621
+"White, non-Hispanic",176552,45498,48914,82140
+"African American",68326,31095,29284,7947
+"American Indian",399,42,68,289
+"Asian",1913,353,1021,539
+"Other",1694,514,312,868
+"Multi Racial",3310,1181,1291,838
+" ", , , , 
+"Total SEX",252194,78683,80890,92621
+"Male",116070,35654,36762,43654
+"Female",136124,43029,44128,48967
+" ", , , , 
+"Total RECODE1",252194,78683,80890,92621
+"18 to 25",37456,16656,12588,8212
+"26 to 29",16689,3797,8654,4238
+"30 to 39",34338,9208,13234,11896
+"40 to 49",47497,14156,14036,19305
+"50 to 64",67339,19139,19516,28684
+"65 to 84",42699,13880,11230,17589
+"85 to 99",6176,1847,1632,2697
+Universe: ((AGEP between 18 and 99)) AND (CIT in (1,2,3,4)) AND (((ST = 37 AND PUMA in (01801,01802,01803))))
+Weight used: PWGTP
+DataSet(s) selected: 2012
+Source: ACS Public Use Microdata Sample

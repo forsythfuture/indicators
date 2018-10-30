@@ -1,0 +1,259 @@
+---
+title: "3rd Grade Reading Proficiency"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+# load custom chi-square function
+source('../../i_education/academic_success/cw_chisq_2way_func.R')
+```
+
+3rd grade reading proficiency data comes from NC Public Schools website found here
+http://www.ncpublicschools.org/accountability/reporting/leaperformancearchive/
+
+```{r}
+df <- read_csv('data/math_reading_scores.csv') %>%
+        filter(measure == '3rd Grade Reading Score')%>%
+        mutate(year = ifelse(year=='2013-14','2014', 
+                             ifelse(year=='2014-15','2015',
+                                    ifelse(year=='2015-16','2016',
+                                           ifelse(year=='2016-17','2017','2018')))))
+
+df$year <- as.numeric(df$year)
+
+all <- list("ALL")
+race_eth <- list('black',"white","hispanic")
+gender <- list('male',"female")
+EDS <- list('eds',"not_eds")
+```
+
+### County comparisions
+
+#### Plot
+
+The plot below shows the 3rd grade reading proficiency rates for the Forsyth, Guilford, and Durham counties.
+
+```{r}
+
+reading <- df
+
+reading %>%
+        filter(group =='ALL')%>%
+    ggplot(aes(year, rate, color = county)) +
+    geom_line(size = 1) +
+    labs(title = '3rd Grade Reading Proficiency',
+         color = 'County',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(reading$year), max(reading$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+
+```{r}
+reading %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = county)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency', ' in ', max(reading$year)-1, '-', max(reading$year) ),
+       fill = 'County',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+```
+
+#### Interpretation
+
+* Reading proficiency rates in Forsyth County have decreased over time, 6 percentage points since 2012-14.
+* Scores have not changed significantly over the past 3 academic years (16, 17 and 18).  
+* Durham's rate is statistically significantly lower from Forsyth County every year.  
+* In Forsyth county the drop in 2018 is not statistically significant
+* Forsyth and Guilford counties mirror each other/are not SS from each other every year except for 2014-15.
+
+### Reading Proficiency by Ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's 3rd Grade Reading Proficiency Rates by ethnicity and year. 
+
+```{r fig.width=8,fig.height=10}
+
+ethnicity <- df %>%
+        filter(measure == '3rd Grade Reading Score', (group %in% race_eth))
+        
+ethnicity %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '3rd Grade Reading Proficiency by Ethnicity',
+         color = 'Race/Ethnicity',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+
+```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Race/Ethnicity',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+
+```
+
+#### Interpretation
+
+* African American 3rd grade reading proficiency significantly dropped in 2015-16 and has (statistically) remained at that level since.
+* African American students are about half as likely as white students to meet third grade reading proficiency. * Hispanic / Latino students had a similar significant drop between 2013-14 and 2015-16 and has remained at that level since. 
+* Over the four years, there are persistent and significant disparities between White, non-Hispanics and both African Americans and Hispanic/Latinos.
+
+
+### Forsyth County Reading Proficiency rate by gender
+
+#### Plot
+
+The plot for Reading Proficiency rate by gender is below.
+
+```{r fig.width=8,fig.height=10}
+sex <- df %>%
+        filter(measure == '3rd Grade Reading Score', (group %in% gender))
+        
+sex %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '3rd Grade Reading Proficiency by Gender',
+         color = 'Gender',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+```{r}
+# bar chart of gender with all geographies in the most recent year
+
+sex %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Gender',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+
+
+```
+#### Interpretation
+* In 2017-18, there was no significant change from 2016-17, males reamined 8% less likely to meet third grade reading proficiency than females.
+* Over four years, there is a persistent and significant disparity between between males and females.
+
+### Forsyth County Reading Proficiency rate by economic status
+
+#### Plot
+
+The plot for Reading Proficiency rate by economic status is below.
+
+```{r}
+economic <- df %>%
+        filter(measure == '3rd Grade Reading Score', (group %in% EDS))
+        
+economic %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '3rd Grade Reading Proficiency by Economic Status',
+         color = 'Economic Status',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+```{r}
+economic %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency Rate by Economic Status', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Economic Status',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+```
+#### Interpretation
+* The reading proficiencey rate for not economically disadvantaged students continued its downward trend with a significant decrease in 2017-18. 
+* Over the four years there are persistent and significant disparities between the two groups of students. 
+
+
+#### Data
+
+And here is the underlying data.
+
+Write out excel workbook if needed.
+
+```{r}
+
+tableau_data <- df %>%
+        select(year, county, measure, group, rate)%>%
+        mutate(year = ifelse(year=='2014','2013-14', 
+                             ifelse(year=='2015','2014-15',
+                                    ifelse(year=='2016','2015-16',
+                                           ifelse(year=='2017','2016-17','2017-18')))))%>%
+        mutate(group = ifelse(group=='black','African American', 
+                      ifelse(group=='white','White, non-Hispanic', 'Hispanic/Latino')))
+                                   
+
+
+colnames(tableau_data) <- c('year', 'geography', 'type', 'subtype', 'estimate')
+
+tableau_data %>%
+        # estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+  mutate_at(vars(estimate), funs(./100)) %>%
+  # reorder column and do not include unneeded columns
+  select(year, geography, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+```

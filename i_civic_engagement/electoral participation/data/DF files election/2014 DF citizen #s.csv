@@ -1,0 +1,36 @@
+" ","Total GEOG-101","Winston-Salem City (North) PUMA, North Carolina","Winston-Salem City (South) PUMA, North Carolina","Forsyth County (Outside Winston-Salem City)--Kernersville Town & Clemmons Village PUMA, North Carolina"
+" ", , , , 
+"Total CIT",257272,76178,84473,96621
+"Born in the U.S.",242811,72992,78671,91148
+"Born in Puerto Rico, Guam, the U.S. Virgin Islands, or the Northern Marianas",691,277,414,0
+"Born abroad of American parent(s)",3123,611,1266,1246
+"U.S. citizen by naturalization",10647,2298,4122,4227
+" ", , , , 
+"Total RECODE2",257272,76178,84473,96621
+"Not Spanish/Hispanic/Latino",246393,72780,79424,94189
+"Hispanic/Latino",10879,3398,5049,2432
+" ", , , , 
+"Total RECODE4",257272,76178,84473,96621
+"White, non-Hispanic",176092,41365,52439,82288
+"African American",69700,30999,27136,11565
+"American Indian",622,346,113,163
+"Asian",4099,829,1291,1979
+"Other",3789,1614,1945,230
+"Multi Racial",2970,1025,1549,396
+" ", , , , 
+"Total SEX",257272,76178,84473,96621
+"Male",118593,34543,38864,45186
+"Female",138679,41635,45609,51435
+" ", , , , 
+"Total RECODE1",257272,76178,84473,96621
+"18 to 25",37635,13834,14428,9373
+"26 to 29",16634,5313,6377,4944
+"30 to 39",39512,11207,15387,12918
+"40 to 49",42167,10622,13852,17693
+"50 to 64",70655,18574,20573,31508
+"65 to 84",42803,14212,10898,17693
+"85 to 99",7866,2416,2958,2492
+Universe: ((AGEP between 18 and 99)) AND (CIT in (1,2,3,4)) AND (((ST = 37 AND PUMA in (01801,01802,01803))))
+Weight used: PWGTP
+DataSet(s) selected: 2014
+Source: ACS Public Use Microdata Sample
