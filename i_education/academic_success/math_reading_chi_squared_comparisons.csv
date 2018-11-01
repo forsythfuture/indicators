@@ -1,0 +1,493 @@
+,year1,county1,group1,year2,county2,group2,Yes1,No1,Rate1,Yes2,No2,Rate2,Significant,Narrative
+1,2017-18,Forsyth,black,2016-17,Forsyth,black,463,772,0.374898785,494,798,0.382352941,FALSE,black in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to black in Forsyth 2016-17
+2,2017-18,Forsyth,black,2015-16,Forsyth,black,463,772,0.374898785,460,759,0.377358491,FALSE,black in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to black in Forsyth 2015-16
+3,2017-18,Forsyth,black,2014-15,Forsyth,black,463,772,0.374898785,508,658,0.43567753,TRUE,black in Forsyth 2017-18 has a lower 3rd Grade Reading Score than black in Forsyth 2014-15
+4,2017-18,Forsyth,black,2013-14,Forsyth,black,463,772,0.374898785,495,646,0.433829974,TRUE,black in Forsyth 2017-18 has a lower 3rd Grade Reading Score than black in Forsyth 2013-14
+5,2017-18,Forsyth,black,2017-18,Forsyth,white,463,772,0.374898785,1179,418,0.738259236,TRUE,black in Forsyth 2017-18 has a lower 3rd Grade Reading Score than white in Forsyth 2017-18
+6,2017-18,Forsyth,black,2017-18,Forsyth,hispanic,463,772,0.374898785,409,798,0.338856669,FALSE,black in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2017-18
+7,2017-18,Forsyth,black,2017-18,Durham,black,463,772,0.374898785,416,739,0.36017316,FALSE,black in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to black in Durham 2017-18
+8,2017-18,Forsyth,black,2017-18,Guilford,black,463,772,0.374898785,933,1412,0.397867804,FALSE,black in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to black in Guilford 2017-18
+9,2017-18,Forsyth,white,2016-17,Forsyth,white,1179,418,0.738259236,1252,384,0.765281174,FALSE,white in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to white in Forsyth 2016-17
+10,2017-18,Forsyth,white,2015-16,Forsyth,white,1179,418,0.738259236,1169,355,0.767060367,FALSE,white in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to white in Forsyth 2015-16
+11,2017-18,Forsyth,white,2014-15,Forsyth,white,1179,418,0.738259236,1218,353,0.775302355,TRUE,white in Forsyth 2017-18 has a lower 3rd Grade Reading Score than white in Forsyth 2014-15
+12,2017-18,Forsyth,white,2013-14,Forsyth,white,1179,418,0.738259236,1279,352,0.784181484,TRUE,white in Forsyth 2017-18 has a lower 3rd Grade Reading Score than white in Forsyth 2013-14
+13,2017-18,Forsyth,white,2017-18,Forsyth,black,1179,418,0.738259236,463,772,0.374898785,TRUE,white in Forsyth 2017-18 has a higher 3rd Grade Reading Score than black in Forsyth 2017-18
+14,2017-18,Forsyth,white,2017-18,Forsyth,hispanic,1179,418,0.738259236,409,798,0.338856669,TRUE,white in Forsyth 2017-18 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2017-18
+15,2017-18,Forsyth,white,2017-18,Durham,white,1179,418,0.738259236,358,99,0.783369803,FALSE,white in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to white in Durham 2017-18
+16,2017-18,Forsyth,white,2017-18,Guilford,white,1179,418,0.738259236,1233,445,0.734803337,FALSE,white in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to white in Guilford 2017-18
+17,2017-18,Forsyth,hispanic,2016-17,Forsyth,hispanic,409,798,0.338856669,380,780,0.327586207,FALSE,hispanic in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2016-17
+18,2017-18,Forsyth,hispanic,2015-16,Forsyth,hispanic,409,798,0.338856669,400,845,0.321285141,FALSE,hispanic in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2015-16
+19,2017-18,Forsyth,hispanic,2014-15,Forsyth,hispanic,409,798,0.338856669,400,733,0.353045013,FALSE,hispanic in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2014-15
+20,2017-18,Forsyth,hispanic,2013-14,Forsyth,hispanic,409,798,0.338856669,373,619,0.376008065,FALSE,hispanic in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2013-14
+21,2017-18,Forsyth,hispanic,2017-18,Forsyth,black,409,798,0.338856669,463,772,0.374898785,FALSE,hispanic in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to black in Forsyth 2017-18
+22,2017-18,Forsyth,hispanic,2017-18,Forsyth,white,409,798,0.338856669,1179,418,0.738259236,TRUE,hispanic in Forsyth 2017-18 has a lower 3rd Grade Reading Score than white in Forsyth 2017-18
+23,2017-18,Forsyth,hispanic,2017-18,Durham,hispanic,409,798,0.338856669,275,580,0.321637427,FALSE,hispanic in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to hispanic in Durham 2017-18
+24,2017-18,Forsyth,hispanic,2017-18,Guilford,hispanic,409,798,0.338856669,367,596,0.381100727,TRUE,hispanic in Forsyth 2017-18 has a lower 3rd Grade Reading Score than hispanic in Guilford 2017-18
+25,2017-18,Forsyth,male,2016-17,Forsyth,male,1058,1170,0.47486535,1095,1139,0.490152193,FALSE,male in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to male in Forsyth 2016-17
+26,2017-18,Forsyth,male,2015-16,Forsyth,male,1058,1170,0.47486535,1124,1146,0.495154185,FALSE,male in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to male in Forsyth 2015-16
+27,2017-18,Forsyth,male,2014-15,Forsyth,male,1058,1170,0.47486535,1115,1005,0.525943396,TRUE,male in Forsyth 2017-18 has a lower 3rd Grade Reading Score than male in Forsyth 2014-15
+28,2017-18,Forsyth,male,2013-14,Forsyth,male,1058,1170,0.47486535,1150,933,0.552088334,TRUE,male in Forsyth 2017-18 has a lower 3rd Grade Reading Score than male in Forsyth 2013-14
+29,2017-18,Forsyth,male,2017-18,Forsyth,female,1058,1170,0.47486535,1187,937,0.558851224,TRUE,male in Forsyth 2017-18 has a lower 3rd Grade Reading Score than female in Forsyth 2017-18
+30,2017-18,Forsyth,male,2017-18,Durham,male,1058,1170,0.47486535,536,767,0.411358404,TRUE,male in Forsyth 2017-18 has a higher 3rd Grade Reading Score than male in Durham 2017-18
+31,2017-18,Forsyth,male,2017-18,Guilford,male,1058,1170,0.47486535,1353,1477,0.478091873,FALSE,male in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to male in Guilford 2017-18
+32,2017-18,Forsyth,female,2016-17,Forsyth,female,1187,937,0.558851224,1212,922,0.567947516,FALSE,female in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to female in Forsyth 2016-17
+33,2017-18,Forsyth,female,2015-16,Forsyth,female,1187,937,0.558851224,1102,917,0.54581476,FALSE,female in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to female in Forsyth 2015-16
+34,2017-18,Forsyth,female,2014-15,Forsyth,female,1187,937,0.558851224,1209,823,0.594980315,TRUE,female in Forsyth 2017-18 has a lower 3rd Grade Reading Score than female in Forsyth 2014-15
+35,2017-18,Forsyth,female,2013-14,Forsyth,female,1187,937,0.558851224,1179,751,0.610880829,TRUE,female in Forsyth 2017-18 has a lower 3rd Grade Reading Score than female in Forsyth 2013-14
+36,2017-18,Forsyth,female,2017-18,Forsyth,male,1187,937,0.558851224,1058,1170,0.47486535,TRUE,female in Forsyth 2017-18 has a higher 3rd Grade Reading Score than male in Forsyth 2017-18
+37,2017-18,Forsyth,female,2017-18,Durham,female,1187,937,0.558851224,582,694,0.456112853,TRUE,female in Forsyth 2017-18 has a higher 3rd Grade Reading Score than female in Durham 2017-18
+38,2017-18,Forsyth,female,2017-18,Guilford,female,1187,937,0.558851224,1526,1243,0.551101481,FALSE,female in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to female in Guilford 2017-18
+39,2017-18,Forsyth,eds,2016-17,Forsyth,eds,802,1389,0.366042903,854,1467,0.367944851,FALSE,eds in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2016-17
+40,2017-18,Forsyth,eds,2015-16,Forsyth,eds,802,1389,0.366042903,843,1436,0.369899079,FALSE,eds in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2015-16
+41,2017-18,Forsyth,eds,2014-15,Forsyth,eds,802,1389,0.366042903,1121,1580,0.41503147,TRUE,eds in Forsyth 2017-18 has a lower 3rd Grade Reading Score than eds in Forsyth 2014-15
+42,2017-18,Forsyth,eds,2013-14,Forsyth,eds,802,1389,0.366042903,1036,1402,0.424938474,TRUE,eds in Forsyth 2017-18 has a lower 3rd Grade Reading Score than eds in Forsyth 2013-14
+43,2017-18,Forsyth,eds,2017-18,Forsyth,not_eds,802,1389,0.366042903,1444,717,0.668209162,TRUE,eds in Forsyth 2017-18 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2017-18
+44,2017-18,Forsyth,eds,2017-18,Durham,eds,802,1389,0.366042903,450,1010,0.308219178,TRUE,eds in Forsyth 2017-18 has a higher 3rd Grade Reading Score than eds in Durham 2017-18
+45,2017-18,Forsyth,eds,2017-18,Guilford,eds,802,1389,0.366042903,1109,1825,0.377982277,FALSE,eds in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to eds in Guilford 2017-18
+46,2017-18,Forsyth,not_eds,2016-17,Forsyth,not_eds,1444,717,0.668209162,1453,594,0.709819248,TRUE,not_eds in Forsyth 2017-18 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2016-17
+47,2017-18,Forsyth,not_eds,2015-16,Forsyth,not_eds,1444,717,0.668209162,1385,625,0.689054726,FALSE,not_eds in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to not_eds in Forsyth 2015-16
+48,2017-18,Forsyth,not_eds,2014-15,Forsyth,not_eds,1444,717,0.668209162,1203,248,0.829083391,TRUE,not_eds in Forsyth 2017-18 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2014-15
+49,2017-18,Forsyth,not_eds,2013-14,Forsyth,not_eds,1444,717,0.668209162,1295,280,0.822222222,TRUE,not_eds in Forsyth 2017-18 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2013-14
+50,2017-18,Forsyth,not_eds,2017-18,Forsyth,eds,1444,717,0.668209162,802,1389,0.366042903,TRUE,not_eds in Forsyth 2017-18 has a higher 3rd Grade Reading Score than eds in Forsyth 2017-18
+51,2017-18,Forsyth,not_eds,2017-18,Durham,not_eds,1444,717,0.668209162,668,451,0.596961573,TRUE,not_eds in Forsyth 2017-18 has a higher 3rd Grade Reading Score than not_eds in Durham 2017-18
+52,2017-18,Forsyth,not_eds,2017-18,Guilford,not_eds,1444,717,0.668209162,1770,895,0.664165103,FALSE,not_eds in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to not_eds in Guilford 2017-18
+53,2017-18,Forsyth,ALL,2016-17,Forsyth,ALL,2246,2106,0.516084559,2306,2062,0.527930403,FALSE,ALL in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2016-17
+54,2017-18,Forsyth,ALL,2015-16,Forsyth,ALL,2246,2106,0.516084559,2226,2063,0.519002098,FALSE,ALL in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2015-16
+55,2017-18,Forsyth,ALL,2014-15,Forsyth,ALL,2246,2106,0.516084559,2325,1827,0.559971098,TRUE,ALL in Forsyth 2017-18 has a lower 3rd Grade Reading Score than ALL in Forsyth 2014-15
+56,2017-18,Forsyth,ALL,2013-14,Forsyth,ALL,2246,2106,0.516084559,2328,1685,0.580114627,TRUE,ALL in Forsyth 2017-18 has a lower 3rd Grade Reading Score than ALL in Forsyth 2013-14
+57,2017-18,Forsyth,ALL,2017-18,Durham,ALL,2246,2106,0.516084559,1117,1462,0.43311361,TRUE,ALL in Forsyth 2017-18 has a higher 3rd Grade Reading Score than ALL in Durham 2017-18
+58,2017-18,Forsyth,ALL,2017-18,Guilford,ALL,2246,2106,0.516084559,2878,2721,0.514020361,FALSE,ALL in Forsyth 2017-18 has a similar 3rd Grade Reading Score compared to ALL in Guilford 2017-18
+59,2016-17,Forsyth,black,2017-18,Forsyth,black,494,798,0.382352941,463,772,0.374898785,FALSE,black in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to black in Forsyth 2017-18
+60,2016-17,Forsyth,black,2015-16,Forsyth,black,494,798,0.382352941,460,759,0.377358491,FALSE,black in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to black in Forsyth 2015-16
+61,2016-17,Forsyth,black,2014-15,Forsyth,black,494,798,0.382352941,508,658,0.43567753,TRUE,black in Forsyth 2016-17 has a lower 3rd Grade Reading Score than black in Forsyth 2014-15
+62,2016-17,Forsyth,black,2013-14,Forsyth,black,494,798,0.382352941,495,646,0.433829974,TRUE,black in Forsyth 2016-17 has a lower 3rd Grade Reading Score than black in Forsyth 2013-14
+63,2016-17,Forsyth,black,2016-17,Forsyth,white,494,798,0.382352941,1252,384,0.765281174,TRUE,black in Forsyth 2016-17 has a lower 3rd Grade Reading Score than white in Forsyth 2016-17
+64,2016-17,Forsyth,black,2016-17,Forsyth,hispanic,494,798,0.382352941,380,780,0.327586207,TRUE,black in Forsyth 2016-17 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2016-17
+65,2016-17,Forsyth,black,2016-17,Durham,black,494,798,0.382352941,433,753,0.365092749,FALSE,black in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to black in Durham 2016-17
+66,2016-17,Forsyth,black,2016-17,Guilford,black,494,798,0.382352941,947,1386,0.405915131,FALSE,black in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to black in Guilford 2016-17
+67,2016-17,Forsyth,white,2017-18,Forsyth,white,1252,384,0.765281174,1179,418,0.738259236,FALSE,white in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to white in Forsyth 2017-18
+68,2016-17,Forsyth,white,2015-16,Forsyth,white,1252,384,0.765281174,1169,355,0.767060367,FALSE,white in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to white in Forsyth 2015-16
+69,2016-17,Forsyth,white,2014-15,Forsyth,white,1252,384,0.765281174,1218,353,0.775302355,FALSE,white in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to white in Forsyth 2014-15
+70,2016-17,Forsyth,white,2013-14,Forsyth,white,1252,384,0.765281174,1279,352,0.784181484,FALSE,white in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to white in Forsyth 2013-14
+71,2016-17,Forsyth,white,2016-17,Forsyth,black,1252,384,0.765281174,494,798,0.382352941,TRUE,white in Forsyth 2016-17 has a higher 3rd Grade Reading Score than black in Forsyth 2016-17
+72,2016-17,Forsyth,white,2016-17,Forsyth,hispanic,1252,384,0.765281174,380,780,0.327586207,TRUE,white in Forsyth 2016-17 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2016-17
+73,2016-17,Forsyth,white,2016-17,Durham,white,1252,384,0.765281174,386,94,0.804166667,FALSE,white in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to white in Durham 2016-17
+74,2016-17,Forsyth,white,2016-17,Guilford,white,1252,384,0.765281174,1241,425,0.744897959,FALSE,white in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to white in Guilford 2016-17
+75,2016-17,Forsyth,hispanic,2017-18,Forsyth,hispanic,380,780,0.327586207,409,798,0.338856669,FALSE,hispanic in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2017-18
+76,2016-17,Forsyth,hispanic,2015-16,Forsyth,hispanic,380,780,0.327586207,400,845,0.321285141,FALSE,hispanic in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2015-16
+77,2016-17,Forsyth,hispanic,2014-15,Forsyth,hispanic,380,780,0.327586207,400,733,0.353045013,FALSE,hispanic in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2014-15
+78,2016-17,Forsyth,hispanic,2013-14,Forsyth,hispanic,380,780,0.327586207,373,619,0.376008065,TRUE,hispanic in Forsyth 2016-17 has a lower 3rd Grade Reading Score than hispanic in Forsyth 2013-14
+79,2016-17,Forsyth,hispanic,2016-17,Forsyth,black,380,780,0.327586207,494,798,0.382352941,TRUE,hispanic in Forsyth 2016-17 has a lower 3rd Grade Reading Score than black in Forsyth 2016-17
+80,2016-17,Forsyth,hispanic,2016-17,Forsyth,white,380,780,0.327586207,1252,384,0.765281174,TRUE,hispanic in Forsyth 2016-17 has a lower 3rd Grade Reading Score than white in Forsyth 2016-17
+81,2016-17,Forsyth,hispanic,2016-17,Durham,hispanic,380,780,0.327586207,299,587,0.337471783,FALSE,hispanic in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to hispanic in Durham 2016-17
+82,2016-17,Forsyth,hispanic,2016-17,Guilford,hispanic,380,780,0.327586207,416,560,0.426229508,TRUE,hispanic in Forsyth 2016-17 has a lower 3rd Grade Reading Score than hispanic in Guilford 2016-17
+83,2016-17,Forsyth,male,2017-18,Forsyth,male,1095,1139,0.490152193,1058,1170,0.47486535,FALSE,male in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to male in Forsyth 2017-18
+84,2016-17,Forsyth,male,2015-16,Forsyth,male,1095,1139,0.490152193,1124,1146,0.495154185,FALSE,male in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to male in Forsyth 2015-16
+85,2016-17,Forsyth,male,2014-15,Forsyth,male,1095,1139,0.490152193,1115,1005,0.525943396,TRUE,male in Forsyth 2016-17 has a lower 3rd Grade Reading Score than male in Forsyth 2014-15
+86,2016-17,Forsyth,male,2013-14,Forsyth,male,1095,1139,0.490152193,1150,933,0.552088334,TRUE,male in Forsyth 2016-17 has a lower 3rd Grade Reading Score than male in Forsyth 2013-14
+87,2016-17,Forsyth,male,2016-17,Forsyth,female,1095,1139,0.490152193,1212,922,0.567947516,TRUE,male in Forsyth 2016-17 has a lower 3rd Grade Reading Score than female in Forsyth 2016-17
+88,2016-17,Forsyth,male,2016-17,Durham,male,1095,1139,0.490152193,575,831,0.408961593,TRUE,male in Forsyth 2016-17 has a higher 3rd Grade Reading Score than male in Durham 2016-17
+89,2016-17,Forsyth,male,2016-17,Guilford,male,1095,1139,0.490152193,1442,1424,0.503140265,FALSE,male in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to male in Guilford 2016-17
+90,2016-17,Forsyth,female,2017-18,Forsyth,female,1212,922,0.567947516,1187,937,0.558851224,FALSE,female in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to female in Forsyth 2017-18
+91,2016-17,Forsyth,female,2015-16,Forsyth,female,1212,922,0.567947516,1102,917,0.54581476,FALSE,female in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to female in Forsyth 2015-16
+92,2016-17,Forsyth,female,2014-15,Forsyth,female,1212,922,0.567947516,1209,823,0.594980315,FALSE,female in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to female in Forsyth 2014-15
+93,2016-17,Forsyth,female,2013-14,Forsyth,female,1212,922,0.567947516,1179,751,0.610880829,TRUE,female in Forsyth 2016-17 has a lower 3rd Grade Reading Score than female in Forsyth 2013-14
+94,2016-17,Forsyth,female,2016-17,Forsyth,male,1212,922,0.567947516,1095,1139,0.490152193,TRUE,female in Forsyth 2016-17 has a higher 3rd Grade Reading Score than male in Forsyth 2016-17
+95,2016-17,Forsyth,female,2016-17,Durham,female,1212,922,0.567947516,627,665,0.485294118,TRUE,female in Forsyth 2016-17 has a higher 3rd Grade Reading Score than female in Durham 2016-17
+96,2016-17,Forsyth,female,2016-17,Guilford,female,1212,922,0.567947516,1550,1189,0.565899963,FALSE,female in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to female in Guilford 2016-17
+97,2016-17,Forsyth,eds,2017-18,Forsyth,eds,854,1467,0.367944851,802,1389,0.366042903,FALSE,eds in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2017-18
+98,2016-17,Forsyth,eds,2015-16,Forsyth,eds,854,1467,0.367944851,843,1436,0.369899079,FALSE,eds in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2015-16
+99,2016-17,Forsyth,eds,2014-15,Forsyth,eds,854,1467,0.367944851,1121,1580,0.41503147,TRUE,eds in Forsyth 2016-17 has a lower 3rd Grade Reading Score than eds in Forsyth 2014-15
+100,2016-17,Forsyth,eds,2013-14,Forsyth,eds,854,1467,0.367944851,1036,1402,0.424938474,TRUE,eds in Forsyth 2016-17 has a lower 3rd Grade Reading Score than eds in Forsyth 2013-14
+101,2016-17,Forsyth,eds,2016-17,Forsyth,not_eds,854,1467,0.367944851,1453,594,0.709819248,TRUE,eds in Forsyth 2016-17 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2016-17
+102,2016-17,Forsyth,eds,2016-17,Durham,eds,854,1467,0.367944851,573,1159,0.330831409,TRUE,eds in Forsyth 2016-17 has a higher 3rd Grade Reading Score than eds in Durham 2016-17
+103,2016-17,Forsyth,eds,2016-17,Guilford,eds,854,1467,0.367944851,1207,1803,0.400996678,TRUE,eds in Forsyth 2016-17 has a lower 3rd Grade Reading Score than eds in Guilford 2016-17
+104,2016-17,Forsyth,not_eds,2017-18,Forsyth,not_eds,1453,594,0.709819248,1444,717,0.668209162,TRUE,not_eds in Forsyth 2016-17 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2017-18
+105,2016-17,Forsyth,not_eds,2015-16,Forsyth,not_eds,1453,594,0.709819248,1385,625,0.689054726,FALSE,not_eds in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to not_eds in Forsyth 2015-16
+106,2016-17,Forsyth,not_eds,2014-15,Forsyth,not_eds,1453,594,0.709819248,1203,248,0.829083391,TRUE,not_eds in Forsyth 2016-17 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2014-15
+107,2016-17,Forsyth,not_eds,2013-14,Forsyth,not_eds,1453,594,0.709819248,1295,280,0.822222222,TRUE,not_eds in Forsyth 2016-17 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2013-14
+108,2016-17,Forsyth,not_eds,2016-17,Forsyth,eds,1453,594,0.709819248,854,1467,0.367944851,TRUE,not_eds in Forsyth 2016-17 has a higher 3rd Grade Reading Score than eds in Forsyth 2016-17
+109,2016-17,Forsyth,not_eds,2016-17,Durham,not_eds,1453,594,0.709819248,628,338,0.65010352,TRUE,not_eds in Forsyth 2016-17 has a higher 3rd Grade Reading Score than not_eds in Durham 2016-17
+110,2016-17,Forsyth,not_eds,2016-17,Guilford,not_eds,1453,594,0.709819248,1785,810,0.687861272,FALSE,not_eds in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to not_eds in Guilford 2016-17
+111,2016-17,Forsyth,ALL,2017-18,Forsyth,ALL,2306,2062,0.527930403,2246,2106,0.516084559,FALSE,ALL in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2017-18
+112,2016-17,Forsyth,ALL,2015-16,Forsyth,ALL,2306,2062,0.527930403,2226,2063,0.519002098,FALSE,ALL in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2015-16
+113,2016-17,Forsyth,ALL,2014-15,Forsyth,ALL,2306,2062,0.527930403,2325,1827,0.559971098,TRUE,ALL in Forsyth 2016-17 has a lower 3rd Grade Reading Score than ALL in Forsyth 2014-15
+114,2016-17,Forsyth,ALL,2013-14,Forsyth,ALL,2306,2062,0.527930403,2328,1685,0.580114627,TRUE,ALL in Forsyth 2016-17 has a lower 3rd Grade Reading Score than ALL in Forsyth 2013-14
+115,2016-17,Forsyth,ALL,2016-17,Durham,ALL,2306,2062,0.527930403,1203,1495,0.445885841,TRUE,ALL in Forsyth 2016-17 has a higher 3rd Grade Reading Score than ALL in Durham 2016-17
+116,2016-17,Forsyth,ALL,2016-17,Guilford,ALL,2306,2062,0.527930403,2993,2612,0.533987511,FALSE,ALL in Forsyth 2016-17 has a similar 3rd Grade Reading Score compared to ALL in Guilford 2016-17
+117,2015-16,Forsyth,black,2017-18,Forsyth,black,460,759,0.377358491,463,772,0.374898785,FALSE,black in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to black in Forsyth 2017-18
+118,2015-16,Forsyth,black,2016-17,Forsyth,black,460,759,0.377358491,494,798,0.382352941,FALSE,black in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to black in Forsyth 2016-17
+119,2015-16,Forsyth,black,2014-15,Forsyth,black,460,759,0.377358491,508,658,0.43567753,TRUE,black in Forsyth 2015-16 has a lower 3rd Grade Reading Score than black in Forsyth 2014-15
+120,2015-16,Forsyth,black,2013-14,Forsyth,black,460,759,0.377358491,495,646,0.433829974,TRUE,black in Forsyth 2015-16 has a lower 3rd Grade Reading Score than black in Forsyth 2013-14
+121,2015-16,Forsyth,black,2015-16,Forsyth,white,460,759,0.377358491,1169,355,0.767060367,TRUE,black in Forsyth 2015-16 has a lower 3rd Grade Reading Score than white in Forsyth 2015-16
+122,2015-16,Forsyth,black,2015-16,Forsyth,hispanic,460,759,0.377358491,400,845,0.321285141,TRUE,black in Forsyth 2015-16 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2015-16
+123,2015-16,Forsyth,black,2015-16,Durham,black,460,759,0.377358491,431,719,0.374782609,FALSE,black in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to black in Durham 2015-16
+124,2015-16,Forsyth,black,2015-16,Guilford,black,460,759,0.377358491,936,1309,0.416926503,TRUE,black in Forsyth 2015-16 has a lower 3rd Grade Reading Score than black in Guilford 2015-16
+125,2015-16,Forsyth,white,2017-18,Forsyth,white,1169,355,0.767060367,1179,418,0.738259236,FALSE,white in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to white in Forsyth 2017-18
+126,2015-16,Forsyth,white,2016-17,Forsyth,white,1169,355,0.767060367,1252,384,0.765281174,FALSE,white in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to white in Forsyth 2016-17
+127,2015-16,Forsyth,white,2014-15,Forsyth,white,1169,355,0.767060367,1218,353,0.775302355,FALSE,white in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to white in Forsyth 2014-15
+128,2015-16,Forsyth,white,2013-14,Forsyth,white,1169,355,0.767060367,1279,352,0.784181484,FALSE,white in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to white in Forsyth 2013-14
+129,2015-16,Forsyth,white,2015-16,Forsyth,black,1169,355,0.767060367,460,759,0.377358491,TRUE,white in Forsyth 2015-16 has a higher 3rd Grade Reading Score than black in Forsyth 2015-16
+130,2015-16,Forsyth,white,2015-16,Forsyth,hispanic,1169,355,0.767060367,400,845,0.321285141,TRUE,white in Forsyth 2015-16 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2015-16
+131,2015-16,Forsyth,white,2015-16,Durham,white,1169,355,0.767060367,384,95,0.801670146,FALSE,white in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to white in Durham 2015-16
+132,2015-16,Forsyth,white,2015-16,Guilford,white,1169,355,0.767060367,1284,382,0.770708283,FALSE,white in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to white in Guilford 2015-16
+133,2015-16,Forsyth,hispanic,2017-18,Forsyth,hispanic,400,845,0.321285141,409,798,0.338856669,FALSE,hispanic in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2017-18
+134,2015-16,Forsyth,hispanic,2016-17,Forsyth,hispanic,400,845,0.321285141,380,780,0.327586207,FALSE,hispanic in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2016-17
+135,2015-16,Forsyth,hispanic,2014-15,Forsyth,hispanic,400,845,0.321285141,400,733,0.353045013,FALSE,hispanic in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2014-15
+136,2015-16,Forsyth,hispanic,2013-14,Forsyth,hispanic,400,845,0.321285141,373,619,0.376008065,TRUE,hispanic in Forsyth 2015-16 has a lower 3rd Grade Reading Score than hispanic in Forsyth 2013-14
+137,2015-16,Forsyth,hispanic,2015-16,Forsyth,black,400,845,0.321285141,460,759,0.377358491,TRUE,hispanic in Forsyth 2015-16 has a lower 3rd Grade Reading Score than black in Forsyth 2015-16
+138,2015-16,Forsyth,hispanic,2015-16,Forsyth,white,400,845,0.321285141,1169,355,0.767060367,TRUE,hispanic in Forsyth 2015-16 has a lower 3rd Grade Reading Score than white in Forsyth 2015-16
+139,2015-16,Forsyth,hispanic,2015-16,Durham,hispanic,400,845,0.321285141,296,583,0.336746303,FALSE,hispanic in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to hispanic in Durham 2015-16
+140,2015-16,Forsyth,hispanic,2015-16,Guilford,hispanic,400,845,0.321285141,390,582,0.401234568,TRUE,hispanic in Forsyth 2015-16 has a lower 3rd Grade Reading Score than hispanic in Guilford 2015-16
+141,2015-16,Forsyth,male,2017-18,Forsyth,male,1124,1146,0.495154185,1058,1170,0.47486535,FALSE,male in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to male in Forsyth 2017-18
+142,2015-16,Forsyth,male,2016-17,Forsyth,male,1124,1146,0.495154185,1095,1139,0.490152193,FALSE,male in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to male in Forsyth 2016-17
+143,2015-16,Forsyth,male,2014-15,Forsyth,male,1124,1146,0.495154185,1115,1005,0.525943396,TRUE,male in Forsyth 2015-16 has a lower 3rd Grade Reading Score than male in Forsyth 2014-15
+144,2015-16,Forsyth,male,2013-14,Forsyth,male,1124,1146,0.495154185,1150,933,0.552088334,TRUE,male in Forsyth 2015-16 has a lower 3rd Grade Reading Score than male in Forsyth 2013-14
+145,2015-16,Forsyth,male,2015-16,Forsyth,female,1124,1146,0.495154185,1102,917,0.54581476,TRUE,male in Forsyth 2015-16 has a lower 3rd Grade Reading Score than female in Forsyth 2015-16
+146,2015-16,Forsyth,male,2015-16,Durham,male,1124,1146,0.495154185,573,786,0.421633554,TRUE,male in Forsyth 2015-16 has a higher 3rd Grade Reading Score than male in Durham 2015-16
+147,2015-16,Forsyth,male,2015-16,Guilford,male,1124,1146,0.495154185,1463,1384,0.513874254,FALSE,male in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to male in Guilford 2015-16
+148,2015-16,Forsyth,female,2017-18,Forsyth,female,1102,917,0.54581476,1187,937,0.558851224,FALSE,female in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to female in Forsyth 2017-18
+149,2015-16,Forsyth,female,2016-17,Forsyth,female,1102,917,0.54581476,1212,922,0.567947516,FALSE,female in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to female in Forsyth 2016-17
+150,2015-16,Forsyth,female,2014-15,Forsyth,female,1102,917,0.54581476,1209,823,0.594980315,TRUE,female in Forsyth 2015-16 has a lower 3rd Grade Reading Score than female in Forsyth 2014-15
+151,2015-16,Forsyth,female,2013-14,Forsyth,female,1102,917,0.54581476,1179,751,0.610880829,TRUE,female in Forsyth 2015-16 has a lower 3rd Grade Reading Score than female in Forsyth 2013-14
+152,2015-16,Forsyth,female,2015-16,Forsyth,male,1102,917,0.54581476,1124,1146,0.495154185,TRUE,female in Forsyth 2015-16 has a higher 3rd Grade Reading Score than male in Forsyth 2015-16
+153,2015-16,Forsyth,female,2015-16,Durham,female,1102,917,0.54581476,646,667,0.492003046,TRUE,female in Forsyth 2015-16 has a higher 3rd Grade Reading Score than female in Durham 2015-16
+154,2015-16,Forsyth,female,2015-16,Guilford,female,1102,917,0.54581476,1476,1128,0.566820276,FALSE,female in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to female in Guilford 2015-16
+155,2015-16,Forsyth,eds,2017-18,Forsyth,eds,843,1436,0.369899079,802,1389,0.366042903,FALSE,eds in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2017-18
+156,2015-16,Forsyth,eds,2016-17,Forsyth,eds,843,1436,0.369899079,854,1467,0.367944851,FALSE,eds in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2016-17
+157,2015-16,Forsyth,eds,2014-15,Forsyth,eds,843,1436,0.369899079,1121,1580,0.41503147,TRUE,eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than eds in Forsyth 2014-15
+158,2015-16,Forsyth,eds,2013-14,Forsyth,eds,843,1436,0.369899079,1036,1402,0.424938474,TRUE,eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than eds in Forsyth 2013-14
+159,2015-16,Forsyth,eds,2015-16,Forsyth,not_eds,843,1436,0.369899079,1385,625,0.689054726,TRUE,eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2015-16
+160,2015-16,Forsyth,eds,2015-16,Durham,eds,843,1436,0.369899079,627,1262,0.331921652,TRUE,eds in Forsyth 2015-16 has a higher 3rd Grade Reading Score than eds in Durham 2015-16
+161,2015-16,Forsyth,eds,2015-16,Guilford,eds,843,1436,0.369899079,1152,1650,0.411134904,TRUE,eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than eds in Guilford 2015-16
+162,2015-16,Forsyth,not_eds,2017-18,Forsyth,not_eds,1385,625,0.689054726,1444,717,0.668209162,FALSE,not_eds in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to not_eds in Forsyth 2017-18
+163,2015-16,Forsyth,not_eds,2016-17,Forsyth,not_eds,1385,625,0.689054726,1453,594,0.709819248,FALSE,not_eds in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to not_eds in Forsyth 2016-17
+164,2015-16,Forsyth,not_eds,2014-15,Forsyth,not_eds,1385,625,0.689054726,1203,248,0.829083391,TRUE,not_eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2014-15
+165,2015-16,Forsyth,not_eds,2013-14,Forsyth,not_eds,1385,625,0.689054726,1295,280,0.822222222,TRUE,not_eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2013-14
+166,2015-16,Forsyth,not_eds,2015-16,Forsyth,eds,1385,625,0.689054726,843,1436,0.369899079,TRUE,not_eds in Forsyth 2015-16 has a higher 3rd Grade Reading Score than eds in Forsyth 2015-16
+167,2015-16,Forsyth,not_eds,2015-16,Durham,not_eds,1385,625,0.689054726,593,190,0.75734355,TRUE,not_eds in Forsyth 2015-16 has a lower 3rd Grade Reading Score than not_eds in Durham 2015-16
+168,2015-16,Forsyth,not_eds,2015-16,Guilford,not_eds,1385,625,0.689054726,1788,861,0.674971687,FALSE,not_eds in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to not_eds in Guilford 2015-16
+169,2015-16,Forsyth,ALL,2017-18,Forsyth,ALL,2226,2063,0.519002098,2246,2106,0.516084559,FALSE,ALL in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2017-18
+170,2015-16,Forsyth,ALL,2016-17,Forsyth,ALL,2226,2063,0.519002098,2306,2062,0.527930403,FALSE,ALL in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2016-17
+171,2015-16,Forsyth,ALL,2014-15,Forsyth,ALL,2226,2063,0.519002098,2325,1827,0.559971098,TRUE,ALL in Forsyth 2015-16 has a lower 3rd Grade Reading Score than ALL in Forsyth 2014-15
+172,2015-16,Forsyth,ALL,2013-14,Forsyth,ALL,2226,2063,0.519002098,2328,1685,0.580114627,TRUE,ALL in Forsyth 2015-16 has a lower 3rd Grade Reading Score than ALL in Forsyth 2013-14
+173,2015-16,Forsyth,ALL,2015-16,Durham,ALL,2226,2063,0.519002098,1221,1451,0.456961078,TRUE,ALL in Forsyth 2015-16 has a higher 3rd Grade Reading Score than ALL in Durham 2015-16
+174,2015-16,Forsyth,ALL,2015-16,Guilford,ALL,2226,2063,0.519002098,2938,2513,0.538983673,FALSE,ALL in Forsyth 2015-16 has a similar 3rd Grade Reading Score compared to ALL in Guilford 2015-16
+175,2014-15,Forsyth,black,2017-18,Forsyth,black,508,658,0.43567753,463,772,0.374898785,TRUE,black in Forsyth 2014-15 has a higher 3rd Grade Reading Score than black in Forsyth 2017-18
+176,2014-15,Forsyth,black,2016-17,Forsyth,black,508,658,0.43567753,494,798,0.382352941,TRUE,black in Forsyth 2014-15 has a higher 3rd Grade Reading Score than black in Forsyth 2016-17
+177,2014-15,Forsyth,black,2015-16,Forsyth,black,508,658,0.43567753,460,759,0.377358491,TRUE,black in Forsyth 2014-15 has a higher 3rd Grade Reading Score than black in Forsyth 2015-16
+178,2014-15,Forsyth,black,2013-14,Forsyth,black,508,658,0.43567753,495,646,0.433829974,FALSE,black in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to black in Forsyth 2013-14
+179,2014-15,Forsyth,black,2014-15,Forsyth,white,508,658,0.43567753,1218,353,0.775302355,TRUE,black in Forsyth 2014-15 has a lower 3rd Grade Reading Score than white in Forsyth 2014-15
+180,2014-15,Forsyth,black,2014-15,Forsyth,hispanic,508,658,0.43567753,400,733,0.353045013,TRUE,black in Forsyth 2014-15 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2014-15
+181,2014-15,Forsyth,black,2014-15,Durham,black,508,658,0.43567753,422,741,0.362854686,TRUE,black in Forsyth 2014-15 has a higher 3rd Grade Reading Score than black in Durham 2014-15
+182,2014-15,Forsyth,black,2014-15,Guilford,black,508,658,0.43567753,988,1332,0.425862069,FALSE,black in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to black in Guilford 2014-15
+183,2014-15,Forsyth,white,2017-18,Forsyth,white,1218,353,0.775302355,1179,418,0.738259236,TRUE,white in Forsyth 2014-15 has a higher 3rd Grade Reading Score than white in Forsyth 2017-18
+184,2014-15,Forsyth,white,2016-17,Forsyth,white,1218,353,0.775302355,1252,384,0.765281174,FALSE,white in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to white in Forsyth 2016-17
+185,2014-15,Forsyth,white,2015-16,Forsyth,white,1218,353,0.775302355,1169,355,0.767060367,FALSE,white in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to white in Forsyth 2015-16
+186,2014-15,Forsyth,white,2013-14,Forsyth,white,1218,353,0.775302355,1279,352,0.784181484,FALSE,white in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to white in Forsyth 2013-14
+187,2014-15,Forsyth,white,2014-15,Forsyth,black,1218,353,0.775302355,508,658,0.43567753,TRUE,white in Forsyth 2014-15 has a higher 3rd Grade Reading Score than black in Forsyth 2014-15
+188,2014-15,Forsyth,white,2014-15,Forsyth,hispanic,1218,353,0.775302355,400,733,0.353045013,TRUE,white in Forsyth 2014-15 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2014-15
+189,2014-15,Forsyth,white,2014-15,Durham,white,1218,353,0.775302355,386,88,0.814345992,FALSE,white in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to white in Durham 2014-15
+190,2014-15,Forsyth,white,2014-15,Guilford,white,1218,353,0.775302355,1264,437,0.743092299,TRUE,white in Forsyth 2014-15 has a higher 3rd Grade Reading Score than white in Guilford 2014-15
+191,2014-15,Forsyth,hispanic,2017-18,Forsyth,hispanic,400,733,0.353045013,409,798,0.338856669,FALSE,hispanic in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2017-18
+192,2014-15,Forsyth,hispanic,2016-17,Forsyth,hispanic,400,733,0.353045013,380,780,0.327586207,FALSE,hispanic in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2016-17
+193,2014-15,Forsyth,hispanic,2015-16,Forsyth,hispanic,400,733,0.353045013,400,845,0.321285141,FALSE,hispanic in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2015-16
+194,2014-15,Forsyth,hispanic,2013-14,Forsyth,hispanic,400,733,0.353045013,373,619,0.376008065,FALSE,hispanic in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2013-14
+195,2014-15,Forsyth,hispanic,2014-15,Forsyth,black,400,733,0.353045013,508,658,0.43567753,TRUE,hispanic in Forsyth 2014-15 has a lower 3rd Grade Reading Score than black in Forsyth 2014-15
+196,2014-15,Forsyth,hispanic,2014-15,Forsyth,white,400,733,0.353045013,1218,353,0.775302355,TRUE,hispanic in Forsyth 2014-15 has a lower 3rd Grade Reading Score than white in Forsyth 2014-15
+197,2014-15,Forsyth,hispanic,2014-15,Durham,hispanic,400,733,0.353045013,280,529,0.346106304,FALSE,hispanic in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to hispanic in Durham 2014-15
+198,2014-15,Forsyth,hispanic,2014-15,Guilford,hispanic,400,733,0.353045013,373,534,0.411245865,TRUE,hispanic in Forsyth 2014-15 has a lower 3rd Grade Reading Score than hispanic in Guilford 2014-15
+199,2014-15,Forsyth,male,2017-18,Forsyth,male,1115,1005,0.525943396,1058,1170,0.47486535,TRUE,male in Forsyth 2014-15 has a higher 3rd Grade Reading Score than male in Forsyth 2017-18
+200,2014-15,Forsyth,male,2016-17,Forsyth,male,1115,1005,0.525943396,1095,1139,0.490152193,TRUE,male in Forsyth 2014-15 has a higher 3rd Grade Reading Score than male in Forsyth 2016-17
+201,2014-15,Forsyth,male,2015-16,Forsyth,male,1115,1005,0.525943396,1124,1146,0.495154185,TRUE,male in Forsyth 2014-15 has a higher 3rd Grade Reading Score than male in Forsyth 2015-16
+202,2014-15,Forsyth,male,2013-14,Forsyth,male,1115,1005,0.525943396,1150,933,0.552088334,FALSE,male in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to male in Forsyth 2013-14
+203,2014-15,Forsyth,male,2014-15,Forsyth,female,1115,1005,0.525943396,1209,823,0.594980315,TRUE,male in Forsyth 2014-15 has a lower 3rd Grade Reading Score than female in Forsyth 2014-15
+204,2014-15,Forsyth,male,2014-15,Durham,male,1115,1005,0.525943396,540,767,0.413159908,TRUE,male in Forsyth 2014-15 has a higher 3rd Grade Reading Score than male in Durham 2014-15
+205,2014-15,Forsyth,male,2014-15,Guilford,male,1115,1005,0.525943396,1377,1382,0.499093875,FALSE,male in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to male in Guilford 2014-15
+206,2014-15,Forsyth,female,2017-18,Forsyth,female,1209,823,0.594980315,1187,937,0.558851224,TRUE,female in Forsyth 2014-15 has a higher 3rd Grade Reading Score than female in Forsyth 2017-18
+207,2014-15,Forsyth,female,2016-17,Forsyth,female,1209,823,0.594980315,1212,922,0.567947516,FALSE,female in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to female in Forsyth 2016-17
+208,2014-15,Forsyth,female,2015-16,Forsyth,female,1209,823,0.594980315,1102,917,0.54581476,TRUE,female in Forsyth 2014-15 has a higher 3rd Grade Reading Score than female in Forsyth 2015-16
+209,2014-15,Forsyth,female,2013-14,Forsyth,female,1209,823,0.594980315,1179,751,0.610880829,FALSE,female in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to female in Forsyth 2013-14
+210,2014-15,Forsyth,female,2014-15,Forsyth,male,1209,823,0.594980315,1115,1005,0.525943396,TRUE,female in Forsyth 2014-15 has a higher 3rd Grade Reading Score than male in Forsyth 2014-15
+211,2014-15,Forsyth,female,2014-15,Durham,female,1209,823,0.594980315,626,638,0.495253165,TRUE,female in Forsyth 2014-15 has a higher 3rd Grade Reading Score than female in Durham 2014-15
+212,2014-15,Forsyth,female,2014-15,Guilford,female,1209,823,0.594980315,1556,1140,0.577151335,FALSE,female in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to female in Guilford 2014-15
+213,2014-15,Forsyth,eds,2017-18,Forsyth,eds,1121,1580,0.41503147,802,1389,0.366042903,TRUE,eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than eds in Forsyth 2017-18
+214,2014-15,Forsyth,eds,2016-17,Forsyth,eds,1121,1580,0.41503147,854,1467,0.367944851,TRUE,eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than eds in Forsyth 2016-17
+215,2014-15,Forsyth,eds,2015-16,Forsyth,eds,1121,1580,0.41503147,843,1436,0.369899079,TRUE,eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than eds in Forsyth 2015-16
+216,2014-15,Forsyth,eds,2013-14,Forsyth,eds,1121,1580,0.41503147,1036,1402,0.424938474,FALSE,eds in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2013-14
+217,2014-15,Forsyth,eds,2014-15,Forsyth,not_eds,1121,1580,0.41503147,1203,248,0.829083391,TRUE,eds in Forsyth 2014-15 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2014-15
+218,2014-15,Forsyth,eds,2014-15,Durham,eds,1121,1580,0.41503147,510,1085,0.319749216,TRUE,eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than eds in Durham 2014-15
+219,2014-15,Forsyth,eds,2014-15,Guilford,eds,1121,1580,0.41503147,1231,1763,0.411155645,FALSE,eds in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to eds in Guilford 2014-15
+220,2014-15,Forsyth,not_eds,2017-18,Forsyth,not_eds,1203,248,0.829083391,1444,717,0.668209162,TRUE,not_eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2017-18
+221,2014-15,Forsyth,not_eds,2016-17,Forsyth,not_eds,1203,248,0.829083391,1453,594,0.709819248,TRUE,not_eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2016-17
+222,2014-15,Forsyth,not_eds,2015-16,Forsyth,not_eds,1203,248,0.829083391,1385,625,0.689054726,TRUE,not_eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2015-16
+223,2014-15,Forsyth,not_eds,2013-14,Forsyth,not_eds,1203,248,0.829083391,1295,280,0.822222222,FALSE,not_eds in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to not_eds in Forsyth 2013-14
+224,2014-15,Forsyth,not_eds,2014-15,Forsyth,eds,1203,248,0.829083391,1121,1580,0.41503147,TRUE,not_eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than eds in Forsyth 2014-15
+225,2014-15,Forsyth,not_eds,2014-15,Durham,not_eds,1203,248,0.829083391,655,321,0.671106557,TRUE,not_eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than not_eds in Durham 2014-15
+226,2014-15,Forsyth,not_eds,2014-15,Guilford,not_eds,1203,248,0.829083391,1701,760,0.691182446,TRUE,not_eds in Forsyth 2014-15 has a higher 3rd Grade Reading Score than not_eds in Guilford 2014-15
+227,2014-15,Forsyth,ALL,2017-18,Forsyth,ALL,2325,1827,0.559971098,2246,2106,0.516084559,TRUE,ALL in Forsyth 2014-15 has a higher 3rd Grade Reading Score than ALL in Forsyth 2017-18
+228,2014-15,Forsyth,ALL,2016-17,Forsyth,ALL,2325,1827,0.559971098,2306,2062,0.527930403,TRUE,ALL in Forsyth 2014-15 has a higher 3rd Grade Reading Score than ALL in Forsyth 2016-17
+229,2014-15,Forsyth,ALL,2015-16,Forsyth,ALL,2325,1827,0.559971098,2226,2063,0.519002098,TRUE,ALL in Forsyth 2014-15 has a higher 3rd Grade Reading Score than ALL in Forsyth 2015-16
+230,2014-15,Forsyth,ALL,2013-14,Forsyth,ALL,2325,1827,0.559971098,2328,1685,0.580114627,FALSE,ALL in Forsyth 2014-15 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2013-14
+231,2014-15,Forsyth,ALL,2014-15,Durham,ALL,2325,1827,0.559971098,1167,1404,0.453908985,TRUE,ALL in Forsyth 2014-15 has a higher 3rd Grade Reading Score than ALL in Durham 2014-15
+232,2014-15,Forsyth,ALL,2014-15,Guilford,ALL,2325,1827,0.559971098,2935,2520,0.538038497,TRUE,ALL in Forsyth 2014-15 has a higher 3rd Grade Reading Score than ALL in Guilford 2014-15
+233,2013-14,Forsyth,black,2017-18,Forsyth,black,495,646,0.433829974,463,772,0.374898785,TRUE,black in Forsyth 2013-14 has a higher 3rd Grade Reading Score than black in Forsyth 2017-18
+234,2013-14,Forsyth,black,2016-17,Forsyth,black,495,646,0.433829974,494,798,0.382352941,TRUE,black in Forsyth 2013-14 has a higher 3rd Grade Reading Score than black in Forsyth 2016-17
+235,2013-14,Forsyth,black,2015-16,Forsyth,black,495,646,0.433829974,460,759,0.377358491,TRUE,black in Forsyth 2013-14 has a higher 3rd Grade Reading Score than black in Forsyth 2015-16
+236,2013-14,Forsyth,black,2014-15,Forsyth,black,495,646,0.433829974,508,658,0.43567753,FALSE,black in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to black in Forsyth 2014-15
+237,2013-14,Forsyth,black,2013-14,Forsyth,white,495,646,0.433829974,1279,352,0.784181484,TRUE,black in Forsyth 2013-14 has a lower 3rd Grade Reading Score than white in Forsyth 2013-14
+238,2013-14,Forsyth,black,2013-14,Forsyth,hispanic,495,646,0.433829974,373,619,0.376008065,TRUE,black in Forsyth 2013-14 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2013-14
+239,2013-14,Forsyth,black,2013-14,Durham,black,495,646,0.433829974,457,693,0.397391304,FALSE,black in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to black in Durham 2013-14
+240,2013-14,Forsyth,black,2013-14,Guilford,black,495,646,0.433829974,994,1290,0.435201401,FALSE,black in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to black in Guilford 2013-14
+241,2013-14,Forsyth,white,2017-18,Forsyth,white,1279,352,0.784181484,1179,418,0.738259236,TRUE,white in Forsyth 2013-14 has a higher 3rd Grade Reading Score than white in Forsyth 2017-18
+242,2013-14,Forsyth,white,2016-17,Forsyth,white,1279,352,0.784181484,1252,384,0.765281174,FALSE,white in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to white in Forsyth 2016-17
+243,2013-14,Forsyth,white,2015-16,Forsyth,white,1279,352,0.784181484,1169,355,0.767060367,FALSE,white in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to white in Forsyth 2015-16
+244,2013-14,Forsyth,white,2014-15,Forsyth,white,1279,352,0.784181484,1218,353,0.775302355,FALSE,white in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to white in Forsyth 2014-15
+245,2013-14,Forsyth,white,2013-14,Forsyth,black,1279,352,0.784181484,495,646,0.433829974,TRUE,white in Forsyth 2013-14 has a higher 3rd Grade Reading Score than black in Forsyth 2013-14
+246,2013-14,Forsyth,white,2013-14,Forsyth,hispanic,1279,352,0.784181484,373,619,0.376008065,TRUE,white in Forsyth 2013-14 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2013-14
+247,2013-14,Forsyth,white,2013-14,Durham,white,1279,352,0.784181484,397,86,0.82194617,FALSE,white in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to white in Durham 2013-14
+248,2013-14,Forsyth,white,2013-14,Guilford,white,1279,352,0.784181484,1414,415,0.773100055,FALSE,white in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to white in Guilford 2013-14
+249,2013-14,Forsyth,hispanic,2017-18,Forsyth,hispanic,373,619,0.376008065,409,798,0.338856669,FALSE,hispanic in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2017-18
+250,2013-14,Forsyth,hispanic,2016-17,Forsyth,hispanic,373,619,0.376008065,380,780,0.327586207,TRUE,hispanic in Forsyth 2013-14 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2016-17
+251,2013-14,Forsyth,hispanic,2015-16,Forsyth,hispanic,373,619,0.376008065,400,845,0.321285141,TRUE,hispanic in Forsyth 2013-14 has a higher 3rd Grade Reading Score than hispanic in Forsyth 2015-16
+252,2013-14,Forsyth,hispanic,2014-15,Forsyth,hispanic,373,619,0.376008065,400,733,0.353045013,FALSE,hispanic in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to hispanic in Forsyth 2014-15
+253,2013-14,Forsyth,hispanic,2013-14,Forsyth,black,373,619,0.376008065,495,646,0.433829974,TRUE,hispanic in Forsyth 2013-14 has a lower 3rd Grade Reading Score than black in Forsyth 2013-14
+254,2013-14,Forsyth,hispanic,2013-14,Forsyth,white,373,619,0.376008065,1279,352,0.784181484,TRUE,hispanic in Forsyth 2013-14 has a lower 3rd Grade Reading Score than white in Forsyth 2013-14
+255,2013-14,Forsyth,hispanic,2013-14,Durham,hispanic,373,619,0.376008065,289,477,0.377284595,FALSE,hispanic in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to hispanic in Durham 2013-14
+256,2013-14,Forsyth,hispanic,2013-14,Guilford,hispanic,373,619,0.376008065,366,483,0.431095406,TRUE,hispanic in Forsyth 2013-14 has a lower 3rd Grade Reading Score than hispanic in Guilford 2013-14
+257,2013-14,Forsyth,male,2017-18,Forsyth,male,1150,933,0.552088334,1058,1170,0.47486535,TRUE,male in Forsyth 2013-14 has a higher 3rd Grade Reading Score than male in Forsyth 2017-18
+258,2013-14,Forsyth,male,2016-17,Forsyth,male,1150,933,0.552088334,1095,1139,0.490152193,TRUE,male in Forsyth 2013-14 has a higher 3rd Grade Reading Score than male in Forsyth 2016-17
+259,2013-14,Forsyth,male,2015-16,Forsyth,male,1150,933,0.552088334,1124,1146,0.495154185,TRUE,male in Forsyth 2013-14 has a higher 3rd Grade Reading Score than male in Forsyth 2015-16
+260,2013-14,Forsyth,male,2014-15,Forsyth,male,1150,933,0.552088334,1115,1005,0.525943396,FALSE,male in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to male in Forsyth 2014-15
+261,2013-14,Forsyth,male,2013-14,Forsyth,female,1150,933,0.552088334,1179,751,0.610880829,TRUE,male in Forsyth 2013-14 has a lower 3rd Grade Reading Score than female in Forsyth 2013-14
+262,2013-14,Forsyth,male,2013-14,Durham,male,1150,933,0.552088334,586,700,0.455676516,TRUE,male in Forsyth 2013-14 has a higher 3rd Grade Reading Score than male in Durham 2013-14
+263,2013-14,Forsyth,male,2013-14,Guilford,male,1150,933,0.552088334,1427,1307,0.521945867,TRUE,male in Forsyth 2013-14 has a higher 3rd Grade Reading Score than male in Guilford 2013-14
+264,2013-14,Forsyth,female,2017-18,Forsyth,female,1179,751,0.610880829,1187,937,0.558851224,TRUE,female in Forsyth 2013-14 has a higher 3rd Grade Reading Score than female in Forsyth 2017-18
+265,2013-14,Forsyth,female,2016-17,Forsyth,female,1179,751,0.610880829,1212,922,0.567947516,TRUE,female in Forsyth 2013-14 has a higher 3rd Grade Reading Score than female in Forsyth 2016-17
+266,2013-14,Forsyth,female,2015-16,Forsyth,female,1179,751,0.610880829,1102,917,0.54581476,TRUE,female in Forsyth 2013-14 has a higher 3rd Grade Reading Score than female in Forsyth 2015-16
+267,2013-14,Forsyth,female,2014-15,Forsyth,female,1179,751,0.610880829,1209,823,0.594980315,FALSE,female in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to female in Forsyth 2014-15
+268,2013-14,Forsyth,female,2013-14,Forsyth,male,1179,751,0.610880829,1150,933,0.552088334,TRUE,female in Forsyth 2013-14 has a higher 3rd Grade Reading Score than male in Forsyth 2013-14
+269,2013-14,Forsyth,female,2013-14,Durham,female,1179,751,0.610880829,658,607,0.520158103,TRUE,female in Forsyth 2013-14 has a higher 3rd Grade Reading Score than female in Durham 2013-14
+270,2013-14,Forsyth,female,2013-14,Guilford,female,1179,751,0.610880829,1658,1083,0.604888727,FALSE,female in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to female in Guilford 2013-14
+271,2013-14,Forsyth,eds,2017-18,Forsyth,eds,1036,1402,0.424938474,802,1389,0.366042903,TRUE,eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than eds in Forsyth 2017-18
+272,2013-14,Forsyth,eds,2016-17,Forsyth,eds,1036,1402,0.424938474,854,1467,0.367944851,TRUE,eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than eds in Forsyth 2016-17
+273,2013-14,Forsyth,eds,2015-16,Forsyth,eds,1036,1402,0.424938474,843,1436,0.369899079,TRUE,eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than eds in Forsyth 2015-16
+274,2013-14,Forsyth,eds,2014-15,Forsyth,eds,1036,1402,0.424938474,1121,1580,0.41503147,FALSE,eds in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to eds in Forsyth 2014-15
+275,2013-14,Forsyth,eds,2013-14,Forsyth,not_eds,1036,1402,0.424938474,1295,280,0.822222222,TRUE,eds in Forsyth 2013-14 has a lower 3rd Grade Reading Score than not_eds in Forsyth 2013-14
+276,2013-14,Forsyth,eds,2013-14,Durham,eds,1036,1402,0.424938474,610,1122,0.352193995,TRUE,eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than eds in Durham 2013-14
+277,2013-14,Forsyth,eds,2013-14,Guilford,eds,1036,1402,0.424938474,1509,1953,0.435875217,FALSE,eds in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to eds in Guilford 2013-14
+278,2013-14,Forsyth,not_eds,2017-18,Forsyth,not_eds,1295,280,0.822222222,1444,717,0.668209162,TRUE,not_eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2017-18
+279,2013-14,Forsyth,not_eds,2016-17,Forsyth,not_eds,1295,280,0.822222222,1453,594,0.709819248,TRUE,not_eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2016-17
+280,2013-14,Forsyth,not_eds,2015-16,Forsyth,not_eds,1295,280,0.822222222,1385,625,0.689054726,TRUE,not_eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than not_eds in Forsyth 2015-16
+281,2013-14,Forsyth,not_eds,2014-15,Forsyth,not_eds,1295,280,0.822222222,1203,248,0.829083391,FALSE,not_eds in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to not_eds in Forsyth 2014-15
+282,2013-14,Forsyth,not_eds,2013-14,Forsyth,eds,1295,280,0.822222222,1036,1402,0.424938474,TRUE,not_eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than eds in Forsyth 2013-14
+283,2013-14,Forsyth,not_eds,2013-14,Durham,not_eds,1295,280,0.822222222,635,184,0.775335775,TRUE,not_eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than not_eds in Durham 2013-14
+284,2013-14,Forsyth,not_eds,2013-14,Guilford,not_eds,1295,280,0.822222222,1576,437,0.782911078,TRUE,not_eds in Forsyth 2013-14 has a higher 3rd Grade Reading Score than not_eds in Guilford 2013-14
+285,2013-14,Forsyth,ALL,2017-18,Forsyth,ALL,2328,1685,0.580114627,2246,2106,0.516084559,TRUE,ALL in Forsyth 2013-14 has a higher 3rd Grade Reading Score than ALL in Forsyth 2017-18
+286,2013-14,Forsyth,ALL,2016-17,Forsyth,ALL,2328,1685,0.580114627,2306,2062,0.527930403,TRUE,ALL in Forsyth 2013-14 has a higher 3rd Grade Reading Score than ALL in Forsyth 2016-17
+287,2013-14,Forsyth,ALL,2015-16,Forsyth,ALL,2328,1685,0.580114627,2226,2063,0.519002098,TRUE,ALL in Forsyth 2013-14 has a higher 3rd Grade Reading Score than ALL in Forsyth 2015-16
+288,2013-14,Forsyth,ALL,2014-15,Forsyth,ALL,2328,1685,0.580114627,2325,1827,0.559971098,FALSE,ALL in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to ALL in Forsyth 2014-15
+289,2013-14,Forsyth,ALL,2013-14,Durham,ALL,2328,1685,0.580114627,1245,1306,0.488043904,TRUE,ALL in Forsyth 2013-14 has a higher 3rd Grade Reading Score than ALL in Durham 2013-14
+290,2013-14,Forsyth,ALL,2013-14,Guilford,ALL,2328,1685,0.580114627,3082,2393,0.562922374,FALSE,ALL in Forsyth 2013-14 has a similar 3rd Grade Reading Score compared to ALL in Guilford 2013-14
+291,2017-18,Forsyth,black,2016-17,Forsyth,black,233,808,0.223823247,231,965,0.193143813,FALSE,black in Forsyth 2017-18 has a similar 8th Grade Math Score compared to black in Forsyth 2016-17
+292,2017-18,Forsyth,black,2015-16,Forsyth,black,233,808,0.223823247,229,930,0.197584124,FALSE,black in Forsyth 2017-18 has a similar 8th Grade Math Score compared to black in Forsyth 2015-16
+293,2017-18,Forsyth,black,2014-15,Forsyth,black,233,808,0.223823247,217,989,0.179933665,TRUE,black in Forsyth 2017-18 has a higher 8th Grade Math Score than black in Forsyth 2014-15
+294,2017-18,Forsyth,black,2017-18,Forsyth,white,233,808,0.223823247,932,518,0.642758621,TRUE,black in Forsyth 2017-18 has a lower 8th Grade Math Score than white in Forsyth 2017-18
+295,2017-18,Forsyth,black,2017-18,Forsyth,hispanic,233,808,0.223823247,277,751,0.269455253,TRUE,black in Forsyth 2017-18 has a lower 8th Grade Math Score than hispanic in Forsyth 2017-18
+296,2017-18,Forsyth,black,2017-18,Durham,black,233,808,0.223823247,259,722,0.26401631,TRUE,black in Forsyth 2017-18 has a lower 8th Grade Math Score than black in Durham 2017-18
+297,2017-18,Forsyth,black,2017-18,Guilford,black,233,808,0.223823247,515,1465,0.26010101,TRUE,black in Forsyth 2017-18 has a lower 8th Grade Math Score than black in Guilford 2017-18
+298,2017-18,Forsyth,white,2016-17,Forsyth,white,932,518,0.642758621,1020,581,0.637101811,FALSE,white in Forsyth 2017-18 has a similar 8th Grade Math Score compared to white in Forsyth 2016-17
+299,2017-18,Forsyth,white,2015-16,Forsyth,white,932,518,0.642758621,944,690,0.577723378,TRUE,white in Forsyth 2017-18 has a higher 8th Grade Math Score than white in Forsyth 2015-16
+300,2017-18,Forsyth,white,2014-15,Forsyth,white,932,518,0.642758621,1010,731,0.580126364,TRUE,white in Forsyth 2017-18 has a higher 8th Grade Math Score than white in Forsyth 2014-15
+301,2017-18,Forsyth,white,2017-18,Forsyth,black,932,518,0.642758621,233,808,0.223823247,TRUE,white in Forsyth 2017-18 has a higher 8th Grade Math Score than black in Forsyth 2017-18
+302,2017-18,Forsyth,white,2017-18,Forsyth,hispanic,932,518,0.642758621,277,751,0.269455253,TRUE,white in Forsyth 2017-18 has a higher 8th Grade Math Score than hispanic in Forsyth 2017-18
+303,2017-18,Forsyth,white,2017-18,Durham,white,932,518,0.642758621,263,86,0.753581662,TRUE,white in Forsyth 2017-18 has a lower 8th Grade Math Score than white in Durham 2017-18
+304,2017-18,Forsyth,white,2017-18,Guilford,white,932,518,0.642758621,1127,570,0.664113141,FALSE,white in Forsyth 2017-18 has a similar 8th Grade Math Score compared to white in Guilford 2017-18
+305,2017-18,Forsyth,hispanic,2016-17,Forsyth,hispanic,277,751,0.269455253,268,817,0.247004608,FALSE,hispanic in Forsyth 2017-18 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2016-17
+306,2017-18,Forsyth,hispanic,2015-16,Forsyth,hispanic,277,751,0.269455253,199,776,0.204102564,TRUE,hispanic in Forsyth 2017-18 has a higher 8th Grade Math Score than hispanic in Forsyth 2015-16
+307,2017-18,Forsyth,hispanic,2014-15,Forsyth,hispanic,277,751,0.269455253,230,669,0.255839822,FALSE,hispanic in Forsyth 2017-18 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2014-15
+308,2017-18,Forsyth,hispanic,2017-18,Forsyth,black,277,751,0.269455253,233,808,0.223823247,TRUE,hispanic in Forsyth 2017-18 has a higher 8th Grade Math Score than black in Forsyth 2017-18
+309,2017-18,Forsyth,hispanic,2017-18,Forsyth,white,277,751,0.269455253,932,518,0.642758621,TRUE,hispanic in Forsyth 2017-18 has a lower 8th Grade Math Score than white in Forsyth 2017-18
+310,2017-18,Forsyth,hispanic,2017-18,Durham,hispanic,277,751,0.269455253,169,465,0.266561514,FALSE,hispanic in Forsyth 2017-18 has a similar 8th Grade Math Score compared to hispanic in Durham 2017-18
+311,2017-18,Forsyth,hispanic,2017-18,Guilford,hispanic,277,751,0.269455253,284,497,0.363636364,TRUE,hispanic in Forsyth 2017-18 has a lower 8th Grade Math Score than hispanic in Guilford 2017-18
+312,2017-18,Forsyth,male,2016-17,Forsyth,male,797,1162,0.406840225,815,1290,0.387173397,FALSE,male in Forsyth 2017-18 has a similar 8th Grade Math Score compared to male in Forsyth 2016-17
+313,2017-18,Forsyth,male,2015-16,Forsyth,male,797,1162,0.406840225,740,1311,0.36079961,TRUE,male in Forsyth 2017-18 has a higher 8th Grade Math Score than male in Forsyth 2015-16
+314,2017-18,Forsyth,male,2014-15,Forsyth,male,797,1162,0.406840225,805,1325,0.377934272,FALSE,male in Forsyth 2017-18 has a similar 8th Grade Math Score compared to male in Forsyth 2014-15
+315,2017-18,Forsyth,male,2017-18,Forsyth,female,797,1162,0.406840225,789,1055,0.427874187,FALSE,male in Forsyth 2017-18 has a similar 8th Grade Math Score compared to female in Forsyth 2017-18
+316,2017-18,Forsyth,male,2017-18,Durham,male,797,1162,0.406840225,370,709,0.342910102,TRUE,male in Forsyth 2017-18 has a higher 8th Grade Math Score than male in Durham 2017-18
+317,2017-18,Forsyth,male,2017-18,Guilford,male,797,1162,0.406840225,1086,1494,0.420930233,FALSE,male in Forsyth 2017-18 has a similar 8th Grade Math Score compared to male in Guilford 2017-18
+318,2017-18,Forsyth,female,2016-17,Forsyth,female,789,1055,0.427874187,854,1213,0.413159168,FALSE,female in Forsyth 2017-18 has a similar 8th Grade Math Score compared to female in Forsyth 2016-17
+319,2017-18,Forsyth,female,2015-16,Forsyth,female,789,1055,0.427874187,765,1238,0.381927109,TRUE,female in Forsyth 2017-18 has a higher 8th Grade Math Score than female in Forsyth 2015-16
+320,2017-18,Forsyth,female,2014-15,Forsyth,female,789,1055,0.427874187,788,1201,0.396178984,FALSE,female in Forsyth 2017-18 has a similar 8th Grade Math Score compared to female in Forsyth 2014-15
+321,2017-18,Forsyth,female,2017-18,Forsyth,male,789,1055,0.427874187,797,1162,0.406840225,FALSE,female in Forsyth 2017-18 has a similar 8th Grade Math Score compared to male in Forsyth 2017-18
+322,2017-18,Forsyth,female,2017-18,Durham,female,789,1055,0.427874187,392,631,0.383186706,TRUE,female in Forsyth 2017-18 has a higher 8th Grade Math Score than female in Durham 2017-18
+323,2017-18,Forsyth,female,2017-18,Guilford,female,789,1055,0.427874187,1160,1298,0.471928397,TRUE,female in Forsyth 2017-18 has a lower 8th Grade Math Score than female in Guilford 2017-18
+324,2017-18,Forsyth,eds,2016-17,Forsyth,eds,390,1337,0.22582513,430,1600,0.21182266,FALSE,eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to eds in Forsyth 2016-17
+325,2017-18,Forsyth,eds,2015-16,Forsyth,eds,390,1337,0.22582513,358,1516,0.191035219,TRUE,eds in Forsyth 2017-18 has a higher 8th Grade Math Score than eds in Forsyth 2015-16
+326,2017-18,Forsyth,eds,2014-15,Forsyth,eds,390,1337,0.22582513,470,1799,0.207139709,FALSE,eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to eds in Forsyth 2014-15
+327,2017-18,Forsyth,eds,2017-18,Forsyth,not_eds,390,1337,0.22582513,1196,880,0.5761079,TRUE,eds in Forsyth 2017-18 has a lower 8th Grade Math Score than not_eds in Forsyth 2017-18
+328,2017-18,Forsyth,eds,2017-18,Durham,eds,390,1337,0.22582513,281,1008,0.217998448,FALSE,eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to eds in Durham 2017-18
+329,2017-18,Forsyth,eds,2017-18,Guilford,eds,390,1337,0.22582513,622,1663,0.272210066,TRUE,eds in Forsyth 2017-18 has a lower 8th Grade Math Score than eds in Guilford 2017-18
+330,2017-18,Forsyth,not_eds,2016-17,Forsyth,not_eds,1196,880,0.5761079,1236,906,0.577030812,FALSE,not_eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to not_eds in Forsyth 2016-17
+331,2017-18,Forsyth,not_eds,2015-16,Forsyth,not_eds,1196,880,0.5761079,1149,1031,0.52706422,TRUE,not_eds in Forsyth 2017-18 has a higher 8th Grade Math Score than not_eds in Forsyth 2015-16
+332,2017-18,Forsyth,not_eds,2014-15,Forsyth,not_eds,1196,880,0.5761079,1123,727,0.607027027,FALSE,not_eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to not_eds in Forsyth 2014-15
+333,2017-18,Forsyth,not_eds,2017-18,Forsyth,eds,1196,880,0.5761079,390,1337,0.22582513,TRUE,not_eds in Forsyth 2017-18 has a higher 8th Grade Math Score than eds in Forsyth 2017-18
+334,2017-18,Forsyth,not_eds,2017-18,Durham,not_eds,1196,880,0.5761079,481,332,0.591635916,FALSE,not_eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to not_eds in Durham 2017-18
+335,2017-18,Forsyth,not_eds,2017-18,Guilford,not_eds,1196,880,0.5761079,1624,1129,0.589901925,FALSE,not_eds in Forsyth 2017-18 has a similar 8th Grade Math Score compared to not_eds in Guilford 2017-18
+336,2017-18,Forsyth,ALL,2016-17,Forsyth,ALL,1586,2217,0.41703918,1669,2503,0.400047939,FALSE,ALL in Forsyth 2017-18 has a similar 8th Grade Math Score compared to ALL in Forsyth 2016-17
+337,2017-18,Forsyth,ALL,2015-16,Forsyth,ALL,1586,2217,0.41703918,1504,2550,0.370991613,TRUE,ALL in Forsyth 2017-18 has a higher 8th Grade Math Score than ALL in Forsyth 2015-16
+338,2017-18,Forsyth,ALL,2014-15,Forsyth,ALL,1586,2217,0.41703918,1594,2525,0.386987133,TRUE,ALL in Forsyth 2017-18 has a higher 8th Grade Math Score than ALL in Forsyth 2014-15
+339,2017-18,Forsyth,ALL,2017-18,Durham,ALL,1586,2217,0.41703918,763,1339,0.362987631,TRUE,ALL in Forsyth 2017-18 has a higher 8th Grade Math Score than ALL in Durham 2017-18
+340,2017-18,Forsyth,ALL,2017-18,Guilford,ALL,1586,2217,0.41703918,2247,2791,0.446010322,TRUE,ALL in Forsyth 2017-18 has a lower 8th Grade Math Score than ALL in Guilford 2017-18
+341,2016-17,Forsyth,black,2017-18,Forsyth,black,231,965,0.193143813,233,808,0.223823247,FALSE,black in Forsyth 2016-17 has a similar 8th Grade Math Score compared to black in Forsyth 2017-18
+342,2016-17,Forsyth,black,2015-16,Forsyth,black,231,965,0.193143813,229,930,0.197584124,FALSE,black in Forsyth 2016-17 has a similar 8th Grade Math Score compared to black in Forsyth 2015-16
+343,2016-17,Forsyth,black,2014-15,Forsyth,black,231,965,0.193143813,217,989,0.179933665,FALSE,black in Forsyth 2016-17 has a similar 8th Grade Math Score compared to black in Forsyth 2014-15
+344,2016-17,Forsyth,black,2016-17,Forsyth,white,231,965,0.193143813,1020,581,0.637101811,TRUE,black in Forsyth 2016-17 has a lower 8th Grade Math Score than white in Forsyth 2016-17
+345,2016-17,Forsyth,black,2016-17,Forsyth,hispanic,231,965,0.193143813,268,817,0.247004608,TRUE,black in Forsyth 2016-17 has a lower 8th Grade Math Score than hispanic in Forsyth 2016-17
+346,2016-17,Forsyth,black,2016-17,Durham,black,231,965,0.193143813,246,868,0.220825853,FALSE,black in Forsyth 2016-17 has a similar 8th Grade Math Score compared to black in Durham 2016-17
+347,2016-17,Forsyth,black,2016-17,Guilford,black,231,965,0.193143813,536,1636,0.246777164,TRUE,black in Forsyth 2016-17 has a lower 8th Grade Math Score than black in Guilford 2016-17
+348,2016-17,Forsyth,white,2017-18,Forsyth,white,1020,581,0.637101811,932,518,0.642758621,FALSE,white in Forsyth 2016-17 has a similar 8th Grade Math Score compared to white in Forsyth 2017-18
+349,2016-17,Forsyth,white,2015-16,Forsyth,white,1020,581,0.637101811,944,690,0.577723378,TRUE,white in Forsyth 2016-17 has a higher 8th Grade Math Score than white in Forsyth 2015-16
+350,2016-17,Forsyth,white,2014-15,Forsyth,white,1020,581,0.637101811,1010,731,0.580126364,TRUE,white in Forsyth 2016-17 has a higher 8th Grade Math Score than white in Forsyth 2014-15
+351,2016-17,Forsyth,white,2016-17,Forsyth,black,1020,581,0.637101811,231,965,0.193143813,TRUE,white in Forsyth 2016-17 has a higher 8th Grade Math Score than black in Forsyth 2016-17
+352,2016-17,Forsyth,white,2016-17,Forsyth,hispanic,1020,581,0.637101811,268,817,0.247004608,TRUE,white in Forsyth 2016-17 has a higher 8th Grade Math Score than hispanic in Forsyth 2016-17
+353,2016-17,Forsyth,white,2016-17,Durham,white,1020,581,0.637101811,294,123,0.705035971,TRUE,white in Forsyth 2016-17 has a lower 8th Grade Math Score than white in Durham 2016-17
+354,2016-17,Forsyth,white,2016-17,Guilford,white,1020,581,0.637101811,1174,704,0.62513312,FALSE,white in Forsyth 2016-17 has a similar 8th Grade Math Score compared to white in Guilford 2016-17
+355,2016-17,Forsyth,hispanic,2017-18,Forsyth,hispanic,268,817,0.247004608,277,751,0.269455253,FALSE,hispanic in Forsyth 2016-17 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2017-18
+356,2016-17,Forsyth,hispanic,2015-16,Forsyth,hispanic,268,817,0.247004608,199,776,0.204102564,TRUE,hispanic in Forsyth 2016-17 has a higher 8th Grade Math Score than hispanic in Forsyth 2015-16
+357,2016-17,Forsyth,hispanic,2014-15,Forsyth,hispanic,268,817,0.247004608,230,669,0.255839822,FALSE,hispanic in Forsyth 2016-17 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2014-15
+358,2016-17,Forsyth,hispanic,2016-17,Forsyth,black,268,817,0.247004608,231,965,0.193143813,TRUE,hispanic in Forsyth 2016-17 has a higher 8th Grade Math Score than black in Forsyth 2016-17
+359,2016-17,Forsyth,hispanic,2016-17,Forsyth,white,268,817,0.247004608,1020,581,0.637101811,TRUE,hispanic in Forsyth 2016-17 has a lower 8th Grade Math Score than white in Forsyth 2016-17
+360,2016-17,Forsyth,hispanic,2016-17,Durham,hispanic,268,817,0.247004608,143,483,0.228434505,FALSE,hispanic in Forsyth 2016-17 has a similar 8th Grade Math Score compared to hispanic in Durham 2016-17
+361,2016-17,Forsyth,hispanic,2016-17,Guilford,hispanic,268,817,0.247004608,252,512,0.329842932,TRUE,hispanic in Forsyth 2016-17 has a lower 8th Grade Math Score than hispanic in Guilford 2016-17
+362,2016-17,Forsyth,male,2017-18,Forsyth,male,815,1290,0.387173397,797,1162,0.406840225,FALSE,male in Forsyth 2016-17 has a similar 8th Grade Math Score compared to male in Forsyth 2017-18
+363,2016-17,Forsyth,male,2015-16,Forsyth,male,815,1290,0.387173397,740,1311,0.36079961,FALSE,male in Forsyth 2016-17 has a similar 8th Grade Math Score compared to male in Forsyth 2015-16
+364,2016-17,Forsyth,male,2014-15,Forsyth,male,815,1290,0.387173397,805,1325,0.377934272,FALSE,male in Forsyth 2016-17 has a similar 8th Grade Math Score compared to male in Forsyth 2014-15
+365,2016-17,Forsyth,male,2016-17,Forsyth,female,815,1290,0.387173397,854,1213,0.413159168,FALSE,male in Forsyth 2016-17 has a similar 8th Grade Math Score compared to female in Forsyth 2016-17
+366,2016-17,Forsyth,male,2016-17,Durham,male,815,1290,0.387173397,349,754,0.316409791,TRUE,male in Forsyth 2016-17 has a higher 8th Grade Math Score than male in Durham 2016-17
+367,2016-17,Forsyth,male,2016-17,Guilford,male,815,1290,0.387173397,1124,1687,0.399857702,FALSE,male in Forsyth 2016-17 has a similar 8th Grade Math Score compared to male in Guilford 2016-17
+368,2016-17,Forsyth,female,2017-18,Forsyth,female,854,1213,0.413159168,789,1055,0.427874187,FALSE,female in Forsyth 2016-17 has a similar 8th Grade Math Score compared to female in Forsyth 2017-18
+369,2016-17,Forsyth,female,2015-16,Forsyth,female,854,1213,0.413159168,765,1238,0.381927109,TRUE,female in Forsyth 2016-17 has a higher 8th Grade Math Score than female in Forsyth 2015-16
+370,2016-17,Forsyth,female,2014-15,Forsyth,female,854,1213,0.413159168,788,1201,0.396178984,FALSE,female in Forsyth 2016-17 has a similar 8th Grade Math Score compared to female in Forsyth 2014-15
+371,2016-17,Forsyth,female,2016-17,Forsyth,male,854,1213,0.413159168,815,1290,0.387173397,FALSE,female in Forsyth 2016-17 has a similar 8th Grade Math Score compared to male in Forsyth 2016-17
+372,2016-17,Forsyth,female,2016-17,Durham,female,854,1213,0.413159168,419,783,0.348585691,TRUE,female in Forsyth 2016-17 has a higher 8th Grade Math Score than female in Durham 2016-17
+373,2016-17,Forsyth,female,2016-17,Guilford,female,854,1213,0.413159168,1139,1479,0.435064935,FALSE,female in Forsyth 2016-17 has a similar 8th Grade Math Score compared to female in Guilford 2016-17
+374,2016-17,Forsyth,eds,2017-18,Forsyth,eds,430,1600,0.21182266,390,1337,0.22582513,FALSE,eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to eds in Forsyth 2017-18
+375,2016-17,Forsyth,eds,2015-16,Forsyth,eds,430,1600,0.21182266,358,1516,0.191035219,FALSE,eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to eds in Forsyth 2015-16
+376,2016-17,Forsyth,eds,2014-15,Forsyth,eds,430,1600,0.21182266,470,1799,0.207139709,FALSE,eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to eds in Forsyth 2014-15
+377,2016-17,Forsyth,eds,2016-17,Forsyth,not_eds,430,1600,0.21182266,1236,906,0.577030812,TRUE,eds in Forsyth 2016-17 has a lower 8th Grade Math Score than not_eds in Forsyth 2016-17
+378,2016-17,Forsyth,eds,2016-17,Durham,eds,430,1600,0.21182266,251,1169,0.176760563,TRUE,eds in Forsyth 2016-17 has a higher 8th Grade Math Score than eds in Durham 2016-17
+379,2016-17,Forsyth,eds,2016-17,Guilford,eds,430,1600,0.21182266,619,1970,0.239088451,TRUE,eds in Forsyth 2016-17 has a lower 8th Grade Math Score than eds in Guilford 2016-17
+380,2016-17,Forsyth,not_eds,2017-18,Forsyth,not_eds,1236,906,0.577030812,1196,880,0.5761079,FALSE,not_eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to not_eds in Forsyth 2017-18
+381,2016-17,Forsyth,not_eds,2015-16,Forsyth,not_eds,1236,906,0.577030812,1149,1031,0.52706422,TRUE,not_eds in Forsyth 2016-17 has a higher 8th Grade Math Score than not_eds in Forsyth 2015-16
+382,2016-17,Forsyth,not_eds,2014-15,Forsyth,not_eds,1236,906,0.577030812,1123,727,0.607027027,FALSE,not_eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to not_eds in Forsyth 2014-15
+383,2016-17,Forsyth,not_eds,2016-17,Forsyth,eds,1236,906,0.577030812,430,1600,0.21182266,TRUE,not_eds in Forsyth 2016-17 has a higher 8th Grade Math Score than eds in Forsyth 2016-17
+384,2016-17,Forsyth,not_eds,2016-17,Durham,not_eds,1236,906,0.577030812,516,369,0.583050847,FALSE,not_eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to not_eds in Durham 2016-17
+385,2016-17,Forsyth,not_eds,2016-17,Guilford,not_eds,1236,906,0.577030812,1644,1196,0.578873239,FALSE,not_eds in Forsyth 2016-17 has a similar 8th Grade Math Score compared to not_eds in Guilford 2016-17
+386,2016-17,Forsyth,ALL,2017-18,Forsyth,ALL,1669,2503,0.400047939,1586,2217,0.41703918,FALSE,ALL in Forsyth 2016-17 has a similar 8th Grade Math Score compared to ALL in Forsyth 2017-18
+387,2016-17,Forsyth,ALL,2015-16,Forsyth,ALL,1669,2503,0.400047939,1504,2550,0.370991613,TRUE,ALL in Forsyth 2016-17 has a higher 8th Grade Math Score than ALL in Forsyth 2015-16
+388,2016-17,Forsyth,ALL,2014-15,Forsyth,ALL,1669,2503,0.400047939,1594,2525,0.386987133,FALSE,ALL in Forsyth 2016-17 has a similar 8th Grade Math Score compared to ALL in Forsyth 2014-15
+389,2016-17,Forsyth,ALL,2016-17,Durham,ALL,1669,2503,0.400047939,768,1537,0.33318872,TRUE,ALL in Forsyth 2016-17 has a higher 8th Grade Math Score than ALL in Durham 2016-17
+390,2016-17,Forsyth,ALL,2016-17,Guilford,ALL,1669,2503,0.400047939,2264,3165,0.417019709,FALSE,ALL in Forsyth 2016-17 has a similar 8th Grade Math Score compared to ALL in Guilford 2016-17
+391,2015-16,Forsyth,black,2017-18,Forsyth,black,229,930,0.197584124,233,808,0.223823247,FALSE,black in Forsyth 2015-16 has a similar 8th Grade Math Score compared to black in Forsyth 2017-18
+392,2015-16,Forsyth,black,2016-17,Forsyth,black,229,930,0.197584124,231,965,0.193143813,FALSE,black in Forsyth 2015-16 has a similar 8th Grade Math Score compared to black in Forsyth 2016-17
+393,2015-16,Forsyth,black,2014-15,Forsyth,black,229,930,0.197584124,217,989,0.179933665,FALSE,black in Forsyth 2015-16 has a similar 8th Grade Math Score compared to black in Forsyth 2014-15
+394,2015-16,Forsyth,black,2015-16,Forsyth,white,229,930,0.197584124,944,690,0.577723378,TRUE,black in Forsyth 2015-16 has a lower 8th Grade Math Score than white in Forsyth 2015-16
+395,2015-16,Forsyth,black,2015-16,Forsyth,hispanic,229,930,0.197584124,199,776,0.204102564,FALSE,black in Forsyth 2015-16 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2015-16
+396,2015-16,Forsyth,black,2015-16,Durham,black,229,930,0.197584124,282,984,0.222748815,FALSE,black in Forsyth 2015-16 has a similar 8th Grade Math Score compared to black in Durham 2015-16
+397,2015-16,Forsyth,black,2015-16,Guilford,black,229,930,0.197584124,538,1640,0.247015611,TRUE,black in Forsyth 2015-16 has a lower 8th Grade Math Score than black in Guilford 2015-16
+398,2015-16,Forsyth,white,2017-18,Forsyth,white,944,690,0.577723378,932,518,0.642758621,TRUE,white in Forsyth 2015-16 has a lower 8th Grade Math Score than white in Forsyth 2017-18
+399,2015-16,Forsyth,white,2016-17,Forsyth,white,944,690,0.577723378,1020,581,0.637101811,TRUE,white in Forsyth 2015-16 has a lower 8th Grade Math Score than white in Forsyth 2016-17
+400,2015-16,Forsyth,white,2014-15,Forsyth,white,944,690,0.577723378,1010,731,0.580126364,FALSE,white in Forsyth 2015-16 has a similar 8th Grade Math Score compared to white in Forsyth 2014-15
+401,2015-16,Forsyth,white,2015-16,Forsyth,black,944,690,0.577723378,229,930,0.197584124,TRUE,white in Forsyth 2015-16 has a higher 8th Grade Math Score than black in Forsyth 2015-16
+402,2015-16,Forsyth,white,2015-16,Forsyth,hispanic,944,690,0.577723378,199,776,0.204102564,TRUE,white in Forsyth 2015-16 has a higher 8th Grade Math Score than hispanic in Forsyth 2015-16
+403,2015-16,Forsyth,white,2015-16,Durham,white,944,690,0.577723378,272,145,0.652278177,TRUE,white in Forsyth 2015-16 has a lower 8th Grade Math Score than white in Durham 2015-16
+404,2015-16,Forsyth,white,2015-16,Guilford,white,944,690,0.577723378,1195,684,0.635976583,TRUE,white in Forsyth 2015-16 has a lower 8th Grade Math Score than white in Guilford 2015-16
+405,2015-16,Forsyth,hispanic,2017-18,Forsyth,hispanic,199,776,0.204102564,277,751,0.269455253,TRUE,hispanic in Forsyth 2015-16 has a lower 8th Grade Math Score than hispanic in Forsyth 2017-18
+406,2015-16,Forsyth,hispanic,2016-17,Forsyth,hispanic,199,776,0.204102564,268,817,0.247004608,TRUE,hispanic in Forsyth 2015-16 has a lower 8th Grade Math Score than hispanic in Forsyth 2016-17
+407,2015-16,Forsyth,hispanic,2014-15,Forsyth,hispanic,199,776,0.204102564,230,669,0.255839822,TRUE,hispanic in Forsyth 2015-16 has a lower 8th Grade Math Score than hispanic in Forsyth 2014-15
+408,2015-16,Forsyth,hispanic,2015-16,Forsyth,black,199,776,0.204102564,229,930,0.197584124,FALSE,hispanic in Forsyth 2015-16 has a similar 8th Grade Math Score compared to black in Forsyth 2015-16
+409,2015-16,Forsyth,hispanic,2015-16,Forsyth,white,199,776,0.204102564,944,690,0.577723378,TRUE,hispanic in Forsyth 2015-16 has a lower 8th Grade Math Score than white in Forsyth 2015-16
+410,2015-16,Forsyth,hispanic,2015-16,Durham,hispanic,199,776,0.204102564,156,461,0.252836305,TRUE,hispanic in Forsyth 2015-16 has a lower 8th Grade Math Score than hispanic in Durham 2015-16
+411,2015-16,Forsyth,hispanic,2015-16,Guilford,hispanic,199,776,0.204102564,239,472,0.336146273,TRUE,hispanic in Forsyth 2015-16 has a lower 8th Grade Math Score than hispanic in Guilford 2015-16
+412,2015-16,Forsyth,male,2017-18,Forsyth,male,740,1311,0.36079961,797,1162,0.406840225,TRUE,male in Forsyth 2015-16 has a lower 8th Grade Math Score than male in Forsyth 2017-18
+413,2015-16,Forsyth,male,2016-17,Forsyth,male,740,1311,0.36079961,815,1290,0.387173397,FALSE,male in Forsyth 2015-16 has a similar 8th Grade Math Score compared to male in Forsyth 2016-17
+414,2015-16,Forsyth,male,2014-15,Forsyth,male,740,1311,0.36079961,805,1325,0.377934272,FALSE,male in Forsyth 2015-16 has a similar 8th Grade Math Score compared to male in Forsyth 2014-15
+415,2015-16,Forsyth,male,2015-16,Forsyth,female,740,1311,0.36079961,765,1238,0.381927109,FALSE,male in Forsyth 2015-16 has a similar 8th Grade Math Score compared to female in Forsyth 2015-16
+416,2015-16,Forsyth,male,2015-16,Durham,male,740,1311,0.36079961,340,861,0.283097419,TRUE,male in Forsyth 2015-16 has a higher 8th Grade Math Score than male in Durham 2015-16
+417,2015-16,Forsyth,male,2015-16,Guilford,male,740,1311,0.36079961,1088,1646,0.397951719,TRUE,male in Forsyth 2015-16 has a lower 8th Grade Math Score than male in Guilford 2015-16
+418,2015-16,Forsyth,female,2017-18,Forsyth,female,765,1238,0.381927109,789,1055,0.427874187,TRUE,female in Forsyth 2015-16 has a lower 8th Grade Math Score than female in Forsyth 2017-18
+419,2015-16,Forsyth,female,2016-17,Forsyth,female,765,1238,0.381927109,854,1213,0.413159168,TRUE,female in Forsyth 2015-16 has a lower 8th Grade Math Score than female in Forsyth 2016-17
+420,2015-16,Forsyth,female,2014-15,Forsyth,female,765,1238,0.381927109,788,1201,0.396178984,FALSE,female in Forsyth 2015-16 has a similar 8th Grade Math Score compared to female in Forsyth 2014-15
+421,2015-16,Forsyth,female,2015-16,Forsyth,male,765,1238,0.381927109,740,1311,0.36079961,FALSE,female in Forsyth 2015-16 has a similar 8th Grade Math Score compared to male in Forsyth 2015-16
+422,2015-16,Forsyth,female,2015-16,Durham,female,765,1238,0.381927109,429,792,0.351351351,FALSE,female in Forsyth 2015-16 has a similar 8th Grade Math Score compared to female in Durham 2015-16
+423,2015-16,Forsyth,female,2015-16,Guilford,female,765,1238,0.381927109,1177,1450,0.448039589,TRUE,female in Forsyth 2015-16 has a lower 8th Grade Math Score than female in Guilford 2015-16
+424,2015-16,Forsyth,eds,2017-18,Forsyth,eds,358,1516,0.191035219,390,1337,0.22582513,TRUE,eds in Forsyth 2015-16 has a lower 8th Grade Math Score than eds in Forsyth 2017-18
+425,2015-16,Forsyth,eds,2016-17,Forsyth,eds,358,1516,0.191035219,430,1600,0.21182266,FALSE,eds in Forsyth 2015-16 has a similar 8th Grade Math Score compared to eds in Forsyth 2016-17
+426,2015-16,Forsyth,eds,2014-15,Forsyth,eds,358,1516,0.191035219,470,1799,0.207139709,FALSE,eds in Forsyth 2015-16 has a similar 8th Grade Math Score compared to eds in Forsyth 2014-15
+427,2015-16,Forsyth,eds,2015-16,Forsyth,not_eds,358,1516,0.191035219,1149,1031,0.52706422,TRUE,eds in Forsyth 2015-16 has a lower 8th Grade Math Score than not_eds in Forsyth 2015-16
+428,2015-16,Forsyth,eds,2015-16,Durham,eds,358,1516,0.191035219,294,1220,0.194187583,FALSE,eds in Forsyth 2015-16 has a similar 8th Grade Math Score compared to eds in Durham 2015-16
+429,2015-16,Forsyth,eds,2015-16,Guilford,eds,358,1516,0.191035219,654,1902,0.255868545,TRUE,eds in Forsyth 2015-16 has a lower 8th Grade Math Score than eds in Guilford 2015-16
+430,2015-16,Forsyth,not_eds,2017-18,Forsyth,not_eds,1149,1031,0.52706422,1196,880,0.5761079,TRUE,not_eds in Forsyth 2015-16 has a lower 8th Grade Math Score than not_eds in Forsyth 2017-18
+431,2015-16,Forsyth,not_eds,2016-17,Forsyth,not_eds,1149,1031,0.52706422,1236,906,0.577030812,TRUE,not_eds in Forsyth 2015-16 has a lower 8th Grade Math Score than not_eds in Forsyth 2016-17
+432,2015-16,Forsyth,not_eds,2014-15,Forsyth,not_eds,1149,1031,0.52706422,1123,727,0.607027027,TRUE,not_eds in Forsyth 2015-16 has a lower 8th Grade Math Score than not_eds in Forsyth 2014-15
+433,2015-16,Forsyth,not_eds,2015-16,Forsyth,eds,1149,1031,0.52706422,358,1516,0.191035219,TRUE,not_eds in Forsyth 2015-16 has a higher 8th Grade Math Score than eds in Forsyth 2015-16
+434,2015-16,Forsyth,not_eds,2015-16,Durham,not_eds,1149,1031,0.52706422,474,434,0.522026432,FALSE,not_eds in Forsyth 2015-16 has a similar 8th Grade Math Score compared to not_eds in Durham 2015-16
+435,2015-16,Forsyth,not_eds,2015-16,Guilford,not_eds,1149,1031,0.52706422,1607,1198,0.572905526,TRUE,not_eds in Forsyth 2015-16 has a lower 8th Grade Math Score than not_eds in Guilford 2015-16
+436,2015-16,Forsyth,ALL,2017-18,Forsyth,ALL,1504,2550,0.370991613,1586,2217,0.41703918,TRUE,ALL in Forsyth 2015-16 has a lower 8th Grade Math Score than ALL in Forsyth 2017-18
+437,2015-16,Forsyth,ALL,2016-17,Forsyth,ALL,1504,2550,0.370991613,1669,2503,0.400047939,TRUE,ALL in Forsyth 2015-16 has a lower 8th Grade Math Score than ALL in Forsyth 2016-17
+438,2015-16,Forsyth,ALL,2014-15,Forsyth,ALL,1504,2550,0.370991613,1594,2525,0.386987133,FALSE,ALL in Forsyth 2015-16 has a similar 8th Grade Math Score compared to ALL in Forsyth 2014-15
+439,2015-16,Forsyth,ALL,2015-16,Durham,ALL,1504,2550,0.370991613,768,1654,0.317093311,TRUE,ALL in Forsyth 2015-16 has a higher 8th Grade Math Score than ALL in Durham 2015-16
+440,2015-16,Forsyth,ALL,2015-16,Guilford,ALL,1504,2550,0.370991613,2262,3099,0.421936206,TRUE,ALL in Forsyth 2015-16 has a lower 8th Grade Math Score than ALL in Guilford 2015-16
+441,2014-15,Forsyth,black,2017-18,Forsyth,black,217,989,0.179933665,233,808,0.223823247,TRUE,black in Forsyth 2014-15 has a lower 8th Grade Math Score than black in Forsyth 2017-18
+442,2014-15,Forsyth,black,2016-17,Forsyth,black,217,989,0.179933665,231,965,0.193143813,FALSE,black in Forsyth 2014-15 has a similar 8th Grade Math Score compared to black in Forsyth 2016-17
+443,2014-15,Forsyth,black,2015-16,Forsyth,black,217,989,0.179933665,229,930,0.197584124,FALSE,black in Forsyth 2014-15 has a similar 8th Grade Math Score compared to black in Forsyth 2015-16
+444,2014-15,Forsyth,black,2014-15,Forsyth,white,217,989,0.179933665,1010,731,0.580126364,TRUE,black in Forsyth 2014-15 has a lower 8th Grade Math Score than white in Forsyth 2014-15
+445,2014-15,Forsyth,black,2014-15,Forsyth,hispanic,217,989,0.179933665,230,669,0.255839822,TRUE,black in Forsyth 2014-15 has a lower 8th Grade Math Score than hispanic in Forsyth 2014-15
+446,2014-15,Forsyth,black,2014-15,Durham,black,217,989,0.179933665,342,952,0.264296754,TRUE,black in Forsyth 2014-15 has a lower 8th Grade Math Score than black in Durham 2014-15
+447,2014-15,Forsyth,black,2014-15,Guilford,black,217,989,0.179933665,554,1687,0.247211066,TRUE,black in Forsyth 2014-15 has a lower 8th Grade Math Score than black in Guilford 2014-15
+448,2014-15,Forsyth,white,2017-18,Forsyth,white,1010,731,0.580126364,932,518,0.642758621,TRUE,white in Forsyth 2014-15 has a lower 8th Grade Math Score than white in Forsyth 2017-18
+449,2014-15,Forsyth,white,2016-17,Forsyth,white,1010,731,0.580126364,1020,581,0.637101811,TRUE,white in Forsyth 2014-15 has a lower 8th Grade Math Score than white in Forsyth 2016-17
+450,2014-15,Forsyth,white,2015-16,Forsyth,white,1010,731,0.580126364,944,690,0.577723378,FALSE,white in Forsyth 2014-15 has a similar 8th Grade Math Score compared to white in Forsyth 2015-16
+451,2014-15,Forsyth,white,2014-15,Forsyth,black,1010,731,0.580126364,217,989,0.179933665,TRUE,white in Forsyth 2014-15 has a higher 8th Grade Math Score than black in Forsyth 2014-15
+452,2014-15,Forsyth,white,2014-15,Forsyth,hispanic,1010,731,0.580126364,230,669,0.255839822,TRUE,white in Forsyth 2014-15 has a higher 8th Grade Math Score than hispanic in Forsyth 2014-15
+453,2014-15,Forsyth,white,2014-15,Durham,white,1010,731,0.580126364,282,113,0.713924051,TRUE,white in Forsyth 2014-15 has a lower 8th Grade Math Score than white in Durham 2014-15
+454,2014-15,Forsyth,white,2014-15,Guilford,white,1010,731,0.580126364,1249,769,0.618929633,TRUE,white in Forsyth 2014-15 has a lower 8th Grade Math Score than white in Guilford 2014-15
+455,2014-15,Forsyth,hispanic,2017-18,Forsyth,hispanic,230,669,0.255839822,277,751,0.269455253,FALSE,hispanic in Forsyth 2014-15 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2017-18
+456,2014-15,Forsyth,hispanic,2016-17,Forsyth,hispanic,230,669,0.255839822,268,817,0.247004608,FALSE,hispanic in Forsyth 2014-15 has a similar 8th Grade Math Score compared to hispanic in Forsyth 2016-17
+457,2014-15,Forsyth,hispanic,2015-16,Forsyth,hispanic,230,669,0.255839822,199,776,0.204102564,TRUE,hispanic in Forsyth 2014-15 has a higher 8th Grade Math Score than hispanic in Forsyth 2015-16
+458,2014-15,Forsyth,hispanic,2014-15,Forsyth,black,230,669,0.255839822,217,989,0.179933665,TRUE,hispanic in Forsyth 2014-15 has a higher 8th Grade Math Score than black in Forsyth 2014-15
+459,2014-15,Forsyth,hispanic,2014-15,Forsyth,white,230,669,0.255839822,1010,731,0.580126364,TRUE,hispanic in Forsyth 2014-15 has a lower 8th Grade Math Score than white in Forsyth 2014-15
+460,2014-15,Forsyth,hispanic,2014-15,Durham,hispanic,230,669,0.255839822,171,444,0.27804878,FALSE,hispanic in Forsyth 2014-15 has a similar 8th Grade Math Score compared to hispanic in Durham 2014-15
+461,2014-15,Forsyth,hispanic,2014-15,Guilford,hispanic,230,669,0.255839822,198,481,0.291605302,FALSE,hispanic in Forsyth 2014-15 has a similar 8th Grade Math Score compared to hispanic in Guilford 2014-15
+462,2014-15,Forsyth,male,2017-18,Forsyth,male,805,1325,0.377934272,797,1162,0.406840225,FALSE,male in Forsyth 2014-15 has a similar 8th Grade Math Score compared to male in Forsyth 2017-18
+463,2014-15,Forsyth,male,2016-17,Forsyth,male,805,1325,0.377934272,815,1290,0.387173397,FALSE,male in Forsyth 2014-15 has a similar 8th Grade Math Score compared to male in Forsyth 2016-17
+464,2014-15,Forsyth,male,2015-16,Forsyth,male,805,1325,0.377934272,740,1311,0.36079961,FALSE,male in Forsyth 2014-15 has a similar 8th Grade Math Score compared to male in Forsyth 2015-16
+465,2014-15,Forsyth,male,2014-15,Forsyth,female,805,1325,0.377934272,788,1201,0.396178984,FALSE,male in Forsyth 2014-15 has a similar 8th Grade Math Score compared to female in Forsyth 2014-15
+466,2014-15,Forsyth,male,2014-15,Durham,male,805,1325,0.377934272,406,828,0.329011345,TRUE,male in Forsyth 2014-15 has a higher 8th Grade Math Score than male in Durham 2014-15
+467,2014-15,Forsyth,male,2014-15,Guilford,male,805,1325,0.377934272,1183,1648,0.417873543,TRUE,male in Forsyth 2014-15 has a lower 8th Grade Math Score than male in Guilford 2014-15
+468,2014-15,Forsyth,female,2017-18,Forsyth,female,788,1201,0.396178984,789,1055,0.427874187,FALSE,female in Forsyth 2014-15 has a similar 8th Grade Math Score compared to female in Forsyth 2017-18
+469,2014-15,Forsyth,female,2016-17,Forsyth,female,788,1201,0.396178984,854,1213,0.413159168,FALSE,female in Forsyth 2014-15 has a similar 8th Grade Math Score compared to female in Forsyth 2016-17
+470,2014-15,Forsyth,female,2015-16,Forsyth,female,788,1201,0.396178984,765,1238,0.381927109,FALSE,female in Forsyth 2014-15 has a similar 8th Grade Math Score compared to female in Forsyth 2015-16
+471,2014-15,Forsyth,female,2014-15,Forsyth,male,788,1201,0.396178984,805,1325,0.377934272,FALSE,female in Forsyth 2014-15 has a similar 8th Grade Math Score compared to male in Forsyth 2014-15
+472,2014-15,Forsyth,female,2014-15,Durham,female,788,1201,0.396178984,468,723,0.392947103,FALSE,female in Forsyth 2014-15 has a similar 8th Grade Math Score compared to female in Durham 2014-15
+473,2014-15,Forsyth,female,2014-15,Guilford,female,788,1201,0.396178984,1115,1591,0.412047302,FALSE,female in Forsyth 2014-15 has a similar 8th Grade Math Score compared to female in Guilford 2014-15
+474,2014-15,Forsyth,eds,2017-18,Forsyth,eds,470,1799,0.207139709,390,1337,0.22582513,FALSE,eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to eds in Forsyth 2017-18
+475,2014-15,Forsyth,eds,2016-17,Forsyth,eds,470,1799,0.207139709,430,1600,0.21182266,FALSE,eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to eds in Forsyth 2016-17
+476,2014-15,Forsyth,eds,2015-16,Forsyth,eds,470,1799,0.207139709,358,1516,0.191035219,FALSE,eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to eds in Forsyth 2015-16
+477,2014-15,Forsyth,eds,2014-15,Forsyth,not_eds,470,1799,0.207139709,1123,727,0.607027027,TRUE,eds in Forsyth 2014-15 has a lower 8th Grade Math Score than not_eds in Forsyth 2014-15
+478,2014-15,Forsyth,eds,2014-15,Durham,eds,470,1799,0.207139709,352,1199,0.226950355,FALSE,eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to eds in Durham 2014-15
+479,2014-15,Forsyth,eds,2014-15,Guilford,eds,470,1799,0.207139709,684,2061,0.249180328,TRUE,eds in Forsyth 2014-15 has a lower 8th Grade Math Score than eds in Guilford 2014-15
+480,2014-15,Forsyth,not_eds,2017-18,Forsyth,not_eds,1123,727,0.607027027,1196,880,0.5761079,FALSE,not_eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to not_eds in Forsyth 2017-18
+481,2014-15,Forsyth,not_eds,2016-17,Forsyth,not_eds,1123,727,0.607027027,1236,906,0.577030812,FALSE,not_eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to not_eds in Forsyth 2016-17
+482,2014-15,Forsyth,not_eds,2015-16,Forsyth,not_eds,1123,727,0.607027027,1149,1031,0.52706422,TRUE,not_eds in Forsyth 2014-15 has a higher 8th Grade Math Score than not_eds in Forsyth 2015-16
+483,2014-15,Forsyth,not_eds,2014-15,Forsyth,eds,1123,727,0.607027027,470,1799,0.207139709,TRUE,not_eds in Forsyth 2014-15 has a higher 8th Grade Math Score than eds in Forsyth 2014-15
+484,2014-15,Forsyth,not_eds,2014-15,Durham,not_eds,1123,727,0.607027027,522,352,0.597254005,FALSE,not_eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to not_eds in Durham 2014-15
+485,2014-15,Forsyth,not_eds,2014-15,Guilford,not_eds,1123,727,0.607027027,1614,1178,0.578080229,FALSE,not_eds in Forsyth 2014-15 has a similar 8th Grade Math Score compared to not_eds in Guilford 2014-15
+486,2014-15,Forsyth,ALL,2017-18,Forsyth,ALL,1594,2525,0.386987133,1586,2217,0.41703918,TRUE,ALL in Forsyth 2014-15 has a lower 8th Grade Math Score than ALL in Forsyth 2017-18
+487,2014-15,Forsyth,ALL,2016-17,Forsyth,ALL,1594,2525,0.386987133,1669,2503,0.400047939,FALSE,ALL in Forsyth 2014-15 has a similar 8th Grade Math Score compared to ALL in Forsyth 2016-17
+488,2014-15,Forsyth,ALL,2015-16,Forsyth,ALL,1594,2525,0.386987133,1504,2550,0.370991613,FALSE,ALL in Forsyth 2014-15 has a similar 8th Grade Math Score compared to ALL in Forsyth 2015-16
+489,2014-15,Forsyth,ALL,2014-15,Durham,ALL,1594,2525,0.386987133,873,1552,0.36,TRUE,ALL in Forsyth 2014-15 has a higher 8th Grade Math Score than ALL in Durham 2014-15
+490,2014-15,Forsyth,ALL,2014-15,Guilford,ALL,1594,2525,0.386987133,2298,3239,0.415026187,TRUE,ALL in Forsyth 2014-15 has a lower 8th Grade Math Score than ALL in Guilford 2014-15
+491,2013-14,Forsyth,ALL,2013-14,Durham,ALL,1591,2629,0.377014218,690,1739,0.284067517,TRUE,ALL in Forsyth 2013-14 has a higher 8th Grade Math Score than ALL in Durham 2013-14
+492,2013-14,Forsyth,ALL,2013-14,Guilford,ALL,1591,2629,0.377014218,2342,3426,0.406033287,TRUE,ALL in Forsyth 2013-14 has a lower 8th Grade Math Score than ALL in Guilford 2013-14

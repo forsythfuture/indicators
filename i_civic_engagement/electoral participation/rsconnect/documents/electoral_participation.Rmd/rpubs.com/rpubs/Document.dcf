@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Document
 title:
 username:
@@ -8,3 +9,15 @@ appId: https://api.rpubs.com/api/v1/document/430681/8bb4dc56e6e24db0937fa30bfa2e
 bundleId: https://api.rpubs.com/api/v1/document/430681/8bb4dc56e6e24db0937fa30bfa2e3bf6
 url: http://rpubs.com/publish/claim/430681/f0906d074db64133a0801d2c315b5754
 when: 1539878138.93753
+=======
+name: Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/430681/8bb4dc56e6e24db0937fa30bfa2e3bf6
+bundleId: https://api.rpubs.com/api/v1/document/430681/8bb4dc56e6e24db0937fa30bfa2e3bf6
+url: http://rpubs.com/publish/claim/430681/f0906d074db64133a0801d2c315b5754
+when: 1539878138.93753
+>>>>>>> 040b8131dc7ebfafb9bb37ba9a68739dbf22a3df

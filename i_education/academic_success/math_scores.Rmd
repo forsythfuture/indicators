@@ -1,0 +1,258 @@
+---
+title: "8th Grade Math Proficiency"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+# load custom chi-square function
+source('../../i_education/academic_success/cw_chisq_2way_func.R')
+```
+
+8th grade math proficiency data comes from NC Public Schools website found here
+http://www.ncpublicschools.org/accountability/reporting/leaperformancearchive/
+
+```{r}
+df <- read_csv('data/math_reading_scores2.csv') %>%
+        filter(measure == '8th Grade Math Score')
+
+df$year <- as.numeric(df$year)
+
+all <- list("ALL")
+race_eth <- list('African American',"White, non-Hispanic","Hispanic/Latino")
+gender <- list('male',"female")
+EDS <- list('eds',"not_eds")
+```
+
+### County comparisions
+
+#### Plot
+
+The plot below shows the 8th grade math proficiency rates for the Forsyth, Guilford, and Durham counties.
+
+```{r}
+
+math <- df
+
+math %>%
+        filter(group =='ALL')%>%
+    ggplot(aes(year, rate, color = county)) +
+    geom_line(size = 1) +
+    labs(title = '8th Grade Math Proficiency',
+         color = 'County',
+         y = 'Math Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(math$year), max(math$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+
+```{r}
+math %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = county)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('8th Grade Math Proficiency', ' in ', max(math$year)-1, '-', max(math$year) ),
+       fill = 'County',
+       y = 'Math Proficiency Rate',
+       x = '') +
+  theme_minimal()
+```
+
+#### Interpretation
+
+* In 2017-18, Forsyth County students maintained the significant increase seen in 2016-17.
+* The math proficiency rate of students in Forsyth County was significantly less than the rates of Durham and Guilford County students in 2017-18. 
+
+
+### Math Proficiency by Ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's 3rd Grade Reading Proficiency Rates by ethnicity and year. 
+
+```{r fig.width=8,fig.height=10}
+
+ethnicity <- df %>%
+        filter(measure == '8th Grade Math Score', (group %in% race_eth))
+        
+ethnicity %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '8th Grade Math Proficiency by Ethnicity',
+         color = 'Race/Ethnicity',
+         y = 'Math Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+
+```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('8th Grade Math Proficiency', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Race/Ethnicity',
+       y = 'Math Proficiency Rate',
+       x = '') +
+  theme_minimal()
+
+```
+
+#### Interpretation
+
+
+* In 2017-18, Hispanic/Latino students maintained the significant increase gained in 2016-17.
+* Hispanic / Latino students had a similar significant drop between 2013-14 and 2015-16 and has remained at that level since. 
+* Over the four years, persistent and significant disparities remain between White, non-Hispanics and both African Americans and Hispanic/Latinos.
+* In 2017-18, Math proficiency rates for African Americans and Hispanic/Latinos in Guilford County are significantly higher than they are in Forsyth County.
+
+
+### Forsyth County Math Proficiency rate by gender
+
+#### Plot
+
+The plot for Math Proficiency rate by gender is below.
+
+```{r fig.width=8,fig.height=10}
+sex <- df %>%
+        filter(measure == '8th Grade Math Score', (group %in% gender))
+        
+sex %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '8th Grade Math Proficiency by Gender',
+         color = 'Gender',
+         y = 'Math Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(sex$year), max(sex$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+```{r}
+# bar chart of gender with all geographies in the most recent year
+
+sex %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('8th Grade Math Proficiency', ' in ', max(sex$year)-1, '-', max(sex$year) ),
+       fill = 'Gender',
+       y = 'Math Proficiency Rate',
+       x = '') +
+  theme_minimal()
+
+
+```
+#### Interpretation
+
+
+* Math proficiency rates between males and females are statistically similar/the same for any given year.
+* Females in Guilford County have a significantly higher math proficiency rate than Forsyth.  
+* Males and females in Forsyth County have significantly higher math proficiency rates than Durham.
+
+### Forsyth County Math Proficiency rate by economic status
+
+#### Plot
+
+The plot for Math Proficiency rate by economic status is below.
+
+```{r}
+economic <- df %>%
+        filter(measure == '8th Grade Math Score', (group %in% EDS))
+        
+economic %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '8th Grade Math Proficiency by Economic Status',
+         color = 'Economic Status',
+         y = 'Math Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(economic$year), max(economic$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+```{r}
+economic %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('8th Grade Math Proficiency Rate by Economic Status', ' in ', max(economic$year)-1, '-', max(economic$year) ),
+       fill = 'Economic Status',
+       y = 'Math Proficiency Rate',
+       x = '') +
+  theme_minimal()
+```
+#### Interpretation
+
+
+* The math proficiency rate for economically disadvantaged students is greater than 50% less than the rate of those not economically disadvantaged.
+* There remain persistent and significant disparities between the two groups of students over time. 
+
+
+#### Data
+
+And here is the underlying data.
+
+Write out excel workbook if needed.
+
+```{r}
+
+tableau_data <- df %>%
+        select(year, county, measure, group, rate)%>%
+        mutate(year = ifelse(year=='2014','2013-14', 
+                             ifelse(year=='2015','2014-15',
+                                    ifelse(year=='2016','2015-16',
+                                           ifelse(year=='2017','2016-17','2017-18')))))%>%
+        mutate(county = ifelse(county=='Durham', 'Durham County Public Schools',
+                     ifelse(county=='Guilford','Guilford County Public Schools','Forsyth County Public Schools')))
+        
+colnames(tableau_data) <- c('year', 'geography', 'type', 'subtype', 'estimate')
+
+tableau_data %>%
+        # estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+  mutate_at(vars(estimate), funs(./100)) %>%
+  # reorder column and do not include unneeded columns
+  select(year, geography, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+```

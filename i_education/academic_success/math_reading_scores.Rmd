@@ -1,0 +1,425 @@
+---
+title: "Post secondary Education Completion"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+# set value of whether the file is for an analyst, and therefore all resutls and code blocks are needed,
+# or whether the file is for another, and some results and all code blocks are hidden
+for_analyst <- TRUE
+
+# global options for code blocks
+knitr::opts_chunk$set(warning = FALSE, # supress warnings
+                      message = FALSE, # supress messages
+                      # do not print out code blocks if for_analyst equals FALSE
+                      echo = FALSE)
+                      #echo = ifelse(for_analyst == FALSE, FALSE, TRUE))
+
+# value that sets the 'include' parameter in Markdown based on whether the document is for the analyst
+to_include = ifelse(for_analyst == TRUE, TRUE, FALSE)
+```
+
+```{r import}
+# import functions and packages
+library(tidyverse)
+library(knitr)
+library(DT)
+library(tidycensus)
+# load custom ACS functions
+source('../../functions/acs_load_funcs.R')
+# load custom chi-square function
+source('../../i_education/academic_success/cw_chisq_2way_func.R')
+```
+
+3rd grade reading data comes from NC Public Schools website
+
+## Data Import & Transformation/Wrangling
+
+This code block imports and cleans the data. 
+
+```{r}
+# create list of raw data files, including path to directory
+directory <- 'i_education/academic_success/data/raw_data/'
+# create list of raw data files, including path to directory
+raw_data_files <- paste0(directory, list.files(directory))
+
+## import each yearly file, and year to dataset, bind with previous years
+
+# initialize dataframe to store results
+df <- data.frame()
+
+for (file in raw_data_files) {
+  
+  # extract the year number from file name
+  acad_year <- str_extract(file, '[0-9][0-9][0-9][0-9]-[0-9][0-9]')
+
+  
+ # import dataset
+  df <- read_delim(file, "\t", escape_double = FALSE, trim_ws = TRUE) %>%
+    # add year
+    mutate(year = acad_year) %>%
+    bind_rows(df, .)
+  
+}
+
+# filter out unneeded rows and rename values
+df <- df %>%
+        filter(school_code=='340LEA'|school_code=='320LEA'|school_code=='410LEA')%>%
+        filter(type=='ALL')%>%
+        filter(subgroup=='FEM'|subgroup=='EDS'|subgroup=='BLCK'|subgroup=='HISP'|subgroup=='MALE'|subgroup=='NOT_EDS'|subgroup=='WHTE'|subgroup=='ALL')%>%
+        mutate(name = ifelse(school_code=='320LEA', 'Durham',
+                     ifelse(school_code=='410LEA','Guilford','Forsyth')))%>%
+        mutate(subgroup = ifelse(subgroup=='FEM','female', ifelse(subgroup=='MALE', 'male',
+                                ifelse(subgroup=="BLCK", 'black', ifelse(subgroup=="HISP", 'hispanic', ifelse(subgroup=="WHTE", 'white',
+                                        ifelse(subgroup=='EDS','eds',ifelse(subgroup=="NOT_EDS", 'not_eds', 'ALL'))))))))%>%
+        mutate(year = ifelse(year=='2013-14','2014', 
+                             ifelse(year=='2014-15','2015',
+                                    ifelse(year=='2015-16','2016',
+                                           ifelse(year=='2016-17','2017','2018')))))
+        
+        
+dfrd <- filter(df, subject=='RD', grade=='03')
+
+dfma <- filter(df, subject=='MA', grade=='08')      
+
+df <- bind_rows(dfrd,dfma)
+
+df <- df %>%
+        mutate(subject = ifelse(subject=='RD', '3rd Grade Reading Score', '8th Grade Math Score'))%>%
+        select('subject', 'year', 'name', 'subgroup','num_tested','pct_glp')
+        
+
+colnames(df) <- c('measure', 'year', 'county', 'group', 'total', 'rate')
+       
+#Convert variables to numeric type
+df$rate <- as.numeric(df$rate)
+
+#Calculate counts for passed and not passed using rate and total
+df <- df %>%
+        mutate(passed = (rate*total)/100, not_passed = ((100-rate) * total)/100)%>%
+        mutate(passed = round(passed,0), not_passed = round(not_passed,0))
+
+# write out dataset
+write_csv(df, 'i_education/academic_success/data/math_reading_scores.csv')
+
+```
+
+
+```{r}
+
+# import dataset
+
+edu <- read_csv('i_education/academic_success/data/math_reading_scores.csv')
+
+#blank data frame for results
+comparisons <- data.frame(
+  year1=integer(),
+  county1=character(),
+  group1=character(),
+  year2=integer(),
+  county2=character(),
+  group2=character(),                 
+  Yes1=integer(),
+  No1=integer(),
+  Rate1=double(),
+  Yes2=integer(),
+  No2=integer(),
+  Rate2=double(),
+  Significant=logical(),
+  Narrative=character(),
+  stringsAsFactors=FALSE)
+
+#used to describe results
+measure <- "3rd Grade Reading Score"
+
+#list of lists defining what categories to look at
+all <- list("ALL")
+race_eth <- list('black',"white","hispanic")
+gender <- list('male',"female")
+EDS <- list('eds',"not_eds")
+
+#currently I have data going back to 2013-14
+
+#do the same set of analyses for every demographic group/year combination
+demographics <- list(race_eth,gender,EDS,all)
+for (year1 in c("2017-18","2016-17","2015-16","2014-15","2013-14")){
+  for (demographic_cat in demographics){
+    for (group1 in demographic_cat){
+      
+      
+      #there are three different types of analysis
+      
+        for (year2 in c("2017-18","2016-17","2015-16","2014-15","2013-14")){
+                    #Compare this demographic group to itself across years within Forsyth
+                    comparisons <- rbind(comparisons,chisq_2way(measure,year1,"Forsyth",group1,year2,"Forsyth",group1))
+        }
+      
+      for (group2 in demographic_cat){
+        #Compare this group to every other group in the same demographic cat in this year
+        comparisons <- rbind(comparisons,chisq_2way(measure,year1,"Forsyth",group1,year1,"Forsyth",group2))
+      }
+      
+      for (peer in c("Durham","Guilford")){
+      #Compare this group to peers in this year 
+        comparisons <- rbind(comparisons,chisq_2way(measure,year1,"Forsyth",group1,year1,peer,group1))
+      }
+    }
+  }
+}
+
+
+for (measure in c("8th Grade Math Score")){
+        
+        #currently I only have FC demographic data going back to 2014-15 and any dat back to 2013-2014
+        
+        #do the same set of analyses for every demographic group/year combination
+        demographics <- list(race_eth,gender,EDS,all)
+        for (year1 in c("2017-18","2016-17","2015-16","2014-15","2013-14")){
+                for (demographic_cat in demographics){
+                        for (group1 in demographic_cat){
+                                
+                                
+                                #there are three different types of analysis
+                                
+                                for (year2 in c("2017-18", "2016-17","2015-16","2014-15","2013-14")){
+                                        #Compare this demographic group to itself across years within Forsyth
+                                        
+                                        #don't make demographic comparisons for 2013-14
+                                        if (year1 != "2013-14" & year2 != "2013-14"){
+                                                comparisons <- rbind(comparisons,chisq_2way(measure,year1,"Forsyth",group1,year2,"Forsyth",group1))
+                                        }
+                                }
+                                
+                                for (group2 in demographic_cat){
+                                        #Compare this group to every other group in the same demographic cat in this year
+                                        
+                                        #don't make demographic comparisons for 2013-14
+                                        if (year1 != "2013-14"){
+                                                comparisons <- rbind(comparisons,chisq_2way(measure,year1,"Forsyth",group1,year1,"Forsyth",group2))
+                                        }
+                                }
+                                
+                                for (peer in c("Durham","Guilford")){
+                                        
+                                        #don't make peer comparisons for 2013-14 except when using overall rates
+                                        if (year1 != "2013-14" | group1 == "ALL"){
+                                                #Compare this group to peers in this year 
+                                                comparisons <- rbind(comparisons,chisq_2way(measure,year1,"Forsyth",group1,year1,peer,group1))
+                                        }
+                                }
+                                
+                        }
+                }
+        }
+}
+
+```
+
+------
+
+### County comparisions
+
+#### Plot
+
+The plot below shows the overall Associate degree rate for the US, North Carolina, and Forsyth, Guilford, and Durham counties.
+
+```{r}
+reading <- df %>%
+        filter(measure == '3rd Grade Reading Score', group =='ALL')
+
+reading %>%
+    ggplot(aes(year, rate, color = county)) +
+    geom_line(size = 1) +
+    labs(title = '3rd Grade Reading Proficiency',
+         color = 'County',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+#### Interpretation
+
+* Not a lot to say here, only 2015-2016 saw a statistically significant year over year change (increase)
+* 2017 does not begin to be statistically significant from any other year until 2012.  
+* In Forsyth county the drop in 2017 is not statistically significant
+* Forsyth and Guilford counties mirror each other/are not SS from each other every year except for 2017
+
+### Associate's degree by ethnicity
+
+#### Plot
+
+The plot below shows Forsyth County's 3rd Grade Reading Scores ethnicity and year. 
+
+```{r fig.width=8,fig.height=10}
+
+ethnicity <- df %>%
+        filter(measure == '3rd Grade Reading Score', (group %in% race_eth))
+        
+ethnicity %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '3rd Grade Reading Proficiency by Ethnicity',
+         color = 'Race/Ethnicity',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+
+```
+
+```{r}
+# bar chart of ethnicity with all geographies in the most recent year
+ethnicity %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Race/Ethnicity',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+
+```
+
+#### Interpretation
+
+* White, non-Hispanic rates are statistically significant from African American and Hispanic/Latino rates every year. 
+* The African-Americans rate is twice as high as the Hispanic rate.  The White, non-Hispanic rate is 20 percentage points higher than that of African Americans.  And it is more that three times higher than Hispanic/Latino rate. 
+
+
+### Forsyth County Associate's degree rate by gender
+
+#### Plot
+
+The plot for Associate's degree rate by gender is below.
+
+```{r fig.width=8,fig.height=10}
+sex <- df %>%
+        filter(measure == '3rd Grade Reading Score', (group %in% gender))
+        
+sex %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '3rd Grade Reading Proficiency by Gender',
+         color = 'Gender',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+
+```
+
+```{r}
+# bar chart of gender with all geographies in the most recent year
+
+sex %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Gender',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+
+
+```
+#### Interpretation
+* Again, though it may look like there are major differences between the genders - no year is statistically significant except for 2014.
+* As well, no year is statistically significant from it's predecessor (year over year) for either males or females except for the jump in the female rate between 2015 and 2016, which was sustained in 2017 (as 2017 and 16 were not SS from each other)
+
+
+```{r}
+economic <- df %>%
+        filter(measure == '3rd Grade Reading Score', (group %in% EDS))
+        
+economic %>%
+        filter(county == 'Forsyth')%>%
+        ggplot(aes(year, rate, color = group)) +
+    geom_line(size = 1) +
+    # create a seperate plot for each geography
+   labs(title = '3rd Grade Reading Proficiency by Economic Status',
+         color = 'Economic Status',
+         y = 'Reading Proficiency Rate') +
+    scale_x_continuous(breaks = seq(min(ethnicity$year), max(ethnicity$year), 1),
+                       minor_breaks = NULL) +
+    theme_minimal()
+```
+
+```{r}
+economic %>% 
+  filter(year == max(.$year))%>%
+  ggplot(aes(county, rate, fill = group)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('3rd Grade Reading Proficiency Rate by Economic Status', ' in ', max(ethnicity$year)-1, '-', max(ethnicity$year) ),
+       fill = 'Economic Status',
+       y = 'Reading Proficiency Rate',
+       x = '') +
+  theme_minimal()
+```
+
+#### Data
+
+And here is the underlying data.
+
+```{r}
+gender_data <- gender %>%
+  select(geography, year, gender, estimate, moe, se, cv)
+
+# add gender data to final dataset
+tableau_data <- gender_data %>%
+    # add type of column
+    mutate(type = 'Gender',
+           subtype = gender) %>%
+    # delete gender column since this is now in the subtype column
+    select(-gender) %>%
+    bind_rows(tableau_data, .)
+
+ff_data_dt(gender_data,
+           c('Geographic area', 'Year', 'Gender', '% Assoc', '95% MOE', 'St. Error', 'CV'))
+```
+
+#### Z-scores
+
+The table below highlights z-scores for each age group in the past two years.
+
+```{r}
+# enter comparison years here
+gender_years <- c(2006:2017)
+
+gender %>%
+  filter(year %in% gender_years) %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'geography', 'gender'))
+```
+
+And here are Forsyth County's z-scores for all years.
+
+```{r}
+gender %>%
+  filter(geography=='Forsyth County, NC') %>%
+  ff_acs_zscore_dt('estimate', 'se', c('year', 'gender'))
+```
+
+
+Write out excel workbook if needed.
+
+```{r}
+# estimates are percentages displayed in tens (60.45)
+# convert to numbers to decimal percentages (.6045)
+tableau_data %>%
+  mutate_at(vars(estimate:se), funs(./100)) %>%
+  # reorder column and do not include unneeded columns
+  select(year, geography, type, subtype, estimate) %>%
+  # create table
+  ff_data_dt(c('Year', 'Geographic area', 'Type', 'Subtype', 'Estimate'), for_tableau=TRUE)
+```
