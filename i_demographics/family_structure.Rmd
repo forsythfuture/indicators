@@ -120,8 +120,8 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('African American',each=11)
-aa_married<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
-rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+aa_married<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+rm(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 ###############################################
 location<-rep("Forsyth County", each=11)
 type<-rep('female',each=11)
@@ -150,7 +150,7 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('African American',each=11)
-aa_female<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+aa_female<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 
 #########################################################################################################
@@ -181,9 +181,8 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('African American',each=11)
-aa_male<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+aa_male<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
-###############################################
 #########################################################################################################
 
 #######################################WHITE#############################################################
@@ -214,7 +213,7 @@ white_male_above<-filter(white,description=='Estimate; Income in the past 12 mon
 white_married_above<-filter(white,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
 #########################################################################################################
 location<-rep("Forsyth County", each=12)
-year<-white_married_above[,12]
+year<-white_married_above[,2]
 type<-rep('married',each=12)
 description<-rep("Married-couple family with related children of the householder under 18 years", each=12)
 above<-white_married_above[,4]
@@ -240,8 +239,8 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('White',each=12)
-white_married<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
-rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+white_married<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+rm(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 ###############################################
 location<-rep("Forsyth County", each=12)
 type<-rep("female", each=12)
@@ -270,7 +269,7 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('White',each=12)
-white_female<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+white_female<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 
 #########################################################################################################
@@ -358,7 +357,7 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('White',each=2)
-hl_married<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+hl_married<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 ###############################################
 location<-rep("Forsyth County", each=2)
@@ -388,7 +387,7 @@ se<-rename(se,se_proportion=above_below_se)
 cv<-cv_function(above_below)
 cv<-rename(cv,cv_proportion="above&below")
 race<-rep('White',each=2)
-hl_female<-cbind(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
+hl_female<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 rm(location,year,description,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 
 #########################################################################################################
@@ -451,29 +450,54 @@ df<-as.data.frame(df)
 The plot below shows the overall employment rate of the US, North Carolina, and Forsyth, Guilford, and Durham counties.
 
 ```{r}
-female<-df%>%
+year<-df%>%
   # only keep total poverty rate
   filter(
-    str_detect(description, 'Female householder, no husband present: with related children of the householder under 18 year'))
-male<-df%>%
-  # only keep total poverty rate
-  filter(
-    str_detect(description, 'Male householder, no wife present: with related children of the householder under 18 year'))
-married<-df%>%
-  # only keep total poverty rate
-  filter(
-    str_detect(description, 'Married-couple family with related children of the householder under 18 years'))
-  ggplot(df, aes(type, percentage, fill = race)) +
-    geom_bar(stat = "identity", position_dodge()) +
-    labs(title = 'Family Structure by Race',
-         color = "Race",
-         y = 'Poverty rate (%)') 
+    str_detect(year, '2017'))
+  ggplot(year, aes(type, percentage, fill = race)) +
+    geom_bar(position='dodge',stat = "identity") +
+    labs(title = 'Family Structure by Race in Forsyth County 2017',
+         x = 'Household Type',
+         y = 'Population (%)') 
 ```
 
 #### Interpretation
 
-* In 2017, Forsyth County had the highest poverty rate among comparison geographic units. But, the difference between Forsyth and Durham counties is not statistically significant.
+* In 2017, African American women households were the most common in Forsyth County followed by white married families.  
+*Hispanic family structure's are not included in this data because the data was not collected for hispanic families in 2017.
 * Forsyth County's poverty rates have consistently dropped since 2012. The differences in poverty rates between 2017 and 2012, 2013, and 2014 are statistically significant. 
+```{r}
+year<-df%>%
+  # only keep total poverty rate
+  filter(
+    str_detect(year, '2017'))
+  ggplot(year, aes(race, percentage, fill = type)) +
+    geom_bar(position='dodge',stat = "identity") +
+    labs(title = 'Race by Family Structure in Forsyth County 2017',
+         x = 'Race',
+         y = 'Population (%)') 
+```
+
+#Interpretation
+
+
+
+
+
+
+
+
+
+
+```{r}
+  ggplot(df, aes(year, percentage, color = type)) +
+    geom_line(size = 1) +
+    labs(title = 'Family Structure by year',
+         color = 'Family Structure',
+         y = 'Percent (%)') 
+    
+```
+
 
 #### Data
 
