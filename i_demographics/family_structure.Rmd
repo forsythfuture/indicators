@@ -127,9 +127,27 @@ hl_male_above<-filter(hl,description=='Estimate; Income in the past 12 months at
 
 
 hl_married_above<-filter(hl,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
-##########################################################
+##################################################################################################################################
+df <- read_csv('data/family_structure_all_years.csv') %>%
+  filter(geo_description %in% geo_areas) %>%
+  select(-label)
+norace <- filter(df,file == 'no race')
+#################################################################################################################################
+total<-filter(norace,description=='Estimate; Total:')
+##################################################################################################################################
+married_below<-filter(norace, description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years:')
 
+married_above<-filter(norace, description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
+female_below<-filter(norace,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+female_above<-filter(norace,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Female householder, no husband present: - With related children of the householder under 18 years:')
+
+male_below<-filter(norace,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:')
+
+male_above<-filter(norace,description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:')
 ```
+
+
 
 ```{r}
 se_function<-function(moe){
@@ -165,27 +183,23 @@ new_df_female<-function(df_a, df_b, df_t){
   type<-rep('female',each=nrow(df_a))
   year<-df_a[,2]
   description<-rep("Female householder, no husband present: with related children of the householder under 18 years", each=nrow(df_a))
-  above<-df[,4]
-  above<-rename(above,above=estimate)
+   above<-df[,4]
   below<-df_b[,4]
-  below<-rename(below,below=estimate)
   above_below<-df_a[,4]+df_b[,4]
-  above_below<-rename(above_below,'above&below'=estimate)
   above_moe<-df_a[,5]
   below_moe<-df_b[,5]
   above_below_moe<-moe_function(above_moe,below_moe)
   above_below_moe<-as.data.frame(above_below_moe)
-  above_below_moe<-rename(above_below_moe,above_below_moe=moe)
   above_below_se<-se_function(above_below_moe)
-  above_below_se<-rename(above_below_se,above_below_se=above_below_moe)
+  above_below_se<-rename(above_below_se,se=moe)
   percentage<-above_below[,1]/df_t[,4]
   percentage<-rename(percentage, percentage = estimate)
   moe_percentage<-moe_proportion(above_below_moe,df_t[,5],percentage,df_t[,4])
-  moe_percentage<-rename(moe_percentage, moe_percentage =estimate)
+  moe_percentage<-rename(moe_percentage, moe_percentage =moe)
   se<-se_proportion(above_below_se,percentage,df_t[,6],df_t[,4])
-  se<-rename(se,se_proportion=estimate)
+  se<-rename(se,se_proportion=se)
   cv<-cv_function(above_below)
-  cv<-rename(cv,cv_proportion="above&below")
+  cv<-rename(cv,cv=estimate)
   race<-df_a[,8]
   aa_female<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 }
@@ -195,26 +209,22 @@ new_df_male<-function(df_a, df_b, df_t){
   year<-df_a[,2]
   description<-rep("Male householder, no wife present: with related children of the householder under 18 years", each=nrow(df_a))
   above<-df[,4]
-  above<-rename(above,above=estimate)
   below<-df_b[,4]
-  below<-rename(below,below=estimate)
   above_below<-df_a[,4]+df_b[,4]
-  above_below<-rename(above_below,'above&below'=estimate)
   above_moe<-df_a[,5]
   below_moe<-df_b[,5]
   above_below_moe<-moe_function(above_moe,below_moe)
   above_below_moe<-as.data.frame(above_below_moe)
-  above_below_moe<-rename(above_below_moe,above_below_moe=moe)
   above_below_se<-se_function(above_below_moe)
-  above_below_se<-rename(above_below_se,above_below_se=above_below_moe)
+  above_below_se<-rename(above_below_se,se=moe)
   percentage<-above_below[,1]/df_t[,4]
   percentage<-rename(percentage, percentage = estimate)
   moe_percentage<-moe_proportion(above_below_moe,df_t[,5],percentage,df_t[,4])
-  moe_percentage<-rename(moe_percentage, moe_percentage =estimate)
+  moe_percentage<-rename(moe_percentage, moe_percentage =moe)
   se<-se_proportion(above_below_se,percentage,df_t[,6],df_t[,4])
-  se<-rename(se,se_proportion=estimate)
+  se<-rename(se,se_proportion=se)
   cv<-cv_function(above_below)
-  cv<-rename(cv,cv_proportion="above&below")
+  cv<-rename(cv,cv=estimate)
   race<-df_a[,8]
   aa_male<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 }
@@ -225,26 +235,22 @@ new_df_married<-function(df_a, df_b, df_t){
   year<-df_a[,2]
   description<-rep("Married-couple family. With related children of the householder under 18 years", each=nrow(df_a))
   above<-df[,4]
-  above<-rename(above,above=estimate)
   below<-df_b[,4]
-  below<-rename(below,below=estimate)
   above_below<-df_a[,4]+df_b[,4]
-  above_below<-rename(above_below,'above&below'=estimate)
   above_moe<-df_a[,5]
   below_moe<-df_b[,5]
   above_below_moe<-moe_function(above_moe,below_moe)
   above_below_moe<-as.data.frame(above_below_moe)
-  above_below_moe<-rename(above_below_moe,above_below_moe=moe)
   above_below_se<-se_function(above_below_moe)
-  above_below_se<-rename(above_below_se,above_below_se=above_below_moe)
+  above_below_se<-rename(above_below_se,se=moe)
   percentage<-above_below[,1]/df_t[,4]
   percentage<-rename(percentage, percentage = estimate)
   moe_percentage<-moe_proportion(above_below_moe,df_t[,5],percentage,df_t[,4])
-  moe_percentage<-rename(moe_percentage, moe_percentage =estimate)
+  moe_percentage<-rename(moe_percentage, moe_percentage =moe)
   se<-se_proportion(above_below_se,percentage,df_t[,6],df_t[,4])
-  se<-rename(se,se_proportion=estimate)
+  se<-rename(se,se_proportion=se)
   cv<-cv_function(above_below)
-  cv<-rename(cv,cv_proportion="above&below")
+  cv<-rename(cv,cv=estimate)
   race<-df_a[,8]
   aa_married<-cbind(location,year,description,type,percentage,above_below,above_below_moe,above_below_se,moe_percentage,se,cv,race)
 }
@@ -254,15 +260,18 @@ new_df_married<-function(df_a, df_b, df_t){
 
 
 ```{r}
+male<-new_df_male(male_above,male_above,total)
 aa_male<-new_df_male(aa_male_above,aa_male_below,aa_total)
 hl_male<-new_df_male(hl_male_above,hl_male_below, hl_total)
 white_male<-new_df_male(white_male_above,white_male_below,white_total)
+female<-new_df_female(female_above,female_below,total)
 aa_female<-new_df_female(aa_female_above,aa_female_below,aa_total)
 hl_female<-new_df_female(hl_female_above,hl_female_below,hl_total)
 white_female<-new_df_female(white_female_above,white_female_below,white_total)
 aa_married<-new_df_married(aa_married_above,aa_married_below,aa_total)
 hl_married<-new_df_married(hl_married_above,hl_married_below, hl_total)
 white_married<-new_df_married(white_married_above,white_married_below,white_total)
+married<-new_df_married(married_above,married_below,total)
 ```
 
 ```{r}
@@ -275,6 +284,7 @@ df<- bind_rows( aa_female,aa_male,aa_married,white_female, white_male,white_marr
 aa<- bind_rows( aa_female,aa_male,aa_married)
 white<-bind_rows(white_female, white_male,white_married)
 hl<-bind_rows(hl_female,hl_male,hl_married)
+norace<-bind_rows(male,female,married)
 # combine all datasets into one
 
 df<-as.data.frame(df)
@@ -328,7 +338,7 @@ year<-df%>%
 
 
 ```{r}
-  ggplot(df, aes(year, percentage, color = type)) +
+  ggplot(norace, aes(year, percentage, color = type)) +
     geom_line(size = 1) +
     labs(title = 'Family Structure by year',
          color = 'Family Structure',
@@ -341,7 +351,7 @@ year<-df%>%
 ```{r}
  ggplot(aa, aes(year, percentage, color = type)) +
     geom_line(size = 1) +
-    labs(title = 'Family Structure by year',
+    labs(title = 'Family Structure for African Americans by year',
          color = 'Family Structure',
          y = 'Percent (%)') 
 
@@ -353,7 +363,7 @@ year<-df%>%
 ```{r}
  ggplot(white, aes(year, percentage, color = type)) +
     geom_line(size = 1) +
-    labs(title = 'Family Structure by year',
+    labs(title = 'Family Structure for by year',
          color = 'Family Structure',
          y = 'Percent (%)') 
 
@@ -376,17 +386,17 @@ Below is the raw data for poverty rates by geographies.
 ```{r include = to_include}
 total_data <- df %>%
   # only keep total poverty rate
-  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
-  select(geo_description, year, estimate, moe, se, cv)
+  #filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$')) %>%
+  select( year, type, moe, se, cv)
 
 # create dataset formatted for Tableau
 tableau_data <- total_data %>%
   # add type of column
-  mutate(type = 'Poverty Rate',
+  mutate(type = 'Family Structure',
          subtype = 'Total Population')
 
 # create table
-ff_data_dt(total_data, c('Geographic area', 'Year', 'Poverty Rate', '95% MOE', 'St. Error', 'CV'))
+ff_data_dt(total_data, c( 'Year', 'Family Structure', '95% MOE', 'St. Error', 'CV'))
 ```
 
 #### Z-scores
@@ -398,9 +408,9 @@ year_comparison <- c(max(df$year), max(df$year)-1)
 
 df %>%
   # only keep total employment rate
-  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
+  #filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
          # only keep data for the most recent year
-         year %in% year_comparison) %>%
+         year %in% year_comparison %>%
   ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year'))
 ```
 
@@ -415,9 +425,9 @@ The plot above shows Forsyth County's yearly trend and the table below lists yea
 ```{r include = to_include}
 df %>%
   # only keep total employment rate
-  filter(str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
+  filter(#str_detect(description, '^Percent *below poverty level; Estimate; Population for whom poverty status is determined$'),
          # only keep Forsyth
-         geo_description == 'Forsyth') %>%
+         location == 'Forsyth') %>%
   ff_acs_zscore_dt('estimate', 'se', 'year')
 ```
 

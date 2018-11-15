@@ -55,6 +55,7 @@ family_structure <- bind_rows(family_structure_list) %>%
   mutate(file = str_replace_all(file, '.*_aa.*', 'African American')) %>%
   mutate(file = str_replace_all(file, '.*_hl.*', 'Hispanic/Latino')) %>%
   mutate(file = str_replace_all(file, '.*_total.*', 'total')) %>%
+  mutate(file = str_replace_all(file, '.*_norace.*', 'no race')) %>%
   mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
 
 # 'raw_data2' file should be empty and can be deleted
