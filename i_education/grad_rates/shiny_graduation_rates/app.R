@@ -9,12 +9,11 @@ library(kableExtra)
 
 file_name <- 'grad_rates_cleaned.csv'
 
-indicator_name <- 'Median Income'
+indicator_name <- 'Graduation Rates'
 
 # Enter data sources. Each line below represents a single line in the app
-data_source <- c('ACS tables:', 
-                 '-B2017', 
-                 '-B3049')
+data_source <- c('North Carolina Department of Public Instruction<br>', 
+                 'http://www.ncpublicschools.org/accountability/reporting/cohortgradrate')
 
 # Enter interpretation of data. Each line below represents a single line in the app
 # HTML tags can be used to format text:
@@ -23,11 +22,17 @@ data_source <- c('ACS tables:',
 #   bold: <b>text</b>
 #   line break: <br>
 
-interpretation <- c('<i>Race and Ethnicity</i>',
-                    'This is some text. asdfasdfdsafdsaafsgfjhjhgfjhfgjhgjhgjhgfhjfgjhgf<br>',
-                    '<i>Gender</i>',
-                    'Here is more text. sfadfsdafdsafdsafadsfdasfdsfdsafadsfadsfdsafgjhjfhgjhgjhfgjhgf')
-
+interpretation <- c('<i>Forsyth County rate</i><br>',
+                    'Forsyth County experienced a slight decrease in its graduation rate this past year.',
+                    'This decline comes after a general uptick in graduation rates since 2013.',
+                    "The drop also caused Forsyth County's graduation rate to fall 2 percentage points",
+                    'below the state rate.<br><br>',
+                    '<i>Race and Ethnicity</i><br>',
+                    'White, non-Hispanics have higher graduation rates than African Americans,',
+                    'who in return have higher rates than Hispanic/Latinos',
+                    '<i>Economic Status</i><br>',
+                    'Economically disadvantaged students experienced a 4% drop in graduation rates',
+                    'this past school year.')
 ################### End section to edit ############################
 
 # load all custom functions
@@ -43,7 +48,8 @@ source('global.R')
 #########################################
 
 # load file
-df <- read_csv(file_name)
+df <- read_csv(file_name) %>%
+  select(-level)
 #
 # crate tableau dataset
 tableau_df <- df %>%
@@ -54,9 +60,9 @@ tableau_df <- df %>%
   mutate(type = 'Total') %>%
   # bind these rows to the original dataframe
   bind_rows(df) %>%
-  select(year, geo_description, type, subtype, estimate) %>%
-  rename(Year = year, `Geographic Area` = geo_description, Type = type,
-         Subtype = subtype, Estimate = estimate)
+  select(year, geo_area, geo_description, type, subtype, estimate) %>%
+  rename(Year = year, Scope = geo_area, `Geographic Area` = geo_description, 
+         Type = type, Subtype = subtype, Estimate = estimate)
 
 # unique demographics, for drop down menu
 unique_demo <- unique(df$type)
@@ -100,7 +106,7 @@ ui <- dashboardPage(
                  # interpretations
                  htmlOutput("interpretations")
                  ),
-        tabPanel("Z Scores",
+        tabPanel("Chi-Square Test",
                  checkboxGroupInput('year_check', 'Years:', unique_year, selected = max(unique_year), inline = TRUE),
                  checkboxGroupInput('geo_check', 'Geography:', unique_geo, selected = 'Forsyth County, NC', inline = TRUE),
                  uiOutput("ui_demo_check"),
@@ -123,9 +129,9 @@ server <- function(input, output, session) {
   
   # output data sources
   output$source <- renderUI({
-    source_title <- '<br><b>Data Sources</b><br>'
-    sources <- paste(data_source, collapse='<br>')
-    HTML(paste0(source_title, sources))
+    #source_title <- '<br><b>Data Sources</b><br>'
+    #sources <- paste(data_source, collapse='<br>')
+    #HTML(paste0(source_title, sources))
   })
   
   output$demographic <- renderUI(
@@ -164,7 +170,9 @@ server <- function(input, output, session) {
     # '&nbsp;' dds additional spaces to indent line
     interp_title <- '<br><b>Interpretation</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     interps <- paste(interpretation, collapse='<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
-    HTML(paste0(interp_title, interps))
+    data_source_title <- '<br><br><b>Data Source</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+    data_source_list <- paste(data_source, collapse='<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+    HTML(paste0(interp_title, interps, data_source_title, data_source_list))
   })
   
   output$ui_demo_check <- renderUI({
@@ -179,7 +187,7 @@ server <- function(input, output, session) {
       filter(year %in% input$year_check,
              geo_description %in% input$geo_check,
              subtype %in% input$demo_check) %>%
-      ff_acs_zscore_kable('estimate', 'se', c('year', 'geo_description', 'subtype' ))
+      ff_acs_zscore_kable('grads', 'total', c('year', 'geo_description', 'subtype' ))
     
   }
   
