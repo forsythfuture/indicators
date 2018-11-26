@@ -29,7 +29,7 @@ interpretation <- c('<i>Forsyth County rate</i><br>',
                     'below the state rate.<br><br>',
                     '<i>Race and Ethnicity</i><br>',
                     'White, non-Hispanics have higher graduation rates than African Americans,',
-                    'who in return have higher rates than Hispanic/Latinos',
+                    'who in return have higher rates than Hispanic/Latinos<br>',
                     '<i>Economic Status</i><br>',
                     'Economically disadvantaged students experienced a 4% drop in graduation rates',
                     'this past school year.')
@@ -62,7 +62,8 @@ tableau_df <- df %>%
   bind_rows(df) %>%
   select(year, geo_area, geo_description, type, subtype, estimate) %>%
   rename(Year = year, Scope = geo_area, `Geographic Area` = geo_description, 
-         Type = type, Subtype = subtype, Estimate = estimate)
+         Type = type, Subtype = subtype, Estimate = estimate) %>%
+  filter(!(Year != '2017-2018' & `Geographic Area` != 'Forsyth County, NC' & Type != 'Total'))
 
 # unique demographics, for drop down menu
 unique_demo <- unique(df$type)
