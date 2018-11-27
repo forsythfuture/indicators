@@ -4,7 +4,7 @@ username:
 account: rpubs
 server: rpubs.com
 hostUrl: rpubs.com
-appId: https://api.rpubs.com/api/v1/document/428087/01401746cf334fba98751d08c8b85add
-bundleId: https://api.rpubs.com/api/v1/document/428087/01401746cf334fba98751d08c8b85add
-url: http://rpubs.com/publish/claim/428087/ab10c5c5e50c486b9c8243662cd11625
-when: 1539205151.86682
+appId: https://api.rpubs.com/api/v1/document/443196/44dcfcf328aa4243a65bead1cc65ef8a
+bundleId: https://api.rpubs.com/api/v1/document/443196/44dcfcf328aa4243a65bead1cc65ef8a
+url: http://rpubs.com/forsyth-futures/443196/edit
+when: 1543294046.48272

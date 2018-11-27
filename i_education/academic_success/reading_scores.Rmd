@@ -62,10 +62,10 @@ The plot below shows the 3rd grade reading proficiency rates for the Forsyth, Gu
 
 ```{r}
 
-reading <- df
+reading <- df %>%
+  filter(group =='ALL')
 
 reading %>%
-        filter(group =='ALL')%>%
     ggplot(aes(year, rate, color = county)) +
     geom_line(size = 1) +
     labs(title = '3rd Grade Reading Proficiency',
@@ -107,11 +107,13 @@ The plot below shows Forsyth County's 3rd Grade Reading Proficiency Rates by eth
 ```{r fig.width=8,fig.height=10}
 
 ethnicity <- df %>%
-        filter(measure == '3rd Grade Reading Score', (group %in% race_eth))
+        filter(measure == '3rd Grade Reading Score', (group %in% race_eth))%>%
+        filter(county == 'Forsyth')%>%
+        mutate(group = ifelse(group=='black','African American', 
+                      ifelse(group=='white','White, non-Hispanic', 'Hispanic/Latino')))
         
 ethnicity %>%
-        filter(county == 'Forsyth')%>%
-        ggplot(aes(year, rate, color = group)) +
+    ggplot(aes(year, rate, color = group)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
    labs(title = '3rd Grade Reading Proficiency by Ethnicity',
@@ -153,11 +155,11 @@ The plot for Reading Proficiency rate by gender is below.
 
 ```{r fig.width=8,fig.height=10}
 sex <- df %>%
-        filter(measure == '3rd Grade Reading Score', (group %in% gender))
+      filter(measure == '3rd Grade Reading Score', (group %in% gender))%>%
+      filter(county == 'Forsyth')
         
 sex %>%
-        filter(county == 'Forsyth')%>%
-        ggplot(aes(year, rate, color = group)) +
+    ggplot(aes(year, rate, color = group)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
    labs(title = '3rd Grade Reading Proficiency by Gender',
@@ -196,11 +198,11 @@ The plot for Reading Proficiency rate by economic status is below.
 
 ```{r}
 economic <- df %>%
-        filter(measure == '3rd Grade Reading Score', (group %in% EDS))
+        filter(measure == '3rd Grade Reading Score', (group %in% EDS)) %>%
+        filter(county == 'Forsyth')
         
 economic %>%
-        filter(county == 'Forsyth')%>%
-        ggplot(aes(year, rate, color = group)) +
+    ggplot(aes(year, rate, color = group)) +
     geom_line(size = 1) +
     # create a seperate plot for each geography
    labs(title = '3rd Grade Reading Proficiency by Economic Status',
@@ -235,16 +237,15 @@ Write out excel workbook if needed.
 
 ```{r}
 
-tableau_data <- df %>%
+tableau_data <- bind_rows(reading,sex,ethnicity,economic)
+
+tableau_data <- tableau_data %>%
         select(year, county, measure, group, rate)%>%
         mutate(year = ifelse(year=='2014','2013-14', 
                              ifelse(year=='2015','2014-15',
                                     ifelse(year=='2016','2015-16',
-                                           ifelse(year=='2017','2016-17','2017-18')))))%>%
-        mutate(group = ifelse(group=='black','African American', 
-                      ifelse(group=='white','White, non-Hispanic', 'Hispanic/Latino')))
-                                   
-
+                                           ifelse(year=='2017','2016-17','2017-18')))))
+        
 
 colnames(tableau_data) <- c('year', 'geography', 'type', 'subtype', 'estimate')
 
