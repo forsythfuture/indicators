@@ -1,0 +1,12 @@
+name: shiny_graduation_rates
+title: shiny_graduation_rates
+username:
+account: forsythfutures
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 589990
+bundleId: 1721032
+url: https://forsythfutures.shinyapps.io/shiny_graduation_rates/
+when: 1543246547.45952
+asMultiple: FALSE
+asStatic: FALSE
