@@ -24,6 +24,7 @@ tbl_name <- as.character(yr) %>%
 tbl <- tbl(con, tbl_name) %>%
   select(!!pop_vars) %>%
   filter(ST == !!state,
+         PUMA == 1801,
          # filter out people 65 and over
          AGEP < 65,
          # filter out those currently in school
