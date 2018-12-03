@@ -77,10 +77,14 @@ find_median <- function(df, demo, col_extend) {
   # This function extends a column based on replicate weights and 
   # finds the median
   
+  #demo = if (demo == 'total') NULL else demo
+  
   median_numbers <- df %>%
     # rename weights column so it is easier ot work with
     # in other parts of the function
     rename('wgt' = col_extend) %>%
+    # remove weights of zero
+    filter(wgt > 0) %>%
     select_at(c('cntyname', demo, 'wage', 'wgt')) %>%
     uncount(wgt) %>%
     summarize(median(wage))
@@ -124,4 +128,72 @@ find_se <- function(median_values) {
   
   return(sum_sq_diff)
 
+}
+
+inflation_adjust <- function(df, wages_col, se_col, year_adjust, error = TRUE) {
+  
+  library(xts)
+  library(lubridate)
+  #########################################################################
+  # This function takes as input a dataframe that contains dollar amounts
+  # that must be adjusted for inflation and returns the same dataframe, 
+  # but with an additional column for inflation ajusted dollar amounts
+  #
+  # Input:
+  #   df: name of dataframe that contains dollar amounts
+  #   wages_col: column name of column in dataframe containing dollar amounts
+  #              entered as object name (no quotes), not string 
+  #              (example: as wages and not "wages")
+  #   se_col: column that contains standard error
+  #   year_adjust: adjust all dollar amounts to this year
+  #   errors: whether dataset contains standard errors that also need to be adjusted
+  #
+  # Output:
+  #   The same dataframe, but with an additional column called 'estimate_adj'
+  #
+  #   !!!! Important Note: the column that contains years must be called 'year'
+  #
+  # Reference: US Census Bureau, A Compass for Understanding and Using ACS Data, 
+  #             October 2008, A-22 
+  #
+  #########################################################################
+  
+  wages_col <- enquo(wages_col)
+  
+  if (error == TRUE) {
+    se_col <- enquo(se_col)
+  }
+  
+  # import CPI All items index data
+  monthly_cpi <- read.table("http://research.stlouisfed.org/fred2/data/CPIAUCSL.txt",
+                            skip = 53, header = TRUE)
+  
+  # extract year and place in its own column
+  monthly_cpi$year <- year(monthly_cpi$DATE)
+  
+  # calculate mean CPI for the year
+  yearly_cpi <- monthly_cpi %>% 
+    group_by(year) %>% 
+    summarize(cpi = mean(VALUE))
+  
+  # calculate inflation rate compared to adjustment year
+  yearly_cpi$adj_factor <- yearly_cpi$cpi[yearly_cpi$year == year_adjust]/yearly_cpi$cpi
+  
+  # combine inflation adjusted wages to wages dataset
+  df <- left_join(df, yearly_cpi, by = 'year') %>%
+    # adjust income in the given year for inflation since the base year
+    # multiply the wage amount in the current year by the adjustment factor
+    mutate(estimate_adj = round(!! wages_col * adj_factor, 2))
+  # recalculate adjusted se, moe , and cv only if needed
+  if (error == TRUE) {
+    df <- df %>%
+      mutate(se_adj = round(!! se_col / adj_factor, 2)) %>%
+      mutate(moe_adj = round(se_adj*1.96, 2),
+             cv_adj = round( (se_adj / estimate_adj)*100, 2 ))
+  }
+  
+  df <- df %>%
+    select(-cpi, -adj_factor)
+  
+  return(df)
 }
