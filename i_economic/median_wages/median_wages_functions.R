@@ -88,7 +88,6 @@ find_median <- function(df, demo, col_extend) {
   return(median_numbers)
   
 }
-median_values <- median_demo
 
 find_se <- function(median_values) {
   
@@ -115,13 +114,14 @@ find_se <- function(median_values) {
   # sum the difference and multiply by 4/80
   # but first, transpose so that each column is all relicate weights
   # of a given demograhic; this will make it easier to sum all replciate weights
-  sum_sq_diff %>% sum_sq_diff %>%
+  sum_sq_diff <- sum_sq_diff %>%
     t() %>%
     as.data.frame() %>%
-    summarize_all(funs(sum(.)*(4/80)))
+    summarize_all(funs(sum(.)*(4/80))) %>%
+    # transpose back so that there is one column and each row represents different demographic
+    t() %>%
+    as.data.frame()
+  
+  return(sum_sq_diff)
 
 }
-median_values[[2]][3] - median_values[[2]][3]
-              
-              :length(median_values)]
-for (i in median_values)

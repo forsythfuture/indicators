@@ -110,11 +110,21 @@ median_wage <- tbl %>%
 median_demo <- lapply(replicate_weights, 
                       function(x) find_median(median_wage, demo, x))
 
+# calcualte standard error
+median_se <- find_se(median_demo)
 
+# add standard errors to dataset containing median wage values
+# first dataframe in list contains median vage values from primary weight
+median_demo <- median_demo[[1]] %>%
+  ungroup() %>%
+  mutate(se = median_se[[1]],
+         # adde column for demographic
+         type = demo,
+         year = yr)
 
-%>%
-  # we only need county, demographic, and median wage
-  select_at(c(group_cols, 'wage', pop_weights[3]))
+colnames(median_demo) <- c('subtype', 'cntyname', 'estimate', 'se', 'type', 'year')
+  
+
 
 
 
