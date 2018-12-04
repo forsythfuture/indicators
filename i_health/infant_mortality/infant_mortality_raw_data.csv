@@ -1,0 +1,33 @@
+year,geo_area,total_deaths,total_rate,white_deaths,white_rate,aa_deaths,aa_rate,hisp_deaths,hisp_rate
+2017,North Carolina,825,7.1,325,5,361,12.5,106,5.7
+2017,"Durham County, NC",21,5,4,2.5,12,8.8,5,5.4
+2017,"Forsyth County, NC",43,9.8,9,4.5,25,19.3,8,8.7
+2017,"Guilford County, NC",61,9.8,14,6.1,34,13.3,9,11
+2016,North Carolina,873,7.2,335,5,380,13.4,111,6
+2016,"Durham County, NC",27,6.2,5,3,18,12.7,2,2.1
+2016,"Forsyth County, NC",42,9.3,14,6.4,15,12.5,12,13
+2016,"Guilford County, NC",52,8.3,7,2.9,37,14.7,5,6
+2015,North Carolina,884,7.3,385,5.7,360,12.5,98,5.4
+2015,"Durham County, NC",25,5.9,6,3.7,15,10.7,4,4.4
+2015,"Forsyth County, NC",31,7.1,14,6.8,10,8,7,8.1
+2015,"Guilford County, NC",46,7.5,13,5.5,23,9.4,5,6.5
+2014,North Carolina,860,7.1,345,5.1,369,12.8,110,6.2
+2014,"Durham County, NC",39,8.7,8,4.6,24,15.9,5,5.2
+2014,"Forsyth County, NC",29,6.4,11,5.2,14,10.6,3,3.1
+2014,"Guilford County, NC",48,7.9,9,3.8,33,13.6,4,5.2
+2013,North Carolina,832,7,366,5.5,360,12.5,64,3.7
+2013,"Durham County, NC",26,6.2,8,5.3,16,11,2,2.1
+2013,"Forsyth County, NC",37,8.2,11,5.3,15,11.3,9,9.4
+2013,"Guilford County, NC",53,8.6,17,7.1,32,12.9,3,3.8
+2012,North Carolina,883,7.4,369,5.5,395,13.9,76,4.2
+2012,"Durham County, NC",34,7.9,4,2.4,27,18.6,2,2.2
+2012,"Forsyth County, NC",47,10.2,17,8,20,14.8,8,7.9
+2012,"Guilford County, NC",49,7.9,16,6.5,26,10.7,5,6.3
+2011,North Carolina,866,7.2,369,5.5,367,12.9,98,5.4
+2011,"Durham County, NC",3,3.7,2,6.2,1,5.3,0,0
+2011,"Forsyth County, NC",6,9.2,3,17.6,3,6.8,0,0
+2011,"Guilford County, NC",2,8.5,1,11.2,1,13.2,0,0
+2010,North Carolina,854,7,362,5.3,367,12.7,93,5
+2010,"Durham County, NC",21,4.9,6,3.8,11,7.5,3,3.2
+2010,"Forsyth County, NC",36,7.7,11,5.3,23,17.1,2,1.8
+2010,"Guilford County, NC",57,9.5,16,6.4,31,13.3,9,11.9
