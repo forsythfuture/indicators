@@ -34,7 +34,7 @@ for (yr in years) {
            # filter out people 65 and over
            AGEP < 65,
            # filter out people udner 18, since there are so few of them not in school
-           AGEP > 17,
+           AGEP > 15,
            # filter out people 
            # filter out those currently in school
            # 1 is those not in school
@@ -103,7 +103,7 @@ for (yr in years) {
            # filter out people 65 and over
            AGEP < 65,
            # filter out people udner 18, since there are so few of them not in school
-           AGEP > 17,
+           AGEP > 15,
            # filter out those currently in school
            # 1 is those not in school
            SCH == 1) %>%
@@ -172,14 +172,15 @@ median_wages_master_inf <- inflation_adjust(median_wages_master, estimate, se,
                                  max(median_wages_master$year), error = TRUE)
 
 # write out county estimates
-# write_csv(median_wages_master_inf, 'i_economic/median_wages/median_wages.csv')
+write_csv(median_wages_master_inf, 'i_economic/median_wages/median_wages.csv')
 
 # import county estimates
 median_wages <- read_csv('i_economic/median_wages/median_wages.csv') %>%
   # remove non-inflation adjusted values
   select(-estimate, -se) %>%
   # rename inflation adjusted values to remove inf suffix
-  rename(estimate = estimate_adj, se = se_adj, moe = moe_adj, cv = cv_adj) %>%
+  rename(geo_description = geo_area, estimate = estimate_adj, 
+         se = se_adj, moe = moe_adj, cv = cv_adj) %>%
   # RAC1P values of 4 is other, and we do not need
   filter(!(type == 'RAC1P' & subtype == 4))
 
@@ -191,8 +192,8 @@ race_recode <- c('White, non-Hispanic', 'African American', 'Hispanic / Latino')
 sex_labels <- c(1, 2)
 sex_recode <- c('Male', 'Female')
 
-age_labels <- c(24, 44, 64)
-age_recode <- c('18 to 24', '25 to 44', '45 to 64')
+age_labels <- c(21, 29, 44, 64)
+age_recode <- c('16 to 21', '22 to 29', '30 to 44', '45 to 64')
 
 # map recoding of sub demographics
 median_wages$subtype <- ifelse(median_wages$type == 'RAC1P', 
@@ -207,3 +208,6 @@ median_wages$subtype <- ifelse(median_wages$type == 'RAC1P',
 median_wages$type <- recode(median_wages$type, 
                                  RAC1P = 'Race / Ethnicity', SEX = 'Gender', 
                                  AGEP = 'Age', total = 'Comparison Community')
+
+# write out to shiny app
+#write_csv(median_wages, 'i_economic/median_wages/shiny_median_wages/median_wages_shiny.csv')

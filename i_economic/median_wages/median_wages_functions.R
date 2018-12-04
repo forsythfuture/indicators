@@ -45,7 +45,7 @@ clean_demographics <- function(df) {
   # Data frame must have columns for each of these demographics to work
   
   # create age categories to be used when calculating income insufficiency rates for age groups
-  age_bins <- c(0, 17, 24, 44, 64, 150)
+  age_bins <- c(0, 21, 29, 44, 64, 150)
   # create labels that are the end age
   age_labels <- age_bins[-1]
   
@@ -56,7 +56,7 @@ clean_demographics <- function(df) {
                              include.lowest = TRUE),
              # convert to integer
              AGEP = as.integer(as.character(AGEP)),
-             # make race 100 for Hispanic of perso nis of hispanic origin
+             # make race 100 for Hispanic if person is of hispanic origin
              RAC1P = ifelse(.$HISP != 1, 100, .$RAC1P)) %>%
     select(-HISP)
     

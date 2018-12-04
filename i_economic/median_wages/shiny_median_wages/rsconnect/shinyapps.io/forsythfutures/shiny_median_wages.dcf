@@ -1,0 +1,12 @@
+name: shiny_median_wages
+title: shiny_median_wages
+username:
+account: forsythfutures
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 603677
+bundleId: 1740392
+url: https://forsythfutures.shinyapps.io/shiny_median_wages/
+when: 1543957056.53949
+asMultiple: FALSE
+asStatic: FALSE
