@@ -108,12 +108,12 @@ for (yr in years) {
            # 1 is those not in school
            SCH == 1) %>%
     select(!!pop_weights) %>%
-    collect() %>%
+    collect() #%>%
     # divide all weights by 2 to reduce compute time
     # since we are just looking at medians, this should have little impact on the number
     # use celing so numbers are at least one
-    mutate_at(vars(PWGTP, !!replicate_weights),
-              funs(ceiling(./2)))
+    #mutate_at(vars(PWGTP, !!replicate_weights),
+              #funs(ceiling(./2)))
   #geo_unit <- 'county'
   # iterate through whole state and county
   for (geo_unit in c('state', 'county')) {
@@ -210,4 +210,4 @@ median_wages$type <- recode(median_wages$type,
                                  AGEP = 'Age', total = 'Comparison Community')
 
 # write out to shiny app
-#write_csv(median_wages, 'i_economic/median_wages/shiny_median_wages/median_wages_shiny.csv')
+write_csv(median_wages, 'i_economic/median_wages/shiny_median_wages/median_wages_shiny.csv')
