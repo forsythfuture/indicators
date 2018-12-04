@@ -72,12 +72,10 @@ clean_demographics <- function(df) {
   
 }
 
-find_median <- function(df, demo, col_extend) {
+find_median <- function(df, demo, col_extend, geo_unit) {
   
   # This function extends a column based on replicate weights and 
   # finds the median
-  
-  #demo = if (demo == 'total') NULL else demo
   
   median_numbers <- df %>%
     # rename weights column so it is easier ot work with
@@ -87,7 +85,13 @@ find_median <- function(df, demo, col_extend) {
     filter(wgt > 0) %>%
     select_at(c('cntyname', demo, 'wage', 'wgt')) %>%
     uncount(wgt) %>%
-    summarize(median(wage))
+    summarize(median_wage = median(wage)) %>%
+    ungroup() %>%
+    # add cntyname column if geo graphic unit is total, so it matches county format
+    # also add ' County, NC' to counties
+    mutate(cntyname = if (geo_unit == 'state') 'North Carolina' else paste0(.$cntyname, ' County, NC')) %>%
+    rename(geo_area = cntyname) %>%
+    select_at(c(demo, 'geo_area', 'median_wage'))
   
   return(median_numbers)
   
@@ -95,7 +99,7 @@ find_median <- function(df, demo, col_extend) {
 
 find_se <- function(median_values) {
   
-  # Thisfunction takes the list of median values created when
+  # This function takes the list of median values created when
   # 'find_median' is used for all replciate weights, and 
   # calculates overall standard error
   
@@ -121,7 +125,7 @@ find_se <- function(median_values) {
   sum_sq_diff <- sum_sq_diff %>%
     t() %>%
     as.data.frame() %>%
-    summarize_all(funs(sum(.)*(4/80))) %>%
+    summarize_all(funs(sqrt(sum(.)*(4/80)))) %>%
     # transpose back so that there is one column and each row represents different demographic
     t() %>%
     as.data.frame()

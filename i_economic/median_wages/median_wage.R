@@ -16,7 +16,7 @@ state <- 37
 
 # initialize dataframe to store all median wage values from all years
 median_wages_master <- data.frame()
-# yr <- 2017
+#yr <- 2017
 # for each year
 for (yr in years) {
   
@@ -114,9 +114,9 @@ for (yr in years) {
     # use celing so numbers are at least one
     mutate_at(vars(PWGTP, !!replicate_weights),
               funs(ceiling(./2)))
- 
+  #geo_unit <- 'county'
   # iterate through whole state and county
-  for (geo_unit in c('state')) {
+  for (geo_unit in c('state', 'county')) {
   
     ##### calculate median wages
     
@@ -141,10 +141,9 @@ for (yr in years) {
         # group by required columns, based on demographic
         group_by_at(group_cols)
       
-      print('starting find_median')
       # find median wage by demographic for all replciate weights
       median_demo <- lapply(replicate_weights, 
-                            function(x) find_median(median_wage, demo, x))
+                            function(x) find_median(median_wage, demo, x, geo_unit))
       
       # calcualte standard error
       median_se <- find_se(median_demo)
@@ -156,8 +155,7 @@ for (yr in years) {
         mutate(se = median_se[[1]],
                # adde column for demographic
                type = demo,
-               year = yr,
-               unit = geo_unit)
+               year = yr)
       
       colnames(median_demo) <- c('subtype', 'geo_area', 'estimate', 'se', 'type', 'year')
       
@@ -170,14 +168,14 @@ for (yr in years) {
 }
 
 # inflation adjust median wages to most recent year
-median_wages <- inflation_adjust(median_wages_master, estimate, se, 
+median_wages_master_inf <- inflation_adjust(median_wages_master, estimate, se, 
                                  max(median_wages_master$year), error = TRUE)
 
 # write out county estimates
-#write_csv(median_wages_master_inf, 'i_economic/median_wages/county_median_wages.csv')
+# write_csv(median_wages_master_inf, 'i_economic/median_wages/median_wages.csv')
 
 # import county estimates
-median_wages <- read_csv('i_economic/median_wages/county_median_wages.csv') %>%
+median_wages <- read_csv('i_economic/median_wages/median_wages.csv') %>%
   # remove non-inflation adjusted values
   select(-estimate, -se) %>%
   # rename inflation adjusted values to remove inf suffix
