@@ -114,62 +114,98 @@ for (yr in years) {
     # use celing so numbers are at least one
     mutate_at(vars(PWGTP, !!replicate_weights),
               funs(ceiling(./2)))
+ 
+  # iterate through whole state and county
+  for (geo_unit in c('state')) {
   
-  ##### calculate median wages
-  
-  # demographics to iterate through
-  demographics <- c('AGEP', 'SEX', 'RAC1P', 'total')
-  #demo <- 'AGEP'
-  ## loop though each demographic
-  for (demo in demographics) {  
+    ##### calculate median wages
     
-    print(demo)
-    
-    # create columns to group on,
-    # group by county name and demographic if geo_unit is county,
-    # only group by  state if geographic unit is state
-    
-    group_cols <- if (geo_unit == 'county') c(demo, 'cntyname') else demo
-    
-    # attache weight column to dataset containing wages
-    median_wage <- tbl %>%
-      # join wage data
-      left_join(wgt_tbl, by = c('SERIALNO', 'SPORDER')) %>%
-      # group by required columns, based on demographic
-      group_by_at(group_cols)
-    
-    print('starting find_median')
-    # find median wage by demographic for all replciate weights
-    median_demo <- lapply(replicate_weights, 
-                          function(x) find_median(median_wage, demo, x))
-    
-    # calcualte standard error
-    median_se <- find_se(median_demo)
-    
-    # add standard errors to dataset containing median wage values
-    # first dataframe in list contains median vage values from primary weight
-    median_demo <- median_demo[[1]] %>%
-      ungroup() %>%
-      mutate(se = median_se[[1]],
-             # adde column for demographic
-             type = demo,
-             year = yr)
-    
-    colnames(median_demo) <- c('subtype', 'cntyname', 'estimate', 'se', 'type', 'year')
-    
-    median_wages_master <- bind_rows(median_wages_master, median_demo)
-    
+    # demographics to iterate through
+    demographics <- c('AGEP', 'SEX', 'RAC1P', 'total')
+    #demo <- 'AGEP'
+    ## loop though each demographic
+    for (demo in demographics) {  
+      
+      print(demo)
+      
+      # create columns to group on,
+      # group by county name and demographic if geo_unit is county,
+      # only group by  state if geographic unit is state
+      
+      group_cols <- if (geo_unit == 'county') c(demo, 'cntyname') else demo
+      
+      # attache weight column to dataset containing wages
+      median_wage <- tbl %>%
+        # join wage data
+        left_join(wgt_tbl, by = c('SERIALNO', 'SPORDER')) %>%
+        # group by required columns, based on demographic
+        group_by_at(group_cols)
+      
+      print('starting find_median')
+      # find median wage by demographic for all replciate weights
+      median_demo <- lapply(replicate_weights, 
+                            function(x) find_median(median_wage, demo, x))
+      
+      # calcualte standard error
+      median_se <- find_se(median_demo)
+      
+      # add standard errors to dataset containing median wage values
+      # first dataframe in list contains median vage values from primary weight
+      median_demo <- median_demo[[1]] %>%
+        ungroup() %>%
+        mutate(se = median_se[[1]],
+               # adde column for demographic
+               type = demo,
+               year = yr,
+               unit = geo_unit)
+      
+      colnames(median_demo) <- c('subtype', 'geo_area', 'estimate', 'se', 'type', 'year')
+      
+      median_wages_master <- bind_rows(median_wages_master, median_demo)
+      
+    }
+      
   }
     
 }
 
 # inflation adjust median wages to most recent year
-median_wages_master_inf <- inflation_adjust(median_wages_master, estimate, se, 
-                                            max(median_wages_master$year), error = TRUE)
+median_wages <- inflation_adjust(median_wages_master, estimate, se, 
+                                 max(median_wages_master$year), error = TRUE)
 
 # write out county estimates
-write_csv(median_wages_master_inf, 'i_economic/median_wages/county_median_wages.csv')
+#write_csv(median_wages_master_inf, 'i_economic/median_wages/county_median_wages.csv')
 
-# only keep inflation adjusted estimates and standard errors
-#median_wages_master_inf <- median_wages_master_inf %>%
-#  select(-estimate:-)
+# import county estimates
+median_wages <- read_csv('i_economic/median_wages/county_median_wages.csv') %>%
+  # remove non-inflation adjusted values
+  select(-estimate, -se) %>%
+  # rename inflation adjusted values to remove inf suffix
+  rename(estimate = estimate_adj, se = se_adj, moe = moe_adj, cv = cv_adj) %>%
+  # RAC1P values of 4 is other, and we do not need
+  filter(!(type == 'RAC1P' & subtype == 4))
+
+# recode demographic labels to be more descriptive
+
+race_labels <- seq(1, 3)
+race_recode <- c('White, non-Hispanic', 'African American', 'Hispanic / Latino')
+
+sex_labels <- c(1, 2)
+sex_recode <- c('Male', 'Female')
+
+age_labels <- c(24, 44, 64)
+age_recode <- c('18 to 24', '25 to 44', '45 to 64')
+
+# map recoding of sub demographics
+median_wages$subtype <- ifelse(median_wages$type == 'RAC1P', 
+                                     plyr::mapvalues(median_wages$subtype, race_labels, race_recode),
+                                     ifelse(median_wages$type == 'SEX', 
+                                            plyr::mapvalues(median_wages$subtype, sex_labels, sex_recode),
+                                            ifelse(median_wages$type == 'AGEP', 
+                                                   plyr::mapvalues(median_wages$subtype, age_labels, age_recode),
+                                                   'Total')))
+
+# recode demographic names
+median_wages$type <- recode(median_wages$type, 
+                                 RAC1P = 'Race / Ethnicity', SEX = 'Gender', 
+                                 AGEP = 'Age', total = 'Comparison Community')
