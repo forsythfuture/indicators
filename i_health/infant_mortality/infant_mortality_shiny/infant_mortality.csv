@@ -1,0 +1,66 @@
+year,geo_description,subtype,success,estimate,trials,se,type
+2017,North Carolina,Total,825,7.1,116197,0.24719046621329255,Comparison Community
+2017,"Durham County, NC",Total,21,5,4200,1.0910894511799618,Comparison Community
+2017,"Forsyth County, NC",Total,43,9.8,4388,1.494444284419555,Comparison Community
+2017,"Guilford County, NC",Total,61,9.8,6224,1.2548107939186308,Comparison Community
+2016,North Carolina,Total,873,7.2,121250,0.24368307963206856,Comparison Community
+2016,"Durham County, NC",Total,27,6.2,4355,1.1931684608175754,Comparison Community
+2016,"Forsyth County, NC",Total,42,9.3,4516,1.4350416553889667,Comparison Community
+2016,"Guilford County, NC",Total,52,8.3,6265,1.15100844087508,Comparison Community
+2015,North Carolina,Total,884,7.3,121096,0.24552545871118656,Comparison Community
+2015,"Durham County, NC",Total,25,5.9,4237,1.180040122046236,Comparison Community
+2015,"Forsyth County, NC",Total,31,7.1,4366,1.2752264401509643,Comparison Community
+2015,"Guilford County, NC",Total,46,7.5,6133,1.1058447216983365,Comparison Community
+2014,North Carolina,Total,860,7.1,121127,0.24210775121959155,Comparison Community
+2014,"Durham County, NC",Total,39,8.7,4483,1.3930774326782522,Comparison Community
+2014,"Forsyth County, NC",Total,29,6.4,4531,1.1884829505219277,Comparison Community
+2014,"Guilford County, NC",Total,48,7.9,6076,1.140262030567615,Comparison Community
+2013,North Carolina,Total,832,7,118857,0.24268148169081816,Comparison Community
+2013,"Durham County, NC",Total,26,6.2,4194,1.2158545705270163,Comparison Community
+2013,"Forsyth County, NC",Total,37,8.2,4512,1.3481008443454157,Comparison Community
+2013,"Guilford County, NC",Total,53,8.6,6163,1.181280790643915,Comparison Community
+2012,North Carolina,Total,883,7.4,119324,0.2490301660434156,Comparison Community
+2012,"Durham County, NC",Total,34,7.9,4304,1.354806945190369,Comparison Community
+2012,"Forsyth County, NC",Total,47,10.2,4608,1.4877975892797604,Comparison Community
+2012,"Guilford County, NC",Total,49,7.9,6203,1.12852882165491,Comparison Community
+2011,North Carolina,Total,866,7.2,120278,0.24466573375196135,Comparison Community
+2011,"Durham County, NC",Total,27,6.4,4219,1.23164408165385,Comparison Community
+2011,"Forsyth County, NC",Total,46,10,4600,1.4744195615489712,Comparison Community
+2011,"Guilford County, NC",Total,45,7.4,6081,1.103134223152565,Comparison Community
+2010,North Carolina,Total,854,7,122e3,0.23953506879020423,Comparison Community
+2010,"Durham County, NC",Total,21,4.9,4286,1.0692320216829712,Comparison Community
+2010,"Forsyth County, NC",Total,36,7.7,4675,1.2833778958394957,Comparison Community
+2010,"Guilford County, NC",Total,57,9.5,6e3,1.2583057392117916,Comparison Community
+2017,North Carolina,"White, non-Hispanic",325,5,65e3,0.2773500981126146,Race / Ethnicity
+2017,"Durham County, NC","White, non-Hispanic",4,2.5,1600,1.25,Race / Ethnicity
+2017,"Forsyth County, NC","White, non-Hispanic",9,4.5,2e3,1.5,Race / Ethnicity
+2017,"Guilford County, NC","White, non-Hispanic",14,6.1,2295,1.6303226888308877,Race / Ethnicity
+2016,"Forsyth County, NC","White, non-Hispanic",14,6.4,2188,1.710276499236051,Race / Ethnicity
+2015,"Forsyth County, NC","White, non-Hispanic",14,6.8,2059,1.817298562449257,Race / Ethnicity
+2014,"Forsyth County, NC","White, non-Hispanic",11,5.2,2115,1.5680015438792032,Race / Ethnicity
+2013,"Forsyth County, NC","White, non-Hispanic",11,5.3,2075,1.5981917492810052,Race / Ethnicity
+2012,"Forsyth County, NC","White, non-Hispanic",17,8,2125,1.9402850002906638,Race / Ethnicity
+2011,"Forsyth County, NC","White, non-Hispanic",17,7.9,2152,1.9159863562854822,Race / Ethnicity
+2010,"Forsyth County, NC","White, non-Hispanic",11,5.3,2075,1.5981917492810052,Race / Ethnicity
+2017,North Carolina,African American,361,12.5,28880,0.6578947368421052,Race / Ethnicity
+2017,"Durham County, NC",African American,12,8.8,1364,2.54000254000381,Race / Ethnicity
+2017,"Forsyth County, NC",African American,25,19.3,1295,3.8605018978722057,Race / Ethnicity
+2017,"Guilford County, NC",African American,34,13.3,2556,2.281105626554636,Race / Ethnicity
+2016,"Forsyth County, NC",African American,15,12.5,1200,3.227486121839514,Race / Ethnicity
+2015,"Forsyth County, NC",African American,10,8,1250,2.5298221281347035,Race / Ethnicity
+2014,"Forsyth County, NC",African American,14,10.6,1321,2.8327061394843303,Race / Ethnicity
+2013,"Forsyth County, NC",African American,15,11.3,1327,2.9181241200134154,Race / Ethnicity
+2012,"Forsyth County, NC",African American,20,14.8,1351,3.309810910089539,Race / Ethnicity
+2011,"Forsyth County, NC",African American,22,17,1294,3.6245769352870036,Race / Ethnicity
+2010,"Forsyth County, NC",African American,23,17.1,1345,3.5656352374913713,Race / Ethnicity
+2017,North Carolina,Hispanic/Latino,106,5.7,18596,0.553640253821697,Race / Ethnicity
+2017,"Durham County, NC",Hispanic/Latino,5,5.4,926,2.414856823358647,Race / Ethnicity
+2017,"Forsyth County, NC",Hispanic/Latino,8,8.7,920,3.075145807783825,Race / Ethnicity
+2017,"Guilford County, NC",Hispanic/Latino,9,11,818,3.6670741419878854,Race / Ethnicity
+2016,"Forsyth County, NC",Hispanic/Latino,12,13,923,3.752933125204008,Race / Ethnicity
+2015,"Forsyth County, NC",Hispanic/Latino,7,8.1,864,3.0618621784789726,Race / Ethnicity
+2014,"Forsyth County, NC",Hispanic/Latino,3,3.1,968,1.7895472440935933,Race / Ethnicity
+2013,"Forsyth County, NC",Hispanic/Latino,9,9.4,957,3.1340647004328863,Race / Ethnicity
+2012,"Forsyth County, NC",Hispanic/Latino,8,7.9,1013,2.792600574095108,Race / Ethnicity
+2011,"Forsyth County, NC",Hispanic/Latino,7,6.9,1014,2.60858845504818,Race / Ethnicity
+2010,"Forsyth County, NC",Hispanic/Latino,2,1.8,1111,1.272855850519461,Race / Ethnicity

@@ -65,9 +65,9 @@ plotly_plots <- function(df, input_type, plot_type) {
         filter(year == recent_year) %>%
         plot_ly(x = ~geo_description, y = ~estimate, color = ~subtype, 
                 type = 'bar',
-                #error_y = ~list(type = 'data',
-                #                array = moe,
-                #                color = '#000000'),
+                error_y = ~list(type = 'data',
+                                array = moe,
+                                color = '#000000'),
                 # tooltip info
                 hoverinfo = 'text',
                 text = tool_tip()) %>%
