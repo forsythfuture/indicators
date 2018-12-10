@@ -1,41 +1,41 @@
-"","year","geo_description","subtype","estimate","se","type"
-"1",2007,"Forsyth County, NC","Total",8.2,1.55610565484131,"Comparison Community"
-"2",2008,"Forsyth County, NC","Total",5.9,1.3089967688564,"Comparison Community"
-"3",2009,"Forsyth County, NC","Total",5,1.19774308707415,"Comparison Community"
-"4",2010,"Forsyth County, NC","Total",3.7,1.02609366638788,"Comparison Community"
-"5",2011,"Forsyth County, NC","Total",4.8,1.16307412275568,"Comparison Community"
-"6",2012,"Forsyth County, NC","Total",2.3,0.801605375934432,"Comparison Community"
-"7",2013,"Forsyth County, NC","Total",5,1.17687788289463,"Comparison Community"
-"8",2014,"Forsyth County, NC","Total",4.7,1.13482442594103,"Comparison Community"
-"9",2015,"Forsyth County, NC","Total",5.2,1.18884105141807,"Comparison Community"
-"10",2016,"Forsyth County, NC","Total",7.4,1.41113910274774,"Comparison Community"
-"11",2007,"Durham County, NC","Total",11.5,2.1328672280992,"Comparison Community"
-"12",2008,"Durham County, NC","Total",9.9,1.95375205371641,"Comparison Community"
-"13",2009,"Durham County, NC","Total",8.2,1.75789313536786,"Comparison Community"
-"14",2010,"Durham County, NC","Total",10.3,1.94837301463694,"Comparison Community"
-"15",2011,"Durham County, NC","Total",11.3,2.02019198778855,"Comparison Community"
-"16",2012,"Durham County, NC","Total",7.8,1.66018755048771,"Comparison Community"
-"17",2013,"Durham County, NC","Total",10.5,1.90623212915756,"Comparison Community"
-"18",2014,"Durham County, NC","Total",7.8,1.62478718374124,"Comparison Community"
-"19",2015,"Durham County, NC","Total",13.5,2.11718176951545,"Comparison Community"
-"20",2016,"Durham County, NC","Total",14,2.13516371595104,"Comparison Community"
-"21",2007,"Guilford County, NC","Total",13,1.66583751374269,"Comparison Community"
-"22",2008,"Guilford County, NC","Total",7.7,1.26945759907488,"Comparison Community"
-"23",2009,"Guilford County, NC","Total",5.9,1.1038818246626,"Comparison Community"
-"24",2010,"Guilford County, NC","Total",5.4,1.05026583842317,"Comparison Community"
-"25",2011,"Guilford County, NC","Total",6.6,1.15441954721202,"Comparison Community"
-"26",2012,"Guilford County, NC","Total",5.6,1.05742217140556,"Comparison Community"
-"27",2013,"Guilford County, NC","Total",5.9,1.07899673026904,"Comparison Community"
-"28",2014,"Guilford County, NC","Total",5.4,1.02643765063705,"Comparison Community"
-"29",2015,"Guilford County, NC","Total",7.3,1.18744395229072,"Comparison Community"
-"30",2016,"Guilford County, NC","Total",8.8,1.29839773300709,"Comparison Community"
-"31",2007,"North Carolina","Total",7,0.277075639907066,"Comparison Community"
-"32",2008,"North Carolina","Total",6.8,0.270266655784209,"Comparison Community"
-"33",2009,"North Carolina","Total",5.5,0.241254494800219,"Comparison Community"
-"34",2010,"North Carolina","Total",5.1,0.230798389685863,"Comparison Community"
-"35",2011,"North Carolina","Total",5.3,0.234198060065611,"Comparison Community"
-"36",2012,"North Carolina","Total",5.2,0.230877376750907,"Comparison Community"
-"37",2013,"North Carolina","Total",5,0.225305104659707,"Comparison Community"
-"38",2014,"North Carolina","Total",5.5,0.235213807950535,"Comparison Community"
-"39",2015,"North Carolina","Total",5.7,0.238249673690636,"Comparison Community"
-"40",2016,"North Carolina","Total",6.9,0.260644441819733,"Comparison Community"
+year,geo_description,subtype,estimate,se,type
+2007,"Forsyth County, NC",Total,8.2,1.55610565484131,Comparison Community
+2008,"Forsyth County, NC",Total,5.9,1.3089967688564,Comparison Community
+2009,"Forsyth County, NC",Total,5,1.19774308707415,Comparison Community
+2010,"Forsyth County, NC",Total,3.7,1.02609366638788,Comparison Community
+2011,"Forsyth County, NC",Total,4.8,1.16307412275568,Comparison Community
+2012,"Forsyth County, NC",Total,2.3,0.801605375934432,Comparison Community
+2013,"Forsyth County, NC",Total,5,1.17687788289463,Comparison Community
+2014,"Forsyth County, NC",Total,4.7,1.13482442594103,Comparison Community
+2015,"Forsyth County, NC",Total,5.2,1.18884105141807,Comparison Community
+2016,"Forsyth County, NC",Total,7.4,1.41113910274774,Comparison Community
+2007,"Durham County, NC",Total,11.5,2.1328672280992,Comparison Community
+2008,"Durham County, NC",Total,9.9,1.95375205371641,Comparison Community
+2009,"Durham County, NC",Total,8.2,1.75789313536786,Comparison Community
+2010,"Durham County, NC",Total,10.3,1.94837301463694,Comparison Community
+2011,"Durham County, NC",Total,11.3,2.02019198778855,Comparison Community
+2012,"Durham County, NC",Total,7.8,1.66018755048771,Comparison Community
+2013,"Durham County, NC",Total,10.5,1.90623212915756,Comparison Community
+2014,"Durham County, NC",Total,7.8,1.62478718374124,Comparison Community
+2015,"Durham County, NC",Total,13.5,2.11718176951545,Comparison Community
+2016,"Durham County, NC",Total,14,2.13516371595104,Comparison Community
+2007,"Guilford County, NC",Total,13,1.66583751374269,Comparison Community
+2008,"Guilford County, NC",Total,7.7,1.26945759907488,Comparison Community
+2009,"Guilford County, NC",Total,5.9,1.1038818246626,Comparison Community
+2010,"Guilford County, NC",Total,5.4,1.05026583842317,Comparison Community
+2011,"Guilford County, NC",Total,6.6,1.15441954721202,Comparison Community
+2012,"Guilford County, NC",Total,5.6,1.05742217140556,Comparison Community
+2013,"Guilford County, NC",Total,5.9,1.07899673026904,Comparison Community
+2014,"Guilford County, NC",Total,5.4,1.02643765063705,Comparison Community
+2015,"Guilford County, NC",Total,7.3,1.18744395229072,Comparison Community
+2016,"Guilford County, NC",Total,8.8,1.29839773300709,Comparison Community
+2007,North Carolina,Total,7,0.277075639907066,Comparison Community
+2008,North Carolina,Total,6.8,0.270266655784209,Comparison Community
+2009,North Carolina,Total,5.5,0.241254494800219,Comparison Community
+2010,North Carolina,Total,5.1,0.230798389685863,Comparison Community
+2011,North Carolina,Total,5.3,0.234198060065611,Comparison Community
+2012,North Carolina,Total,5.2,0.230877376750907,Comparison Community
+2013,North Carolina,Total,5,0.225305104659707,Comparison Community
+2014,North Carolina,Total,5.5,0.235213807950535,Comparison Community
+2015,North Carolina,Total,5.7,0.238249673690636,Comparison Community
+2016,North Carolina,Total,6.9,0.260644441819733,Comparison Community
