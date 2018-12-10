@@ -108,6 +108,18 @@ ui <- dashboardPage(
   dashboardHeader(title = indicator_name),
   dashboardSidebar(
     
+    fileInput("dataset", "Import CSV file:",
+              accept = c(
+                "text/csv",
+                "text/comma-separated-values,text/plain",
+                ".csv")
+    ),
+    tags$hr(),
+    radioButtons("sig_test", "Significance Test:",
+                 c("Z-score" = "zscore",
+                   "Chi-Square" = "chisquare",
+                   "Log-normal" = "lnorm")),
+    
     # demographic drop down menu
     #uiOutput('demographic')#,
     selectInput("demographic", label = "Demographic:",
