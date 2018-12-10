@@ -69,6 +69,8 @@ write.csv(assaultdata, "assaultdata.csv")
 
 ####  clean data for use with shiny app
 
+library(tidyverse)
+
 # create list of raw data files
 data_files <- list.files('i_crime/data', full.names = TRUE)
 
@@ -84,12 +86,19 @@ for (i in seq_along(data_files)){
   
   # import file containing single crime
   crimes <- read_csv(data_files[i]) %>%
-    # add type column thyat is the crime name
-    mutate(type = crimes[i]) %>%
-    # drop random column
-    select(-X1) %>%
+    # add subtype column that is the crime name
+    mutate(subtype = crime_names[i]) %>%
     # bind to dataframe containg all crimes
     bind_rows(crimes, .)
-  
+    
 }
 
+# change violent crime to 'total' for subtype, to match format
+crimes <- crimes %>%
+  mutate(subtype = str_replace_all(subtype, 'Violent', 'Total'),
+         # if the crime is not total voilent crime, make type 'Other violent crime'
+         type = ifelse(subtype != 'Total', 'Other violent crime', type))
+
+# write out dataset to folder with shiny app
+write_csv(crimes, 'i_crime/shiny_crime/crime.csv')
+  

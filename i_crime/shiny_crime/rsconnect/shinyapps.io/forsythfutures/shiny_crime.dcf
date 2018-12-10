@@ -1,0 +1,12 @@
+name: shiny_crime
+title: shiny_crime
+username:
+account: forsythfutures
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 612633
+bundleId: 1753703
+url: https://forsythfutures.shinyapps.io/shiny_crime/
+when: 1544475314.26375
+asMultiple: FALSE
+asStatic: FALSE
