@@ -7,17 +7,16 @@ library(kableExtra)
 
 ##################### Section to edit ##############################
 #shiny_indicators/
-file_name <- 'infant_mortality.csv'
+file_name <- 'crime.csv'
 
-indicator_name <- 'Infant Mortality'
+indicator_name <- 'Violent Crime'
 
 # Enter data sources. Each line below represents a single line in the app
-data_source <- c('North Carolina State Center of Health Statistics, Vital Statistics, Infant Mortality Statistitics, Final Infant Death Rates', 
-                 'https://schs.dph.ncdhhs.gov/data/vital/ims/2017/')
+data_source <- c('')
 
 # enter the type of significance test
 # either 'z' for z-test or 'chi-square' for chi-square test
-sig_test <- 'chi-square'
+sig_test <- 'z'
 
 # Enter interpretation of data. Each line below represents a single line in the app
 # HTML tags can be used to format text:
@@ -26,14 +25,7 @@ sig_test <- 'chi-square'
 #   bold: <b>text</b>
 #   line break: <br>
 
-interpretation <- c('<i>Overall Rates</i><br>',
-                    "The difference between the 2017 Forsyth County rate and Forsyth County’s rate in all other years is not statistically significant.<br>",
-                    "Forsyth County’s 2017 rate is higher than North Carolina’s state rate, and this difference is statistically significant.<br>",
-                    '<i>Race / Ethnicity</i><br>',
-                    'Between 2016 and 2017, Forsyth County’s African-American rate rose from 12 to 17. But, this rise is not statistically significant.',
-                    'Only the 2015 and 2017 African-American difference is statistically significant.<br>',
-                    'For African Americans in 2017, the difference between the state rate and the Forsyth County rate is statistically significant.',
-                    'African Americans are the only race with a statistically significant difference from the state race.')
+interpretation <- c('')
 
 ################### End section to edit ############################
 
@@ -108,17 +100,17 @@ ui <- dashboardPage(
   dashboardHeader(title = indicator_name),
   dashboardSidebar(
     
-    fileInput("dataset", "Import CSV file:",
-              accept = c(
-                "text/csv",
-                "text/comma-separated-values,text/plain",
-                ".csv")
-    ),
+    # fileInput("dataset", "Import CSV file:",
+    #           accept = c(
+    #             "text/csv",
+    #             "text/comma-separated-values,text/plain",
+    #             ".csv")
+    #),
     tags$hr(),
-    radioButtons("sig_test", "Significance Test:",
-                 c("Z-score" = "zscore",
-                   "Chi-Square" = "chisquare",
-                   "Log-normal" = "lnorm")),
+    # radioButtons("sig_test", "Significance Test:",
+    #              c("Z-score" = "zscore",
+    #                "Chi-Square" = "chisquare",
+    #                "Log-normal" = "lnorm")),
     
     # demographic drop down menu
     #uiOutput('demographic')#,
