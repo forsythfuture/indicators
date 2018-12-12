@@ -1,9 +1,9 @@
 year,industry_title,industry_size,average_wages,largest_six,share_employment,emp_growth_raw,emp_growth_perc,wage_growth
 2017,"Total, all industries",183617,52090,no,1,-1780,-0.01,0.11
 2017,"Total, all service sector",161194,50358,no,0.88,6653,0.04,0.14
-2017,Health care and social assistance,38471,53401,yes,0.21,6129,0.19,0.1
 2017,"Total, all goods producing",22423,64547,no,0.12,-8433,-0.27,0.04
 2017,Retail trade,21018,28322,yes,0.11,769,0.04,0.01
+2017,Health care and social assistance,38471,53401,yes,0.21,6129,0.19,0.1
 2017,Accommodation and food services,17834,17165,yes,0.1,2889,0.19,0.08
 2017,Manufacturing,15842,70471,yes,0.09,-7125,-0.31,0.05
 2017,Educational services,14329,65091,yes,0.08,-1909,-0.12,0.15
@@ -17,4 +17,3 @@ year,industry_title,industry_size,average_wages,largest_six,share_employment,emp
 2017,"Arts, entertainment, and recreation",2910,19271,no,0.02,502,0.21,-0.08
 2017,Real estate,1879,44611,no,0.01,-220,-0.1,0.17
 2017,Information,1432,55620,no,0.01,-414,-0.22,0.04
-2017,Transportation and warehousing,628,55375,no,0,-7302,-0.92,0.14
