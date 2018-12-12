@@ -22,8 +22,8 @@ emp <- read_csv('i_economic/employment_industry/forsyth_jobs_industry_08.csv') %
          ) %>%
   filter(industry_code %in% industry_codes,
          # total covered includes all private and government
-         # remove these items, so we do not douvble count them when we sum government and private sectors
-         own_title != 'total_covered') %>%
+         # remove these items, so we do not double count them when we sum government and private sectors
+         own_title != 'Total Covered') %>%
   # group public and private, and sum for total employment by industry
   group_by(year, industry_code, industry_title) %>%
   summarize(industry_size = sum(annual_avg_emplvl, na.rm = TRUE),
@@ -36,9 +36,7 @@ emp <- read_csv('i_economic/employment_industry/forsyth_jobs_industry_08.csv') %
          industry_title = str_replace_all(industry_title, 'Serviceproviding', 'Total, all service sector'),
          industry_title = str_replace_all(industry_title, 'Administrative and waste services', 'Administrative and support'),
          industry_title = str_replace_all(industry_title, 'Professional and technical services', 'Professional services'),
-         industry_title = str_replace_all(industry_title, 'Real estate and rental and leasing', 'Real estate')
-         
-         ) %>%
+         industry_title = str_replace_all(industry_title, 'Real estate and rental and leasing', 'Real estate')) %>%
   unique()
 
 # adjust for inflation by converting 2008 dollars to 2017 dollars
@@ -68,13 +66,16 @@ eight <- emp %>%
   filter(year == 2008) %>%
   arrange(industry_title)
 
-# create column that show raw numbers of employemnt growth between 2008 and 2017
-seventeen$emp_growth <- seventeen$industry_size - eight$industry_size
+# create function for calculating growth of metric (wage or employment)
+growth <- function(old, new) round((new - old) / old, 2)
 
-# create column showing wage growth or decline
-wage_growth <- function(old_wage, new_wage) (new_wage - old_wage) / old_wage
-seventeen$wage_growth <- round( wage_growth(eight$average_wages, seventeen$average_wages), 2 )
+# create column that show raw numbers and percentiles of employemnt growth between 2008 and 2017
+seventeen$emp_growth_raw <- seventeen$industry_size - eight$industry_size
+seventeen$emp_growth_perc <- growth(eight$industry_size, seventeen$industry_size)
+seventeen$wage_growth <- growth(eight$average_wages, seventeen$average_wages)
 
 seventeen %>%
+  ungroup() %>%
   arrange(desc(industry_size)) %>%
+  select(-industry_code) %>%
   write_csv('i_economic/employment_industry/cleaned_data/emp_industry_17.csv')
