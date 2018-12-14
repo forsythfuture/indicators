@@ -33,7 +33,9 @@ for (file in raw_data_files) {
 counties <- counties %>%
   rename(geo_description = County) %>%
   select(-Notes, -`County Code`, -`Gender Code`, -`Ethnicity Code`, -`Race Code`, -`Age Group Code`) %>%
-  mutate(geo_area = 'county')
+  mutate(geo_area = 'county') %>%
+  # reformat county names so that they match style of names in other datasets
+  mutate(geo_description = str_replace_all(geo_description, ' County, NC', ''))
 
 # create function to import US and NC data
 # data shares same format, so common function is possible
