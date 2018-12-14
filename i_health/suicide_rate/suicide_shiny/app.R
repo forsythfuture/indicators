@@ -12,8 +12,9 @@ file_name <- 'suicide_rate.csv'
 indicator_name <- 'Suicide Rate'
 
 # Enter data sources. Each line below represents a single line in the app
-data_source <- c('North Carolina State Center of Health Statistics, Vital Statistics, Infant Mortality Statistitics, Final Infant Death Rates', 
-                 'https://schs.dph.ncdhhs.gov/data/vital/ims/2017/')
+data_source <- c("Note: Suicide rate reflects suicides per 100,000 residents.<br>", 
+                 'North Carolina State Center for Health Statistics; Statistics and Reports; Detailed Mortality Statistics', 
+                 'https://schs.dph.ncdhhs.gov/data/bytopiclist.cfm')
 
 # enter the type of significance test
 # either 'z' for z-test or 'chi-square' for chi-square test
@@ -26,16 +27,15 @@ sig_test <- 'chi-square'
 #   bold: <b>text</b>
 #   line break: <br>
 
-interpretation <- c('<i>Overall Rates</i><br>',
-                    "The difference between the 2017 Forsyth County rate and Forsyth County’s rate in all other years is not statistically significant.<br>",
-                    "Forsyth County’s 2017 rate is higher than North Carolina’s state rate, and this difference is statistically significant.<br>",
-                    '<i>Race / Ethnicity</i><br>',
-                    'Between 2016 and 2017, Forsyth County’s African-American rate rose from 12 to 17. But, this rise is not statistically significant.',
-                    'Only the 2015 and 2017 African-American difference is statistically significant.<br>',
-                    'For African Americans in 2017, the difference between the state rate and the Forsyth County rate is statistically significant.',
-                    'African Americans are the only race with a statistically significant difference from the state race.<br>',
-                    'Within Forsyth County, African Americans had the highest infant moratlity rates in 2017. The difference between African Americans',
-                    'and White, non-Hispanics is statistically significant, while the difference between African Americans and Latino/Hispanics is not.')
+interpretation <- c('<br><i>Overall Rates</i><br>',
+                    "Since 2008, Forsyth County's suicide rate has hovered between 11 and 13 suicides per 100,000 residents.",
+                    '<br><i>Race / Ethnicity</i><br>',
+                    'African Americans have historically had lower suicide rates than whites.', 
+                    'The gap disappeared in 2017, but it is too early to know whether this recent parity is a trend or a product of yearly fluctuations.',
+                    '<br><i>Age</i><br>',
+                    'Residents under 25 have the lowest suicide rates, while all other age groups display similair rates.',
+                    '<br><i>Gender</i><br>',
+                    'Males commit suicide at much higher frequencies than females.')
 
 ################### End section to edit ############################
 
@@ -195,7 +195,7 @@ server <- function(input, output, session) {
   output$interpretations <- renderUI({
     
     # '&nbsp;' dds additional spaces to indent line
-    interp_title <- '<br><b>Interpretation</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+    interp_title <- '<br><b>Interpretation</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     interps <- paste(interpretation, collapse='<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
     HTML(paste0(interp_title, interps))
   })

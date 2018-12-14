@@ -108,5 +108,9 @@ suicide <- left_join(suicide, population, by = c('year', 'geo_description', 'typ
          se = sqrt(rate*100000/population)) %>%
   # change column names to match shiny format
   rename(success = estimate, trials = population, estimate = rate)
-  
+
+# add 'County, NC' to county names
+suicide$geo_description <- ifelse(suicide$geo_description %in% c('Forsyth', 'Guilford', 'Durham'),
+                                  paste0(suicide$geo_description, ' County, NC'),
+                                  suicide$geo_description)
 #write_csv(suicide, 'i_health/suicide_rate/suicide_shiny/suicide_rate.csv')
