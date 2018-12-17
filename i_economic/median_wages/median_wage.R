@@ -108,13 +108,8 @@ for (yr in years) {
            # 1 is those not in school
            SCH == 1) %>%
     select(!!pop_weights) %>%
-    collect() #%>%
-    # divide all weights by 2 to reduce compute time
-    # since we are just looking at medians, this should have little impact on the number
-    # use celing so numbers are at least one
-    #mutate_at(vars(PWGTP, !!replicate_weights),
-              #funs(ceiling(./2)))
-  #geo_unit <- 'county'
+    collect() 
+  
   # iterate through whole state and county
   for (geo_unit in c('state', 'county')) {
   
