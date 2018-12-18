@@ -2,6 +2,11 @@ library(tidyverse)
 library(data.table)
 library(DBI)
 
+f <- tbl %>%
+  filter(cntyname == 'Forsyth')
+
+a <- f[f$wage < 7.25,]
+
 source('i_economic/median_wages/median_wages_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
@@ -16,7 +21,7 @@ state <- 37
 
 # initialize dataframe to store all median wage values from all years
 median_wages_master <- data.frame()
-#yr <- 2017
+
 # for each year
 for (yr in years) {
   

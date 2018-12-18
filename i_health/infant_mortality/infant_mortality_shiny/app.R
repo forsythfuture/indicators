@@ -34,7 +34,7 @@ interpretation <- c('<i>Overall Rates</i><br>',
                     'Only the 2015 and 2017 African-American difference is statistically significant.<br>',
                     'For African Americans in 2017, the difference between the state rate and the Forsyth County rate is statistically significant.',
                     'African Americans are the only race with a statistically significant difference from the state race.<br>',
-                    'Within Forsyth County, African Americans had the highest infant moratlity rates in 2017. The difference between African Americans',
+                    'In 2017, African Americans had the highest infant mortality rates among all demographics in Forsyth County. The difference between African Americans',
                     'and White, non-Hispanics is statistically significant, while the difference between African Americans and Latino/Hispanics is not.')
 
 ################### End section to edit ############################
