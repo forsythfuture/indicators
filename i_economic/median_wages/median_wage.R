@@ -2,11 +2,6 @@ library(tidyverse)
 library(data.table)
 library(DBI)
 
-f <- tbl %>%
-  filter(cntyname == 'Forsyth')
-
-a <- f[f$wage < 7.25,]
-
 source('i_economic/median_wages/median_wages_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
@@ -35,7 +30,6 @@ for (yr in years) {
   tbl <- tbl(con, tbl_name) %>%
     select(!!pop_vars) %>%
     filter(ST == !!state,
-           #PUMA %in% c(1800, 1801),
            # filter out people 65 and over
            AGEP < 65,
            # filter out people udner 18, since there are so few of them not in school
