@@ -8,7 +8,7 @@ library(tidyverse)
 library(data.table)
 library(DBI)
 
-source('i_economic/housing_burden/housing_burden_functions.R')
+source('functions/puma_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
 
@@ -44,7 +44,7 @@ pop <- tbl(con, 'p_17') %>%
          ) %>%
   collect() %>%
   # recode race and create age bins
-  clean_demographics(.)
+  clean_demographics(., c(0, 24, 44, 64, 150))
 
 # import housing variables
 house <- tbl(con, 'h_17') %>%
@@ -75,7 +75,5 @@ housing_burden <- left_join(house, pop, by = c('SERIALNO', 'PUMA', 'ST')) %>%
   mutate(year = 2017,
          cntyname = 'Forsyth County, NC')
 
-prop.table(table(housing_burden$housing_status, housing_burden$RAC1P))
-
 # write out results as an Rds object
-saveRDS(housing_burden, 'i_economic/housing_burden/housing_burden.rds')
+#saveRDS(housing_burden, 'i_economic/housing_burden/housing_burden.rds')

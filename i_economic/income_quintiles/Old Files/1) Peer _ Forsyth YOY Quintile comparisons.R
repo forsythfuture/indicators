@@ -7,7 +7,7 @@ sub_directory <- 'i_economic/income_quintiles/'
 
 #read in files
 CPI <- read.csv(paste0(sub_directory, "CPI.csv"))
-Quintiles <- read.csv(paste0(sub_directory, "Income_Quintiles.csv"))
+Quintiles <- read.csv(paste0(sub_directory, "Quintile thresholds.csv"))
 
 #create condensed dataframe with just 4 columns: Year, County, Quintile and Threshold
 Quintile_inc <- Quintiles %>%
