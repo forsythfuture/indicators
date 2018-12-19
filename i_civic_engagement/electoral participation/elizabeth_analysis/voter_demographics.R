@@ -23,12 +23,26 @@ population_demo <- function(df, demo_col, geo_col, weight_col, counties) {
     filter(group %in% !!counties)
   }
   
-  df <- df %>% 
-    group_by_at(c(demo_col, geo_col)) %>%
-    summarize_at(vars(!!weight_col), funs(sum)) %>%
-    mutate(type = !!demo_col) %>%
-    rename(population = !!weight_col,
-           subtype = !!demo_col)
+  # if demo_col is 'total', we don't want to group by demographic
+  if (demo_col == 'total') {
+    
+    df <- df %>% 
+      group_by_at(geo_col) %>%
+      summarize_at(vars(!!weight_col), funs(sum)) %>%
+      mutate(type = !!demo_col,
+             subtype = 9999) %>%
+      rename(population = !!weight_col)
+    
+  } else {
+  
+    df <- df %>% 
+      group_by_at(c(demo_col, geo_col)) %>%
+      summarize_at(vars(!!weight_col), funs(sum)) %>%
+      mutate(type = !!demo_col) %>%
+      rename(population = !!weight_col,
+             subtype = !!demo_col)
+  
+  }
     
   return(df)
 }
@@ -81,7 +95,7 @@ find_se <- function(pop_values) {
   # calcualte squared difference between primary weight
   # and every replicate weight
   sq_diff <- lapply(seq(2, length(pop_values)),
-                    function(x) (pop_values[[1]][3] - pop_values[[x]][3])^2)
+                    function(x) (pop_values[[1]][2] - pop_values[[x]][2])^2)
   
   # create dataframe to store all squared difference weight,
   # needed all of them in one dataframe so we can sum
@@ -151,7 +165,7 @@ for (yr in years) {
   
   # find populations for demographics and each replicate weight
   pop_demo <- lapply(replicate_weights, 
-                     function(x) population_geo(pop, c('RAC1P', 'SEX', 'AGEP'), c('group', 'ST'), x, comparisons))
+                     function(x) population_geo(pop, c('total', 'RAC1P', 'SEX', 'AGEP'), c('group', 'ST'), x, comparisons))
   # find standard errors
   pop_se <- find_se(pop_demo)
   
@@ -162,10 +176,14 @@ for (yr in years) {
     mutate(se = round( pop_se[[1]], 0),
            year = yr)
   
-  colnames(pop_demo) <- c('subtype', 'geo_area', 'estimate', 'type', 'se', 'year')
+  #colnames(pop_demo) <- c('subtype', 'geo_area', 'estimate', 'type', 'se', 'year')
   
   pop_demo_master <- bind_rows(pop_demo_master, pop_demo)
   
 }
+
+colnames(pop_demo_master)
+
+  
 
 #write_csv(pop_demo_master, 'i_civic_engagement/electoral participation/voter_demographics.csv')
