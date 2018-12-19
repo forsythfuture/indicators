@@ -3,6 +3,7 @@ library(data.table)
 library(DBI)
 
 source('functions/puma_functions.R')
+source('i_economic/income_quintiles/income_quintiles_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
 
@@ -13,18 +14,21 @@ house_vars <- c('SERIALNO', # serial number of housing unit; used to match housi
                 'TYPE', # Type of husing unit; 1 is housing unit, which are the only units we need
                 'HINCP') # housing costs as a percentage of income
 
-# population variables that are needed
-pop_vars <- c('SERIALNO', # serial number, matches with housing unit serial number
-              'RELP', # relationship of person in household; 0 is the reference person
-              'ST', # state
-              'PUMA', # PUMA code
-              'AGEP', # age
-              'RAC1P', # race
-              'HISP') # hispanic origin
-
-
 for (yr in years) {
   yr <- 2017
+  
+  # population variables that are needed
+  # the name of one population variable depends on year, so these variables
+  # must be defined inside the year loop
+  pop_vars <- c('SERIALNO', # serial number, matches with housing unit serial number
+                # relationship to reference person; variable name changed in 2010
+                ifelse(yr < 2010, 'REL', 'RELP'),
+                'ST', # state
+                'PUMA', # PUMA code
+                'AGEP', # age
+                'RAC1P', # race
+                'HISP') # hispanic origin
+  
   # must define weight variable names within year loop because names change dpending on year
   # replciate weight variable names are lower case until 2017 and upper case starting in 2017
   weight_names <- ifelse(yr >= 2017, 'WGTP', 'wgtp')
@@ -38,16 +42,18 @@ for (yr in years) {
     # only keep needed variables
     select(!!pop_vars) %>%
     filter(ST == 37, # only keep NC, which is state number 37
-           # we only want the deomographic data from the person filling out the survey
-           # this person is indicated by RELP == 0
-           RELP == 0,
            # only keep Forsyth County PUMA data
            PUMA %in% c(1801, 1802, 1803)) %>%
     # remove unneeded columns
     select(-RELP, -PUMA, -ST) %>%
-    collect() %>%
-    # recode race and create age bins
-    clean_demographics(., c(0, 24, 44, 64, 150))
+    collect() 
+  
+  # change REL column name to RELP if REL is a column (less than 2010)
+  # this allows us to use the same column names for all years
+  pop <- if ('REL' %in% colnames(pop)) rename(pop, RELP = REL) else pop
+  
+  # recode race and create age bins
+  pop <- clean_demographics(pop, c(0, 24, 44, 64, 150))
   
   # import housing variables
   house <- tbl(con, table_name('housing', yr)) %>%
@@ -63,6 +69,9 @@ for (yr in years) {
     collect() %>%
     # add county names
     groupings(., 'county', yr)
+  
+  # merge housing and population
+  incomes <- left_join(house, pop, by = 'SERIALNO')
   
   # iterate through each weight and replciate weight
   for (wgt in replicate_weights) {
