@@ -20,6 +20,7 @@ housing_burden <- readRDS('i_economic/housing_burden/housing_burden.rds')
 colnames(housing_burden) <- c('age', 'race', 'weight', 'tenure', 'pct_housing', 'year', 'geography')
 
 housing_burden <- housing_burden %>%
+  # extend the number of rows based on the weight
   uncount(weight) %>%
   mutate(pct_housing = ifelse(pct_housing > 30, 1, 0))
 
