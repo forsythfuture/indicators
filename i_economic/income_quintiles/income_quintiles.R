@@ -44,8 +44,6 @@ for (yr in years) {
     filter(ST == 37, # only keep NC, which is state number 37
            # only keep Forsyth County PUMA data
            PUMA %in% c(1801, 1802, 1803)) %>%
-    # remove unneeded columns
-    select(-RELP, -PUMA, -ST) %>%
     collect() 
   
   # change REL column name to RELP if REL is a column (less than 2010)
@@ -53,7 +51,11 @@ for (yr in years) {
   pop <- if ('REL' %in% colnames(pop)) rename(pop, RELP = REL) else pop
   
   # recode race and create age bins
-  pop <- clean_demographics(pop, c(0, 24, 44, 64, 150))
+  pop <- pop %>%
+    filter(RELP == 0) %>%
+    # remove unneeded columns
+    select(-RELP, -PUMA, -ST) %>%
+    clean_demographics(., c(0, 24, 44, 64, 150))
   
   # import housing variables
   house <- tbl(con, table_name('housing', yr)) %>%
