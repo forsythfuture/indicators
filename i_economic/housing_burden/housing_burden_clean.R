@@ -18,7 +18,8 @@ house_vars <- c('SERIALNO', # serial number of housing unit; used to match housi
                 'PUMA', # four digit PUMA code
                 'TYPE', # Type of husing unit; 1 is housing unit, which are the only units we need
                 'OCPIP', # housing costs as a percentage of income
-                'GRPIP' # gross rent as a percentage of income
+                'GRPIP', # gross rent as a percentage of income
+                'WGTP'
                 )
 
 # initialize empty dataframe to add all years to
@@ -79,9 +80,9 @@ for (yr in years) {
     # remove rows that are missing both percentage going to rent and percentage going to housing
     filter(!is.na(OCPIP) | !is.na(GRPIP)) %>%
     # remove unneeded variables
-    select(AGEP, RAC1P, OCPIP, GRPIP) %>%
+    select(AGEP, RAC1P, OCPIP, GRPIP, WGTP) %>%
     # convert to long form where each row is either rent or housing percentage share
-    gather('housing_status', 'percentage_housing', -AGEP, -RAC1P) %>%
+    gather('housing_status', 'percentage_housing', -AGEP, -RAC1P, -WGTP) %>%
     # change wording of housing_status so that it is more descriptive
     mutate(housing_status = recode(housing_status, OCPIP = 'owner',
                                                    GRPIP = 'renter')) %>%
