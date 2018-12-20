@@ -117,15 +117,15 @@ voter <- select(voter, voter_reg_num, #res_street_address, res_city_desc,
 
 # voter length: 7907293
 # history length: 27320323
-history %>% arrange(voter_reg_num) %>% head(100)
+history %>% arrange(voter_reg_num) %>% head(50)
+voter %>% arrange(voter_reg_num) %>% head(50)
 sum(duplicated(voter$voter_reg_num)) # 4092609
 sum(duplicated(history$voter_reg_num)) # 24550972
 
 voter <- inner_join(voter, history, by = 'voter_reg_num')
+#voter <- merge(voter, history, by = "voter_reg_num")
 
 nrow(voter) # 277218073
-
-#voter <- merge(voter, history, by = "voter_reg_num")
 
 rm(history)
 gc()
@@ -138,7 +138,7 @@ voter$birth_age[voter$age_reg_flag == 1] <- NaN
 voter$birth_age[voter$birth_age == 118] <- NaN
 
 ###     calculating election year 
-voter$election_year <- as.integer(str_extract_all(election_lbl, '[/][0-9][0-9][0-9][0-9]')),
+voter$election_year <- as.integer(str_extract_all(election_lbl, '[/][0-9][0-9][0-9][0-9]'))
 
 #voter$election_year <- as.Date(voter$election_lbl, format= "%m/%d/%Y")
 #oter$election_year <-lubridate::year(voter$election_year)
@@ -177,3 +177,7 @@ vote_count_table <- as.data.frame(table(voter$election_desc, voter$voted_county_
                                         dnn = list("election_desc", "voted_county_desc", 
                                                    "election_age_group", "race_code",
                                                    "gender_code")))
+
+# export dataframe
+write_csv(countoutput, 'i_civic_engagement/electoral participation/elizabeth_analysis/countoutput.csv')
+          

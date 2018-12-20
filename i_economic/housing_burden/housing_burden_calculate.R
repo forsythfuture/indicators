@@ -20,6 +20,14 @@ housing_burden <- readRDS('i_economic/housing_burden/housing_burden.rds')
 colnames(housing_burden) <- c('age', 'race', 'weight', 'tenure', 'pct_housing', 'year', 'geography')
 
 housing_burden <- housing_burden %>%
+  mutate(race = ifelse(race=='1','White, non-Hispanic', 
+                     ifelse(race=='2','African American',
+                            ifelse(race=='3','Hispanic','Other'))))%>%
+  mutate(age = ifelse(age=='24', '24 years and under',
+                      ifelse(age=='44', '25 to 44 years',
+                             ifelse(age=='64', '45 to 64', '65 years and over'))))
+  
+housing_burden <- housing_burden %>%
   # extend the number of rows based on the weight
   uncount(weight) %>%
   mutate(pct_housing = ifelse(pct_housing > 30, 'yes', 'no'))
@@ -32,15 +40,13 @@ tenure_trend <- housing_burden%>%
   group_by(geography, year, tenure)%>%
   summarise(estimate = sum(pct_housing == "yes")/n())
 
+race <- housing_burden %>%
+  group_by(geography, year, race)%>%
+  summarise(estimate = sum(pct_housing == "yes")/n())
 
-#tenure <- housing_burden %>%
- #group_by(geography, year, pct_housing, tenure)%>%
-  #summarise(count=n())
-
-#tenure_spread <- spread(tenure, key = pct_housing, value = count)
-  
-#tenure_trend_v2 <- tenure_spread %>%
- # mutate(estimate = yes/(no + yes))
+age <- housing_burden %>%
+  group_by(geography, year, age)%>%
+  summarise(estimate = sum(pct_housing == "yes")/n(), pct_total = 'age'/n())
   
 
 
