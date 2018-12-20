@@ -1,7 +1,7 @@
 ### Install packages 
 
 #install.packages("dplyr")
-library(dplyr)
+library(tidyverse)
 
 #install.packages("gmodels")
 library(gmodels)
@@ -14,12 +14,14 @@ library(tidycensus)
 #setwd("C:/Users/futures/OneDrive - Forsyth Futures/Shared with Everyone/2017 Indicator Expansion/Electoral Participation/Raw Data/NCState")
 
 ### Open files and create history and voter objects 
+full_path <- 'i_civic_engagement/electoral participation/elizabeth_analysis/data'
 
-unzip("ncvoter_Statewide.zip")
-unzip("ncvhis_Statewide.zip")
+# files have been unziped, so this code is no longer needed
+#unzip("zip_files/ncvoter_Statewide.zip", exdir = full_path)
+#unzip("zip_files/ncvhis_Statewide.zip", exdir = full_path)
 
-history <- read.delim("ncvhis_Statewide.txt")
-voter <- read.delim("ncvoter_Statewide.txt")
+history <- read.delim(paste0(full_path, "/ncvhis_Statewide.txt"))
+voter <- read.delim(paste0(full_path, "/ncvoter_Statewide.txt"))
 
 ###  Select needed columns 
 
@@ -99,62 +101,79 @@ CrossTable(voter$registr_year, voter$ethnic_code_flag,
            prop.chisq = FALSE
 )
 
+rm(summarylist)
+rm(tablelist)
+
 #######################################################################
 ########################Begin Analysis Here############################
 
 ### Select Needed Variables for voter (history has needed variables)
 
-voter <- select(voter, voter_reg_num, res_street_address, res_city_desc,
+voter <- select(voter, voter_reg_num, #res_street_address, res_city_desc,
                 state_cd, zip_code, race_code, ethnic_code, gender_code, birth_age,
                 age_reg_flag)
 
 ### merging the voter registration and history files 
 
-data <- merge(voter, history, by = "voter_reg_num")
+# voter length: 7907293
+# history length: 27320323
+history %>% arrange(voter_reg_num) %>% head(100)
+sum(duplicated(voter$voter_reg_num)) # 4092609
+sum(duplicated(history$voter_reg_num)) # 24550972
+
+voter <- inner_join(voter, history, by = 'voter_reg_num')
+
+nrow(voter) # 277218073
+
+#voter <- merge(voter, history, by = "voter_reg_num")
+
+rm(history)
+gc()
 
 ### Calculating age at election 
 
 ###     marking improbable registration ages and missing age data as missing 
 
-data$birth_age[data$age_reg_flag == 1] <- NaN
-data$birth_age[data$birth_age == 118] <- NaN
+voter$birth_age[voter$age_reg_flag == 1] <- NaN
+voter$birth_age[voter$birth_age == 118] <- NaN
 
 ###     calculating election year 
+voter$election_year <- as.integer(str_extract_all(election_lbl, '[/][0-9][0-9][0-9][0-9]')),
 
-data$election_year <- as.Date(data$election_lbl, format= "%m/%d/%Y")
-data$election_year <-lubridate::year(data$election_year)
+#voter$election_year <- as.Date(voter$election_lbl, format= "%m/%d/%Y")
+#oter$election_year <-lubridate::year(voter$election_year)
 
 ###     calculating age at election 
 
-data$election_age <- data$birth_age - (2018 - data$election_year)
+voter$election_age <- voter$birth_age - (2018 - voter$election_year)
 
 ###     marking age at electino missing if under 18 or over 105
 
-data$election_age[data$election_age < 18] <- NaN
-data$election_age[data$election_age > 105] <- NaN
+voter$election_age[voter$election_age < 18] <- NaN
+voter$election_age[voter$election_age > 105] <- NaN
 
 ###     creating age groups 
 
-data$election_age_group <- " " 
-data$election_age_group[data$election_age < 26] <- "18 to 25"
-data$election_age_group[data$election_age >= 26 & data$election_age <= 29] <- "26 to 29"
-data$election_age_group[data$election_age >= 30 & data$election_age <= 49] <- "30 to 49"
-data$election_age_group[data$election_age >= 50 & data$election_age <= 64] <- "50 to 64"
-data$election_age_group[data$election_age >= 65 & data$election_age <= 84] <- "65 to 84"
-data$election_age_group[data$election_age >= 85] <- "85 and Older"
+voter$election_age_group <- " " 
+voter$election_age_group[voter$election_age < 26] <- "18 to 25"
+voter$election_age_group[voter$election_age >= 26 & voter$election_age <= 29] <- "26 to 29"
+voter$election_age_group[voter$election_age >= 30 & voter$election_age <= 49] <- "30 to 49"
+voter$election_age_group[voter$election_age >= 50 & voter$election_age <= 64] <- "50 to 64"
+voter$election_age_group[voter$election_age >= 65 & voter$election_age <= 84] <- "65 to 84"
+voter$election_age_group[voter$election_age >= 85] <- "85 and Older"
 
 ### recoding race
 
-data$race_code_rcd <- data$race_code
-ifelse(as.character(data$ethnic_code == "HL"), 'HL', as.character(data$race_code_rcd))
+voter$race_code_rcd <- voter$race_code
+ifelse(as.character(voter$ethnic_code == "HL"), 'HL', as.character(voter$race_code_rcd))
 
 ### calculating votes per presidential election 
 
 ###     summarzing number of votes per election  
 
-vote_count_table <- as.data.frame(table(data$election_desc, data$voted_county_desc, 
-                                        data$election_age_group, data$race_code_rcd, 
-                                        data$gender_code, 
+vote_count_table <- as.data.frame(table(voter$election_desc, voter$voted_county_desc, 
+                                        voter$election_age_group, voter$race_code_rcd, 
+                                        voter$gender_code, 
                                         dnn = list("election_desc", "voted_county_desc", 
                                                    "election_age_group", "race_code",
                                                    "gender_code")))

@@ -182,8 +182,4 @@ for (yr in years) {
   
 }
 
-colnames(pop_demo_master)
-
-  
-
-#write_csv(pop_demo_master, 'i_civic_engagement/electoral participation/voter_demographics.csv')
+write_csv(pop_demo_master, 'i_civic_engagement/electoral participation/elizabeth_analysis/voter_demographics.csv')
