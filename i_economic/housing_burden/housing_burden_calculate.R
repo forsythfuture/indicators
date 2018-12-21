@@ -3,7 +3,7 @@
 # Description of dataset variables:
 #   AGEP: age category; number represents top age in age bracket
 #         for example: 44 represents people 25 to 44
-#                      15 represents top age bracket: 65 and over
+#                      150 represents top age bracket: 65 and over
 #   RAC1P: Racial category:
 #           1 = White
 #           2 = African American
@@ -13,6 +13,8 @@
 #   percentge: the percentage of houshold income that goes to rent or homeownership
 #
 ######################################################################################
+
+library(tidyverse)
 
 # import raw housing burden file
 housing_burden <- readRDS('i_economic/housing_burden/housing_burden.rds')
@@ -34,7 +36,9 @@ housing_burden <- housing_burden %>%
 
 total_trend <- housing_burden %>%
   group_by(geography, year)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n())
+  summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+  mutate(type = 'Comparison Community',
+         subtype = 'total')
 
 tenure_trend <- housing_burden%>%
   group_by(geography, year, tenure)%>%
@@ -42,12 +46,19 @@ tenure_trend <- housing_burden%>%
 
 race <- housing_burden %>%
   group_by(geography, year, race)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n())
+  summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+  filter(race != 'Other') %>%
+  rename(subtype = race) %>%
+  mutate(type = 'Race / Ethnicity')
 
 age <- housing_burden %>%
   group_by(geography, year, age)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n(), pct_total = 'age'/n())
-  
+  summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+  rename(subtype = age) %>%
+  mutate(type = 'Age')
+
+housing_burden <- bind_rows(total_trend, race) %>%
+  bind_rows(., age)
 
 
 

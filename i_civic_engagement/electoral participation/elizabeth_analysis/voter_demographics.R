@@ -137,7 +137,7 @@ comparisons <- c('Forsyth', 'Durham', 'Guilford')
 
 pop_demo_master <- data.frame()
 
-years <- seq(2006, 2016, 2)
+years <- c(seq(2006, 2016, 2), 2017)
 
 for (yr in years) {
   
@@ -181,5 +181,10 @@ for (yr in years) {
   pop_demo_master <- bind_rows(pop_demo_master, pop_demo)
   
 }
+
+# relabel 2017 as 2018
+# we have 2018 voter data, but not 2018 population data;
+# so we are using 2017 population data for 2018
+pop_demo_master$year <- ifelse(pop_demo_master$year == 2017, 2018, pop_demo_master$year)
 
 write_csv(pop_demo_master, 'i_civic_engagement/electoral participation/elizabeth_analysis/voter_demographics.csv')

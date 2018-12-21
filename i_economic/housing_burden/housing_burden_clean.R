@@ -55,42 +55,49 @@ for (yr in years) {
   pop <- if ('REL' %in% colnames(pop)) rename(pop, RELP = REL) else pop
   
   pop <- pop %>%
-    groupings(., 'county', yr) %>%
-    filter(group == 'Forsyth',
+    filter(#group == 'Forsyth',
            # we only want the deomographic data from the person filling out the survey
            # this person is indicated by RELP == 0
            RELP == 0) %>%
     # recode race and create age bins
     clean_demographics(., c(0, 24, 44, 64, 150))
   
+  # must define weight variable names within year loop because names change dpending on year
+  # replciate weight variable names are lower case until 2017 and upper case starting in 2017
+  weight_names <- ifelse(yr >= 2017, 'WGTP', 'wgtp')
+  replicate_weights <- c('WGTP', paste0(weight_names, seq(1, 80)))
+  
+  # add the year's replicate weights to housing variables
+  house_yr_vars <- c(house_vars, replicate_weights)
+  
   # import housing variables
   house <- tbl(con, table_name('housing', yr)) %>%
     # only keep needed variables
-    select(!!house_vars) %>%
+    select(!!house_yr_vars) %>%
     filter(ST == 37, # only keep NC, which is state number 37
            # only keep housing units; remove institutional units
            TYPE ==1
     ) %>%
     collect() %>%
-    groupings(., 'county', yr) %>%
-    filter(group == 'Forsyth')
+    groupings(., 'county', yr) #%>%
+    #filter(group == 'Forsyth')
   
   # join population data to housing data by merging on serial number and PUMA
   housing_burden <- left_join(house, pop, by = c('SERIALNO', 'PUMA', 'ST')) %>%
     # remove rows that are missing both percentage going to rent and percentage going to housing
     filter(!is.na(OCPIP) | !is.na(GRPIP)) %>%
     # remove unneeded variables
-    select(AGEP, RAC1P, OCPIP, GRPIP, WGTP) %>%
+    select(-SERIALNO, -ST, -PUMA, -TYPE, -RELP) %>%
     # convert to long form where each row is either rent or housing percentage share
-    gather('housing_status', 'percentage_housing', -AGEP, -RAC1P, -WGTP) %>%
+    gather('housing_status', 'percentage_housing', OCPIP, GRPIP) %>%
     # change wording of housing_status so that it is more descriptive
     mutate(housing_status = recode(housing_status, OCPIP = 'owner',
                                                    GRPIP = 'renter')) %>%
     # remove missing values
     drop_na(percentage_housing) %>%
     # add year and county name
-    mutate(year = !!yr,
-           cntyname = 'Forsyth County, NC') %>%
+    mutate(year = !!yr) %>%
+           #cntyname = 'Forsyth County, NC') %>%
     bind_rows(., housing_burden)
   
 }
