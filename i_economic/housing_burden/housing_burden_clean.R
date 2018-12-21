@@ -79,7 +79,11 @@ for (yr in years) {
            TYPE ==1
     ) %>%
     collect() %>%
-    groupings(., 'county', yr) #%>%
+    groupings(., 'county', yr) %>%
+    # some years have replicate weight column names that are capitalized,
+    # while other years have lower case names
+    # convert all column names to lower case to ensure rows properly bind
+    rename_all(funs(stringr::str_to_lower(.))) #%>%
     #filter(group == 'Forsyth')
   
   # join population data to housing data by merging on serial number and PUMA

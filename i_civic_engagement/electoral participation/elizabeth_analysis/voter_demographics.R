@@ -187,4 +187,5 @@ for (yr in years) {
 # so we are using 2017 population data for 2018
 pop_demo_master$year <- ifelse(pop_demo_master$year == 2017, 2018, pop_demo_master$year)
 
+
 write_csv(pop_demo_master, 'i_civic_engagement/electoral participation/elizabeth_analysis/voter_demographics.csv')
