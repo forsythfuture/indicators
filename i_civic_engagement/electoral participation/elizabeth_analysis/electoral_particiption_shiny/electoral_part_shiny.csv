@@ -1,0 +1,27 @@
+year,geo_description,estimate,se,type,subtype
+2010,"Durham County, NC",0.201756985015739,0.002437652294008,Comparison Community,Total
+2012,"Durham County, NC",0.566202263617259,0.00457962509574,Comparison Community,Total
+2014,"Durham County, NC",0.342567842463279,0.003202956378607,Comparison Community,Total
+2016,"Durham County, NC",0.533232655427481,0.003862248628807,Comparison Community,Total
+2018,"Durham County, NC",0.433804199734626,0.003771499233943,Comparison Community,Total
+2010,"Forsyth County, NC",0.291613307497863,0.001429029126894,Comparison Community,Total
+2012,"Forsyth County, NC",0.518543601554971,0.003245703022117,Comparison Community,Total
+2014,"Forsyth County, NC",0.316726729366265,0.001850379708641,Comparison Community,Total
+2016,"Forsyth County, NC",0.497827074009211,0.002858436685316,Comparison Community,Total
+2018,"Forsyth County, NC",0.076612452715752,0.000839456191872,Age Group,18 to 25
+2018,"Forsyth County, NC",0.330580285315885,0.016452778331714,Age Group,26 to 29
+2018,"Forsyth County, NC",0.46990511777851,0.006231661084948,Age Group,30 to 49
+2018,"Forsyth County, NC",0.601404240528328,0.007784599901729,Age Group,50 to 64
+2018,"Forsyth County, NC",0.716918947721576,0.011983784585269,Age Group,65 to 84
+2018,"Forsyth County, NC",0.516114525558387,0.0569420313013,Age Group,85 and Older
+2018,"Forsyth County, NC",0.368490469707284,0.00466805809034,Race/Ethnicity,African American
+2018,"Forsyth County, NC",0.44097244732577,0.003256451902161,Gender,Female
+2018,"Forsyth County, NC",0.082744086737099,0.00275790678141,Race/Ethnicity,Hispanic/Latino
+2018,"Forsyth County, NC",0.320144525035727,0.002411852678701,Gender,Male
+2018,"Forsyth County, NC",0.381498690546591,0.001803768695412,Comparison Community,Total
+2018,"Forsyth County, NC",0.439421552152612,0.001626601281784,Race/Ethnicity,"White, non-Hispanic"
+2010,"Guilford County, NC",0.305229226518005,0.001947066278346,Comparison Community,Total
+2012,"Guilford County, NC",0.545508819421694,0.004451300046404,Comparison Community,Total
+2014,"Guilford County, NC",0.343409734892755,0.001731009358784,Comparison Community,Total
+2016,"Guilford County, NC",0.520710252109746,0.003251394872344,Comparison Community,Total
+2018,"Guilford County, NC",0.400366857103952,0.001786260395708,Comparison Community,Total
