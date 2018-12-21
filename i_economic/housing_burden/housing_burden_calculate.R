@@ -16,11 +16,22 @@
 
 library(tidyverse)
 
+source('i_economic/housing_burden/housing_burden_functions.R')
+
 # import raw housing burden file
 housing_burden <- readRDS('i_economic/housing_burden/housing_burden.rds')
 
-colnames(housing_burden) <- c('age', 'race', 'weight', 'tenure', 'pct_housing', 'year', 'geography')
+# rename columns so they are more descriptive
+housing_burden <- housing_burden %>%
+  rename(geography = GROUP,
+         age = AGEP,
+         race = RAC1P,
+         tenure = housing_status,
+         pct_housing = percentage_housing)
 
+# colnames(housing_burden) <- c('age', 'race', 'weight', 'tenure', 'pct_housing', 'year', 'geography')
+
+# recode races and ages
 housing_burden <- housing_burden %>%
   mutate(race = ifelse(race=='1','White, non-Hispanic', 
                      ifelse(race=='2','African American',
@@ -28,46 +39,20 @@ housing_burden <- housing_burden %>%
   mutate(age = ifelse(age=='24', '24 years and under',
                       ifelse(age=='44', '25 to 44 years',
                              ifelse(age=='64', '45 to 64', '65 years and over'))))
-  
-housing_burden <- housing_burden %>%
-  # extend the number of rows based on the weight
-  uncount(weight) %>%
-  mutate(pct_housing = ifelse(pct_housing > 30, 'yes', 'no'))
+ 
+# create vector of weight column names, so we can iterate through them calculating burden
+weight_cols <- str_extract(names(housing_burden), 'WG.*')
+weight_cols <- weight_cols[!is.na(weight_cols)]
 
-total_trend <- housing_burden %>%
-  group_by(geography, year)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n()) %>%
-  mutate(type = 'Comparison Community',
-         subtype = 'total')
+# calcualte housing burden for each replicate weight
+burdens <- lapply(weight_cols[1:3],
+                  function(x) calculate_burden(find_burden_house(housing_burden, x)))
 
-tenure_trend <- housing_burden%>%
-  group_by(geography, year, tenure)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n())
+# calculate standard errors
+se <- find_se(burdens)
 
-race <- housing_burden %>%
-  group_by(geography, year, race)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n()) %>%
-  filter(race != 'Other') %>%
-  rename(subtype = race) %>%
-  mutate(type = 'Race / Ethnicity')
-
-age <- housing_burden %>%
-  group_by(geography, year, age)%>%
-  summarise(estimate = sum(pct_housing == "yes")/n()) %>%
-  rename(subtype = age) %>%
-  mutate(type = 'Age')
-
-housing_burden <- bind_rows(total_trend, race) %>%
-  bind_rows(., age)
-
-
-
-
-
-
-
-
-
-
-
-
+# pull out housing burdens of primary weights and
+# add standard errors to dataframe of housing burdens of primary weight
+burden_primary <- burdens[[1]] %>%
+  mutate(se = !!se[[1]]) %>%
+  rename(geo_description = geography)

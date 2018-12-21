@@ -34,3 +34,140 @@ clean_demographics <- function(df) {
   return(df)
   
 }
+
+find_burden_house <- function(df, wgt) {
+  
+  # This function calculates whether each household is burdened
+  
+  #wgt <- enquo(wgt)
+  
+  # df <- df %>%
+  #   select(geography:year, !!wgt) %>%
+  #   # extend the number of rows based on the weight
+  #   uncount(!!wgt) %>%
+  #   mutate(pct_housing = ifelse(pct_housing > 30, 'yes', 'no'))
+  print(wgt)
+  
+  df <- df %>%
+    select(geography:year, !!wgt)
+  
+  # remove rows with weights less than 1
+  df <- df[df[[wgt]] >= 1, ]
+  
+  # expand dataframe  
+  df <- df[rep(row.names(df), df[[wgt]]), ]
+  
+  # calcualte whether homeowner is housing burdened
+  df <- df %>%
+    mutate(pct_housing = ifelse(pct_housing > 30, 'yes', 'no'))
+  
+  return(df)
+  
+}
+
+calculate_burden <- function(df, wgt) {
+  
+  # This function calculates the percentage of households within
+  # a demographic that are burdened
+  # Input:
+  #   df: a dataframe that has already calculated whether each household
+  #       is burdened with the find_burden_house function
+  
+  # create extended dataset with weights
+  #df <- find_burden_house(df, wgt)
+  
+  # calcualate county trends
+  
+  df_county <- df  %>%
+    filter(geography %in% c('Forsyth', 'Guilford', 'Durham'))
+  
+  total_trend <- df_county %>%
+    group_by(geography, year)%>%
+    summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+    mutate(type = 'Comparison Community',
+           subtype = 'Total')
+  
+  race <- df_county %>%
+    group_by(geography, year, race)%>%
+    summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+    filter(race != 'Other') %>%
+    rename(subtype = race) %>%
+    mutate(type = 'Race / Ethnicity')
+  
+  age <- df_county %>%
+    group_by(geography, year, age)%>%
+    summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+    rename(subtype = age) %>%
+    mutate(type = 'Age')
+  
+  county_burden <- bind_rows(total_trend, race) %>%
+    bind_rows(., age)
+  
+  # caclualte state trends
+  
+  total_trend <- df %>%
+    group_by(year)%>%
+    summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+    mutate(geography = 'North Carolina',
+           type = 'Comparison Community',
+           subtype = 'Total')
+  
+  race <- df %>%
+    group_by(year, race)%>%
+    summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+    filter(race != 'Other') %>%
+    rename(subtype = race) %>%
+    mutate(geography = 'North Carolina',
+           type = 'Race / Ethnicity')
+  
+  age <- df %>%
+    group_by(year, age)%>%
+    summarise(estimate = sum(pct_housing == "yes")/n()) %>%
+    rename(subtype = age) %>%
+    mutate(geography = 'North Carolina',
+           type = 'Age')
+  
+  burden <- bind_rows(county_burden, total_trend) %>%
+    bind_rows(., race) %>%
+    bind_rows(., age)
+  
+  return(burden)
+  
+}
+
+find_se <- function(burden_list) {
+    
+    # This function takes the list of housing burdens created when
+    # 'calcualte_burdens' is used for all replciate weights, and 
+    # calculates overall standard error
+    
+    # calcualte squared difference between primary weight
+    # and every replicate weight
+    sq_diff <- lapply(seq(2, length(burden_list)),
+                      function(x) (burden_list[[1]][3] - burden_list[[x]][3])^2)
+    
+    # create dataframe to store all squared difference weight,
+    # needed all of them in one dataframe so we can sum
+    sum_sq_diff <- data.frame(a = rep(100, nrow(sq_diff[[1]])))
+    
+    # iterate through squared differences list, adding as columns to dataframe
+    for (i in seq_along(sq_diff)) {
+      
+      sum_sq_diff[[i]] = sq_diff[[i]]
+      
+    }
+    
+    # sum the difference and multiply by 4/80
+    # but first, transpose so that each column is all relicate weights
+    # of a given demograhic; this will make it easier to sum all replciate weights
+    sum_sq_diff <- sum_sq_diff %>%
+      t() %>%
+      as.data.frame() %>%
+      summarize_all(funs(sqrt(sum(.)*(4/80)))) %>%
+      # transpose back so that there is one column and each row represents different demographic
+      t() %>%
+      as.data.frame()
+    
+    return(sum_sq_diff)
+  
+}

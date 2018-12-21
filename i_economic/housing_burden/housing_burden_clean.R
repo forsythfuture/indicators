@@ -82,8 +82,8 @@ for (yr in years) {
     groupings(., 'county', yr) %>%
     # some years have replicate weight column names that are capitalized,
     # while other years have lower case names
-    # convert all column names to lower case to ensure rows properly bind
-    rename_all(funs(stringr::str_to_lower(.))) #%>%
+    # convert all column names to upper case to ensure rows properly bind
+    rename_all(funs(stringr::str_to_upper(.))) #%>%
     #filter(group == 'Forsyth')
   
   # join population data to housing data by merging on serial number and PUMA
@@ -106,5 +106,9 @@ for (yr in years) {
   
 }
 
+# reorder columns so that weights are at the end
+housing_burden <- housing_burden %>%
+  select(GROUP:year, everything())
+
 # write out results as an Rds object
-saveRDS(housing_burden, 'i_economic/housing_burden/housing_burden.rds')
+# saveRDS(housing_burden, 'i_economic/housing_burden/housing_burden.rds')
