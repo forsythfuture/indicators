@@ -1,0 +1,12 @@
+name: electoral_particiption
+title: electoral_particiption
+username:
+account: forsythfutures
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 621908
+bundleId: 1778585
+url: https://forsythfutures.shinyapps.io/electoral_particiption/
+when: 1545420463.65247
+asMultiple: FALSE
+asStatic: FALSE
