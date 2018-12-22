@@ -7,9 +7,9 @@ library(kableExtra)
 
 ##################### Section to edit ##############################
 #shiny_indicators/
-file_name <- 'electoral_part_shiny.csv'
+file_name <- 'housing_burden_shiny.csv'
 
-indicator_name <- 'Voter Participation'
+indicator_name <- 'Housing Burden'
 
 # Enter data sources. Each line below represents a single line in the app
 data_source <- c('')

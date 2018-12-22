@@ -45,7 +45,7 @@ weight_cols <- str_extract(names(housing_burden), 'WG.*')
 weight_cols <- weight_cols[!is.na(weight_cols)]
 
 # calcualte housing burden for each replicate weight
-burdens <- lapply(weight_cols[1:3],
+burdens <- lapply(weight_cols,
                   function(x) calculate_burden(find_burden_house(housing_burden, x)))
 
 # calculate standard errors
@@ -54,5 +54,12 @@ se <- find_se(burdens)
 # pull out housing burdens of primary weights and
 # add standard errors to dataframe of housing burdens of primary weight
 burden_primary <- burdens[[1]] %>%
-  mutate(se = !!se[[1]]) %>%
+  ungroup() %>%
+  mutate(se = !!se[[1]],
+         # add ' County, NC' to county names
+         geography = ifelse(geography %in% c('Forsyth', 'Guilford', 'Durham'),
+                            paste0(geography, ' County, NC'), geography)) %>%
   rename(geo_description = geography)
+
+# write out to shiny app folder
+#write_csv(burden_primary, 'i_economic/housing_burden/housing_burden_shiny/housing_burden_shiny.csv')
