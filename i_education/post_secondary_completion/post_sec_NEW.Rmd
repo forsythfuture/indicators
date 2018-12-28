@@ -1,5 +1,5 @@
 ---
-title: "Homeownership rate"
+title: "Post Secondary Education Rates"
 output:
   html_document:
     toc: yes
@@ -33,13 +33,9 @@ library(tidycensus)
 source('../../functions/acs_load_funcs.R')
 ```
 
-Homeownership data comes from the following U.S. Census Bureau, American Fact Finder tables:
+Post Secondary Education data comes from the following U.S. Census Bureau, American Fact Finder tables:
 
-* B25003 (total homeownership)
-* B25007 (homeownership by age)
-* B25003B (African American homeownership)
-* B25003I (Hispanic/Latinx homeownership)
-* B25003H (White, non-Hispanic homeownership)
+* 
 
 ### Data cleaning
 

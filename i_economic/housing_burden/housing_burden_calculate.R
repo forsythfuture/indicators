@@ -29,8 +29,6 @@ housing_burden <- housing_burden %>%
          tenure = housing_status,
          pct_housing = percentage_housing)
 
-# colnames(housing_burden) <- c('age', 'race', 'weight', 'tenure', 'pct_housing', 'year', 'geography')
-
 # recode races and ages
 housing_burden <- housing_burden %>%
   mutate(race = ifelse(race=='1','White, non-Hispanic', 
