@@ -7,6 +7,11 @@ source('i_economic/income_quintiles/income_quintiles_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
 
+############# Create dataset of all people, all years ###################
+
+# initialize dataframe to store all people, all years
+incomes <- data.frame()
+
 # housing PUMs variables
 house_vars <- c('SERIALNO', # serial number of housing unit; used to match housing units and populations 
                 'ST', # state
@@ -14,8 +19,9 @@ house_vars <- c('SERIALNO', # serial number of housing unit; used to match housi
                 'TYPE', # Type of husing unit; 1 is housing unit, which are the only units we need
                 'HINCP') # housing costs as a percentage of income
 
+years <- c(2016, 2017)
+
 for (yr in years) {
-  yr <- 2017
   
   # population variables that are needed
   # the name of one population variable depends on year, so these variables
@@ -43,7 +49,7 @@ for (yr in years) {
     select(!!pop_vars) %>%
     filter(ST == 37, # only keep NC, which is state number 37
            # only keep Forsyth County PUMA data
-           PUMA %in% c(1801, 1802, 1803)) %>%
+           PUMA %in% c(1801, 1802)) %>%
     collect() 
   
   # change REL column name to RELP if REL is a column (less than 2010)
@@ -65,7 +71,9 @@ for (yr in years) {
            # only keep Forsyth County PUMA data
            PUMA %in% c(1801, 1802, 1803),
            # only keep housing units; remove institutional units
-           TYPE ==1) %>%
+           TYPE ==1,
+           # do not keep rows with NA values for income
+           !is.na(hincp)) %>%
     # remove unneeded columns
     select(-TYPE) %>%
     collect() %>%
@@ -73,22 +81,36 @@ for (yr in years) {
     groupings(., 'county', yr)
   
   # merge housing and population
-  incomes <- left_join(house, pop, by = 'SERIALNO')
-  
-  # iterate through each weight and replciate weight
-  for (wgt in replicate_weights) {
-    wgt <- weight_names
-    
-    incomes <- house %>%
-      # only select needed housing columns and one weight
-      select_at(c('SERIALNO', 'PUMA', 'HINCP', wgt)) %>%
-      # merge population data
-      left_join(pop, by = 'SERIALNO')
-    
-  }
-  
-  
-  # calculate income quintiles and add income quintile category to each house
-  income_quintiles <- quantile(house$HINCP, probs = seq(0, 1, by = .2), na.rm=TRUE)
+  incomes <- left_join(house, pop, by = 'SERIALNO') %>%
+  # add year
+    mutate(year = !!yr,
+      # if the year is 2017, remove the 2017 from the start of the SERIALNO
+      SERIALNO = if (!!yr == 2017) as.integer(str_replace_all(.$SERIALNO, '^2017', '')) else .$SERIALNO) %>%
+    # 2017 replicate weight column are upper case, while other years are lower case
+    # rename all columns to lower case, so they match
+    rename_all(funs(tolower(.))) %>%
+    bind_rows(., incomes)
   
 }
+  
+################ Calculate income quintile information ######################
+
+# calculate income quintile percentages for each year and all replciate weights
+demo_perc <- lapply(tolower(replicate_weights), 
+                    function(x) find_quint_perc(incomes, x))
+
+# calculate standard errors
+demo_perc_se <- find_se(demo_perc)
+
+# pull out quintile percentages of primary weights and
+# add standard errors to dataframe of quintile percentages of primary weight
+perc_primary <- demo_perc[[1]] %>%
+  # rename group column as geo_description
+  rename(geo_description = group) %>%
+  # only keep the needed geographic units
+  filter(geo_description %in% c('Forsyth', 'Guilford', 'Durham', 'North Carolina')) %>%
+  # add standard error column
+  mutate(se = !!demo_perc_se[[1]],
+         # add ' County, NC' to county names
+         geo_description = ifelse(geo_description %in% c('Forsyth', 'Guilford', 'Durham'),
+                                  paste0(geo_description, ' County, NC'), geo_description))
