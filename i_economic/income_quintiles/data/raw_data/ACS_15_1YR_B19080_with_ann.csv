@@ -1,0 +1,7 @@
+GEO.id,GEO.id2,GEO.display-label,HD01_VD02,HD02_VD02,HD01_VD03,HD02_VD03,HD01_VD04,HD02_VD04,HD01_VD05,HD02_VD05,HD01_VD06,HD02_VD06
+Id,Id2,Geography,Estimate; Quintile Upper Limits: - Lowest Quintile,Margin of Error; Quintile Upper Limits: - Lowest Quintile,Estimate; Quintile Upper Limits: - Second Quintile,Margin of Error; Quintile Upper Limits: - Second Quintile,Estimate; Quintile Upper Limits: - Third Quintile,Margin of Error; Quintile Upper Limits: - Third Quintile,Estimate; Quintile Upper Limits: - Fourth Quintile,Margin of Error; Quintile Upper Limits: - Fourth Quintile,Estimate; Lower Limit of Top 5 Percent,Margin of Error; Lower Limit of Top 5 Percent
+0100000US,,United States,22824,61,43576,100,70323,92,112145,111,210737,370
+0400000US37,37,North Carolina,20399,250,37496,430,60250,434,97313,719,181181,1579
+0500000US37063,37063,"Durham County, North Carolina",21477,2303,42054,2251,68538,3280,110940,5872,201227,6532
+0500000US37067,37067,"Forsyth County, North Carolina",20070,1303,35987,2043,59995,3122,96721,3568,190674,14892
+0500000US37081,37081,"Guilford County, North Carolina",21426,1152,37337,2131,58537,3205,95737,3375,191697,13638

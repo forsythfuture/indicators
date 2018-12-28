@@ -1,0 +1,301 @@
+geo_description,label,year,description,estimate,se,moe,cv,type,subtype
+United States,HD01_VD02,2006,Q1,24645,7,14,0.03,Comparison Community,Total
+North Carolina,HD01_VD02,2006,Q1,22106,107,210,0.48,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2006,Q1,24304,582,1141,2.39,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2006,Q1,23699,759,1488,3.2,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2006,Q1,23285,626,1227,2.69,Comparison Community,Total
+United States,HD01_VD03,2006,Q2,46460,24,47,0.05,Comparison Community,Total
+North Carolina,HD01_VD03,2006,Q2,40888,208,408,0.51,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2006,Q2,45686,1136,2227,2.49,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2006,Q2,44071,710,1392,1.61,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2006,Q2,41760,858,1682,2.05,Comparison Community,Total
+United States,HD01_VD04,2006,Q3,73246,38,74,0.05,Comparison Community,Total
+North Carolina,HD01_VD04,2006,Q3,64079,253,496,0.39,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2006,Q3,70109,1561,3060,2.23,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2006,Q3,66567,737,1445,1.11,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2006,Q3,68252,960,1882,1.41,Comparison Community,Total
+United States,HD01_VD05,2006,Q4,114507,50,98,0.04,Comparison Community,Total
+North Carolina,HD01_VD05,2006,Q4,100286,264,517,0.26,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2006,Q4,112002,3726,7303,3.33,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2006,Q4,106924,2469,4839,2.31,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2006,Q4,106188,1798,3524,1.69,Comparison Community,Total
+United States,HD01_VD06,2006,Q5,207627,155,304,0.07,Comparison Community,Total
+North Carolina,HD01_VD06,2006,Q5,179913,1319,2585,0.73,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2006,Q5,202585,7869,15423,3.88,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2006,Q5,195884,4583,8983,2.34,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2006,Q5,187191,3963,7767,2.12,Comparison Community,Total
+United States,HD01_VD02,2007,Q1,25069,29,57,0.12,Comparison Community,Total
+North Carolina,HD01_VD02,2007,Q1,21951,155,304,0.71,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2007,Q1,22125,789,1546,3.57,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2007,Q1,23590,976,1913,4.14,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2007,Q1,22814,804,1576,3.52,Comparison Community,Total
+United States,HD01_VD03,2007,Q2,47590,42,82,0.09,Comparison Community,Total
+North Carolina,HD01_VD03,2007,Q2,41782,143,280,0.34,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2007,Q2,43423,1482,2905,3.41,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2007,Q2,42257,1005,1970,2.38,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2007,Q2,42224,558,1094,1.32,Comparison Community,Total
+United States,HD01_VD04,2007,Q3,74012,42,82,0.06,Comparison Community,Total
+North Carolina,HD01_VD04,2007,Q3,65440,275,539,0.42,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2007,Q3,67443,2281,4471,3.38,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2007,Q3,68700,1331,2609,1.94,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2007,Q3,69039,1686,3305,2.44,Comparison Community,Total
+United States,HD01_VD05,2007,Q4,117127,117,229,0.1,Comparison Community,Total
+North Carolina,HD01_VD05,2007,Q4,102606,401,786,0.39,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2007,Q4,110469,2409,4722,2.18,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2007,Q4,111069,1815,3557,1.63,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2007,Q4,109216,1219,2389,1.12,Comparison Community,Total
+United States,HD01_VD06,2007,Q5,214147,191,374,0.09,Comparison Community,Total
+North Carolina,HD01_VD06,2007,Q5,189262,1175,2303,0.62,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2007,Q5,196969,11238,22026,5.71,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2007,Q5,216622,1981,3883,0.91,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2007,Q5,209499,4796,9400,2.29,Comparison Community,Total
+United States,HD01_VD02,2008,Q1,24791,42,82,0.17,Comparison Community,Total
+North Carolina,HD01_VD02,2008,Q1,22779,145,284,0.64,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2008,Q1,27317,1174,2301,4.3,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2008,Q1,24078,609,1194,2.53,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2008,Q1,23339,337,661,1.44,Comparison Community,Total
+United States,HD01_VD03,2008,Q2,46830,26,51,0.06,Comparison Community,Total
+North Carolina,HD01_VD03,2008,Q2,41973,180,353,0.43,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2008,Q2,46677,1543,3024,3.31,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2008,Q2,42472,910,1784,2.14,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2008,Q2,43620,811,1590,1.86,Comparison Community,Total
+United States,HD01_VD04,2008,Q3,74000,32,63,0.04,Comparison Community,Total
+North Carolina,HD01_VD04,2008,Q3,65427,336,659,0.51,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2008,Q3,72428,1827,3581,2.52,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2008,Q3,66912,1405,2754,2.1,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2008,Q3,66732,1149,2252,1.72,Comparison Community,Total
+United States,HD01_VD05,2008,Q4,116282,28,55,0.02,Comparison Community,Total
+North Carolina,HD01_VD05,2008,Q4,102503,337,661,0.33,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2008,Q4,118257,1978,3877,1.67,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2008,Q4,106305,2164,4241,2.04,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2008,Q4,103733,1733,3397,1.67,Comparison Community,Total
+United States,HD01_VD06,2008,Q5,213287,303,594,0.14,Comparison Community,Total
+North Carolina,HD01_VD06,2008,Q5,186468,1044,2046,0.56,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2008,Q5,200355,6789,13306,3.39,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2008,Q5,190393,7619,14933,4,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2008,Q5,195942,5370,10525,2.74,Comparison Community,Total
+United States,HD01_VD02,2009,Q1,23794,40,78,0.17,Comparison Community,Total
+North Carolina,HD01_VD02,2009,Q1,21060,185,363,0.88,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2009,Q1,22763,520,1019,2.28,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2009,Q1,21789,444,870,2.04,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2009,Q1,21519,1007,1974,4.68,Comparison Community,Total
+United States,HD01_VD03,2009,Q2,45535,1,2,0,Comparison Community,Total
+North Carolina,HD01_VD03,2009,Q2,39471,237,465,0.6,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2009,Q2,43469,1301,2550,2.99,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2009,Q2,40973,1088,2132,2.66,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2009,Q2,39835,805,1578,2.02,Comparison Community,Total
+United States,HD01_VD04,2009,Q3,71553,85,167,0.12,Comparison Community,Total
+North Carolina,HD01_VD04,2009,Q3,62612,157,308,0.25,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2009,Q3,68837,1304,2556,1.89,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2009,Q3,62612,1121,2197,1.79,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2009,Q3,63943,1305,2558,2.04,Comparison Community,Total
+United States,HD01_VD05,2009,Q4,113924,38,74,0.03,Comparison Community,Total
+North Carolina,HD01_VD05,2009,Q4,99684,392,768,0.39,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2009,Q4,114187,1614,3163,1.41,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2009,Q4,99968,1928,3779,1.93,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2009,Q4,106499,1779,3487,1.67,Comparison Community,Total
+United States,HD01_VD06,2009,Q5,207341,244,478,0.12,Comparison Community,Total
+North Carolina,HD01_VD06,2009,Q5,177703,982,1925,0.55,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2009,Q5,190703,11320,22187,5.94,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2009,Q5,177532,4508,8836,2.54,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2009,Q5,190615,5325,10437,2.79,Comparison Community,Total
+United States,HD01_VD02,2010,Q1,23268,23,45,0.1,Comparison Community,Total
+North Carolina,HD01_VD02,2010,Q1,20516,166,325,0.81,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2010,Q1,23110,1033,2025,4.47,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2010,Q1,21587,861,1688,3.99,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2010,Q1,21161,605,1186,2.86,Comparison Community,Total
+United States,HD01_VD03,2010,Q2,44077,37,73,0.08,Comparison Community,Total
+North Carolina,HD01_VD03,2010,Q2,38656,181,355,0.47,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2010,Q2,43988,1251,2452,2.84,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2010,Q2,39510,901,1766,2.28,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2010,Q2,36375,904,1772,2.49,Comparison Community,Total
+United States,HD01_VD04,2010,Q3,69863,40,78,0.06,Comparison Community,Total
+North Carolina,HD01_VD04,2010,Q3,60701,246,482,0.41,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2010,Q3,67708,2017,3953,2.98,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2010,Q3,62811,996,1952,1.59,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2010,Q3,59352,1190,2332,2,Comparison Community,Total
+United States,HD01_VD05,2010,Q4,112287,85,167,0.08,Comparison Community,Total
+North Carolina,HD01_VD05,2010,Q4,95889,340,666,0.35,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2010,Q4,105933,2114,4143,2,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2010,Q4,95144,1139,2232,1.2,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2010,Q4,95620,2624,5143,2.74,Comparison Community,Total
+United States,HD01_VD06,2010,Q5,203815,193,378,0.09,Comparison Community,Total
+North Carolina,HD01_VD06,2010,Q5,174435,1159,2272,0.66,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2010,Q5,180834,4875,9555,2.7,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2010,Q5,188605,5625,11025,2.98,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2010,Q5,181631,5393,10570,2.97,Comparison Community,Total
+United States,HD01_VD02,2011,Q1,22435,27,53,0.12,Comparison Community,Total
+North Carolina,HD01_VD02,2011,Q1,19980,171,335,0.86,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2011,Q1,21425,1011,1982,4.72,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2011,Q1,20545,496,972,2.41,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2011,Q1,18735,636,1247,3.39,Comparison Community,Total
+United States,HD01_VD03,2011,Q2,43013,50,98,0.12,Comparison Community,Total
+North Carolina,HD01_VD03,2011,Q2,37530,238,466,0.63,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2011,Q2,38985,2214,4339,5.68,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2011,Q2,37022,857,1680,2.31,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2011,Q2,36394,794,1556,2.18,Comparison Community,Total
+United States,HD01_VD04,2011,Q3,68664,66,129,0.1,Comparison Community,Total
+North Carolina,HD01_VD04,2011,Q3,60011,320,627,0.53,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2011,Q3,61757,1550,3038,2.51,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2011,Q3,59266,1486,2913,2.51,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2011,Q3,60810,1061,2080,1.74,Comparison Community,Total
+United States,HD01_VD05,2011,Q4,110825,60,118,0.05,Comparison Community,Total
+North Carolina,HD01_VD05,2011,Q4,97181,609,1194,0.63,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2011,Q4,104169,3347,6560,3.21,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2011,Q4,99374,2176,4265,2.19,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2011,Q4,99012,1992,3904,2.01,Comparison Community,Total
+United States,HD01_VD06,2011,Q5,203903,243,476,0.12,Comparison Community,Total
+North Carolina,HD01_VD06,2011,Q5,176458,1275,2499,0.72,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2011,Q5,189180,9920,19443,5.24,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2011,Q5,190032,3571,6999,1.88,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2011,Q5,178880,4520,8859,2.53,Comparison Community,Total
+United States,HD01_VD02,2012,Q1,22388,23,45,0.1,Comparison Community,Total
+North Carolina,HD01_VD02,2012,Q1,20068,150,294,0.75,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2012,Q1,21928,882,1729,4.02,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2012,Q1,19023,544,1066,2.86,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2012,Q1,20944,650,1274,3.1,Comparison Community,Total
+United States,HD01_VD03,2012,Q2,43086,32,63,0.07,Comparison Community,Total
+North Carolina,HD01_VD03,2012,Q2,37811,174,341,0.46,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2012,Q2,44052,1112,2180,2.52,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2012,Q2,35063,925,1813,2.64,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2012,Q2,37686,770,1509,2.04,Comparison Community,Total
+United States,HD01_VD04,2012,Q3,68908,52,102,0.08,Comparison Community,Total
+North Carolina,HD01_VD04,2012,Q3,59951,260,510,0.43,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2012,Q3,67881,1570,3077,2.31,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2012,Q3,57355,1322,2591,2.3,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2012,Q3,58746,1323,2593,2.25,Comparison Community,Total
+United States,HD01_VD05,2012,Q4,110077,96,188,0.09,Comparison Community,Total
+North Carolina,HD01_VD05,2012,Q4,95962,469,919,0.49,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2012,Q4,112270,3218,6307,2.87,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2012,Q4,99130,2374,4653,2.39,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2012,Q4,93656,1652,3238,1.76,Comparison Community,Total
+United States,HD01_VD06,2012,Q5,204761,215,421,0.11,Comparison Community,Total
+North Carolina,HD01_VD06,2012,Q5,175374,1534,3007,0.87,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2012,Q5,196278,6827,13381,3.48,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2012,Q5,194441,14368,28161,7.39,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2012,Q5,173201,5269,10327,3.04,Comparison Community,Total
+United States,HD01_VD02,2013,Q1,22554,27,53,0.12,Comparison Community,Total
+North Carolina,HD01_VD02,2013,Q1,20487,143,280,0.7,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2013,Q1,23884,948,1858,3.97,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2013,Q1,19739,928,1819,4.7,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2013,Q1,20436,737,1445,3.61,Comparison Community,Total
+United States,HD01_VD03,2013,Q2,43261,37,73,0.09,Comparison Community,Total
+North Carolina,HD01_VD03,2013,Q2,37981,176,345,0.46,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2013,Q2,43079,1172,2297,2.72,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2013,Q2,35543,956,1874,2.69,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2013,Q2,37791,767,1503,2.03,Comparison Community,Total
+United States,HD01_VD04,2013,Q3,69404,54,106,0.08,Comparison Community,Total
+North Carolina,HD01_VD04,2013,Q3,60016,271,531,0.45,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2013,Q3,69598,2460,4822,3.53,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2013,Q3,59651,1117,2189,1.87,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2013,Q3,60740,1397,2738,2.3,Comparison Community,Total
+United States,HD01_VD05,2013,Q4,111652,82,161,0.07,Comparison Community,Total
+North Carolina,HD01_VD05,2013,Q4,96499,305,598,0.32,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2013,Q4,115797,3185,6243,2.75,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2013,Q4,98204,2256,4422,2.3,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2013,Q4,99509,1734,3399,1.74,Comparison Community,Total
+United States,HD01_VD06,2013,Q5,210710,159,312,0.08,Comparison Community,Total
+North Carolina,HD01_VD06,2013,Q5,180846,1113,2181,0.62,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2013,Q5,227265,9403,18430,4.14,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2013,Q5,190545,5847,11460,3.07,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2013,Q5,185946,5524,10827,2.97,Comparison Community,Total
+United States,HD01_VD02,2014,Q1,22690,24,47,0.11,Comparison Community,Total
+North Carolina,HD01_VD02,2014,Q1,20626,171,335,0.83,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2014,Q1,21272,899,1762,4.23,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2014,Q1,19746,660,1294,3.34,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2014,Q1,20505,734,1439,3.58,Comparison Community,Total
+United States,HD01_VD03,2014,Q2,43500,32,63,0.07,Comparison Community,Total
+North Carolina,HD01_VD03,2014,Q2,38060,195,382,0.51,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2014,Q2,41367,1028,2015,2.49,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2014,Q2,37952,1138,2230,3,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2014,Q2,37244,672,1317,1.8,Comparison Community,Total
+United States,HD01_VD04,2014,Q3,70060,65,127,0.09,Comparison Community,Total
+North Carolina,HD01_VD04,2014,Q3,60231,336,659,0.56,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2014,Q3,64815,1580,3097,2.44,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2014,Q3,59083,1353,2652,2.29,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2014,Q3,57943,1004,1968,1.73,Comparison Community,Total
+United States,HD01_VD05,2014,Q4,112995,100,196,0.09,Comparison Community,Total
+North Carolina,HD01_VD05,2014,Q4,96746,522,1023,0.54,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2014,Q4,107565,3638,7130,3.38,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2014,Q4,94762,2027,3973,2.14,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2014,Q4,95543,1783,3495,1.87,Comparison Community,Total
+United States,HD01_VD06,2014,Q5,210927,208,408,0.1,Comparison Community,Total
+North Carolina,HD01_VD06,2014,Q5,180167,1197,2346,0.66,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2014,Q5,196762,13970,27381,7.1,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2014,Q5,172933,7439,14580,4.3,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2014,Q5,178381,5254,10298,2.95,Comparison Community,Total
+United States,HD01_VD02,2015,Q1,23609,36,71,0.15,Comparison Community,Total
+North Carolina,HD01_VD02,2015,Q1,21100,147,288,0.7,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2015,Q1,22215,1353,2652,6.09,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2015,Q1,20760,766,1501,3.69,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2015,Q1,22163,677,1327,3.05,Comparison Community,Total
+United States,HD01_VD03,2015,Q2,45074,59,116,0.13,Comparison Community,Total
+North Carolina,HD01_VD03,2015,Q2,38785,253,496,0.65,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2015,Q2,43500,1323,2593,3.04,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2015,Q2,37224,1201,2354,3.23,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2015,Q2,38620,1252,2454,3.24,Comparison Community,Total
+United States,HD01_VD04,2015,Q3,72740,54,106,0.07,Comparison Community,Total
+North Carolina,HD01_VD04,2015,Q3,62321,255,500,0.41,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2015,Q3,70894,1928,3779,2.72,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2015,Q3,62057,1835,3597,2.96,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2015,Q3,60549,1884,3693,3.11,Comparison Community,Total
+United States,HD01_VD05,2015,Q4,116000,65,127,0.06,Comparison Community,Total
+North Carolina,HD01_VD05,2015,Q4,100658,423,829,0.42,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2015,Q4,114754,3451,6764,3.01,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2015,Q4,100046,2097,4110,2.1,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2015,Q4,99028,1983,3887,2,Comparison Community,Total
+United States,HD01_VD06,2015,Q5,217981,217,425,0.1,Comparison Community,Total
+North Carolina,HD01_VD06,2015,Q5,187409,928,1819,0.5,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2015,Q5,208144,3839,7524,1.84,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2015,Q5,197228,8752,17154,4.44,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2015,Q5,198286,8015,15709,4.04,Comparison Community,Total
+United States,HD01_VD02,2016,Q1,24144,43,84,0.18,Comparison Community,Total
+North Carolina,HD01_VD02,2016,Q1,21662,161,316,0.74,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2016,Q1,24747,1856,3638,7.5,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2016,Q1,20690,843,1652,4.07,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2016,Q1,19803,849,1664,4.29,Comparison Community,Total
+United States,HD01_VD03,2016,Q2,46294,47,92,0.1,Comparison Community,Total
+North Carolina,HD01_VD03,2016,Q2,41003,179,351,0.44,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2016,Q2,43352,1034,2027,2.39,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2016,Q2,38654,1327,2601,3.43,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2016,Q2,37660,1027,2013,2.73,Comparison Community,Total
+United States,HD01_VD04,2016,Q3,73932,51,100,0.07,Comparison Community,Total
+North Carolina,HD01_VD04,2016,Q3,64170,357,700,0.56,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2016,Q3,70449,2236,4383,3.17,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2016,Q3,61482,1159,2272,1.89,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2016,Q3,60451,1417,2777,2.34,Comparison Community,Total
+United States,HD01_VD05,2016,Q4,119108,83,163,0.07,Comparison Community,Total
+North Carolina,HD01_VD05,2016,Q4,102602,359,704,0.35,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2016,Q4,113209,3766,7381,3.33,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2016,Q4,99537,1714,3359,1.72,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2016,Q4,101582,2822,5531,2.78,Comparison Community,Total
+United States,HD01_VD06,2016,Q5,224553,352,690,0.16,Comparison Community,Total
+North Carolina,HD01_VD06,2016,Q5,192247,1741,3412,0.91,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2016,Q5,208958,6118,11991,2.93,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2016,Q5,204646,10233,20057,5,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2016,Q5,198202,7903,15490,3.99,Comparison Community,Total
+United States,HD01_VD02,2017,Q1,24625,43,84,0.17,Comparison Community,Total
+North Carolina,HD01_VD02,2017,Q1,22302,165,323,0.74,Comparison Community,Total
+"Durham County, NC",HD01_VD02,2017,Q1,25021,1063,2083,4.25,Comparison Community,Total
+"Forsyth County, NC",HD01_VD02,2017,Q1,20273,938,1838,4.63,Comparison Community,Total
+"Guilford County, NC",HD01_VD02,2017,Q1,22845,954,1870,4.18,Comparison Community,Total
+United States,HD01_VD03,2017,Q2,47169,58,114,0.12,Comparison Community,Total
+North Carolina,HD01_VD03,2017,Q2,41739,218,427,0.52,Comparison Community,Total
+"Durham County, NC",HD01_VD03,2017,Q2,46864,1637,3209,3.49,Comparison Community,Total
+"Forsyth County, NC",HD01_VD03,2017,Q2,38981,1100,2156,2.82,Comparison Community,Total
+"Guilford County, NC",HD01_VD03,2017,Q2,41254,911,1786,2.21,Comparison Community,Total
+United States,HD01_VD04,2017,Q3,75494,71,139,0.09,Comparison Community,Total
+North Carolina,HD01_VD04,2017,Q3,66158,295,578,0.45,Comparison Community,Total
+"Durham County, NC",HD01_VD04,2017,Q3,76767,2649,5192,3.45,Comparison Community,Total
+"Forsyth County, NC",HD01_VD04,2017,Q3,63466,1836,3599,2.89,Comparison Community,Total
+"Guilford County, NC",HD01_VD04,2017,Q3,65373,1422,2787,2.18,Comparison Community,Total
+United States,HD01_VD05,2017,Q4,121116,80,157,0.07,Comparison Community,Total
+North Carolina,HD01_VD05,2017,Q4,105929,533,1045,0.5,Comparison Community,Total
+"Durham County, NC",HD01_VD05,2017,Q4,124086,3004,5888,2.42,Comparison Community,Total
+"Forsyth County, NC",HD01_VD05,2017,Q4,103501,3063,6003,2.96,Comparison Community,Total
+"Guilford County, NC",HD01_VD05,2017,Q4,102688,2435,4773,2.37,Comparison Community,Total
+United States,HD01_VD06,2017,Q5,228190,315,617,0.14,Comparison Community,Total
+North Carolina,HD01_VD06,2017,Q5,198193,1601,3138,0.81,Comparison Community,Total
+"Durham County, NC",HD01_VD06,2017,Q5,225366,9996,19592,4.44,Comparison Community,Total
+"Forsyth County, NC",HD01_VD06,2017,Q5,201795,8354,16374,4.14,Comparison Community,Total
+"Guilford County, NC",HD01_VD06,2017,Q5,191193,5187,10167,2.71,Comparison Community,Total
