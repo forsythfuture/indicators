@@ -7,13 +7,17 @@ find_quint_perc <- function(df, wgt) {
   # extend dataframe based on replicate weight
   #wgt <- enquo(wgt)
   
+  print(wgt)
+  
   # extract unique years so we can create quintiles by iterating through each year
   years <- unique(df$year)
   
-  # extend dataframe based on weights and convert income to vector
   df <- df %>%
+    # remove rows with weights of 0 or less
+    filter(.[[wgt]] > 0) %>%
     select(!!wgt, year, group, agep, rac1p, hincp) %>%
-    uncount(eval(parse(text = !!wgt)))
+    # extend dataframe based on weights and convert income to vector
+    uncount(eval(parse(text = wgt)))
   
   # find quintiles of replicate weight
   quintiles <- quintile_vector(df)
@@ -26,7 +30,10 @@ find_quint_perc <- function(df, wgt) {
   # for each county and demographic, calculate percentage in each quintile
   county <- df %>%
     # for counties, we only need the comparison counties
-    filter(group %in% c('Forsyth', 'Guilford', 'Durham'))
+    filter(group %in% c('Forsyth', 'Guilford', 'Durham')) %>%
+    # for guilford and durham, we only need 2017
+    # year equals 2017 or group equals forsyth
+    filter(year == 2017 | group == 'Forsyth')
   
   # calculate demographic percentiles
   county <- lapply(c('agep', 'rac1p', 'total'),
