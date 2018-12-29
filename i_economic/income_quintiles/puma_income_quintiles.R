@@ -19,7 +19,7 @@ house_vars <- c('SERIALNO', # serial number of housing unit; used to match housi
                 'TYPE', # Type of husing unit; 1 is housing unit, which are the only units we need
                 'HINCP') # housing costs as a percentage of income
 
-years <- seq(2006, 2017)
+years <- 2017
 
 for (yr in years) {
   
@@ -97,6 +97,17 @@ for (yr in years) {
 # calculate income quintile percentages for each year and all replciate weights
 demo_perc <- lapply(tolower(replicate_weights), 
                     function(x) find_quint_perc(incomes, x))
+# 
+# for (i in seq_along(demo_perc)) {
+#   
+#   print(i)
+#   print(nrow(demo_perc[[i]]))
+#   
+# }
+# 
+# a <- demo_perc[[1]]
+# b <- demo_perc[[3]]
+# c <- full_join(a, b, by = c('year', 'group', 'subtype', 'type', 'quintile'))
 
 # calculate standard errors
 # first replicate weight is missing a row, so remove
@@ -137,3 +148,5 @@ income <- read_csv('i_economic/income_quintiles/data/puma_quintiles_data.csv') %
                           `64` = '45 to 64',
                           `150` = '65 and over')) %>%
   rename(estimate = perc)
+
+#write_csv(income, 'i_economic/income_quintiles/data/puma_quintiles_cleaned.csv')
