@@ -23,9 +23,7 @@ find_quint_perc <- function(df, wgt) {
   quintiles <- quintile_vector(df)
 
   # assign each person a quintile
-  df <- lapply(years,
-         function(x) quintile_cut(df, quintiles, x)) %>%
-    bind_rows()
+  df <- quintile_cut(df, quintiles)
 
   # for each county and demographic, calculate percentage in each quintile
   county <- df %>%
@@ -36,14 +34,16 @@ find_quint_perc <- function(df, wgt) {
     filter(year == 2017 | group == 'Forsyth')
   
   # calculate demographic percentiles
-  county <- lapply(c('agep', 'rac1p', 'total'),
+  county <- lapply(c('agep', 'rac1p'),
                   function(x) find_perc(county, x, geo_unit = 'county')) %>%
-    bind_rows(.)
+    bind_rows(.) %>%
+    rename(quintile = quintile_county)
 
   # calculate percentages in each quintile for state / year / demogrpahic combinations
-  state <- lapply(c('agep', 'rac1p', 'total'),
+  state <- lapply(c('agep', 'rac1p'),
                   function(x) find_perc(df, x, geo_unit = 'state')) %>%
-    bind_rows(.)
+    bind_rows(.) %>%
+    rename(quintile = quintile_state)
 
   # combine state and county estimates
   percentages <- bind_rows(county, state)
@@ -52,40 +52,71 @@ find_quint_perc <- function(df, wgt) {
   
 }
 
+perc <- find_quint_perc(incomes, 'wgtp')
+
 quintile_vector <- function(df) {
 
-  # # find quintiles of each year
-  quintiles <- df %>%
+  # find quintiles of each year for whole state
+  quintiles_state <- df %>%
     group_by(year) %>%
+    do(data.frame(t(quantile(.$hincp, probs = seq(0, 1, by = .2), na.rm=TRUE)))) %>%
+    mutate(group = 'North Carolina')
+
+  colnames(quintiles_state) <- c('year', 'zero', 'one', 'two', 'three', 'four', 'five', 'group')
+  
+  # find quintiles of each year for counties
+  quintiles_county <- df %>%
+    #filter(group %in% c('Forsyth', 'Durham', 'Guilford')) %>%
+    group_by(year, group) %>%
     do(data.frame(t(quantile(.$hincp, probs = seq(0, 1, by = .2), na.rm=TRUE))))
-
-  colnames(quintiles) <- c('year', 'zero', 'one', 'two', 'three', 'four', 'five')
-
-  # the final quintile value is the highest income in the dataset
-  # we need to increase this to an impossibly high number
-  quintiles$five <- 9999999
+  
+  colnames(quintiles_county) <- c('year', 'group', 'zero', 'one', 'two', 'three', 'four', 'five')
+  
+  # bind counties and state
+  quintiles <- bind_rows(quintiles_county, quintiles_state) %>%
+    # don't need zero quintile since this just signifies the lowest number (zero)
+    # don't need highest quintile since we are assigning people to quintiles based on floor value
+    select(-zero, -five)
   
   return(quintiles)
   
 }
 
-quintile_cut <- function(df, quintiles, year) {
+quintile_cut <- function(df, quintiles) {
   
   # This function takes as input the quintile values
   # and assigns each person to a quintile
   
-  # create lables and breaks
-  quintile_labels <- c(1, 2, 3, 4, 5)
-  quintile_breaks <- as.numeric(quintiles[quintiles$year == year, -1])
+  # create function that calculates quintile based on boolean test
+  quintile_cal <- function(pop) {
+    
+    ifelse(pop$hincp <= pop$one, 1,
+              ifelse(pop$hincp <= pop$two, 2,
+                  ifelse(pop$hincp <= pop$three, 3,
+                      ifelse(pop$hincp <= pop$four, 4, 5))))
+    
+  }
   
-  # assign each household to an income quintile
+  # find quintiles for counties by merging quintiles dataset to population dataset
   df <- df %>%
-    # only keep needed row
-    filter(year == !!year) %>%
-    mutate(quintile = cut(hincp, breaks = !!quintile_breaks, 
-                          labels = !!quintile_labels, 
-                          include.lowest = TRUE),
-           quintile = as.integer(quintile))
+    # merge dataset of quintiles
+    left_join(quintiles, by = c('year', 'group')) %>%
+    # calcualte which quintile each person falls in
+    mutate(quintile_county = quintile_cal(.)) %>%
+    # remove quintiles from dataset
+    select(-one:-four)
+  
+  # find quintiles for state by merging quintiles dataset to population dataset
+  df <- df %>%
+    # merge dataset of quintiles, filter quintiles dataset to only keep state numbers
+    # remove group column (-2)
+    left_join(quintiles[quintiles$group == 'North Carolina', -2], 
+              by = 'year') %>%
+    # calcualte which quintile each person falls in
+    mutate(quintile_state = quintile_cal(.)) %>%
+    # remove quintiles from dataset
+    select(-one:-four)
+      
   
   return(df)
 
@@ -104,7 +135,7 @@ find_perc <- function(df, demo, geo_unit = 'county') {
   #   geo_unit" 'county' or 'state'
   
   # calculate percentiles for geographic area totals (no demographic)
-  group_cols <- if (geo_unit == 'county') c('year', 'group', demo, 'quintile') else c('year', demo, 'quintile')
+  group_cols <- if (geo_unit == 'county') c('year', 'group', demo, 'quintile_county') else c('year', demo, 'quintile_state')
   
   # create a column of ones if we are calculating the total (grouping by total)
   # this will create a group with only the year and geographic unit as grouping variables

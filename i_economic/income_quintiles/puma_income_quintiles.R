@@ -3,7 +3,7 @@ library(data.table)
 library(DBI)
 
 source('functions/puma_functions.R')
-source('i_economic/income_quintiles/income_quintiles_functions.R')
+source('i_economic/income_quintiles/puma_income_quintiles_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
 
@@ -98,21 +98,6 @@ for (yr in years) {
 demo_perc <- lapply(tolower(replicate_weights), 
                     function(x) find_quint_perc(incomes, x))
 
-# total_se <- demo_perc[[1]]
-# for (i in seq_along(demo_perc)) {
-#   
-#   print(i)
-#   
-#   total_se <- full_join(total_se, demo_perc[[i]],
-#                         by = c('year', 'group', 'subtype', 'quintile', 'type'))
-#   #print(nrow(demo_perc[[i]]))
-#   
-#   #n <- if ( nrow(demo_perc[[i]]) == 2149 ) n + 0 else n + 1
-#   
-# }
-# 
-# total_se_na <- t(total_se[!complete.cases(total_se),]) %>% as.data.frame()
-
 # calculate standard errors
 # first replicate weight is missing a row, so remove
 demo_perc_se <- find_se(demo_perc)
@@ -131,4 +116,24 @@ perc_primary <- demo_perc[[1]] %>%
                                   paste0(geo_description, ' County, NC'), geo_description))
 
 # write out as csv
-write_csv(perc_primary, 'i_economic/income_quintiles/data/quintiles_perc_data.csv')
+#write_csv(perc_primary, 'i_economic/income_quintiles/data/puma_quintiles_data.csv')
+
+########################### Clean final income quintiles dataset ####################
+
+income <- read_csv('i_economic/income_quintiles/data/puma_quintiles_data.csv') %>%
+  # remove 'other' races
+  filter(subtype != 4) %>%
+  # recode values
+  mutate(type = recode(type, 
+                       agep = 'Age',
+                       rac1p = 'Race / Ethnicity',
+                       total = 'Total'),
+         subtype = recode(subtype,
+                          `1` = 'White, non-Hispanic',
+                          `2` = 'African American',
+                          `3` = 'Hispanic/Latino',
+                          `24` = '18 to 24',
+                          `44` = '25 to 44',
+                          `64` = '45 to 64',
+                          `150` = '65 and over')) %>%
+  rename(estimate = perc)
