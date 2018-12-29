@@ -52,8 +52,6 @@ find_quint_perc <- function(df, wgt) {
   
 }
 
-perc <- find_quint_perc(incomes, 'wgtp')
-
 quintile_vector <- function(df) {
 
   # find quintiles of each year for whole state
@@ -66,7 +64,6 @@ quintile_vector <- function(df) {
   
   # find quintiles of each year for counties
   quintiles_county <- df %>%
-    #filter(group %in% c('Forsyth', 'Durham', 'Guilford')) %>%
     group_by(year, group) %>%
     do(data.frame(t(quantile(.$hincp, probs = seq(0, 1, by = .2), na.rm=TRUE))))
   
