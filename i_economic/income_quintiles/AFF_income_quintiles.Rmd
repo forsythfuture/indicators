@@ -95,8 +95,8 @@ df %>%
 
 #### Interpretation
 
-* 
-*
+* 2017 household income quintiles in Forsyth County have decreased or are statistically the same as they were in 2006. Incomes in the two lowest quintiles, the 20th and 40th, have decreased since 2006, while incomes in the other three quintiles have remained statistically unchanged.
+* There are no significant changes in income in any of the quintiles compared to 2016.
 
 
 #### Z-scores
@@ -128,10 +128,24 @@ df %>%
     theme_minimal()
 ```
 
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q1')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('20th Percentile (Q1)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
 #### Interpretation
 
-* 
-*
+* Forsyth County's 2017 20th percentile income of $20,273 is significantly less than the other comparison communitys' 20th percentile incomes with the exception of Guilford County.  
+
+Note: The difference in Forsyth and Guilford Counties are very close to be being significant at our standard 95% confidence level and would definitely be considered significant at the 90% confidence level. 
+
 
 ### Q2 Plot
 
@@ -146,6 +160,18 @@ df %>%
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
     theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q2')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('40th Percentile (Q2)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
 ```
 
 #### Interpretation
@@ -168,6 +194,18 @@ df %>%
     theme_minimal()
 ```
 
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q3')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('60th Percentile (Q3)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
 #### Interpretation
 
 * 
@@ -188,6 +226,18 @@ df %>%
     theme_minimal()
 ```
 
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q4')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('80th Percentile (Q4)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
 #### Interpretation
 
 * 
@@ -206,6 +256,18 @@ df %>%
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
     theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q5')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('95th Percentile (Lower Limit of Top 5%)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
 ```
 
 #### Interpretation
