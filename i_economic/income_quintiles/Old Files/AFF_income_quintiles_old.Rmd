@@ -85,7 +85,7 @@ df %>%
   ggplot(aes(year, estimate, color = description)) +
     geom_line(size = 1) +
     labs(title = 'Forsyth County Income Quintiles',
-         color = 'Quintiles',
+         color = 'Comparison Unit',
          y = 'Income') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
@@ -96,7 +96,7 @@ df %>%
 #### Interpretation
 
 * 2017 household income quintiles in Forsyth County have decreased or are statistically the same as they were in 2006. Incomes in the two lowest quintiles, the 20th and 40th, have decreased since 2006, while incomes in the other three quintiles have remained statistically unchanged.
-* There are no significant increases or decreases in quintile incomes as compared to 2016.
+* There are no significant changes in income in any of the quintiles compared to 2016.
 
 
 #### Z-scores
@@ -113,6 +113,144 @@ df %>%
 
 ### Community Comparisons by Income Quintile
 
+### Q1 Plot
+
+```{r}
+#df %>%
+ # filter(description == 'Q1') %>%
+  #ggplot(aes(year, estimate, color = geo_description)) +
+   # geom_line(size = 1) +
+    #labs(title = '20th Percentile (Q1)',
+     #    color = 'Comparison Unit',
+      #   y = 'Income') +
+    #scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+     #                  minor_breaks = NULL) +
+    #theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q1')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('20th Percentile (Q1)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
+
+### Q2 Plot
+
+```{r}
+#df %>%
+ # filter(description == 'Q2') %>%
+  #ggplot(aes(year, estimate, color = geo_description)) +
+   # geom_line(size = 1) +
+    #labs(title = '40th Percentile (Q2)',
+     #    color = 'Comparison Unit',
+      #   y = 'Income') +
+    #scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+     #                  minor_breaks = NULL) +
+    #theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q2')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('40th Percentile (Q2)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
+
+### Q3 Plot
+
+```{r}
+#df %>%
+ # filter(description == 'Q3') %>%
+  #ggplot(aes(year, estimate, color = geo_description)) +
+   # geom_line(size = 1) +
+    #labs(title = '60th Percentile (Q3)',
+     #    color = 'Comparison Unit',
+      #   y = 'Income') +
+    #scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+     #                  minor_breaks = NULL) +
+    #theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q3')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('60th Percentile (Q3)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
+
+### Q4 Plot
+
+```{r}
+#df %>%
+  #filter(description == 'Q4') %>%
+  #ggplot(aes(year, estimate, color = geo_description)) +
+   # geom_line(size = 1) +
+    #labs(title = '80th Percentile (Q4)',
+     #    color = 'Comparison Unit',
+      #   y = 'Income') +
+    #scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+     #                  minor_breaks = NULL) +
+    #theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q4')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('80th Percentile (Q4)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
+
+
+### Q5 Plot
+
+```{r}
+#df %>%
+ # filter(description == 'Q5') %>%
+  #ggplot(aes(year, estimate, color = geo_description)) +
+   # geom_line(size = 1) +
+    #labs(title = '95th Percentile (Lower Limit of Top 5%)',
+     #    color = 'Comparison Unit',
+      #   y = 'Income') +
+    #scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
+     #                  minor_breaks = NULL) +
+    #theme_minimal()
+```
+
+```{r}
+df %>% 
+  filter(year == max(.$year),description == 'Q5')%>%
+  ggplot(aes(geo_description, estimate, fill = geo_description)) +
+  geom_bar(position = "dodge", stat='identity') +
+  labs(title = paste0('95th Percentile (Lower Limit of Top 5%)', ' in ', max(df$year) ),
+       fill = 'geo_description',
+       y = 'Income',
+       x = '') +
+  theme_minimal()
+```
 
 ```{r}
 # bar chart of quintiles with all geographies in the most recent year
@@ -121,12 +259,13 @@ df %>%
   filter(year == max(.$year)) %>%
   ggplot(aes(description, estimate, fill=geo_description)) +
   geom_bar(position = "dodge", stat='identity') +
-  labs(title = paste0('Forsyth County and Comparison Communities Income Quintiles', ' in ', max(df$year)),
-       fill = 'Geographic Area',
-       y = 'Quintile Income',
+  labs(title = paste0('Homeownership rates by ethnicity', ' in ', max(df$year)),
+       fill = 'Ethnicity',
+       y = 'Homeownership Rate',
        x = '') +
   theme_minimal() +
   theme(axis.text.x=element_text(angle=45,hjust=1))
+```
 ```
 
 #### Interpretation
@@ -155,12 +294,13 @@ ff_data_dt(total_data,
 
 #### Z-scores
 
-The table below shows z-scores of all comparison communities 2006 to 2017. 
+The table below shows z-scores of all comparison communities for the past two years. To change the comparison year, replace the `c(max(df$year), max(df$year)-1)` segment of `year_comparison <- max(df$year)` with the desired year or vector of years such as `c(2013, 2014, 2015)`.
 
 ```{r include = to_include}
 year_comparison <- c(2006:2017)
 
 df %>%
+  # only keep total employment rate
   filter(year %in% year_comparison) %>%
   ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year','description'))
 ```
