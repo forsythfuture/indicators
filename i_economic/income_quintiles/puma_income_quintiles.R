@@ -3,7 +3,7 @@ library(data.table)
 library(DBI)
 
 source('functions/puma_functions.R')
-source('i_economic/income_quintiles/income_quintiles_functions.R')
+source('i_economic/income_quintiles/puma_income_quintiles_functions.R')
 
 con <- dbConnect(RSQLite::SQLite(), "../pums_db.db")
 
@@ -19,9 +19,11 @@ house_vars <- c('SERIALNO', # serial number of housing unit; used to match housi
                 'TYPE', # Type of husing unit; 1 is housing unit, which are the only units we need
                 'HINCP') # housing costs as a percentage of income
 
-years <- c(2016, 2017)
+years <- 2017
 
 for (yr in years) {
+  
+  print(yr)
   
   # population variables that are needed
   # the name of one population variable depends on year, so these variables
@@ -47,9 +49,8 @@ for (yr in years) {
   pop <- tbl(con, table_name('population', yr)) %>%
     # only keep needed variables
     select(!!pop_vars) %>%
-    filter(ST == 37, # only keep NC, which is state number 37
-           # only keep Forsyth County PUMA data
-           PUMA %in% c(1801, 1802)) %>%
+    # only keep NC, which is state number 37
+    filter(ST == 37) %>%
     collect() 
   
   # change REL column name to RELP if REL is a column (less than 2010)
@@ -68,8 +69,6 @@ for (yr in years) {
     # only keep needed variables
     select(!!house_yr_vars) %>%
     filter(ST == 37, # only keep NC, which is state number 37
-           # only keep Forsyth County PUMA data
-           PUMA %in% c(1801, 1802, 1803),
            # only keep housing units; remove institutional units
            TYPE ==1,
            # do not keep rows with NA values for income
@@ -98,8 +97,20 @@ for (yr in years) {
 # calculate income quintile percentages for each year and all replciate weights
 demo_perc <- lapply(tolower(replicate_weights), 
                     function(x) find_quint_perc(incomes, x))
+# 
+# for (i in seq_along(demo_perc)) {
+#   
+#   print(i)
+#   print(nrow(demo_perc[[i]]))
+#   
+# }
+# 
+# a <- demo_perc[[1]]
+# b <- demo_perc[[3]]
+# c <- full_join(a, b, by = c('year', 'group', 'subtype', 'type', 'quintile'))
 
 # calculate standard errors
+# first replicate weight is missing a row, so remove
 demo_perc_se <- find_se(demo_perc)
 
 # pull out quintile percentages of primary weights and
@@ -114,3 +125,28 @@ perc_primary <- demo_perc[[1]] %>%
          # add ' County, NC' to county names
          geo_description = ifelse(geo_description %in% c('Forsyth', 'Guilford', 'Durham'),
                                   paste0(geo_description, ' County, NC'), geo_description))
+
+# write out as csv
+#write_csv(perc_primary, 'i_economic/income_quintiles/data/puma_quintiles_data.csv')
+
+########################### Clean final income quintiles dataset ####################
+
+income <- read_csv('i_economic/income_quintiles/data/puma_quintiles_data.csv') %>%
+  # remove 'other' races
+  filter(subtype != 4) %>%
+  # recode values
+  mutate(type = recode(type, 
+                       agep = 'Age',
+                       rac1p = 'Race / Ethnicity',
+                       total = 'Total'),
+         subtype = recode(subtype,
+                          `1` = 'White, non-Hispanic',
+                          `2` = 'African American',
+                          `3` = 'Hispanic/Latino',
+                          `24` = '18 to 24',
+                          `44` = '25 to 44',
+                          `64` = '45 to 64',
+                          `150` = '65 and over')) %>%
+  rename(estimate = perc)
+
+#write_csv(income, 'i_economic/income_quintiles/data/puma_quintiles_cleaned.csv')
