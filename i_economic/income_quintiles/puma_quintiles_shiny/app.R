@@ -6,13 +6,16 @@ library(DT)
 library(kableExtra)
 
 ##################### Section to edit ##############################
-#shiny_indicators/
-file_name <- 'electoral_part_shiny.csv'
+#shiny_indicators
 
-indicator_name <- 'Voter Participation'
+pop <- read_csv('https://raw.githubusercontent.com/forsythfuture/indicators/master/i_civic_engagement/electoral%20participation/elizabeth_analysis/voter_demographics.csv')
+
+file_name <- 'puma_quintiles_cleaned.csv'
+
+indicator_name <- 'PUMA Quintiles'
 
 # Enter data sources. Each line below represents a single line in the app
-data_source <- c('')
+data_source <- c('2017 U.S. Census Bureau, Public Use Microdata Sample (PUMS)')
 
 # enter the type of significance test
 # either 'z' for z-test or 'chi-square' for chi-square test
@@ -25,7 +28,15 @@ sig_test <- 'z'
 #   bold: <b>text</b>
 #   line break: <br>
 
-interpretation <- c('')
+interpretation <- c('<i>Description</i><br>',
+                    "This section shows the percentage of each demographic group that lies within a given income quintile. All values would be 20% if there was parity among race/ethnicities.",
+                    "As an example, the value for Fosyth County African Americans in the 20th percentile and under category is 31%. This means that 31% of all African Americans have incomes at the",
+                    "20th percentile of the income distribution or lower.<br>",
+                    "<i>Interpretation</i><br>",
+                    "At the lower end of the income distribution, African Americans are overrepresented and White, non-Hispanics are underrepresented.", 
+                    "Covnersley, at the higher end of the income distribution White, non-Hispanics are overrepresented and African Americans are underrepresented.<br>",
+                    "The percentage difference between African Americans and Hispanic/Latinos is not statistically significant within any income percentage group."
+                    )
 
 ################### End section to edit ############################
 
@@ -45,16 +56,6 @@ z_table_name <- 'Z scores: Values above 1.96 (in bold) are statistically signifi
 
 # load file
 df <- read_csv(file_name) %>%
-  # only keep forsyth
-  filter(geo_description == 'Forsyth County, NC') %>%
-  filter(!(type == "Race/Ethnicity" & subtype == "M")) %>%
-  # recode demographics to better descriptions
-  mutate(subtype = recode(subtype,
-                          B = 'African American',
-                          HL = 'Hispanic/Latino',
-                          W = 'White, non-Hispanic',
-                          M = 'Male',
-                          F = 'Female')) %>%
   # create MOE and CV
   mutate(moe = 1.96 * se,
          cv = (se/estimate) * 100)
@@ -73,10 +74,10 @@ if (sig_test == 'chi-square') {
   
 } else {
   df <- df %>%
-    select(geo_description, year, type, subtype, 
+    select(geo_description, year, type, subtype, quintile,
            estimate, moe, se, cv)
   
-  data_cols <- c('Geography', 'Year', 'Type', 'Subtype',
+  data_cols <- c('Geography', 'Year', 'Type', 'Subtype', 'Quintile',
                  'Estimate', 'St. Error', '95% MOE', 'CV')
   
 }
@@ -91,9 +92,9 @@ tableau_df <- df %>%
   mutate(type = 'Total') %>%
   # bind these rows to the original dataframe
   bind_rows(df) %>%
-  select(year, geo_description, type, subtype, estimate) %>%
+  select(year, geo_description, type, subtype, quintile, estimate) %>%
   rename(Year = year, `Geographic Area` = geo_description, Type = type,
-         Subtype = subtype, Estimate = estimate)
+         Quintile = quintile, Subtype = subtype, Estimate = estimate)
 
 # unique demographics, for drop down menu
 unique_demo <- unique(df$type)
@@ -110,20 +111,9 @@ ui <- dashboardPage(
   dashboardHeader(title = indicator_name),
   dashboardSidebar(
     
-    # fileInput("dataset", "Import CSV file:",
-    #           accept = c(
-    #             "text/csv",
-    #             "text/comma-separated-values,text/plain",
-    #             ".csv")
-    # ),
-    # tags$hr(),
-    # radioButtons("sig_test", "Significance Test:",
-    #              c("Z-score" = "zscore",
-    #                "Chi-Square" = "chisquare",
-    #                "Log-normal" = "lnorm")),
+    tags$hr(),
     
     # demographic drop down menu
-    #uiOutput('demographic')#,
     selectInput("demographic", label = "Demographic:",
                 choices = unique_demo,
                 selected = 'Comparison Community'),
@@ -137,8 +127,6 @@ ui <- dashboardPage(
     fluidRow(
       tabsetPanel(
         tabPanel("Plots", 
-                 plotlyOutput("plot_line"),
-                 tags$hr(),
                  plotlyOutput("plot_bar"),
                  # table sources
                  htmlOutput("source"),
@@ -191,15 +179,9 @@ server <- function(input, output, session) {
     contentType = 'text/csv'
   )
   
-  output$plot_line <- renderPlotly({
-    
-    plotly_plots(df_demo(), input$demographic, 'line')
-    
-  })
-  
   output$plot_bar <- renderPlotly({
     
-    plotly_plots(df_demo(), input$demographic, 'bar')
+    plotly_plots(df_demo(), input$demographic)
     
   })
   
@@ -225,7 +207,7 @@ server <- function(input, output, session) {
              geo_description %in% input$geo_check,
              subtype %in% input$demo_check) %>%
       ff_acs_zscore_kable('estimate', 'se', test = sig_test, success = success, trials = trials,
-                          var_names = c('year', 'geo_description', 'subtype' ),
+                          var_names = c('year', 'geo_description', 'subtype', 'quintile' ),
                           table_name = if (sig_test == 'z') z_table_name else chi_table_name)
     
   }

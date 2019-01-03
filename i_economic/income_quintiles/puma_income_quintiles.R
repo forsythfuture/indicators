@@ -133,20 +133,24 @@ perc_primary <- demo_perc[[1]] %>%
 
 income <- read_csv('i_economic/income_quintiles/data/puma_quintiles_data.csv') %>%
   # remove 'other' races
-  filter(subtype != 4) %>%
+  filter(subtype != 4,
+         # only keep Forsyth County
+         geo_description == 'Forsyth County, NC',
+         # only keep ethnicity as demographic
+         type == 'rac1p') %>%
   # recode values
   mutate(type = recode(type, 
-                       agep = 'Age',
-                       rac1p = 'Race / Ethnicity',
-                       total = 'Total'),
+                       rac1p = 'Race/Ethnicity'),
          subtype = recode(subtype,
                           `1` = 'White, non-Hispanic',
                           `2` = 'African American',
-                          `3` = 'Hispanic/Latino',
-                          `24` = '18 to 24',
-                          `44` = '25 to 44',
-                          `64` = '45 to 64',
-                          `150` = '65 and over')) %>%
+                          `3` = 'Hispanic/Latino'),
+         quintile = recode(quintile,
+                           `1` = '20th percentile and under',
+                           `2` = '20th to 40th percentile',
+                           `3` = '40th to 60th percentile',
+                           `4` = '60th to 80th percentile',
+                           `5` = '80th percentile and over')) %>%
   rename(estimate = perc)
 
-#write_csv(income, 'i_economic/income_quintiles/data/puma_quintiles_cleaned.csv')
+# write_csv(income, 'i_economic/income_quintiles/puma_quintiles_shiny/puma_quintiles_cleaned.csv')
