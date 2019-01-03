@@ -154,7 +154,8 @@ for (yr in years) {
     # only keep needed variables
     select(!!pop_yr_vars) %>%
     filter(ST == 37, # only keep NC, which is state number 37
-           CIT != 5 # only keep citizens (non-citizens are labeled 5)
+           CIT != 5, # only keep citizens (non-citizens are labeled 5)
+           AGEP >= 18 # only keep people over 18
     ) %>%
     collect() %>%
     # add county names

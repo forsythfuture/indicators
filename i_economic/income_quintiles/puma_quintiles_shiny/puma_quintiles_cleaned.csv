@@ -1,0 +1,16 @@
+year,geo_description,subtype,quintile,estimate,type,se
+2017,"Forsyth County, NC","White, non-Hispanic",20th percentile and under,0.15337610421863257,Race/Ethnicity,0.012339495161466185
+2017,"Forsyth County, NC","White, non-Hispanic",20th to 40th percentile,0.1618721883952204,Race/Ethnicity,0.013773933778840104
+2017,"Forsyth County, NC","White, non-Hispanic",40th to 60th percentile,0.18681582014443343,Race/Ethnicity,0.010785868401495478
+2017,"Forsyth County, NC","White, non-Hispanic",60th to 80th percentile,0.22865358850632306,Race/Ethnicity,0.011473157022917936
+2017,"Forsyth County, NC","White, non-Hispanic",80th percentile and over,0.26928229873539056,Race/Ethnicity,0.008880923789163074
+2017,"Forsyth County, NC",African American,20th percentile and under,0.3106477323753929,Race/Ethnicity,0.025131598250334317
+2017,"Forsyth County, NC",African American,20th to 40th percentile,0.2565671306690615,Race/Ethnicity,0.027535335090065782
+2017,"Forsyth County, NC",African American,40th to 60th percentile,0.2264256847777279,Race/Ethnicity,0.02686340169294514
+2017,"Forsyth County, NC",African American,60th to 80th percentile,0.1498372249663224,Race/Ethnicity,0.02268532469920241
+2017,"Forsyth County, NC",African American,80th percentile and over,0.05652222721149529,Race/Ethnicity,0.014351772317361072
+2017,"Forsyth County, NC",Hispanic/Latino,20th percentile and under,0.2765672933217966,Race/Ethnicity,0.05280214322369855
+2017,"Forsyth County, NC",Hispanic/Latino,20th to 40th percentile,0.27058916070164396,Race/Ethnicity,0.05481496899761876
+2017,"Forsyth County, NC",Hispanic/Latino,40th to 60th percentile,0.21426885864862738,Race/Ethnicity,0.04576097532880995
+2017,"Forsyth County, NC",Hispanic/Latino,60th to 80th percentile,0.15197042397545818,Race/Ethnicity,0.04807874467549736
+2017,"Forsyth County, NC",Hispanic/Latino,80th percentile and over,0.08660426335247384,Race/Ethnicity,0.028736093660704225

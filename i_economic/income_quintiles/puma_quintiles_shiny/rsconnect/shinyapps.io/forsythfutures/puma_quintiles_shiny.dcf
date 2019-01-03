@@ -1,0 +1,12 @@
+name: puma_quintiles_shiny
+title: puma_quintiles_shiny
+username:
+account: forsythfutures
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 625761
+bundleId: 1793708
+url: https://forsythfutures.shinyapps.io/puma_quintiles_shiny/
+when: 1546460073.51882
+asMultiple: FALSE
+asStatic: FALSE
