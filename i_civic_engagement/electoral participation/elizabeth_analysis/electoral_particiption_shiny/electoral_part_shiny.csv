@@ -1,27 +1,28 @@
-year,geo_description,estimate,se,type,subtype
-2010,"Durham County, NC",0.201756985015739,0.002437652294008,Comparison Community,Total
-2012,"Durham County, NC",0.566202263617259,0.00457962509574,Comparison Community,Total
-2014,"Durham County, NC",0.342567842463279,0.003202956378607,Comparison Community,Total
-2016,"Durham County, NC",0.533232655427481,0.003862248628807,Comparison Community,Total
-2018,"Durham County, NC",0.433804199734626,0.003771499233943,Comparison Community,Total
-2010,"Forsyth County, NC",0.291613307497863,0.001429029126894,Comparison Community,Total
-2012,"Forsyth County, NC",0.518543601554971,0.003245703022117,Comparison Community,Total
-2014,"Forsyth County, NC",0.316726729366265,0.001850379708641,Comparison Community,Total
-2016,"Forsyth County, NC",0.497827074009211,0.002858436685316,Comparison Community,Total
-2018,"Forsyth County, NC",0.076612452715752,0.000839456191872,Age Group,18 to 25
-2018,"Forsyth County, NC",0.330580285315885,0.016452778331714,Age Group,26 to 29
-2018,"Forsyth County, NC",0.46990511777851,0.006231661084948,Age Group,30 to 49
-2018,"Forsyth County, NC",0.601404240528328,0.007784599901729,Age Group,50 to 64
-2018,"Forsyth County, NC",0.716918947721576,0.011983784585269,Age Group,65 to 84
-2018,"Forsyth County, NC",0.516114525558387,0.0569420313013,Age Group,85 and Older
-2018,"Forsyth County, NC",0.368490469707284,0.00466805809034,Race/Ethnicity,African American
-2018,"Forsyth County, NC",0.44097244732577,0.003256451902161,Gender,Female
-2018,"Forsyth County, NC",0.082744086737099,0.00275790678141,Race/Ethnicity,Hispanic/Latino
-2018,"Forsyth County, NC",0.320144525035727,0.002411852678701,Gender,Male
-2018,"Forsyth County, NC",0.381498690546591,0.001803768695412,Comparison Community,Total
-2018,"Forsyth County, NC",0.439421552152612,0.001626601281784,Race/Ethnicity,"White, non-Hispanic"
-2010,"Guilford County, NC",0.305229226518005,0.001947066278346,Comparison Community,Total
-2012,"Guilford County, NC",0.545508819421694,0.004451300046404,Comparison Community,Total
-2014,"Guilford County, NC",0.343409734892755,0.001731009358784,Comparison Community,Total
-2016,"Guilford County, NC",0.520710252109746,0.003251394872344,Comparison Community,Total
-2018,"Guilford County, NC",0.400366857103952,0.001786260395708,Comparison Community,Total
+"","year","geo_description","estimate","se","type","subtype"
+"1",2010,"Durham County, NC",0.266858260648204,0.0034011136626821,"Comparison Community","Total"
+"2",2012,"Durham County, NC",0.749425541200658,0.00774334278999939,"Comparison Community","Total"
+"3",2014,"Durham County, NC",0.449573604922131,0.00503187906168303,"Comparison Community","Total"
+"4",2016,"Durham County, NC",0.693899979975505,0.00618165784980297,"Comparison Community","Total"
+"5",2018,"Durham County, NC",0.55709456372773,0.00569564930846349,"Comparison Community","Total"
+"6",2010,"Forsyth County, NC",0.391139018429438,0.00196130451882226,"Comparison Community","Total"
+"7",2012,"Forsyth County, NC",0.689179758439931,0.00568135926230052,"Comparison Community","Total"
+"8",2014,"Forsyth County, NC",0.420185640100749,0.00295942185648869,"Comparison Community","Total"
+"9",2016,"Forsyth County, NC",0.658029620186161,0.00461395613845431,"Comparison Community","Total"
+"10",2018,"Forsyth County, NC",0.237242061040405,0.00646677359020307,"Age Group","18 to 25"
+"11",2018,"Forsyth County, NC",0.330580285315885,0.0164527783317141,"Age Group","26 to 29"
+"12",2018,"Forsyth County, NC",0.46990511777851,0.00623166108494783,"Age Group","30 to 49"
+"13",2018,"Forsyth County, NC",0.601404240528328,0.00778459990172921,"Age Group","50 to 64"
+"14",2018,"Forsyth County, NC",0.716918947721576,0.0119837845852692,"Age Group","65 to 84"
+"15",2018,"Forsyth County, NC",0.516114525558387,0.0569420313013001,"Age Group","85 and Older"
+"16",2018,"Forsyth County, NC",0.481059764496779,0.00537064056120043,"Race/Ethnicity","B"
+"17",2018,"Forsyth County, NC",0.59304878532081,0.00459716808975351,"Gender","F"
+"18",2018,"Forsyth County, NC",0.183529122332247,0.0137373111432649,"Race/Ethnicity","HL"
+"19",2018,"Forsyth County, NC",0.00389996113917726,2.93909801056633e-05,"Race/Ethnicity","M"
+"20",2018,"Forsyth County, NC",0.4119663576306,0.00310467068496941,"Gender","M"
+"21",2018,"Forsyth County, NC",0.501256155903933,0.0029173746646374,"Comparison Community","Total"
+"22",2018,"Forsyth County, NC",0.533950706048144,0.00173832273804751,"Race/Ethnicity","W"
+"23",2010,"Guilford County, NC",0.399647660009124,0.00236559326135084,"Comparison Community","Total"
+"24",2012,"Guilford County, NC",0.714437334341983,0.00492466450765696,"Comparison Community","Total"
+"25",2014,"Guilford County, NC",0.449775347715484,0.00256446294095931,"Comparison Community","Total"
+"26",2016,"Guilford County, NC",0.676996449578719,0.0042458020140767,"Comparison Community","Total"
+"27",2018,"Guilford County, NC",0.522075412575726,0.00268290268422036,"Comparison Community","Total"

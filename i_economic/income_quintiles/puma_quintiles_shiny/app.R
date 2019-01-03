@@ -8,6 +8,8 @@ library(kableExtra)
 ##################### Section to edit ##############################
 #shiny_indicators
 
+pop <- read_csv('https://raw.githubusercontent.com/forsythfuture/indicators/master/i_civic_engagement/electoral%20participation/elizabeth_analysis/voter_demographics.csv')
+
 file_name <- 'puma_quintiles_cleaned.csv'
 
 indicator_name <- 'PUMA Quintiles'
