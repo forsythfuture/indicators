@@ -40,12 +40,9 @@ Family structure reflects the percentage of the population in Forsyth County. Th
 This code block imports and cleans the data. It filters out unneeded NC counties and cleans up variable descriptions.
 
 ```{r}
-# create list of geographic areas to keep
-geo_areas <- c('Forsyth County, NC')
-
 # import dataset
 df <- read_csv('data/family_structure_all_years.csv') %>%
-  filter(geo_description %in% geo_areas) %>%
+  filter(geo_description == 'Forsyth County, NC') %>%
   select(-label)
 aa <- filter(df,file == 'African American')
 #########################################################################################################
@@ -53,8 +50,7 @@ aa <- filter(df,file == 'African American')
 aa_total <- filter(aa, str_detect(description, 'Estimate; Total:'))
 
 ##############################################BELOW######################################################
-aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
-
+aa_married_below<-filter(aa,  description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years:'    |description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children of the householder under 18 years'|description=='Estimate; Income in the past 12 months below poverty level: - Married-couple family: - With related children under 18 years:')
 
 aa_male_below<-filter(aa,description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months below poverty level: - Other family: - Male householder, no wife present: - With related children of the householder under 18 years')
 
@@ -72,9 +68,9 @@ aa_male_above<-filter(aa,description=='Estimate; Income in the past 12 months at
 aa_married_above<-filter(aa,description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children under 18 years:'|description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years'| description=='Estimate; Income in the past 12 months at or above poverty level: - Married-couple family: - With related children of the householder under 18 years:')
 
 #######################################WHITE#############################################################
-df <- read_csv('data/family_structure_all_years.csv') %>%
-  filter(geo_description %in% geo_areas) %>%
-  select(-label)
+#df <- read_csv('data/family_structure_all_years.csv') %>%
+ # filter(geo_description %in% geo_areas) %>%
+  #select(-label)
 white <- filter(df,file == 'White, non-Hispanic')
 #########################################################################################################
 

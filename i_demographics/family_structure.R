@@ -58,8 +58,6 @@ family_structure <- bind_rows(family_structure_list) %>%
   mutate(file = str_replace_all(file, '.*_norace.*', 'no race')) %>%
   mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
 
-# 'raw_data2' file should be empty and can be deleted
-
 # write out data frame
 write_csv(family_structure, 'i_demographics/data/family_structure_all_years.csv')
 
