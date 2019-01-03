@@ -131,9 +131,12 @@ df %>%
 
 #### Interpretation
 
-* In 2017 Forsyth County's lowest income quintile, the 20th percentile, coming in at $20,273 was significantly less than the comparison communities.
-* Forsyth County becomes more aligned with the incomes of the comparison communities in the other quintiles.  
-* At the highest income quintile, the 95th percentile, coming in at $201,795, Forsyth County was similar to all other comparison communities with the exception of the U.S. 
+* Forsyth County's lowest two quintile income limits, the 20th and 40th percentiles, were significantly less than the comparison communities, with the exception of Guilford County.  
+* None of the quintile income limits for Forsyth and Guilford Counties are significantly different.
+* For the highest income quintile limit, the 95th percentile, Forsyth County was similar to all other comparison communities with the exception of the U.S. 
+* Forsyth County's quintile income limits are significantly less than those of the United States for all quintiles.
+* Note: Although differences may appear to exist between comparison communities, the color of the bar indicates whether the difference is significant.
+
 
 ### All Quintiles Data
 
@@ -158,10 +161,8 @@ ff_data_dt(total_data,
 The table below shows z-scores of all comparison communities 2006 to 2017. 
 
 ```{r include = to_include}
-year_comparison <- c(2006:2017)
-
 df %>%
-  filter(year %in% year_comparison) %>%
+  filter(year == '2017') %>%
   ff_acs_zscore_dt('estimate', 'se', c('geo_description', 'year','description'))
 ```
 
