@@ -19,8 +19,9 @@ family_structure_zip <- paste0('zip_files/', list.files('zip_files', pattern='fa
 for (i in seq_along(family_structure_zip)) {
   
   ff_import_acs(family_structure_zip[i],
-                data_path, 
-                years = seq(2006, 2017, 1))
+                data_path,
+                #B17010B is not available for Forsyth County in 22006
+                years = seq(2007, 2017, 1))
 }
 
 
@@ -37,7 +38,7 @@ for (i in seq_along(family_structure_zip)) {
   
   df <- ff_import_acs(family_structure_zip[i],
                       data_path, 
-                      years = seq(2006, 2017, 1))
+                      years = seq(2007, 2017, 1))
   
   # add filename as a column
   df$file <- family_structure_zip[i]
@@ -55,7 +56,6 @@ family_structure <- bind_rows(family_structure_list) %>%
   mutate(file = str_replace_all(file, '.*_aa.*', 'African American')) %>%
   mutate(file = str_replace_all(file, '.*_hl.*', 'Hispanic/Latino')) %>%
   mutate(file = str_replace_all(file, '.*_total.*', 'total')) %>%
-  mutate(file = str_replace_all(file, '.*_norace.*', 'no race')) %>%
   mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
 
 # write out data frame
