@@ -33,6 +33,30 @@ puma_area_code <- function(counties, names_file, puma12 = TRUE) {
   return(puma_names)
 }
 
+clean_race <- function(df) {
+  
+  # this function recodes race values as follows:
+  #   Recode Hispanics as 100 in RAC1P column
+  #   Recode race to 1 = white, 2 = AA, 3 = Hispanic, and 4 = other
+  #   Delete hispanic column
+  
+  df <- df %>%
+    # make race 100 for Hispanic if person is of hispanic origin
+    mutate(RAC1P = ifelse(.$HISP != 1, 100, .$RAC1P)) %>%
+    select(-HISP)
+  
+  # recode race to group races we will not use into one race
+  # this will reduce the number of groups and speed up grouping
+  
+  race_labels <- c(seq(1, 9), 100)
+  race_recode <- c(1, 2, rep(4, 7), 3)
+  
+  df$RAC1P <- plyr::mapvalues(df$RAC1P, race_labels, race_recode)
+  
+  return(df)
+  
+}
+
 clean_demographics <- function(df, age_bins) {
   
   # This function cleans the demographics of a PUMS dataset.
