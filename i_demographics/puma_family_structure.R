@@ -128,16 +128,21 @@ counts <- counts_list(demographics)
 se_counts <- find_se(counts, 5)
 se_perc <- find_se(counts, 8)
 
-# add standard errors to primary weight dataset
+# add standard errors, moe, cv
 counts <- counts[[1]] %>%
   mutate(se_family_count = se_counts[[1]],
-         se_percentage = se_perc[[1]])
+         se_percentage = se_perc[[1]],
+         moe_family_count = 1.96 * se_family_count,
+         moe_percentage = 1.96 * se_percentage,
+         cv_family_count = round(100 * (se_family_count / family_count), 2),
+         cv_percentage = round(100 * (se_percentage / percentage), 2))
 
 colnames(counts) <- c('county', 'year', 'family_structure', 'children', 'family_count', 'race', 
-                      'total_count', 'percentage', 'se_family_count', 'se_percentage')
+                      'total_count', 'percentage', 'se_family_count', 'se_percentage',
+                      "moe_family_count", "moe_percentage", "cv_family_count", "cv_percentage")
 
 # reorder columns
 counts <- counts %>%
   select(county:children, race, everything())
 
-#write_csv(counts, 'i_demographics/data/pums_NC_counties.csv')
+# write_csv(counts, 'i_demographics/data/pums_NC_counties.csv')
