@@ -20,6 +20,7 @@ house_vars <- c('SERIALNO', # serial number of housing unit; used to match housi
 demographics <- data.frame()
 
 years <- 2017
+yr <- 2017
 
 for (yr in years) {
   
