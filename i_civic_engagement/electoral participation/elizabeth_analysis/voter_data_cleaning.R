@@ -31,11 +31,48 @@ voter <- select(voter, voter_reg_num, status_cd, res_street_address,
                 res_city_desc, state_cd, zip_code, race_code, ethnic_code, 
                 gender_code, birth_age, birth_year, registr_dt)
 
+#### This section examines duplicate voter registration numbers
+
+# duplicate voter id's for each file
+distinct_voter <- 1- (n_distinct(voter$voter_reg_num) / length(voter$voter_reg_num))
+distinct_history <- 1 - (n_distinct(history$voter_reg_num) / length(history$voter_reg_num))
+
+# duplicate voter id's by zip code
+zip_dups <- voter %>%
+  group_by(zip_code) %>%
+  summarize(distinct = n() - n_distinct(voter_reg_num))
+
+# duplicate voter id's by city
+city_dups <- voter %>%
+  group_by(res_city_desc) %>%
+  summarize(distinct = n() - n_distinct(voter_reg_num))
+
+# duplicate voter id's by county
+county_dups <- voter %>%
+  group_by(county_desc) %>%
+  summarize(distinct = n() - n_distinct(voter_reg_num),
+            number = n())
+
+#### !!! no duplicates by county!!! ####
+
+sum(history$county_id == history$voted_county_id, na.rm=TRUE) / nrow(history)
+
+# merge both files by registratin number and county
+voter %>%
+  select(county_id:voter_reg_num, race_code, ethnic_code, gender_code) %>%
+  right_join(., history, by = c("county_id", "voter_reg_num")) %>% 
+  select(county_id,county_desc.x,county_desc.y,voter_reg_num,race_code,gender_code) %>%
+  head(200)
+
+#### end examination of duplicates ####
+
+
 ###   Exloring voter file for data cleaning
 
 ###     making lists for summary and table views 
 
 summarylist <- list(voter$birth_age, voter$birth_year, voter$registr_dt)
+
 tablelist <- list(voter$status_cd, voter$res_city_desc, voter$state_cd, 
                   voter$zip_code, voter$race_code, voter$ethnic_code, 
                   voter$gender_code, history$election_lbl, history$election_desc,
@@ -109,7 +146,7 @@ rm(tablelist)
 
 ### Select Needed Variables for voter (history has needed variables)
 
-voter <- select(voter, voter_reg_num, #res_street_address, res_city_desc,
+voter <- select(voter, voter_reg_num, res_street_address, res_city_desc,
                 state_cd, zip_code, race_code, ethnic_code, gender_code, birth_age,
                 age_reg_flag)
 
