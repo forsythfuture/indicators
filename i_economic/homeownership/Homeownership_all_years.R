@@ -63,7 +63,5 @@ homeowner <- bind_rows(homeowner_list) %>%
   mutate(file = str_replace_all(file, '.*_total.*', 'total')) %>%
   mutate(file = str_replace_all(file, '.*_white.*', 'White, non-Hispanic'))
 
-# 'raw_data2' file should be empty and can be deleted
-
 # write out data frame
 write_csv(homeowner, 'i_economic/homeownership/data/homeownership_all_years.csv')

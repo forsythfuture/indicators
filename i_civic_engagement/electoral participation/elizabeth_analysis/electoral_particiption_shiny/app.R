@@ -45,6 +45,16 @@ z_table_name <- 'Z scores: Values above 1.96 (in bold) are statistically signifi
 
 # load file
 df <- read_csv(file_name) %>%
+  # only keep forsyth
+  filter(geo_description == 'Forsyth County, NC') %>%
+  filter(!(type == "Race/Ethnicity" & subtype == "M")) %>%
+  # recode demographics to better descriptions
+  mutate(subtype = recode(subtype,
+                          B = 'African American',
+                          HL = 'Hispanic/Latino',
+                          W = 'White, non-Hispanic',
+                          M = 'Male',
+                          F = 'Female')) %>%
   # create MOE and CV
   mutate(moe = 1.96 * se,
          cv = (se/estimate) * 100)

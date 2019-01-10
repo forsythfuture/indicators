@@ -56,10 +56,10 @@ df <- read_csv('data/income_quintiles_all_years_counties.csv') %>%
          moe = moe_adj,
          se = se_adj,
          cv = cv_adj) %>% 
-  mutate(description = ifelse((str_detect(description,'Lowest')),'Q1', 
-                                ifelse((str_detect(description,'Second')),'Q2',
-                                       ifelse((str_detect(description,'Third')),'Q3',
-                                              ifelse((str_detect(description,'Fourth')), 'Q4', 'Q5'))))) 
+  mutate(description = ifelse((str_detect(description,'Lowest')),'20th', 
+                                ifelse((str_detect(description,'Second')),'40th',
+                                       ifelse((str_detect(description,'Third')),'60th',
+                                              ifelse((str_detect(description,'Fourth')), '80th', '95th'))))) 
 
   
 #write_csv(df, 'C:/Users/mjoan/OneDrive/Documents/indicators/i_economic/income_quintiles/AFF_income_quintiles_shiny/AFF_income_quintiles.csv')
@@ -73,19 +73,19 @@ df <- read_csv('data/income_quintiles_all_years_counties.csv') %>%
 
 #### Plot
 
-The plot below shows the yearly income quintiles trends for Forsyth County. 
+The plot below shows the yearly income quintiles trends for Forsyth County.  
 
 ```{r}
 df %>%
-  mutate(description = ifelse((str_detect(description,'Q1')),'20th Percentile', 
-                                ifelse((str_detect(description,'Q2')),'40th Percentile',
-                                       ifelse((str_detect(description,'Q3')),'60th Percentile',
-                                              ifelse((str_detect(description,'Q4')), '80th Percentile', '95th Percentile'))))) %>%
+  #mutate(description = ifelse((str_detect(description,'Q1')),'20th Percentile', 
+   #                             ifelse((str_detect(description,'Q2')),'40th Percentile',
+    #                                   ifelse((str_detect(description,'Q3')),'60th Percentile',
+     #                                         ifelse((str_detect(description,'Q4')), '80th Percentile', '95th Percentile'))))) %>%
   filter(geo_description == 'Forsyth County, NC') %>%
   ggplot(aes(year, estimate, color = description)) +
     geom_line(size = 1) +
-    labs(title = 'Forsyth County Income Quintiles',
-         color = 'Quintiles',
+    labs(title = 'Forsyth County Income Quintile Thresholds',
+         color = 'Quintiles/Thresholds',
          y = 'Income') +
     scale_x_continuous(breaks = seq(min(df$year), max(df$year), 1),
                        minor_breaks = NULL) +
@@ -95,9 +95,9 @@ df %>%
 
 #### Interpretation
 
-* 2017 household income quintiles in Forsyth County have decreased or are statistically the same as they were in 2006. Incomes in the two lowest quintiles, the 20th and 40th, have decreased since 2006, while incomes in the other three quintiles have remained statistically unchanged.
-* There are no significant increases or decreases in quintile incomes as compared to 2016.
-
+* Household incomes in Forsyth County have remained steady or decreased since 2006.  
+* Specifically, 40% of households have less income than they did in 2006: 40% of households earned $44,071 or less in 2006 and $38,981 or less in 2017.     
+* Note: All incomes have been adjusted to 2017 dollars.
 
 #### Z-scores
 
@@ -111,36 +111,27 @@ df %>%
          
 ```
 
-### Community Comparisons by Income Quintile
+### Community Comparisons by Income Quintile Threshold
 
 
 ```{r}
 # bar chart of quintiles with all geographies in the most recent year
 df %>%
   # only keep most recent year
-  filter(year == max(.$year)) %>%
+  filter(year == max(.$year), geo_description != 'United States') %>%
   ggplot(aes(description, estimate, fill=geo_description)) +
   geom_bar(position = "dodge", stat='identity') +
-  labs(title = paste0('Forsyth County and Comparison Communities Income Quintiles', ' in ', max(df$year)),
+  labs(title = paste0(max(df$year), ' ', 'Forsyth County & Comparison Communities Income Quintiles'),
        fill = 'Geographic Area',
-       y = 'Quintile Income',
+       y = 'Household Incomes',
        x = '') +
   theme_minimal() +
   theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
-#### Interpretation
-
-* Forsyth County's lowest two quintile income limits, the 20th and 40th percentiles, were significantly less than the comparison communities, with the exception of Guilford County.  
-* None of the quintile income limits for Forsyth and Guilford Counties are significantly different.
-* For the highest income quintile limit, the 95th percentile, Forsyth County was similar to all other comparison communities with the exception of the U.S. 
-* Forsyth County's quintile income limits are significantly less than those of the United States for all quintiles.
-* Note: Although differences may appear to exist between comparison communities, the color of the bar indicates whether the difference is significant.
-
-
 ### All Quintiles Data
 
-Below is the raw data for income quintiles by geographies.
+Below is the raw data for income quintile thresholds by geographies.
 
 ```{r include = to_include}
 total_data <- df %>%
