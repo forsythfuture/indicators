@@ -1,0 +1,201 @@
+year,geo_description,subtype,estimate,se,type
+2007,"Forsyth County, NC",Assault,386.5,10.6833364015874,Other violent crime
+2008,"Forsyth County, NC",Assault,467.2,11.6483385815935,Other violent crime
+2009,"Forsyth County, NC",Assault,384.3,10.5005939028439,Other violent crime
+2010,"Forsyth County, NC",Assault,356.8,10.0762414983643,Other violent crime
+2011,"Forsyth County, NC",Assault,377.3,10.311697806057,Other violent crime
+2012,"Forsyth County, NC",Assault,383,10.3441804990396,Other violent crime
+2013,"Forsyth County, NC",Assault,324.4,9.47953035993215,Other violent crime
+2014,"Forsyth County, NC",Assault,397.3,10.4337164141896,Other violent crime
+2015,"Forsyth County, NC",Assault,426.8,10.7704618484924,Other violent crime
+2016,"Forsyth County, NC",Assault,467.9,11.2209722692714,Other violent crime
+2007,"Durham County, NC",Assault,359,11.9168679061278,Other violent crime
+2008,"Durham County, NC",Assault,354.6,11.6928725471236,Other violent crime
+2009,"Durham County, NC",Assault,318.6,10.9574230576865,Other violent crime
+2010,"Durham County, NC",Assault,350.9,11.3722180343819,Other violent crime
+2011,"Durham County, NC",Assault,363.4,11.4563397356965,Other violent crime
+2012,"Durham County, NC",Assault,396.9,11.842691085477,Other violent crime
+2013,"Durham County, NC",Assault,336.6,10.7929009521748,Other violent crime
+2014,"Durham County, NC",Assault,402.8,11.67599537556,Other violent crime
+2015,"Durham County, NC",Assault,480.4,12.6296920379421,Other violent crime
+2016,"Durham County, NC",Assault,447.5,12.0715679299585,Other violent crime
+2007,"Guilford County, NC",Assault,402.7,9.27153787076296,Other violent crime
+2008,"Guilford County, NC",Assault,336.5,8.39199799362989,Other violent crime
+2009,"Guilford County, NC",Assault,301.7,7.8937657066626,Other violent crime
+2010,"Guilford County, NC",Assault,270.2,7.42925101071492,Other violent crime
+2011,"Guilford County, NC",Assault,274.6,7.4463247109354,Other violent crime
+2012,"Guilford County, NC",Assault,274.1,7.39790783498708,Other violent crime
+2013,"Guilford County, NC",Assault,259.7,7.15863299182792,Other violent crime
+2014,"Guilford County, NC",Assault,244.9,6.91241949900266,Other violent crime
+2015,"Guilford County, NC",Assault,307.3,7.70429617624321,Other violent crime
+2016,"Guilford County, NC",Assault,350.7,8.19661045000558,Other violent crime
+2007,North Carolina,Assault,292.1,1.78984368344424,Other violent crime
+2008,North Carolina,Assault,286.1,1.75306064548775,Other violent crime
+2009,North Carolina,Assault,256.4,1.6472255845622,Other violent crime
+2010,North Carolina,Assault,242.3,1.59083227483497,Other violent crime
+2011,North Carolina,Assault,229.4,1.54078508345772,Other violent crime
+2012,North Carolina,Assault,234.8,1.55141774211125,Other violent crime
+2013,North Carolina,Assault,220.1,1.49484461265225,Other violent crime
+2014,North Carolina,Assault,221.6,1.49302247780991,Other violent crime
+2015,North Carolina,Assault,239.5,1.54435680302484,Other violent crime
+2016,North Carolina,Assault,251,1.57202983284428,Other violent crime
+2007,"Forsyth County, NC",Murder,8.2,1.55610565484131,Other violent crime
+2008,"Forsyth County, NC",Murder,5.9,1.3089967688564,Other violent crime
+2009,"Forsyth County, NC",Murder,5,1.19774308707415,Other violent crime
+2010,"Forsyth County, NC",Murder,3.7,1.02609366638788,Other violent crime
+2011,"Forsyth County, NC",Murder,4.8,1.16307412275568,Other violent crime
+2012,"Forsyth County, NC",Murder,2.3,0.801605375934432,Other violent crime
+2013,"Forsyth County, NC",Murder,5,1.17687788289463,Other violent crime
+2014,"Forsyth County, NC",Murder,4.7,1.13482442594103,Other violent crime
+2015,"Forsyth County, NC",Murder,5.2,1.18884105141807,Other violent crime
+2016,"Forsyth County, NC",Murder,7.4,1.41113910274774,Other violent crime
+2007,"Durham County, NC",Murder,11.5,2.1328672280992,Other violent crime
+2008,"Durham County, NC",Murder,9.9,1.95375205371641,Other violent crime
+2009,"Durham County, NC",Murder,8.2,1.75789313536786,Other violent crime
+2010,"Durham County, NC",Murder,10.3,1.94837301463694,Other violent crime
+2011,"Durham County, NC",Murder,11.3,2.02019198778855,Other violent crime
+2012,"Durham County, NC",Murder,7.8,1.66018755048771,Other violent crime
+2013,"Durham County, NC",Murder,10.5,1.90623212915756,Other violent crime
+2014,"Durham County, NC",Murder,7.8,1.62478718374124,Other violent crime
+2015,"Durham County, NC",Murder,13.5,2.11718176951545,Other violent crime
+2016,"Durham County, NC",Murder,14,2.13516371595104,Other violent crime
+2007,"Guilford County, NC",Murder,13,1.66583751374269,Other violent crime
+2008,"Guilford County, NC",Murder,7.7,1.26945759907488,Other violent crime
+2009,"Guilford County, NC",Murder,5.9,1.1038818246626,Other violent crime
+2010,"Guilford County, NC",Murder,5.4,1.05026583842317,Other violent crime
+2011,"Guilford County, NC",Murder,6.6,1.15441954721202,Other violent crime
+2012,"Guilford County, NC",Murder,5.6,1.05742217140556,Other violent crime
+2013,"Guilford County, NC",Murder,5.9,1.07899673026904,Other violent crime
+2014,"Guilford County, NC",Murder,5.4,1.02643765063705,Other violent crime
+2015,"Guilford County, NC",Murder,7.3,1.18744395229072,Other violent crime
+2016,"Guilford County, NC",Murder,8.8,1.29839773300709,Other violent crime
+2007,North Carolina,Murder,7,0.277075639907066,Other violent crime
+2008,North Carolina,Murder,6.8,0.270266655784209,Other violent crime
+2009,North Carolina,Murder,5.5,0.241254494800219,Other violent crime
+2010,North Carolina,Murder,5.1,0.230798389685863,Other violent crime
+2011,North Carolina,Murder,5.3,0.234198060065611,Other violent crime
+2012,North Carolina,Murder,5.2,0.230877376750907,Other violent crime
+2013,North Carolina,Murder,5,0.225305104659707,Other violent crime
+2014,North Carolina,Murder,5.5,0.235213807950535,Other violent crime
+2015,North Carolina,Murder,5.7,0.238249673690636,Other violent crime
+2016,North Carolina,Murder,6.9,0.260644441819733,Other violent crime
+2007,"Forsyth County, NC",Rape,47.4,3.74128959030628,Other violent crime
+2008,"Forsyth County, NC",Rape,39.9,3.4040741886041,Other violent crime
+2009,"Forsyth County, NC",Rape,39.7,3.37500114235732,Other violent crime
+2010,"Forsyth County, NC",Rape,34.7,3.14232342011302,Other violent crime
+2011,"Forsyth County, NC",Rape,33.3,3.06343656156418,Other violent crime
+2012,"Forsyth County, NC",Rape,27.7,2.78186844082529,Other violent crime
+2013,"Forsyth County, NC",Rape,27.5,2.76002328465829,Other violent crime
+2014,"Forsyth County, NC",Rape,27.2,2.73000974956473,Other violent crime
+2015,"Forsyth County, NC",Rape,31.9,2.94454003044438,Other violent crime
+2016,"Forsyth County, NC",Rape,34.4,3.04251822076419,Other violent crime
+2007,"Durham County, NC",Rape,34.8,3.71026152742745,Other violent crime
+2008,"Durham County, NC",Rape,31.4,3.47949866562415,Other violent crime
+2009,"Durham County, NC",Rape,24.5,3.03856538571247,Other violent crime
+2010,"Durham County, NC",Rape,26.6,3.13108106506365,Other violent crime
+2011,"Durham County, NC",Rape,27.2,3.13428060025299,Other violent crime
+2012,"Durham County, NC",Rape,26.5,3.06008005643667,Other violent crime
+2013,"Durham County, NC",Rape,24.6,2.91775410830742,Other violent crime
+2014,"Durham County, NC",Rape,28.4,3.10033307444692,Other violent crime
+2015,"Durham County, NC",Rape,27.8,3.03818111199943,Other violent crime
+2016,"Durham County, NC",Rape,31.4,3.19765780967542,Other violent crime
+2007,"Guilford County, NC",Rape,31.5,2.59308192933342,Other violent crime
+2008,"Guilford County, NC",Rape,34.8,2.69874878020206,Other violent crime
+2009,"Guilford County, NC",Rape,24.5,2.2494669624384,Other violent crime
+2010,"Guilford County, NC",Rape,20,2.02123754844762,Other violent crime
+2011,"Guilford County, NC",Rape,24.3,2.21510766996469,Other violent crime
+2012,"Guilford County, NC",Rape,18.7,1.93230288351782,Other violent crime
+2013,"Guilford County, NC",Rape,22.8,2.12110196502656,Other violent crime
+2014,"Guilford County, NC",Rape,16.9,1.81584613660806,Other violent crime
+2015,"Guilford County, NC",Rape,24.6,2.17981302578418,Other violent crime
+2016,"Guilford County, NC",Rape,27.4,2.29108759510571,Other violent crime
+2007,North Carolina,Rape,26.8,0.542146579304579,Other violent crime
+2008,North Carolina,Rape,25.2,0.520281378023873,Other violent crime
+2009,North Carolina,Rape,25.1,0.515383997116157,Other violent crime
+2010,North Carolina,Rape,21.4,0.472775075855518,Other violent crime
+2011,North Carolina,Rape,20.8,0.463956246278148,Other violent crime
+2012,North Carolina,Rape,20.6,0.459529416436163,Other violent crime
+2013,North Carolina,Rape,18.6,0.434552748801435,Other violent crime
+2014,North Carolina,Rape,18.1,0.42669814573509,Other violent crime
+2015,North Carolina,Rape,19.5,0.44066868780896,Other violent crime
+2016,North Carolina,Rape,21.1,0.45579037556962,Other violent crime
+2007,"Forsyth County, NC",Robbery,232.8,8.29131934793911,Other violent crime
+2008,"Forsyth County, NC",Robbery,237,8.29634381578923,Other violent crime
+2009,"Forsyth County, NC",Robbery,185.1,7.28755558246434,Other violent crime
+2010,"Forsyth County, NC",Robbery,137.8,6.26196669825802,Other violent crime
+2011,"Forsyth County, NC",Robbery,137.8,6.23176952849756,Other violent crime
+2012,"Forsyth County, NC",Robbery,132.1,6.07502559342737,Other violent crime
+2013,"Forsyth County, NC",Robbery,140.9,6.24743714767323,Other violent crime
+2014,"Forsyth County, NC",Robbery,131.7,6.00720749927138,Other violent crime
+2015,"Forsyth County, NC",Robbery,133.4,6.02143546447275,Other violent crime
+2016,"Forsyth County, NC",Robbery,141.8,6.17720596162919,Other violent crime
+2007,"Durham County, NC",Robbery,334.4,11.5013292301245,Other violent crime
+2008,"Durham County, NC",Robbery,364.1,11.8484677205759,Other violent crime
+2009,"Durham County, NC",Robbery,279.3,10.2593775384791,Other violent crime
+2010,"Durham County, NC",Robbery,258.9,9.76831191475404,Other violent crime
+2011,"Durham County, NC",Robbery,269.4,9.86398080095978,Other violent crime
+2012,"Durham County, NC",Robbery,234.8,9.10875241686865,Other violent crime
+2013,"Durham County, NC",Robbery,228.1,8.88472066815002,Other violent crime
+2014,"Durham County, NC",Robbery,236.5,8.94673875057687,Other violent crime
+2015,"Durham County, NC",Robbery,263.3,9.35010937259415,Other violent crime
+2016,"Durham County, NC",Robbery,302.4,9.92334421596565,Other violent crime
+2007,"Guilford County, NC",Robbery,297.1,7.96365225573413,Other violent crime
+2008,"Guilford County, NC",Robbery,291.6,7.81207846820865,Other violent crime
+2009,"Guilford County, NC",Robbery,257.7,7.29547857240902,Other violent crime
+2010,"Guilford County, NC",Robbery,183.4,6.12071313279131,Other violent crime
+2011,"Guilford County, NC",Robbery,168.9,5.83991503839453,Other violent crime
+2012,"Guilford County, NC",Robbery,151,5.49089162899389,Other violent crime
+2013,"Guilford County, NC",Robbery,135.8,5.17659284560126,Other violent crime
+2014,"Guilford County, NC",Robbery,124.8,4.93449810725159,Other violent crime
+2015,"Guilford County, NC",Robbery,144.5,5.28306085659429,Other violent crime
+2016,"Guilford County, NC",Robbery,154.6,5.44215813702544,Other violent crime
+2007,North Carolina,Robbery,154.6,1.30212917515584,Other violent crime
+2008,North Carolina,Robbery,158.9,1.30647155958628,Other violent crime
+2009,North Carolina,Robbery,130.2,1.17381474535127,Other violent crime
+2010,North Carolina,Robbery,105,1.04723062908954,Other violent crime
+2011,North Carolina,Robbery,101.2,1.02337691201641,Other violent crime
+2012,North Carolina,Robbery,98.3,1.00382143794792,Other violent crime
+2013,North Carolina,Robbery,96.7,0.99083027113217,Other violent crime
+2014,North Carolina,Robbery,87.7,0.939250132142837,Other violent crime
+2015,North Carolina,Robbery,91.4,0.954043077207188,Other violent crime
+2016,North Carolina,Robbery,95.9,0.971702290278997,Other violent crime
+2007,"Forsyth County, NC",Total,674.9,14.1173073143059,Comparison Community
+2008,"Forsyth County, NC",Total,750.1,14.7595171991191,Comparison Community
+2009,"Forsyth County, NC",Total,614,13.2728093530889,Comparison Community
+2010,"Forsyth County, NC",Total,532.9,12.3142794533264,Comparison Community
+2011,"Forsyth County, NC",Total,553.2,12.4861302284376,Comparison Community
+2012,"Forsyth County, NC",Total,545,12.3394258975432,Comparison Community
+2013,"Forsyth County, NC",Total,497.9,11.7440383886094,Comparison Community
+2014,"Forsyth County, NC",Total,561,12.3982724774389,Comparison Community
+2015,"Forsyth County, NC",Total,597.2,12.740369415567,Comparison Community
+2016,"Forsyth County, NC",Total,651.5,13.2407070374331,Comparison Community
+2007,"Durham County, NC",Total,739.7,17.1057732349761,Comparison Community
+2008,"Durham County, NC",Total,760,17.1182216886068,Comparison Community
+2009,"Durham County, NC",Total,630.5,15.4144519914891,Comparison Community
+2010,"Durham County, NC",Total,646.6,15.4372999850519,Comparison Community
+2011,"Durham County, NC",Total,671.2,15.569669596084,Comparison Community
+2012,"Durham County, NC",Total,666,15.3407631945886,Comparison Community
+2013,"Durham County, NC",Total,599.8,14.4073586156965,Comparison Community
+2014,"Durham County, NC",Total,675.5,15.1203505530174,Comparison Community
+2015,"Durham County, NC",Total,785,16.1445554094007,Comparison Community
+2016,"Durham County, NC",Total,795.4,16.0938502547203,Comparison Community
+2007,"Guilford County, NC",Total,744.4,12.605618053868,Comparison Community
+2008,"Guilford County, NC",Total,670.7,11.847780246017,Comparison Community
+2009,"Guilford County, NC",Total,589.8,11.0369471018975,Comparison Community
+2010,"Guilford County, NC",Total,478.9,9.89064873436569,Comparison Community
+2011,"Guilford County, NC",Total,474.5,9.78835726902797,Comparison Community
+2012,"Guilford County, NC",Total,449.3,9.47158384238859,Comparison Community
+2013,"Guilford County, NC",Total,424.2,9.14912276072346,Comparison Community
+2014,"Guilford County, NC",Total,392,8.74538085752366,Comparison Community
+2015,"Guilford County, NC",Total,483.8,9.66684203545511,Comparison Community
+2016,"Guilford County, NC",Total,541.4,10.1841676078184,Comparison Community
+2007,North Carolina,Total,480.5,2.29559896838251,Comparison Community
+2008,North Carolina,Total,477,2.26358705163131,Comparison Community
+2009,North Carolina,Total,417.2,2.10119432194766,Comparison Community
+2010,North Carolina,Total,373.9,1.97617508200919,Comparison Community
+2011,North Carolina,Total,356.7,1.92130765554428,Comparison Community
+2012,North Carolina,Total,358.9,1.91807876206555,Comparison Community
+2013,North Carolina,Total,340.4,1.8590060580439,Comparison Community
+2014,North Carolina,Total,332.9,1.82994638528027,Comparison Community
+2015,North Carolina,Total,356.2,1.88339686952032,Comparison Community
+2016,North Carolina,Total,374.9,1.92124010154881,Comparison Community
